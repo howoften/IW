@@ -67,6 +67,8 @@ extension UIView {
 		
 		return nil
 	}
+    
+    
 	
 }
 
@@ -83,7 +85,7 @@ extension CGFloat {
 	static var tabbarHeight: CGFloat {
 		guard let vc = UIViewController.IWE.current() else { return 0 }
 		guard let tabBar = vc.tabBarController?.tabBar else { return 0 }
-		if tabBar.isHidden {
+		if !isShowingTabbar() || tabBar.isHidden {
 			if IWDevice.isiPhoneX {
 				return .bottomSpacing
 			}
@@ -99,7 +101,9 @@ extension CGFloat {
 		}
 		return navBar.height + statusBarHeight
 	}
-	static let statusBarHeight: CGFloat = (IWDevice.isiPhoneX ? 44 : 20)
+	static var statusBarHeight: CGFloat {
+		return UIApplication.shared.statusBarFrame.height
+	}
 	
 	/**
 	 导航栏 titleView 尽可能充满屏幕，余留的边距
@@ -504,6 +508,43 @@ extension String {
         return string
     }
     
+    static func hexString(withInteger integer: NSInteger) -> String {
+        var tempInteger = integer
+        var hexStr = ""
+        var remainder: NSInteger = 0
+        for _ in 0 ..< 9 {
+            remainder = tempInteger % 16
+            tempInteger = tempInteger / 16
+            let letter = self.hexLetterString(withInteger: remainder)
+            hexStr = "\(letter)\(hexStr)"
+            if integer == 0 {
+                break
+            }
+        }
+        return hexStr
+    }
+    
+    static func hexLetterString(withInteger integer: NSInteger) -> String {
+        assert(integer < 16, "要转换的数必须是16进制里的个位数，也即小于16，但你传给我是\(integer)")
+        var letter: String = ""
+        switch integer {
+        case 10:
+            letter = "A"
+        case 11:
+            letter = "B"
+        case 12:
+            letter = "C"
+        case 13:
+            letter = "D"
+        case 14:
+            letter = "E"
+        case 15:
+            letter = "F"
+        default:
+            letter = "\(integer)"
+        }
+        return letter
+    }
 }
 
 extension String {
@@ -949,4 +990,13 @@ extension UIImageView {
             iPrint("The remote image cache failed.")
         }
     }
+}
+
+
+extension CGSize {
+	
+	static func isEmpty(_ size: CGSize) -> Bool {
+		return size.width <= 0 || size.height <= 0
+	}
+	
 }

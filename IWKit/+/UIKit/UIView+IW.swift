@@ -8,6 +8,10 @@
 
 import UIKit
 
+private struct IWViewKey {
+    static var showDebugColorKey: Void?
+}
+
 extension IWView where View: UIView {
     
     /// Set round to view.
@@ -77,8 +81,11 @@ extension IWView where View: UIView {
         return UIViewController.IWE.current()
     }
 	
-	final func addTo(view: UIView?) {
+	final func addTo(view: UIView?, setToViewBounds: Bool = false) -> Void {
 		view?.addSubview(self.view)
+		if setToViewBounds, let vb = view?.bounds {
+			self.view.frame = vb
+		}
 	}
     
     final func addTapGesture(_ count: Int = 1, target: Any?, action: Selector?) -> Void {
@@ -95,7 +102,22 @@ extension IWView where View: UIView {
     final func removeAllSubviews(with viewType: AnyClass) {
         for sView in view.subviews { if sView.isKind(of: viewType) { sView.removeFromSuperview() } }
     }
-	
+    
+    final var isUIKitprivateView: Bool {
+        if view is UIWindow {
+            return true
+        }
+        var isPrivate = false
+        let classString = String(describing: self.view)
+        for value in ["LayoutContainer", "NavigationItemButton", "NavigationItemView", "SelectionGrabber", "InputViewContent"] {
+            if classString.hasPrefix("UI") || classString.hasPrefix("_UI") && classString.contains(value) {
+                isPrivate = true
+                break
+            }
+        }
+        return isPrivate
+    }
+    
 	final class func animation(_ time: TimeInterval, _ animate: @escaping () -> Void, _ finished: ((Bool) -> Void)?)  -> Void {
 		UIView.animate(withDuration: time, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.8, options: [.curveEaseOut, .allowUserInteraction], animations: animate, completion: finished)
 	}
@@ -106,7 +128,7 @@ extension IWView where View: UIView {
     
     final func whenTouches(numberOfTouches touches: Int, numberOfTapped taps: Int, handler: (() -> Void)?) -> Void {
         guard let hd = handler else { return }
-        let gesture = UITapGestureRecognizer.recognizer(withHandler: { (sender, view, state, location) in
+        let gesture = UITapGestureRecognizer.iwe_recognizer(withHandler: { (sender, view, state, location) in
             if state == .possible { hd() }
         })
         
@@ -138,6 +160,22 @@ extension IWView where View: UIView {
     final func eachSubview(_ handler: ((_ subview: UIView) -> Void)?) -> Void {
         guard let hd = handler else { return }
         for i in self.view.subviews { hd(i) }
+    }
+    
+    final var showDebugColor: Bool {
+        get { return (objc_getAssociatedObject(self, &IWViewKey.showDebugColorKey) as? Bool) ?? false }
+        set {
+            objc_setAssociatedObject(self, &IWViewKey.showDebugColorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            if newValue {
+                self.view.subviews.forEach({ (v) in
+                    main { v.backgroundColor = self.debugColor }
+                })
+            }
+        }
+    }
+    
+    private var debugColor: UIColor {
+        return UIColor.IWE.randomColor.alpha(0.8)
     }
     
 }

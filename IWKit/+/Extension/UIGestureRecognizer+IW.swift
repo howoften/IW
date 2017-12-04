@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 private struct IWGestureRecognizerKey {
     static var handler: Void?
     static var handlerDelay: Void?
@@ -31,7 +30,7 @@ extension UIGestureRecognizer {
         set { objc_setAssociatedObject(self, &IWGestureRecognizerKey.shouldhandlerAction, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
     }
     
-    class func recognizer(withHandler handler: IWGestureRecognizerHandler?, delay: TimeInterval = 0.0) -> UIGestureRecognizer {
+    class func iwe_recognizer(withHandler handler: IWGestureRecognizerHandler?, delay: TimeInterval = 0.0) -> UIGestureRecognizer {
         let a = self.init()
         a.iwe_handler = handler
         a.iwe_handlerDelay = delay
@@ -39,7 +38,7 @@ extension UIGestureRecognizer {
         return a
     }
     
-    @objc public func _handlerAction(_ recognizer: UIGestureRecognizer) -> Void {
+    @objc private func _handlerAction(_ recognizer: UIGestureRecognizer) -> Void {
         guard let hd = recognizer.iwe_handler else { return }
         
         let delay = self.iwe_handlerDelay
@@ -54,4 +53,11 @@ extension UIGestureRecognizer {
             block()
         }
     }
+	
+	/// 获取当前手势直接作用到的 view
+	final var iwe_targetView: UIView? {
+		let lc = self.location(in: self.view)
+		let tgv = self.view?.hitTest(lc, with: nil)
+		return tgv
+	}
 }

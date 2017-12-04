@@ -28,26 +28,23 @@ class IWLocalAuthentication: NSObject {
 		
 		case appCancel = -9		 // app 取消
 		
-		
 		case deviceNotSupoort = -99	 // 设备不支持
     }
 	
 	// SharedInstance
 	static let shared: IWLocalAuthentication = IWLocalAuthentication()
 	
-	var fuckSignVC: HDBDSignVC?
-	
-	private lazy var policy: LAPolicy = {
+	private var policy: LAPolicy {
 		var po = LAPolicy.deviceOwnerAuthenticationWithBiometrics
 		if #available(iOS 9.0, *) {
 			po = LAPolicy.deviceOwnerAuthentication
 		}
 		return po
-	}()
+	}
 	
-	private lazy var domainStateDataSavedPath: String = {
+	private var domainStateDataSavedPath: String {
 		return IWSandbox.documents.splicing("iwe_local_authentication")
-	}()
+	}
 	
 	var laContext: LAContext {
 		return LAContext.init()
@@ -56,18 +53,7 @@ class IWLocalAuthentication: NSObject {
 	var runningLaContext: LAContext?
 	
 	/// 旧的认证信息, 通过 initLocalAuthentication 进行初始化, 之后每次指纹认证成功都会刷新一遍
-	var oldDomainState: Data? {
-		do {
-			let d = try Data.init(contentsOf: URL.init(fileURLWithPath: domainStateDataSavedPath), options: Data.ReadingOptions.alwaysMapped)
-			if d.isEmpty {
-				return nil
-			}
-			return d
-		} catch {
-			iPrint(error: error)
-			return nil
-		}
-	}
+	var oldDomainState: Data?
 	
 	/// 是否支持本地认证
 	private var isSupportLocalAuthentication: Bool {
@@ -75,9 +61,27 @@ class IWLocalAuthentication: NSObject {
 		return laContext.canEvaluatePolicy(policy, error: &errorPointer)
 	}
 	
-	/*
 	/// 初始化本地认证信息, 用于记录认证信息是否变更
-	*/
+	func initLocalAuthentication() -> Void {
+		if !IWFileManage.default.fileExists(atPath: domainStateDataSavedPath) {
+			var errorPointer: NSError?
+			let ct = self.laContext
+			if #available(iOS 9.0, *), ct.canEvaluatePolicy(policy, error: &errorPointer) {
+				if let domainState = ct.evaluatedPolicyDomainState {
+					oldDomainState = domainState
+					self.saveDomainState(domainState)
+				}
+			}
+		}
+		
+		do {
+			let d = try Data.init(contentsOf: URL.init(fileURLWithPath: domainStateDataSavedPath), options: Data.ReadingOptions.alwaysMapped)
+			oldDomainState = d
+		} catch {
+			iPrint(error: error)
+		}
+		
+	}
 	
 	/// 本地认证功能
 	///
@@ -111,7 +115,6 @@ class IWLocalAuthentication: NSObject {
 					return
 				}
 				iPrint("The Local Authentication passed.")
-				self.updateLocalAuthenticationInfos()
                 handler(.passed)
 				return
             }
@@ -144,17 +147,14 @@ class IWLocalAuthentication: NSObject {
 	}
 	
 	/// 保存 DomainState 到本地
-	private func saveDomainState(_ domainState: Data?) -> Void {
-		if let stateData = domainState {
-			let filePathURL = URL.init(fileURLWithPath: domainStateDataSavedPath)
-			do {
-				try stateData.write(to: filePathURL)
-				iPrint("The Domain State Info saved.")
-			} catch {
-				iPrint(error: error)
-			}
-		} else {
-			iPrint("The Domain State is nil.")
+	private func saveDomainState(_ domainState: Data) -> Void {
+		let filePathURL = URL.init(fileURLWithPath: domainStateDataSavedPath)
+		do {
+			try domainState.write(to: filePathURL)
+			oldDomainState = domainState
+			iPrint("The Domain State Info saved.")
+		} catch {
+			iPrint(error: error)
 		}
 	}
 }

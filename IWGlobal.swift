@@ -142,7 +142,9 @@ func MakeIndex(_ row: Int, _ section: Int) -> IndexPath {
 func MakeSize(_ width: CGFloat, _ height: CGFloat) -> CGSize {
     return CGSize(width: width, height: height)
 }
-
+func makePoint(_ x: CGFloat, _ y: CGFloat) -> CGPoint {
+	return CGPoint(x: x, y: y)
+}
 
 // MARK:- Platform
 struct Platform {

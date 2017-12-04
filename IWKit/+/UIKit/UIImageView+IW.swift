@@ -94,5 +94,37 @@ private extension IWView where View: UIImageView {
             iPrint("The remote image cache failed.")
         }
     }
-    
+	
+	func sizeToFitKeepingImageAdpectRatio(inSize limitSize: CGSize) -> Void {
+		guard let img = self.view.image else {
+			return
+		}
+		var currentSize = self.view.frame.size
+		if currentSize.width <= 0 {
+			currentSize.width = img.size.width
+		}
+		if currentSize.height <= 0 {
+			currentSize.height = img.size.height
+		}
+		let horizontalRatio = limitSize.width / currentSize.width
+		let verticalRatio = limitSize.height / currentSize.height
+		let ratio = fmin(horizontalRatio, verticalRatio)
+		var f = self.view.frame
+		
+		func removeFloatMin(_ floatValue: CGFloat) -> CGFloat {
+			return floatValue == CGFloat.min ? 0 : floatValue
+		}
+		func flatSpecificScale(_ floatValue: CGFloat, _ scale: CGFloat) -> CGFloat {
+			let fv = removeFloatMin(floatValue)
+			let sc = (scale == 0 ? UIScreen.main.scale : scale)
+			let flattedValue = ceil(fv * sc) / sc
+			return flattedValue
+		}
+		func flat(_ floatValue: CGFloat) -> CGFloat {
+			return flatSpecificScale(floatValue, 0)
+		}
+		f.size.width = flat(currentSize.width * ratio)
+		f.size.height = flat(currentSize.height * ratio)
+		self.view.frame = f
+	}
 }

@@ -29,7 +29,19 @@ class IWBundle: NSObject {
 	}
 	
 	func image(_ name: String, _ ext: String = "png") -> UIImage? {
-		if let pt = imagePath(name, ext) {
+		if name.contains("@") {
+			if let pt = imagePath(name, ext) {
+				return UIImage(contentsOfFile: pt)
+			}
+		}
+		var n = ""
+		let scale = UIScreen.main.scale
+		if scale <= 2 {
+			n = "\(name)@2x"
+		} else {
+			n = "\(name)@3x"
+		}
+		if let pt = imagePath(n, ext) {
 			return UIImage(contentsOfFile: pt)
 		}
 		return nil

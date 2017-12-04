@@ -31,7 +31,7 @@ extension IWView where View: UIScrollView {
 		bothInsets = insets
 	}
 	
-	var bothInsets: UIEdgeInsets {
+	final var bothInsets: UIEdgeInsets {
 		get { return view.contentInset }
 		set {
 			(viewController as? IWRootVC)?.listViewThread.async {
@@ -41,6 +41,63 @@ extension IWView where View: UIScrollView {
 					//self.view.contentOffset = CGPoint.init(x: 0, y: -newValue.top)
 				}
 			}
+		}
+	}
+	
+	
+	/// 立即停止滚动 (手指离开屏幕但列表还在滚动)
+	final func stopDeceleratingIfNeeded() -> Void {
+		if self.view.isDecelerating {
+			self.view.setContentOffset(self.view.contentOffset, animated: false)
+		}
+	}
+	
+	
+	/// 是否已在底部, 无法滚动返回 true
+	final var isBottom: Bool {
+		if !self.canScroll || (self.view.contentOffset.y == self.view.contentSize.height + self.contentInsets.bottom - self.view.height) {
+			return true
+		}
+		return false
+	}
+	
+	/// 是否已在顶部, 无法滚动返回 true
+	final var isTop: Bool {
+		if !self.canScroll || (self.view.contentOffset.y == -self.contentInsets.top) {
+			return true
+		}
+		return false
+	}
+	
+	final var contentInsets: UIEdgeInsets {
+		if #available(iOS 11, *) {
+			return self.view.adjustedContentInset
+		}
+		return self.view.contentInset
+	}
+	
+	final var canScroll: Bool {
+		if CGSize.isEmpty(self.view.bounds.size) {
+			return false
+		}
+		let canVerticalScroll = self.view.contentSize.height + self.contentInsets.top + self.contentInsets.bottom + self.view.height
+		let canHorizontalScroll = self.view.contentSize.width + self.contentInsets.left + self.contentInsets.right + self.view.width
+		return canVerticalScroll > 0 || canHorizontalScroll > 0
+	}
+	
+	final func scrollToTop(force: Bool, animated: Bool) -> Void {
+		if force || (!force && self.canScroll) {
+			self.view.setContentOffset(makePoint(-self.contentInsets.left, -self.contentInsets.top), animated: animated)
+		}
+	}
+	
+	final func scrollToTop(animated: Bool = false) -> Void {
+		self.scrollToTop(force: false, animated: animated)
+	}
+	
+	final func scrollToBottom(animated: Bool = false) -> Void {
+		if self.canScroll {
+			self.view.setContentOffset(makePoint(self.view.contentOffset.x, self.view.contentSize.height + self.contentInsets.bottom - self.view.height), animated: animated)
 		}
 	}
 }
@@ -60,9 +117,8 @@ fileprivate extension IWView where View: UIScrollView {
                     } else {
                         edge.top = self.findCompatibleValue(type: .top)
                     }
-                    
+					
                     edge.bottom = self.findCompatibleValue(type: .bottom)
-                    
                     edge.left = self.findCompatibleValue(type: .left)
                     edge.right = self.findCompatibleValue(type: .right)
                     

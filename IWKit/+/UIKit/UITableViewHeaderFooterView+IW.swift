@@ -12,8 +12,9 @@ extension IWView where View: UITableViewHeaderFooterView {
     
     /// Use in init(func `awakeFromNib` or `init`).
     final func fixBackgroundColorWarning() -> Void {
-        view.backgroundView = UIView()
-        view.backgroundView!.backgroundColor = .clear
+        // view.backgroundView = UIView()
+        // view.backgroundView!.backgroundColor = .clear
+		view.tintColor = .clear
     }
     
 }

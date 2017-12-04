@@ -84,9 +84,13 @@ extension IWViewController where ViewController: UIViewController {
 		vc.present(viewController, animated: animated, completion: nil)
 	}
     
-	final func dismiss() {
-		backToPreviousController()
+    final func dismiss(viewControllerWithAnimated animated: Bool = true) {
+		backToPreviousController(animated)
 	}
+    
+    final func close(viewControllerWithAnimated animated: Bool = true) {
+        backToPreviousController(animated)
+    }
 	
 	final func backToPreviousViewController() -> Void {
 		backToPreviousController()
@@ -106,6 +110,22 @@ extension IWViewController where ViewController: UIViewController {
 		weak var rec = recognizer
 		vc.navigationController?.interactivePopGestureRecognizer?.delegate = rec
 	}
+    
+    final var isPresented: Bool {
+        var tempViewController: UIViewController = self.vc
+        if let navC = tempViewController.navigationController {
+            if navC.viewControllers.first! != tempViewController {
+                return false
+            }
+            tempViewController = navC
+        }
+        let result = tempViewController.presentingViewController?.presentedViewController == tempViewController
+        return result
+    }
+    
+    final var isViewLoadedAndVisible: Bool {
+        return self.vc.isViewLoaded && (self.vc.view.window != nil)
+    }
 }
 
 fileprivate extension IWViewController where ViewController: UIViewController {
