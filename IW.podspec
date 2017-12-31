@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "IW"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "Make Swift faster and use it more smoothly."
 
   # This description is used to generate tags and improve search results.
@@ -106,13 +106,24 @@ Pod::Spec.new do |s|
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
 
-  s.preserve_paths = "IW/iPhoneOSModule/*", "IW/iPhoneSimulatorModule/*"
+  s.preserve_paths = "CommonCrypto/*/*"
+  s.pod_target_xcconfig = {
+    'SWIFT_INCLUDE_PATHS[sdk=macosx*]'           => '$(PODS_ROOT)/CommonCrypto/macosx',
+    'SWIFT_INCLUDE_PATHS[sdk=iphoneos*]'         => '$(PODS_ROOT)/CommonCrypto/iphoneos',
+    'SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]'  => '$(PODS_ROOT)/CommonCrypto/iphonesimulator',
+    'SWIFT_INCLUDE_PATHS[sdk=appletvos*]'        => '$(PODS_ROOT)/CommonCrypto/appletvos',
+    'SWIFT_INCLUDE_PATHS[sdk=appletvsimulator*]' => '$(PODS_ROOT)/CommonCrypto/appletvsimulator',
+    'SWIFT_INCLUDE_PATHS[sdk=watchos*]'          => '$(PODS_ROOT)/CommonCrypto/watchos',
+    'SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]'   => '$(PODS_ROOT)/CommonCrypto/watchsimulator'
+  }
+
+  # s.preserve_paths = "IW/iPhoneOSModule/*", "IW/iPhoneSimulatorModule/*"
   # s.module_map = "IW/iPhoneOSModule/module.modulemap"
 
-  s.pod_target_xcconfig = { 
-    'HEADER_SEARCH_PATHS[sdk=iphoneos*]' => '$(PODS_ROOT)/IW/iPhoneOSModule',
-    'HEADER_SEARCH_PATHS[sdk=iphonesimulator*]' => '$(PODS_ROOT)/IW/iPhoneSimulatorModule'
-  }
+  # s.pod_target_xcconfig = { 
+  #   'HEADER_SEARCH_PATHS[sdk=iphoneos*]' => '$(PODS_ROOT)/IW/iPhoneOSModule',
+  #   'HEADER_SEARCH_PATHS[sdk=iphonesimulator*]' => '$(PODS_ROOT)/IW/iPhoneSimulatorModule'
+  # }
 
   #s.pod_target_xcconfig = {
   #  'SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]' => '$(PODS_ROOT)/IW'
@@ -126,7 +137,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  s.frameworks = "UIKit", "WebKit", "Foundation", "JavaScriptCore", "UserNotifications", "AssetsLibrary", "AddressBook", "Intents"
+  s.frameworks = "UIKit", "WebKit", "Foundation", "JavaScriptCore", "UserNotifications", "AssetsLibrary", "AddressBook", "Intents", "CommonCryptoModule"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
