@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "IW"
-  s.version      = "0.1.8"
+  s.version      = "0.2.1"
   s.summary      = "Make Swift faster and use it more smoothly."
   s.description  = "Make Swift faster and use it more smoothly with cocoapod support."
 
@@ -21,14 +21,14 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/iWECon/IW.git", :tag => "#{s.version}" }
 
-  s.source_files  = "IW/**/*.*"
-  s.resource      = "IW/IWBundle.bundle"
-  s.module_name   = "IW"
+  s.source_files  = "CommonCrypto/IWKits/*.swift", "CommonCrypto/IWKits/**/*.swift"
+  s.resource      = "CommonCrypto/IWKits/IWBundle.bundle"
+  #s.module_name   = "IW"
 
   s.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug][sdk=*][arch=*]' => 'DEBUG' }
 
   s.xcconfig         = { 'HEADER_SEARCH_PATHS' =>     '$(SDKROOT)/usr/include/CommonCrypto/CommonCrypto.h'}
-  s.preserve_paths = 'CocoaPods/**/*', 'IW/**/*'
+  s.preserve_paths = 'CocoaPods/**/*'
   s.pod_target_xcconfig = {
     'SWIFT_INCLUDE_PATHS[sdk=macosx*]'           => '$(PODS_ROOT)/IW/CocoaPods/macosx',
     'SWIFT_INCLUDE_PATHS[sdk=iphoneos*]'         => '$(PODS_ROOT)/IW/CocoaPods/iphoneos',
@@ -39,8 +39,10 @@ Pod::Spec.new do |s|
     'SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]'   => '$(PODS_ROOT)/IW/CocoaPods/watchsimulator'
   }
 
+  # s.public_header_files = "IW/**/*.swift"
+
   # s.framework  = "SomeFramework"
-  # s.frameworks = "UIKit", "WebKit", "Foundation", "JavaScriptCore", "UserNotifications", "AssetsLibrary", "AddressBook", "Intents"
+  s.frameworks = "UIKit", "WebKit", "Foundation", "JavaScriptCore", "UserNotifications", "AssetsLibrary", "AddressBook"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
