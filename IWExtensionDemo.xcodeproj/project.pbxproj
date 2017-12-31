@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA5157251FF8A49500F24E8B /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = DA5157241FF8A49500F24E8B /* module.modulemap */; };
 		DA8C9CFF1FF889A400BF9B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */; };
 		DA8C9D011FF889A400BF9B38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D001FF889A400BF9B38 /* ViewController.swift */; };
 		DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D021FF889A400BF9B38 /* Main.storyboard */; };
@@ -79,6 +80,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA5157241FF8A49500F24E8B /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		DA8C9CFB1FF889A400BF9B38 /* IWExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IWExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA8C9D001FF889A400BF9B38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				DA8C9D591FF889C000BF9B38 /* .gitignore */,
 				DA8C9D5A1FF889C000BF9B38 /* IWReqeust */,
 				DA8C9D601FF889C000BF9B38 /* IWBundle.swift */,
+				DA5157241FF8A49500F24E8B /* module.modulemap */,
 			);
 			path = IW;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				DA8C9D801FF889C000BF9B38 /* UIImageView+IW.swift in Sources */,
 				DA8C9D661FF889C000BF9B38 /* IWAppDelegate.swift in Sources */,
 				DA8C9D821FF889C000BF9B38 /* UILabel+IW.swift in Sources */,
+				DA5157251FF8A49500F24E8B /* module.modulemap in Sources */,
 				DA8C9D861FF889C000BF9B38 /* UITableViewHeaderFooterView+IW.swift in Sources */,
 				DA8C9D841FF889C000BF9B38 /* UIView+IW.swift in Sources */,
 				DA8C9D8F1FF889C000BF9B38 /* IWApp.swift in Sources */,
@@ -667,6 +671,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "";
+				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "\"$(SRCROOT)/IW\"";
 				SWIFT_OBJC_BRIDGING_HEADER = IWExtensionDemo/IWExtensionHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -684,6 +690,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "";
+				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "\"$(SRCROOT)/IW\"";
 				SWIFT_OBJC_BRIDGING_HEADER = IWExtensionDemo/IWExtensionHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

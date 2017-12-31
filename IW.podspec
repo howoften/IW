@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "IW"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "Make Swift faster and use it more smoothly."
 
   # This description is used to generate tags and improve search results.
@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "iWECon" => "i.1214@yahoo.com" }
+  s.author             = { "IWECon" => "i.1214@yahoo.com" }
   # Or just: s.author    = "iWe"
   # s.authors            = { "iWe" => "i.1214@yahoo.com" }
   # s.social_media_url   = "http://twitter.com/iWe"
@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "IW/*", "IW/*.*","IW/*/*.*"
+  s.source_files  = "IW/*.*", "IW/*/*.*", "IWExtensionDemo/*", "IWExtesnionDemo.xcodeproj"
   s.exclude_files = "*"
 
   s.public_header_files = "IWExtension/IWExtensionHeader.h"
@@ -106,7 +106,10 @@ Pod::Spec.new do |s|
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
 
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
+  s.preserve_paths = "IW/*"
+  s.pod_target_xcconfig = {
+    'SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]' => '$(PODS_ROOT)/IW'
+  }
 
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -116,7 +119,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
+  s.frameworks = "UIKit", "WebKit", "Foundation", "JavaScriptCore", "UserNotifications", "AssetsLibrary", "AddressBook", "Intents"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"

@@ -10,7 +10,7 @@
 #define IWExtensionHeader_h
 
 // Use in MD5 -> HDBDRequest.swift
-#import <CommonCrypto/CommonDigest.h>
+//#import <CommonCrypto/CommonDigest.h>
 
 
 #endif /* IWExtensionHeader_h */
