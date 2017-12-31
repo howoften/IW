@@ -9,69 +9,12 @@
 /* Begin PBXBuildFile section */
 		DA36CA591FF9061100714999 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36CA481FF9061000714999 /* StringExtension.swift */; };
 		DA36CA5A1FF9061100714999 /* injectXcodePath.sh in Resources */ = {isa = PBXBuildFile; fileRef = DA36CA561FF9061000714999 /* injectXcodePath.sh */; };
+		DA36CABD1FF95B5E00714999 /* FuckThisKits.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36CABC1FF95B5E00714999 /* FuckThisKits.swift */; };
 		DA8C9CFF1FF889A400BF9B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */; };
 		DA8C9D011FF889A400BF9B38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D001FF889A400BF9B38 /* ViewController.swift */; };
 		DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D021FF889A400BF9B38 /* Main.storyboard */; };
 		DA8C9D061FF889A400BF9B38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D051FF889A400BF9B38 /* Assets.xcassets */; };
 		DA8C9D091FF889A400BF9B38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D071FF889A400BF9B38 /* LaunchScreen.storyboard */; };
-		DA8C9D611FF889C000BF9B38 /* IWCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D121FF889C000BF9B38 /* IWCollectionViewFlowLayout.swift */; };
-		DA8C9D621FF889C000BF9B38 /* IWNavContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D131FF889C000BF9B38 /* IWNavContoller.swift */; };
-		DA8C9D631FF889C000BF9B38 /* IWRootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D141FF889C000BF9B38 /* IWRootVC.swift */; };
-		DA8C9D641FF889C000BF9B38 /* IWSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D151FF889C000BF9B38 /* IWSubVC.swift */; };
-		DA8C9D651FF889C000BF9B38 /* IWViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D161FF889C000BF9B38 /* IWViewModel.swift */; };
-		DA8C9D661FF889C000BF9B38 /* IWAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D171FF889C000BF9B38 /* IWAppDelegate.swift */; };
-		DA8C9D671FF889C000BF9B38 /* IWWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D181FF889C000BF9B38 /* IWWebVC.swift */; };
-		DA8C9D681FF889C000BF9B38 /* IWStatusBackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D191FF889C000BF9B38 /* IWStatusBackItem.swift */; };
-		DA8C9D691FF889C000BF9B38 /* IWListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D1B1FF889C000BF9B38 /* IWListView.swift */; };
-		DA8C9D6A1FF889C000BF9B38 /* IWReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D1D1FF889C000BF9B38 /* IWReusable.swift */; };
-		DA8C9D6B1FF889C000BF9B38 /* UIStoryboard+IWReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D1E1FF889C000BF9B38 /* UIStoryboard+IWReusable.swift */; };
-		DA8C9D6C1FF889C000BF9B38 /* UITableView+IWReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D1F1FF889C000BF9B38 /* UITableView+IWReusable.swift */; };
-		DA8C9D6D1FF889C000BF9B38 /* UICollectionView+IWReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D201FF889C000BF9B38 /* UICollectionView+IWReusable.swift */; };
-		DA8C9D6E1FF889C000BF9B38 /* IWNibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D211FF889C000BF9B38 /* IWNibLoadable.swift */; };
-		DA8C9D6F1FF889C000BF9B38 /* IWShouldPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D221FF889C000BF9B38 /* IWShouldPop.swift */; };
-		DA8C9D711FF889C000BF9B38 /* IWTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D251FF889C000BF9B38 /* IWTimer.swift */; };
-		DA8C9D721FF889C000BF9B38 /* IWGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */; };
-		DA8C9D731FF889C000BF9B38 /* IWAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */; };
-		DA8C9D741FF889C000BF9B38 /* IWCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D291FF889C000BF9B38 /* IWCycleView.swift */; };
-		DA8C9D771FF889C000BF9B38 /* IWExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */; };
-		DA8C9D781FF889C000BF9B38 /* IWBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */; };
-		DA8C9D791FF889C000BF9B38 /* IWLocalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D311FF889C000BF9B38 /* IWLocalAuthentication.swift */; };
-		DA8C9D7A1FF889C000BF9B38 /* Array+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D321FF889C000BF9B38 /* Array+IW.swift */; };
-		DA8C9D7B1FF889C000BF9B38 /* UIGestureRecognizer+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D341FF889C000BF9B38 /* UIGestureRecognizer+IW.swift */; };
-		DA8C9D7C1FF889C000BF9B38 /* UIControl+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D351FF889C000BF9B38 /* UIControl+IW.swift */; };
-		DA8C9D7D1FF889C000BF9B38 /* WKWebView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D371FF889C000BF9B38 /* WKWebView+IW.swift */; };
-		DA8C9D7E1FF889C000BF9B38 /* CGSize+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D381FF889C000BF9B38 /* CGSize+IW.swift */; };
-		DA8C9D7F1FF889C000BF9B38 /* UIScrollView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D391FF889C000BF9B38 /* UIScrollView+IW.swift */; };
-		DA8C9D801FF889C000BF9B38 /* UIImageView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3A1FF889C000BF9B38 /* UIImageView+IW.swift */; };
-		DA8C9D811FF889C000BF9B38 /* UIImage+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3B1FF889C000BF9B38 /* UIImage+IW.swift */; };
-		DA8C9D821FF889C000BF9B38 /* UILabel+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3C1FF889C000BF9B38 /* UILabel+IW.swift */; };
-		DA8C9D831FF889C000BF9B38 /* UIButton+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3D1FF889C000BF9B38 /* UIButton+IW.swift */; };
-		DA8C9D841FF889C000BF9B38 /* UIView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3E1FF889C000BF9B38 /* UIView+IW.swift */; };
-		DA8C9D851FF889C000BF9B38 /* UIFont+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3F1FF889C000BF9B38 /* UIFont+IW.swift */; };
-		DA8C9D871FF889C000BF9B38 /* UIWindow+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D411FF889C000BF9B38 /* UIWindow+IW.swift */; };
-		DA8C9D881FF889C000BF9B38 /* IWViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D421FF889C000BF9B38 /* IWViewBase.swift */; };
-		DA8C9D891FF889C000BF9B38 /* UIViewController+IWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D441FF889C000BF9B38 /* UIViewController+IWViewController.swift */; };
-		DA8C9D8A1FF889C000BF9B38 /* IWViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D451FF889C000BF9B38 /* IWViewControllerBase.swift */; };
-		DA8C9D8B1FF889C000BF9B38 /* Data+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D461FF889C000BF9B38 /* Data+IW.swift */; };
-		DA8C9D8C1FF889C000BF9B38 /* String+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D471FF889C000BF9B38 /* String+IW.swift */; };
-		DA8C9D8D1FF889C000BF9B38 /* UIColor+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D481FF889C000BF9B38 /* UIColor+IW.swift */; };
-		DA8C9D8E1FF889C000BF9B38 /* IWAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D491FF889C000BF9B38 /* IWAudio.swift */; };
-		DA8C9D8F1FF889C000BF9B38 /* IWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D4A1FF889C000BF9B38 /* IWApp.swift */; };
-		DA8C9D901FF889C000BF9B38 /* IWDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D4B1FF889C000BF9B38 /* IWDevice.swift */; };
-		DA8C9D911FF889C000BF9B38 /* IWCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D4C1FF889C000BF9B38 /* IWCustom.swift */; };
-		DA8C9D921FF889C000BF9B38 /* IWWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D4E1FF889C000BF9B38 /* IWWebView.swift */; };
-		DA8C9D941FF889C000BF9B38 /* iPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D511FF889C000BF9B38 /* iPrint.swift */; };
-		DA8C9D951FF889C000BF9B38 /* IWLogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D521FF889C000BF9B38 /* IWLogConfiguration.swift */; };
-		DA8C9D971FF889C000BF9B38 /* IWLoginNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D551FF889C000BF9B38 /* IWLoginNavController.swift */; };
-		DA8C9D981FF889C000BF9B38 /* IWVerificationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D561FF889C000BF9B38 /* IWVerificationCodeVC.swift */; };
-		DA8C9D991FF889C000BF9B38 /* IWConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D571FF889C000BF9B38 /* IWConst.swift */; };
-		DA8C9D9A1FF889C000BF9B38 /* IWLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D581FF889C000BF9B38 /* IWLoginVC.swift */; };
-		DA8C9D9C1FF889C000BF9B38 /* IWRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D5B1FF889C000BF9B38 /* IWRequest.swift */; };
-		DA8C9D9D1FF889C000BF9B38 /* IWRequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D5C1FF889C000BF9B38 /* IWRequestResult.swift */; };
-		DA8C9D9E1FF889C000BF9B38 /* IWRequestManageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D5D1FF889C000BF9B38 /* IWRequestManageModel.swift */; };
-		DA8C9D9F1FF889C000BF9B38 /* IWRequestManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D5E1FF889C000BF9B38 /* IWRequestManage.swift */; };
-		DA8C9DA01FF889C000BF9B38 /* IWRequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D5F1FF889C000BF9B38 /* IWRequestInfo.swift */; };
-		DA8C9DA11FF889C000BF9B38 /* IWBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D601FF889C000BF9B38 /* IWBundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +30,7 @@
 		DA36CA561FF9061000714999 /* injectXcodePath.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = injectXcodePath.sh; sourceTree = "<group>"; };
 		DA36CA581FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		DA36CA7D1FF92CEC00714999 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DA36CABC1FF95B5E00714999 /* FuckThisKits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuckThisKits.swift; sourceTree = "<group>"; };
 		DA8C9CFB1FF889A400BF9B38 /* IWExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IWExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA8C9D001FF889A400BF9B38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,65 +38,6 @@
 		DA8C9D051FF889A400BF9B38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA8C9D081FF889A400BF9B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA8C9D0A1FF889A400BF9B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA8C9D121FF889C000BF9B38 /* IWCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		DA8C9D131FF889C000BF9B38 /* IWNavContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWNavContoller.swift; sourceTree = "<group>"; };
-		DA8C9D141FF889C000BF9B38 /* IWRootVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRootVC.swift; sourceTree = "<group>"; };
-		DA8C9D151FF889C000BF9B38 /* IWSubVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWSubVC.swift; sourceTree = "<group>"; };
-		DA8C9D161FF889C000BF9B38 /* IWViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWViewModel.swift; sourceTree = "<group>"; };
-		DA8C9D171FF889C000BF9B38 /* IWAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAppDelegate.swift; sourceTree = "<group>"; };
-		DA8C9D181FF889C000BF9B38 /* IWWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWWebVC.swift; sourceTree = "<group>"; };
-		DA8C9D191FF889C000BF9B38 /* IWStatusBackItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWStatusBackItem.swift; sourceTree = "<group>"; };
-		DA8C9D1B1FF889C000BF9B38 /* IWListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWListView.swift; sourceTree = "<group>"; };
-		DA8C9D1D1FF889C000BF9B38 /* IWReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWReusable.swift; sourceTree = "<group>"; };
-		DA8C9D1E1FF889C000BF9B38 /* UIStoryboard+IWReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+IWReusable.swift"; sourceTree = "<group>"; };
-		DA8C9D1F1FF889C000BF9B38 /* UITableView+IWReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+IWReusable.swift"; sourceTree = "<group>"; };
-		DA8C9D201FF889C000BF9B38 /* UICollectionView+IWReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+IWReusable.swift"; sourceTree = "<group>"; };
-		DA8C9D211FF889C000BF9B38 /* IWNibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWNibLoadable.swift; sourceTree = "<group>"; };
-		DA8C9D221FF889C000BF9B38 /* IWShouldPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWShouldPop.swift; sourceTree = "<group>"; };
-		DA8C9D251FF889C000BF9B38 /* IWTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWTimer.swift; sourceTree = "<group>"; };
-		DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWGlobal.swift; sourceTree = "<group>"; };
-		DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAuthorization.swift; sourceTree = "<group>"; };
-		DA8C9D291FF889C000BF9B38 /* IWCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCycleView.swift; sourceTree = "<group>"; };
-		DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWExtension.swift; sourceTree = "<group>"; };
-		DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IWBundle.bundle; sourceTree = "<group>"; };
-		DA8C9D311FF889C000BF9B38 /* IWLocalAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLocalAuthentication.swift; sourceTree = "<group>"; };
-		DA8C9D321FF889C000BF9B38 /* Array+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D341FF889C000BF9B38 /* UIGestureRecognizer+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D351FF889C000BF9B38 /* UIControl+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D371FF889C000BF9B38 /* WKWebView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D381FF889C000BF9B38 /* CGSize+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D391FF889C000BF9B38 /* UIScrollView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D3A1FF889C000BF9B38 /* UIImageView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D3B1FF889C000BF9B38 /* UIImage+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D3C1FF889C000BF9B38 /* UILabel+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D3D1FF889C000BF9B38 /* UIButton+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D3E1FF889C000BF9B38 /* UIView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D3F1FF889C000BF9B38 /* UIFont+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D401FF889C000BF9B38 /* UITableViewHeaderFooterView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewHeaderFooterView+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D411FF889C000BF9B38 /* UIWindow+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D421FF889C000BF9B38 /* IWViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWViewBase.swift; sourceTree = "<group>"; };
-		DA8C9D441FF889C000BF9B38 /* UIViewController+IWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+IWViewController.swift"; sourceTree = "<group>"; };
-		DA8C9D451FF889C000BF9B38 /* IWViewControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWViewControllerBase.swift; sourceTree = "<group>"; };
-		DA8C9D461FF889C000BF9B38 /* Data+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D471FF889C000BF9B38 /* String+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D481FF889C000BF9B38 /* UIColor+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+IW.swift"; sourceTree = "<group>"; };
-		DA8C9D491FF889C000BF9B38 /* IWAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAudio.swift; sourceTree = "<group>"; };
-		DA8C9D4A1FF889C000BF9B38 /* IWApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWApp.swift; sourceTree = "<group>"; };
-		DA8C9D4B1FF889C000BF9B38 /* IWDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWDevice.swift; sourceTree = "<group>"; };
-		DA8C9D4C1FF889C000BF9B38 /* IWCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCustom.swift; sourceTree = "<group>"; };
-		DA8C9D4E1FF889C000BF9B38 /* IWWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWWebView.swift; sourceTree = "<group>"; };
-		DA8C9D511FF889C000BF9B38 /* iPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iPrint.swift; sourceTree = "<group>"; };
-		DA8C9D521FF889C000BF9B38 /* IWLogConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLogConfiguration.swift; sourceTree = "<group>"; };
-		DA8C9D551FF889C000BF9B38 /* IWLoginNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLoginNavController.swift; sourceTree = "<group>"; };
-		DA8C9D561FF889C000BF9B38 /* IWVerificationCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWVerificationCodeVC.swift; sourceTree = "<group>"; };
-		DA8C9D571FF889C000BF9B38 /* IWConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWConst.swift; sourceTree = "<group>"; };
-		DA8C9D581FF889C000BF9B38 /* IWLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLoginVC.swift; sourceTree = "<group>"; };
-		DA8C9D5B1FF889C000BF9B38 /* IWRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequest.swift; sourceTree = "<group>"; };
-		DA8C9D5C1FF889C000BF9B38 /* IWRequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestResult.swift; sourceTree = "<group>"; };
-		DA8C9D5D1FF889C000BF9B38 /* IWRequestManageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestManageModel.swift; sourceTree = "<group>"; };
-		DA8C9D5E1FF889C000BF9B38 /* IWRequestManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestManage.swift; sourceTree = "<group>"; };
-		DA8C9D5F1FF889C000BF9B38 /* IWRequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestInfo.swift; sourceTree = "<group>"; };
-		DA8C9D601FF889C000BF9B38 /* IWBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWBundle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +70,7 @@
 		DA36CA421FF9061000714999 /* CommonCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				DA36CABB1FF95B4600714999 /* IWKits */,
 				DA36CA431FF9061000714999 /* include */,
 				DA36CA451FF9061000714999 /* CCommonCrypto */,
 				DA36CA481FF9061000714999 /* StringExtension.swift */,
@@ -287,12 +173,19 @@
 			path = iphonesimulator;
 			sourceTree = "<group>";
 		};
+		DA36CABB1FF95B4600714999 /* IWKits */ = {
+			isa = PBXGroup;
+			children = (
+				DA36CABC1FF95B5E00714999 /* FuckThisKits.swift */,
+			);
+			path = IWKits;
+			sourceTree = "<group>";
+		};
 		DA8C9CF21FF889A400BF9B38 = {
 			isa = PBXGroup;
 			children = (
 				DA36CA491FF9061000714999 /* CocoaPods */,
 				DA36CA411FF9061000714999 /* Sources */,
-				DA8C9D101FF889C000BF9B38 /* IW */,
 				DA8C9CFD1FF889A400BF9B38 /* IWExtensionDemo */,
 				DA8C9CFC1FF889A400BF9B38 /* Products */,
 				DA36CA2E1FF8F53F00714999 /* Frameworks */,
@@ -318,192 +211,6 @@
 				DA8C9D0A1FF889A400BF9B38 /* Info.plist */,
 			);
 			path = IWExtensionDemo;
-			sourceTree = "<group>";
-		};
-		DA8C9D101FF889C000BF9B38 /* IW */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D111FF889C000BF9B38 /* IWBase */,
-				DA8C9D1A1FF889C000BF9B38 /* IWListView */,
-				DA8C9D221FF889C000BF9B38 /* IWShouldPop.swift */,
-				DA8C9D241FF889C000BF9B38 /* IWTimer */,
-				DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */,
-				DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */,
-				DA8C9D281FF889C000BF9B38 /* IWCycle */,
-				DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */,
-				DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */,
-				DA8C9D2E1FF889C000BF9B38 /* IWKit */,
-				DA8C9D4C1FF889C000BF9B38 /* IWCustom.swift */,
-				DA8C9D4D1FF889C000BF9B38 /* IWWebView */,
-				DA8C9D501FF889C000BF9B38 /* IWLog */,
-				DA8C9D541FF889C000BF9B38 /* IWLogin */,
-				DA8C9D5A1FF889C000BF9B38 /* IWReqeust */,
-				DA8C9D601FF889C000BF9B38 /* IWBundle.swift */,
-			);
-			path = IW;
-			sourceTree = "<group>";
-		};
-		DA8C9D111FF889C000BF9B38 /* IWBase */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D121FF889C000BF9B38 /* IWCollectionViewFlowLayout.swift */,
-				DA8C9D131FF889C000BF9B38 /* IWNavContoller.swift */,
-				DA8C9D141FF889C000BF9B38 /* IWRootVC.swift */,
-				DA8C9D151FF889C000BF9B38 /* IWSubVC.swift */,
-				DA8C9D161FF889C000BF9B38 /* IWViewModel.swift */,
-				DA8C9D171FF889C000BF9B38 /* IWAppDelegate.swift */,
-				DA8C9D181FF889C000BF9B38 /* IWWebVC.swift */,
-				DA8C9D191FF889C000BF9B38 /* IWStatusBackItem.swift */,
-			);
-			path = IWBase;
-			sourceTree = "<group>";
-		};
-		DA8C9D1A1FF889C000BF9B38 /* IWListView */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D1B1FF889C000BF9B38 /* IWListView.swift */,
-				DA8C9D1C1FF889C000BF9B38 /* IWReusable */,
-			);
-			path = IWListView;
-			sourceTree = "<group>";
-		};
-		DA8C9D1C1FF889C000BF9B38 /* IWReusable */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D1D1FF889C000BF9B38 /* IWReusable.swift */,
-				DA8C9D1E1FF889C000BF9B38 /* UIStoryboard+IWReusable.swift */,
-				DA8C9D1F1FF889C000BF9B38 /* UITableView+IWReusable.swift */,
-				DA8C9D201FF889C000BF9B38 /* UICollectionView+IWReusable.swift */,
-				DA8C9D211FF889C000BF9B38 /* IWNibLoadable.swift */,
-			);
-			path = IWReusable;
-			sourceTree = "<group>";
-		};
-		DA8C9D241FF889C000BF9B38 /* IWTimer */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D251FF889C000BF9B38 /* IWTimer.swift */,
-			);
-			path = IWTimer;
-			sourceTree = "<group>";
-		};
-		DA8C9D281FF889C000BF9B38 /* IWCycle */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D291FF889C000BF9B38 /* IWCycleView.swift */,
-			);
-			path = IWCycle;
-			sourceTree = "<group>";
-		};
-		DA8C9D2E1FF889C000BF9B38 /* IWKit */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D2F1FF889C000BF9B38 /* + */,
-				DA8C9D491FF889C000BF9B38 /* IWAudio.swift */,
-				DA8C9D4A1FF889C000BF9B38 /* IWApp.swift */,
-				DA8C9D4B1FF889C000BF9B38 /* IWDevice.swift */,
-			);
-			path = IWKit;
-			sourceTree = "<group>";
-		};
-		DA8C9D2F1FF889C000BF9B38 /* + */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D301FF889C000BF9B38 /* Core */,
-				DA8C9D331FF889C000BF9B38 /* Extension */,
-				DA8C9D361FF889C000BF9B38 /* UIKit */,
-			);
-			path = "+";
-			sourceTree = "<group>";
-		};
-		DA8C9D301FF889C000BF9B38 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D311FF889C000BF9B38 /* IWLocalAuthentication.swift */,
-				DA8C9D321FF889C000BF9B38 /* Array+IW.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		DA8C9D331FF889C000BF9B38 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D341FF889C000BF9B38 /* UIGestureRecognizer+IW.swift */,
-				DA8C9D351FF889C000BF9B38 /* UIControl+IW.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		DA8C9D361FF889C000BF9B38 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D371FF889C000BF9B38 /* WKWebView+IW.swift */,
-				DA8C9D381FF889C000BF9B38 /* CGSize+IW.swift */,
-				DA8C9D391FF889C000BF9B38 /* UIScrollView+IW.swift */,
-				DA8C9D3A1FF889C000BF9B38 /* UIImageView+IW.swift */,
-				DA8C9D3B1FF889C000BF9B38 /* UIImage+IW.swift */,
-				DA8C9D3C1FF889C000BF9B38 /* UILabel+IW.swift */,
-				DA8C9D3D1FF889C000BF9B38 /* UIButton+IW.swift */,
-				DA8C9D3E1FF889C000BF9B38 /* UIView+IW.swift */,
-				DA8C9D3F1FF889C000BF9B38 /* UIFont+IW.swift */,
-				DA8C9D401FF889C000BF9B38 /* UITableViewHeaderFooterView+IW.swift */,
-				DA8C9D411FF889C000BF9B38 /* UIWindow+IW.swift */,
-				DA8C9D421FF889C000BF9B38 /* IWViewBase.swift */,
-				DA8C9D431FF889C000BF9B38 /* ViewController */,
-				DA8C9D461FF889C000BF9B38 /* Data+IW.swift */,
-				DA8C9D471FF889C000BF9B38 /* String+IW.swift */,
-				DA8C9D481FF889C000BF9B38 /* UIColor+IW.swift */,
-			);
-			path = UIKit;
-			sourceTree = "<group>";
-		};
-		DA8C9D431FF889C000BF9B38 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D441FF889C000BF9B38 /* UIViewController+IWViewController.swift */,
-				DA8C9D451FF889C000BF9B38 /* IWViewControllerBase.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		DA8C9D4D1FF889C000BF9B38 /* IWWebView */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D4E1FF889C000BF9B38 /* IWWebView.swift */,
-			);
-			path = IWWebView;
-			sourceTree = "<group>";
-		};
-		DA8C9D501FF889C000BF9B38 /* IWLog */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D511FF889C000BF9B38 /* iPrint.swift */,
-				DA8C9D521FF889C000BF9B38 /* IWLogConfiguration.swift */,
-			);
-			path = IWLog;
-			sourceTree = "<group>";
-		};
-		DA8C9D541FF889C000BF9B38 /* IWLogin */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D551FF889C000BF9B38 /* IWLoginNavController.swift */,
-				DA8C9D561FF889C000BF9B38 /* IWVerificationCodeVC.swift */,
-				DA8C9D571FF889C000BF9B38 /* IWConst.swift */,
-				DA8C9D581FF889C000BF9B38 /* IWLoginVC.swift */,
-			);
-			path = IWLogin;
-			sourceTree = "<group>";
-		};
-		DA8C9D5A1FF889C000BF9B38 /* IWReqeust */ = {
-			isa = PBXGroup;
-			children = (
-				DA8C9D5B1FF889C000BF9B38 /* IWRequest.swift */,
-				DA8C9D5C1FF889C000BF9B38 /* IWRequestResult.swift */,
-				DA8C9D5D1FF889C000BF9B38 /* IWRequestManageModel.swift */,
-				DA8C9D5E1FF889C000BF9B38 /* IWRequestManage.swift */,
-				DA8C9D5F1FF889C000BF9B38 /* IWRequestInfo.swift */,
-			);
-			path = IWReqeust;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,7 +276,6 @@
 				DA8C9D061FF889A400BF9B38 /* Assets.xcassets in Resources */,
 				DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */,
 				DA36CA5A1FF9061100714999 /* injectXcodePath.sh in Resources */,
-				DA8C9D781FF889C000BF9B38 /* IWBundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,66 +286,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA8C9D6C1FF889C000BF9B38 /* UITableView+IWReusable.swift in Sources */,
 				DA8C9D011FF889A400BF9B38 /* ViewController.swift in Sources */,
-				DA8C9D791FF889C000BF9B38 /* IWLocalAuthentication.swift in Sources */,
-				DA8C9D971FF889C000BF9B38 /* IWLoginNavController.swift in Sources */,
-				DA8C9D9E1FF889C000BF9B38 /* IWRequestManageModel.swift in Sources */,
-				DA8C9D921FF889C000BF9B38 /* IWWebView.swift in Sources */,
-				DA8C9D7D1FF889C000BF9B38 /* WKWebView+IW.swift in Sources */,
-				DA8C9D721FF889C000BF9B38 /* IWGlobal.swift in Sources */,
-				DA8C9DA01FF889C000BF9B38 /* IWRequestInfo.swift in Sources */,
-				DA8C9D671FF889C000BF9B38 /* IWWebVC.swift in Sources */,
-				DA8C9D6A1FF889C000BF9B38 /* IWReusable.swift in Sources */,
-				DA8C9D771FF889C000BF9B38 /* IWExtension.swift in Sources */,
-				DA8C9D6B1FF889C000BF9B38 /* UIStoryboard+IWReusable.swift in Sources */,
-				DA8C9D9C1FF889C000BF9B38 /* IWRequest.swift in Sources */,
-				DA8C9D871FF889C000BF9B38 /* UIWindow+IW.swift in Sources */,
-				DA8C9D7B1FF889C000BF9B38 /* UIGestureRecognizer+IW.swift in Sources */,
-				DA8C9D911FF889C000BF9B38 /* IWCustom.swift in Sources */,
-				DA8C9D7E1FF889C000BF9B38 /* CGSize+IW.swift in Sources */,
-				DA8C9D8C1FF889C000BF9B38 /* String+IW.swift in Sources */,
-				DA8C9D831FF889C000BF9B38 /* UIButton+IW.swift in Sources */,
-				DA8C9D7F1FF889C000BF9B38 /* UIScrollView+IW.swift in Sources */,
-				DA8C9D9F1FF889C000BF9B38 /* IWRequestManage.swift in Sources */,
-				DA8C9D651FF889C000BF9B38 /* IWViewModel.swift in Sources */,
-				DA8C9D6F1FF889C000BF9B38 /* IWShouldPop.swift in Sources */,
-				DA8C9D741FF889C000BF9B38 /* IWCycleView.swift in Sources */,
-				DA8C9D681FF889C000BF9B38 /* IWStatusBackItem.swift in Sources */,
-				DA8C9D7C1FF889C000BF9B38 /* UIControl+IW.swift in Sources */,
-				DA8C9DA11FF889C000BF9B38 /* IWBundle.swift in Sources */,
-				DA8C9D731FF889C000BF9B38 /* IWAuthorization.swift in Sources */,
-				DA8C9D891FF889C000BF9B38 /* UIViewController+IWViewController.swift in Sources */,
-				DA8C9D941FF889C000BF9B38 /* iPrint.swift in Sources */,
-				DA8C9D801FF889C000BF9B38 /* UIImageView+IW.swift in Sources */,
+				DA36CABD1FF95B5E00714999 /* FuckThisKits.swift in Sources */,
 				DA36CA591FF9061100714999 /* StringExtension.swift in Sources */,
-				DA8C9D661FF889C000BF9B38 /* IWAppDelegate.swift in Sources */,
-				DA8C9D821FF889C000BF9B38 /* UILabel+IW.swift in Sources */,
-				DA8C9D841FF889C000BF9B38 /* UIView+IW.swift in Sources */,
-				DA8C9D8F1FF889C000BF9B38 /* IWApp.swift in Sources */,
-				DA8C9D641FF889C000BF9B38 /* IWSubVC.swift in Sources */,
-				DA8C9D8D1FF889C000BF9B38 /* UIColor+IW.swift in Sources */,
-				DA8C9D691FF889C000BF9B38 /* IWListView.swift in Sources */,
-				DA8C9D611FF889C000BF9B38 /* IWCollectionViewFlowLayout.swift in Sources */,
-				DA8C9D9A1FF889C000BF9B38 /* IWLoginVC.swift in Sources */,
-				DA8C9D981FF889C000BF9B38 /* IWVerificationCodeVC.swift in Sources */,
-				DA8C9D6E1FF889C000BF9B38 /* IWNibLoadable.swift in Sources */,
-				DA8C9D851FF889C000BF9B38 /* UIFont+IW.swift in Sources */,
-				DA8C9D951FF889C000BF9B38 /* IWLogConfiguration.swift in Sources */,
-				DA8C9D631FF889C000BF9B38 /* IWRootVC.swift in Sources */,
-				DA8C9D8E1FF889C000BF9B38 /* IWAudio.swift in Sources */,
-				DA8C9D7A1FF889C000BF9B38 /* Array+IW.swift in Sources */,
-				DA8C9D901FF889C000BF9B38 /* IWDevice.swift in Sources */,
-				DA8C9D8B1FF889C000BF9B38 /* Data+IW.swift in Sources */,
-				DA8C9D6D1FF889C000BF9B38 /* UICollectionView+IWReusable.swift in Sources */,
-				DA8C9D9D1FF889C000BF9B38 /* IWRequestResult.swift in Sources */,
-				DA8C9D621FF889C000BF9B38 /* IWNavContoller.swift in Sources */,
-				DA8C9D811FF889C000BF9B38 /* UIImage+IW.swift in Sources */,
-				DA8C9D881FF889C000BF9B38 /* IWViewBase.swift in Sources */,
 				DA8C9CFF1FF889A400BF9B38 /* AppDelegate.swift in Sources */,
-				DA8C9D711FF889C000BF9B38 /* IWTimer.swift in Sources */,
-				DA8C9D991FF889C000BF9B38 /* IWConst.swift in Sources */,
-				DA8C9D8A1FF889C000BF9B38 /* IWViewControllerBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
