@@ -2,6 +2,11 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+module CCommonCrypto [system] {
+	header "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/CommonCrypto/CommonCrypto.h"
+	export *
+}
+
 
 //module CommonCrypto [system] {
 //	header "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.0.sdk/usr/include/CommonCrypto/CommonCrypto.h"
@@ -9,10 +14,10 @@
 //	export *
 //}
 
-framework module CCommonCrypt [system] {
-	header "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.1.sdk/usr/include/CommonCrypto/CommonCrypto.h"
-	export *
-}
+//framework module CCommonCrypt [system] {
+//	header "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.1.sdk/usr/include/CommonCrypto/CommonCrypto.h"
+//	export *
+//}
 
 //module CCommonCrypto [system] {
 //

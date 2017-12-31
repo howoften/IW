@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "IW"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "Make Swift faster and use it more smoothly."
 
   # This description is used to generate tags and improve search results.
@@ -89,8 +89,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "IW/*.swift", "IW/*/*.swift"
-  s.exclude_files = "*"
+  s.source_files  = "IW/*.swift", "IW/*/*.swift", "IW/*/*/*.swift", "IW/*/*/*/*.swift"
+  #s.exclude_files = "*"
 
   # s.public_header_files = "IWExtension/IWExtensionHeader.h"
 
@@ -106,10 +106,17 @@ Pod::Spec.new do |s|
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
 
-  s.preserve_paths = "IW/*"
-  s.pod_target_xcconfig = {
-    'SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]' => '$(PODS_ROOT)/IW'
+  s.preserve_paths = "IW/iPhoneOSModule/*", "IW/iPhoneSimulatorModule/*"
+  # s.module_map = "IW/iPhoneOSModule/module.modulemap"
+
+  s.pod_target_xcconfig = { 
+    'HEADER_SEARCH_PATHS[sdk=iphoneos*]' => '$(PODS_ROOT)/IW/iPhoneOSModule',
+    'HEADER_SEARCH_PATHS[sdk=iphonesimulator*]' => '$(PODS_ROOT)/IW/iPhoneSimulatorModule'
   }
+
+  #s.pod_target_xcconfig = {
+  #  'SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]' => '$(PODS_ROOT)/IW'
+  #}
 
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import CCommonCrypt
+//import CCommonCrypt
+import CCommonCrypto
 
 public final class IWString<iString> {
     public let str: iString
