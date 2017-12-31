@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA5157251FF8A49500F24E8B /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = DA5157241FF8A49500F24E8B /* module.modulemap */; };
 		DA8C9CFF1FF889A400BF9B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */; };
 		DA8C9D011FF889A400BF9B38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D001FF889A400BF9B38 /* ViewController.swift */; };
 		DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D021FF889A400BF9B38 /* Main.storyboard */; };
@@ -33,7 +32,6 @@
 		DA8C9D721FF889C000BF9B38 /* IWGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */; };
 		DA8C9D731FF889C000BF9B38 /* IWAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */; };
 		DA8C9D741FF889C000BF9B38 /* IWCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D291FF889C000BF9B38 /* IWCycleView.swift */; };
-		DA8C9D751FF889C000BF9B38 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D2A1FF889C000BF9B38 /* LICENSE */; };
 		DA8C9D771FF889C000BF9B38 /* IWExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */; };
 		DA8C9D781FF889C000BF9B38 /* IWBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */; };
 		DA8C9D791FF889C000BF9B38 /* IWLocalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D311FF889C000BF9B38 /* IWLocalAuthentication.swift */; };
@@ -49,7 +47,6 @@
 		DA8C9D831FF889C000BF9B38 /* UIButton+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3D1FF889C000BF9B38 /* UIButton+IW.swift */; };
 		DA8C9D841FF889C000BF9B38 /* UIView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3E1FF889C000BF9B38 /* UIView+IW.swift */; };
 		DA8C9D851FF889C000BF9B38 /* UIFont+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D3F1FF889C000BF9B38 /* UIFont+IW.swift */; };
-		DA8C9D861FF889C000BF9B38 /* UITableViewHeaderFooterView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D401FF889C000BF9B38 /* UITableViewHeaderFooterView+IW.swift */; };
 		DA8C9D871FF889C000BF9B38 /* UIWindow+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D411FF889C000BF9B38 /* UIWindow+IW.swift */; };
 		DA8C9D881FF889C000BF9B38 /* IWViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D421FF889C000BF9B38 /* IWViewBase.swift */; };
 		DA8C9D891FF889C000BF9B38 /* UIViewController+IWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D441FF889C000BF9B38 /* UIViewController+IWViewController.swift */; };
@@ -62,10 +59,8 @@
 		DA8C9D901FF889C000BF9B38 /* IWDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D4B1FF889C000BF9B38 /* IWDevice.swift */; };
 		DA8C9D911FF889C000BF9B38 /* IWCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D4C1FF889C000BF9B38 /* IWCustom.swift */; };
 		DA8C9D921FF889C000BF9B38 /* IWWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D4E1FF889C000BF9B38 /* IWWebView.swift */; };
-		DA8C9D931FF889C000BF9B38 /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D4F1FF889C000BF9B38 /* Readme */; };
 		DA8C9D941FF889C000BF9B38 /* iPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D511FF889C000BF9B38 /* iPrint.swift */; };
 		DA8C9D951FF889C000BF9B38 /* IWLogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D521FF889C000BF9B38 /* IWLogConfiguration.swift */; };
-		DA8C9D961FF889C000BF9B38 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D531FF889C000BF9B38 /* README.md */; };
 		DA8C9D971FF889C000BF9B38 /* IWLoginNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D551FF889C000BF9B38 /* IWLoginNavController.swift */; };
 		DA8C9D981FF889C000BF9B38 /* IWVerificationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D561FF889C000BF9B38 /* IWVerificationCodeVC.swift */; };
 		DA8C9D991FF889C000BF9B38 /* IWConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D571FF889C000BF9B38 /* IWConst.swift */; };
@@ -80,7 +75,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DA5157241FF8A49500F24E8B /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		DA5157241FF8A49500F24E8B /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		DA8C9CFB1FF889A400BF9B38 /* IWExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IWExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA8C9D001FF889A400BF9B38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -219,7 +214,7 @@
 				DA8C9D591FF889C000BF9B38 /* .gitignore */,
 				DA8C9D5A1FF889C000BF9B38 /* IWReqeust */,
 				DA8C9D601FF889C000BF9B38 /* IWBundle.swift */,
-				DA5157241FF8A49500F24E8B /* module.modulemap */,
+				DA5157241FF8A49500F24E8B /* module.map */,
 			);
 			path = IW;
 			sourceTree = "<group>";
@@ -450,10 +445,7 @@
 				DA8C9D701FF889C000BF9B38 /* .swift-version in Resources */,
 				DA8C9D091FF889A400BF9B38 /* LaunchScreen.storyboard in Resources */,
 				DA8C9D061FF889A400BF9B38 /* Assets.xcassets in Resources */,
-				DA8C9D931FF889C000BF9B38 /* Readme in Resources */,
 				DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */,
-				DA8C9D961FF889C000BF9B38 /* README.md in Resources */,
-				DA8C9D751FF889C000BF9B38 /* LICENSE in Resources */,
 				DA8C9D781FF889C000BF9B38 /* IWBundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,8 +491,6 @@
 				DA8C9D801FF889C000BF9B38 /* UIImageView+IW.swift in Sources */,
 				DA8C9D661FF889C000BF9B38 /* IWAppDelegate.swift in Sources */,
 				DA8C9D821FF889C000BF9B38 /* UILabel+IW.swift in Sources */,
-				DA5157251FF8A49500F24E8B /* module.modulemap in Sources */,
-				DA8C9D861FF889C000BF9B38 /* UITableViewHeaderFooterView+IW.swift in Sources */,
 				DA8C9D841FF889C000BF9B38 /* UIView+IW.swift in Sources */,
 				DA8C9D8F1FF889C000BF9B38 /* IWApp.swift in Sources */,
 				DA8C9D641FF889C000BF9B38 /* IWSubVC.swift in Sources */,
