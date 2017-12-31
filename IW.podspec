@@ -21,13 +21,13 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/iWECon/IW.git", :tag => "#{s.version}" }
 
-  s.source_files  = "IW/**/*.swift"
+  s.source_files  = "IW/**/*.*"
   s.module_name   = "CommonCrypto"
 
   s.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug][sdk=*][arch=*]' => 'DEBUG' }
 
   s.xcconfig         = { 'HEADER_SEARCH_PATHS' =>     '$(SDKROOT)/usr/include/CommonCrypto/CommonCrypto.h'}
-  s.preserve_paths = 'CocoaPods/**/*'
+  s.preserve_paths = 'CocoaPods/**/*', 'IW/**/*'
   s.pod_target_xcconfig = {
     'SWIFT_INCLUDE_PATHS[sdk=macosx*]'           => '$(PODS_ROOT)/IW/CocoaPods/macosx',
     'SWIFT_INCLUDE_PATHS[sdk=iphoneos*]'         => '$(PODS_ROOT)/IW/CocoaPods/iphoneos',

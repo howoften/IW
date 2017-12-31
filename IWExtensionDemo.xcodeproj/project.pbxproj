@@ -116,7 +116,6 @@
 		DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWGlobal.swift; sourceTree = "<group>"; };
 		DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAuthorization.swift; sourceTree = "<group>"; };
 		DA8C9D291FF889C000BF9B38 /* IWCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCycleView.swift; sourceTree = "<group>"; };
-		DA8C9D2A1FF889C000BF9B38 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWExtension.swift; sourceTree = "<group>"; };
 		DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IWBundle.bundle; sourceTree = "<group>"; };
 		DA8C9D311FF889C000BF9B38 /* IWLocalAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLocalAuthentication.swift; sourceTree = "<group>"; };
@@ -145,7 +144,6 @@
 		DA8C9D4B1FF889C000BF9B38 /* IWDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWDevice.swift; sourceTree = "<group>"; };
 		DA8C9D4C1FF889C000BF9B38 /* IWCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCustom.swift; sourceTree = "<group>"; };
 		DA8C9D4E1FF889C000BF9B38 /* IWWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWWebView.swift; sourceTree = "<group>"; };
-		DA8C9D4F1FF889C000BF9B38 /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
 		DA8C9D511FF889C000BF9B38 /* iPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iPrint.swift; sourceTree = "<group>"; };
 		DA8C9D521FF889C000BF9B38 /* IWLogConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLogConfiguration.swift; sourceTree = "<group>"; };
 		DA8C9D551FF889C000BF9B38 /* IWLoginNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLoginNavController.swift; sourceTree = "<group>"; };
@@ -337,13 +335,11 @@
 				DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */,
 				DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */,
 				DA8C9D281FF889C000BF9B38 /* IWCycle */,
-				DA8C9D2A1FF889C000BF9B38 /* LICENSE */,
 				DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */,
 				DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */,
 				DA8C9D2E1FF889C000BF9B38 /* IWKit */,
 				DA8C9D4C1FF889C000BF9B38 /* IWCustom.swift */,
 				DA8C9D4D1FF889C000BF9B38 /* IWWebView */,
-				DA8C9D4F1FF889C000BF9B38 /* Readme */,
 				DA8C9D501FF889C000BF9B38 /* IWLog */,
 				DA8C9D541FF889C000BF9B38 /* IWLogin */,
 				DA8C9D591FF889C000BF9B38 /* .gitignore */,
