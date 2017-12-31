@@ -29,7 +29,6 @@
 		DA8C9D6D1FF889C000BF9B38 /* UICollectionView+IWReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D201FF889C000BF9B38 /* UICollectionView+IWReusable.swift */; };
 		DA8C9D6E1FF889C000BF9B38 /* IWNibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D211FF889C000BF9B38 /* IWNibLoadable.swift */; };
 		DA8C9D6F1FF889C000BF9B38 /* IWShouldPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D221FF889C000BF9B38 /* IWShouldPop.swift */; };
-		DA8C9D701FF889C000BF9B38 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D231FF889C000BF9B38 /* .swift-version */; };
 		DA8C9D711FF889C000BF9B38 /* IWTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D251FF889C000BF9B38 /* IWTimer.swift */; };
 		DA8C9D721FF889C000BF9B38 /* IWGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */; };
 		DA8C9D731FF889C000BF9B38 /* IWAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */; };
@@ -67,7 +66,6 @@
 		DA8C9D981FF889C000BF9B38 /* IWVerificationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D561FF889C000BF9B38 /* IWVerificationCodeVC.swift */; };
 		DA8C9D991FF889C000BF9B38 /* IWConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D571FF889C000BF9B38 /* IWConst.swift */; };
 		DA8C9D9A1FF889C000BF9B38 /* IWLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D581FF889C000BF9B38 /* IWLoginVC.swift */; };
-		DA8C9D9B1FF889C000BF9B38 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D591FF889C000BF9B38 /* .gitignore */; };
 		DA8C9D9C1FF889C000BF9B38 /* IWRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D5B1FF889C000BF9B38 /* IWRequest.swift */; };
 		DA8C9D9D1FF889C000BF9B38 /* IWRequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D5C1FF889C000BF9B38 /* IWRequestResult.swift */; };
 		DA8C9D9E1FF889C000BF9B38 /* IWRequestManageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D5D1FF889C000BF9B38 /* IWRequestManageModel.swift */; };
@@ -111,7 +109,6 @@
 		DA8C9D201FF889C000BF9B38 /* UICollectionView+IWReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+IWReusable.swift"; sourceTree = "<group>"; };
 		DA8C9D211FF889C000BF9B38 /* IWNibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWNibLoadable.swift; sourceTree = "<group>"; };
 		DA8C9D221FF889C000BF9B38 /* IWShouldPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWShouldPop.swift; sourceTree = "<group>"; };
-		DA8C9D231FF889C000BF9B38 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
 		DA8C9D251FF889C000BF9B38 /* IWTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWTimer.swift; sourceTree = "<group>"; };
 		DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWGlobal.swift; sourceTree = "<group>"; };
 		DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAuthorization.swift; sourceTree = "<group>"; };
@@ -150,7 +147,6 @@
 		DA8C9D561FF889C000BF9B38 /* IWVerificationCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWVerificationCodeVC.swift; sourceTree = "<group>"; };
 		DA8C9D571FF889C000BF9B38 /* IWConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWConst.swift; sourceTree = "<group>"; };
 		DA8C9D581FF889C000BF9B38 /* IWLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLoginVC.swift; sourceTree = "<group>"; };
-		DA8C9D591FF889C000BF9B38 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DA8C9D5B1FF889C000BF9B38 /* IWRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequest.swift; sourceTree = "<group>"; };
 		DA8C9D5C1FF889C000BF9B38 /* IWRequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestResult.swift; sourceTree = "<group>"; };
 		DA8C9D5D1FF889C000BF9B38 /* IWRequestManageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestManageModel.swift; sourceTree = "<group>"; };
@@ -330,7 +326,6 @@
 				DA8C9D111FF889C000BF9B38 /* IWBase */,
 				DA8C9D1A1FF889C000BF9B38 /* IWListView */,
 				DA8C9D221FF889C000BF9B38 /* IWShouldPop.swift */,
-				DA8C9D231FF889C000BF9B38 /* .swift-version */,
 				DA8C9D241FF889C000BF9B38 /* IWTimer */,
 				DA8C9D261FF889C000BF9B38 /* IWGlobal.swift */,
 				DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */,
@@ -342,7 +337,6 @@
 				DA8C9D4D1FF889C000BF9B38 /* IWWebView */,
 				DA8C9D501FF889C000BF9B38 /* IWLog */,
 				DA8C9D541FF889C000BF9B38 /* IWLogin */,
-				DA8C9D591FF889C000BF9B38 /* .gitignore */,
 				DA8C9D5A1FF889C000BF9B38 /* IWReqeust */,
 				DA8C9D601FF889C000BF9B38 /* IWBundle.swift */,
 			);
@@ -571,8 +565,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA8C9D9B1FF889C000BF9B38 /* .gitignore in Resources */,
-				DA8C9D701FF889C000BF9B38 /* .swift-version in Resources */,
 				DA8C9D091FF889A400BF9B38 /* LaunchScreen.storyboard in Resources */,
 				DA8C9D061FF889A400BF9B38 /* Assets.xcassets in Resources */,
 				DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */,

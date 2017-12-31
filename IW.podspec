@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "IW"
-  s.version      = "0.1.6"
+  s.version      = "0.1.8"
   s.summary      = "Make Swift faster and use it more smoothly."
   s.description  = "Make Swift faster and use it more smoothly with cocoapod support."
 
@@ -22,7 +22,8 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/iWECon/IW.git", :tag => "#{s.version}" }
 
   s.source_files  = "IW/**/*.*"
-  s.module_name   = "CommonCrypto"
+  s.resource      = "IW/IWBundle.bundle"
+  s.module_name   = "IW"
 
   s.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug][sdk=*][arch=*]' => 'DEBUG' }
 
