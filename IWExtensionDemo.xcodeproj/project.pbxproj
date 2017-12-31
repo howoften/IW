@@ -88,6 +88,7 @@
 		DA36CA551FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		DA36CA561FF9061000714999 /* injectXcodePath.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = injectXcodePath.sh; sourceTree = "<group>"; };
 		DA36CA581FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		DA36CA7D1FF92CEC00714999 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA8C9CFB1FF889A400BF9B38 /* IWExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IWExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA8C9D001FF889A400BF9B38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +176,7 @@
 		DA36CA2E1FF8F53F00714999 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA36CA7D1FF92CEC00714999 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -792,6 +794,7 @@
 				DEVELOPMENT_TEAM = P55DG9QH44;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = IWExtensionDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -817,6 +820,7 @@
 				DEVELOPMENT_TEAM = P55DG9QH44;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = IWExtensionDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
