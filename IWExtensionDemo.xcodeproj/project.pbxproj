@@ -148,7 +148,6 @@
 		DA8C9D4F1FF889C000BF9B38 /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
 		DA8C9D511FF889C000BF9B38 /* iPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iPrint.swift; sourceTree = "<group>"; };
 		DA8C9D521FF889C000BF9B38 /* IWLogConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLogConfiguration.swift; sourceTree = "<group>"; };
-		DA8C9D531FF889C000BF9B38 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DA8C9D551FF889C000BF9B38 /* IWLoginNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLoginNavController.swift; sourceTree = "<group>"; };
 		DA8C9D561FF889C000BF9B38 /* IWVerificationCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWVerificationCodeVC.swift; sourceTree = "<group>"; };
 		DA8C9D571FF889C000BF9B38 /* IWConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWConst.swift; sourceTree = "<group>"; };
@@ -346,7 +345,6 @@
 				DA8C9D4D1FF889C000BF9B38 /* IWWebView */,
 				DA8C9D4F1FF889C000BF9B38 /* Readme */,
 				DA8C9D501FF889C000BF9B38 /* IWLog */,
-				DA8C9D531FF889C000BF9B38 /* README.md */,
 				DA8C9D541FF889C000BF9B38 /* IWLogin */,
 				DA8C9D591FF889C000BF9B38 /* .gitignore */,
 				DA8C9D5A1FF889C000BF9B38 /* IWReqeust */,
