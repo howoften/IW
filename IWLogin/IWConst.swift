@@ -14,7 +14,7 @@ class IWConst: NSObject {
     
     class var titleLabel: UILabel {
         let lb = UILabel()
-        lb.frame = CGRect(x: 20, y: .navBarHeight + 15, width: ikScreenW - 40, height: 42)
+        lb.frame = CGRect(x: 20, y: .navBarHeight + 15, width: .screenWidth - 40, height: 42)
         lb.text = "请输入标题"
         lb.font = .boldSystemFont(ofSize: 32)
         lb.textColor = .black
@@ -30,7 +30,7 @@ class IWConst: NSObject {
         lb.textAlignment = .center
         lb.numberOfLines = 2
         lb.adjustsFontSizeToFitWidth = true
-        lb.frame = CGRect(x: 20, y: 0, width: ikScreenW - 40, height: 42)
+        lb.frame = CGRect(x: 20, y: 0, width: .screenWidth - 40, height: 42)
         return lb
     }
     

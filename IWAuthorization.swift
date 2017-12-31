@@ -80,7 +80,7 @@ class IWAuthorization: NSObject {
      参考：http://www.jianshu.com/p/5d82fb0c4051 */
     class func toSystemSettings(_ type: String) {
         var urlPath = ""
-        if iOSVersion <= 7 || (iOSVersion >= 8 && iOSVersion < 10) {
+        if iw.system.version.toInt <= 7 || (iw.system.version.toInt >= 8 && iw.system.version.toInt < 10) {
             urlPath = "prefs:root=\(type)"
         } else {
             urlPath = type
@@ -152,21 +152,15 @@ extension IWAuthorization: UIImagePickerControllerDelegate, UINavigationControll
                     let createFile = manager.createFile(atPath: documentsPath.appending("/selectedImage.png"), contents: data, attributes: nil)
                     if createFile {
                         let filePath = documentsPath.splicing("/selectedImage.png")
-                        main {
-                            self.selectedCallback?(filePath)
-                        }
+                        iw.main.execution { self.selectedCallback?(filePath) }
                     } else {
-                        main {
-                            self.selectedCallback?(nil)
-                        }
+                        iw.main.execution { self.selectedCallback?(nil) }
                     }
                     picker.dismiss(animated: true, completion: nil)
                 } catch {
                     print(error)
                 }
-                // }
             }
-            
         }
     }
 }

@@ -10,12 +10,11 @@ import UIKit
 
 class IWDevice: NSObject {
 	
-	static var isiPhoneX: Bool { return (ikScreenW == 375 && ikScreenH == 812) }
+	static let isiPad: Bool = { return (UIDevice.current.model == "iPad") }()
+	static let isiPhone: Bool = { return (UIDevice.current.model == "iPhone") }()
+	static let isiPhoneX: Bool = { return (IWDevice.isiPhone && CGFloat.screenWidth == 375 && CGFloat.screenHeight == 812) }()
 	
-	static var isiPhone: Bool { return (UIDevice.current.model == "iPhone") }
-	
-	static var isiPad: Bool { return (UIDevice.current.model == "iPad") }
-	
+	/// 内部标识
 	static var modelIdentifier: String {
 		var systemInfo = utsname()
 		uname(&systemInfo)
@@ -27,6 +26,7 @@ class IWDevice: NSObject {
 		return identifier
 	}
 	
+	/// 机型
 	static var modelName: String {
 		
 		let identifier = modelIdentifier

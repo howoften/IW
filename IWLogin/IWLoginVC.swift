@@ -103,13 +103,13 @@ class IWLoginVC: IWRootVC {
         view.addSubview(showLabel)
         view.addSubview(helpButton)
         
-        descriptionLabel.frame = CGRect(x: 20, y: titleLabel.bottom + 30, width: ikScreenW - 40, height: 42)
+        descriptionLabel.frame = CGRect(x: 20, y: titleLabel.bottom + 30, width: .screenWidth - 40, height: 42)
         
-        inputTextField.frame = CGRect(x: 20, y: descriptionLabel.bottom + 40, width: ikScreenW - 40, height: 28)
+        inputTextField.frame = CGRect(x: 20, y: descriptionLabel.bottom + 40, width: .screenWidth - 40, height: 28)
         showLabel.frame = CGRect(x: inputTextField.x, y: inputTextField.y, width: inputTextField.width, height: inputTextField.height)
         showLabel.iwe.addTapGesture(target: self, action: #selector(inputTextfieldGetsTheFocus))
         
-        helpButton.frame = CGRect(x: 20, y: showLabel.bottom + 30, width: ikScreenW - 20, height: 42)
+        helpButton.frame = CGRect(x: 20, y: showLabel.bottom + 30, width: .screenWidth - 20, height: 42)
         helpButton.addTarget(self, action: #selector(helpAction), for: .touchUpInside)
     }
     
@@ -140,12 +140,10 @@ class IWLoginVC: IWRootVC {
         navigationItem.leftBarButtonItem = UIBarButtonItem()
         helpButton.isEnabled = false
         navRightActivityView.startAnimating()
-        
-        let _ = delayExecution(3) {
-            DispatchQueue.main.async {
-                self.verifyCompleted()
-            }
-        }
+		
+		let _ = iw.delay.execution(delay: 3.0) {
+			self.verifyCompleted()
+		}
     }
     func verifyCompleted() {
         

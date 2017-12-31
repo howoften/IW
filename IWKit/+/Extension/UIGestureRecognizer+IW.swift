@@ -49,9 +49,9 @@ extension UIGestureRecognizer {
         }
         
         self.iwe_shouldHandlerAction = true
-        let _ = delayExecution(delay) {
-            block()
-        }
+		let _ = iw.delay.execution(delay: delay) {
+			block()
+		}
     }
 	
 	/// 获取当前手势直接作用到的 view

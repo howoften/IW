@@ -76,7 +76,7 @@ extension IWListView {
         
         separatorColor = .groupTableViewBackground
 		
-        tableHeaderView = UIView(frame: MakeRect(0, 0, ikScreenW, .min))
+        tableHeaderView = UIView(frame: MakeRect(0, 0, .screenWidth, .min))
         tableFooterView = UIView()
         
         registReusable(UITableViewCell.self)

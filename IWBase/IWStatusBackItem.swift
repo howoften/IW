@@ -46,7 +46,7 @@ class IWStatusBackItem: UIWindow {
 	
 	func initUserInterface() -> Void {
 		windowLevel = UIWindowLevelAlert
-		frame = MakeRect(0, 0, ikScreenW / 2 - 60, .statusBarHeight)
+		frame = MakeRect(0, 0, .screenWidth / 2 - 60, .statusBarHeight)
 		backgroundColor = .white
 		
 		baseView.frame = frame

@@ -15,7 +15,8 @@ class IWNavController: UINavigationController {
     
     var isEnableRightSlideToPop: Bool = false {
         willSet {
-            main {
+			
+            iw.main.execution {
                 if newValue {
                     self.enableRightSlideToPop()
                     return
@@ -32,7 +33,7 @@ class IWNavController: UINavigationController {
         willSet {
             if newValue {
                 for v: UIView in navigationBar.subviews {
-                    let condition = iOSVersion >= 10 ? v.isKind(of: "_UIBarBackground".toAnyClass!) : v.isKind(of: "_UINavigationBarBackground".toAnyClass!)
+                    let condition = iw.system.version.toInt >= 10 ? v.isKind(of: "_UIBarBackground".toAnyClass!) : v.isKind(of: "_UINavigationBarBackground".toAnyClass!)
                     if condition {
                         for sv: UIView in v.subviews {
                             if sv.height <= 0.5 {

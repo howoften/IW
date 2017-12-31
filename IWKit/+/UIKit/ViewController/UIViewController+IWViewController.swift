@@ -32,7 +32,7 @@ extension IWViewController where ViewController: UIViewController {
 			return false
 		}
 		set {
-			main {
+			iw.main.execution {
 				if newValue {
 					self.hideNavigationBar()
 				} else {
@@ -112,15 +112,14 @@ extension IWViewController where ViewController: UIViewController {
 	}
     
     final var isPresented: Bool {
-        var tempViewController: UIViewController = self.vc
-        if let navC = tempViewController.navigationController {
-            if navC.viewControllers.first! != tempViewController {
+        var tmpViewController: UIViewController = self.vc
+        if let navC = tmpViewController.navigationController {
+            if navC.viewControllers.first! != tmpViewController {
                 return false
             }
-            tempViewController = navC
+            tmpViewController = navC
         }
-        let result = tempViewController.presentingViewController?.presentedViewController == tempViewController
-        return result
+        return tmpViewController.presentingViewController?.presentedViewController == tmpViewController
     }
     
     final var isViewLoadedAndVisible: Bool {

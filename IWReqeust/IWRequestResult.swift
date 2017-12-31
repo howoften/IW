@@ -61,10 +61,10 @@ class IWRequestResult: NSObject {
             }
             if dic != nil {
                 self.dictionary = dic!
-				main { self.success!(self.data, dic, self); self.success = nil; }
+				iw.main.execution { self.success!(self.data, dic, self); self.success = nil; }
             } else {
                 self.string = String.init(data: data!, encoding: String.Encoding.utf8)
-				main { self.success!(self.data, nil, self); self.success = nil; }
+				iw.main.execution { self.success!(self.data, nil, self); self.success = nil; }
             }
         }
         //success = nil
@@ -72,7 +72,7 @@ class IWRequestResult: NSObject {
     
     /// Execute failed action.
     func executeFailHandler() -> Void {
-		main { self.failed?(self.error) }
+		iw.main.execution { self.failed?(self.error) }
     }
     
     func printLog() {

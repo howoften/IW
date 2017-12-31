@@ -49,7 +49,7 @@ extension UIControl {
 		set { objc_setAssociatedObject(self, &IWControlKey.dic, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 	
-    /// Add target(Block style).
+    /// Events default is .touchUpInside
     ///
     /// - Parameters:
     ///   - controlEvents: Default is .touchUpInSide

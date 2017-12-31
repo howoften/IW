@@ -45,7 +45,7 @@ class IWStatus: NSObject {
     
     // 返回一个和StatusBar大小一致的UIView
     class func bgView(_ bgColor: UIColor = .white) -> UIView {
-        let v = UIView(frame: CGRect.init(x: 0, y: 0, width: ikScreenW, height: .statusBarHeight))
+        let v = UIView(frame: CGRect.init(x: 0, y: 0, width: .screenWidth, height: .statusBarHeight))
         v.backgroundColor = bgColor
         return v
     }
@@ -242,7 +242,7 @@ class IWCaches: NSObject {
             }
         } else {
             // Fallback on earlier versions
-            if iOSVersion >= 8 && iOSVersion < 9 {
+            if iw.system.version.toInt >= 8 && iw.system.version.toInt < 9 {
                 do {
                     try FileManager.default.removeItem(atPath: webkitFolderInCaches)
                     do {
@@ -256,7 +256,7 @@ class IWCaches: NSObject {
                 }
             }
             
-            if iOSVersion >= 7 && iOSVersion < 8 {
+            if iw.system.version.toInt >= 7 && iw.system.version.toInt < 8 {
                 do {
                     try FileManager.default.removeItem(atPath: webkitFolderInCachesfs)
                 } catch {

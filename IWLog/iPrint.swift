@@ -94,18 +94,18 @@ private func outputLine(_ output: inout String, line: Int) {
 }
 
 private func saveToLocal(_ output: String) {
-    subThread {
-        if IWLogConfiguration.shared.isSaveToLocal {
-            if let path = IWLogConfiguration.shared.recordLogPath {
-                if let logData = IWFileManage.default.contents(atPath: path) {
-                    let logString = logData.stringValue + "\n\(output)"
-                    do {
-                        try logString.write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
-                    } catch {
-                        iPrint("Record failed.")
-                    }
-                }
-            }
-        }
-    }
+	iw.subThread.execution {
+		if IWLogConfiguration.shared.isSaveToLocal {
+			if let path = IWLogConfiguration.shared.recordLogPath {
+				if let logData = IWFileManage.default.contents(atPath: path) {
+					let logString = logData.stringValue + "\n\(output)"
+					do {
+						try logString.write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
+					} catch {
+						iPrint("Record failed.")
+					}
+				}
+			}
+		}
+	}
 }

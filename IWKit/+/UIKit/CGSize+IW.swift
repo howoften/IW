@@ -37,7 +37,7 @@ extension IWSize where iSize == CGSize {
 	}
 	
 	/// 将 size 重新验证一遍
-	final var fixSize: CGSize {
+	final var fix: CGSize {
 		return MakeSize(max(self.size.width, 0), max(self.size.height, 0))
 	}
 	

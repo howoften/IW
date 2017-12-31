@@ -33,10 +33,10 @@ extension IWView where View: UIImageView {
                     if imgData != nil {
                         let img = UIImage(data: imgData!)
                         if img != nil {
-                            main { self.view.image = img }
+                            iw.main.execution { self.view.image = img }
                             self.save(image: imgData!)
                         } else {
-                            main { self.setLocationImageSource(locationImageSource) }
+                            iw.main.execution { self.setLocationImageSource(locationImageSource) }
                         }
                     }
                 }, failed: { (error) in
@@ -49,12 +49,12 @@ extension IWView where View: UIImageView {
 
 private extension IWView where View: UIImageView {
     
-    var imageName: String? {
+    final var imageName: String? {
         get { return objc_getAssociatedObject(self, &kImageNameKey) as? String }
         set { objc_setAssociatedObject(self, &kImageNameKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
     }
     
-    func setLocationImageSource<iImageOrImageName>(_ locationImageSource: iImageOrImageName?) {
+    final func setLocationImageSource<iImageOrImageName>(_ locationImageSource: iImageOrImageName?) {
         if locationImageSource.self is UIImage {
             view.image = locationImageSource as? UIImage
         } else if locationImageSource.self is String {
@@ -65,7 +65,7 @@ private extension IWView where View: UIImageView {
     }
     
     // 解析图片
-    func extractImageData(with name: String?, result: (_ isExists: Bool, _ data: Data?) -> Void) -> Void {
+    final func extractImageData(with name: String?, result: (_ isExists: Bool, _ data: Data?) -> Void) -> Void {
         let pathOption = imageLocalPath.splicing(name ?? "")
 		if FileManager.default.fileExists(atPath: pathOption) {
 			view.image = UIImage(contentsOfFile: pathOption)
@@ -75,7 +75,7 @@ private extension IWView where View: UIImageView {
     }
     
     // 图片缓存路径
-    var imageLocalPath: String {
+    final var imageLocalPath: String {
 		let addPath = IWSandbox.caches.splicing(kImageCacheFolderPath)
 		let bCreateDir = IWFileManage.create(kImageCacheFolderPath, in: IWSandbox.caches)
 		if !bCreateDir {
@@ -85,7 +85,7 @@ private extension IWView where View: UIImageView {
     }
     
     // 保存图片
-    func save(image data: Data) {
+    final func save(image data: Data) {
         let imageFilepath = self.imageLocalPath.splicing(self.imageName ?? "")
         do {
             let writePath = URL(fileURLWithPath: imageFilepath)
@@ -95,7 +95,8 @@ private extension IWView where View: UIImageView {
         }
     }
 	
-	func sizeToFitKeepingImageAdpectRatio(inSize limitSize: CGSize) -> Void {
+	/// 把 UIImageView 的宽高调整为能保持 image 宽高比例不变的同时又不超过给定的 `limitSize` 大小的最大frame, 建议在设置完 x/y 之后使用
+	final func sizeToFitKeepingImageAdpectRatio(inSize limitSize: CGSize) -> Void {
 		guard let img = self.view.image else {
 			return
 		}

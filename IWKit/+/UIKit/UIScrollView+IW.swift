@@ -35,10 +35,14 @@ extension IWView where View: UIScrollView {
 		get { return view.contentInset }
 		set {
 			(viewController as? IWRootVC)?.listViewThread.async {
-				main {
-					self.view.contentInset = newValue
-					self.view.scrollIndicatorInsets = newValue
-					//self.view.contentOffset = CGPoint.init(x: 0, y: -newValue.top)
+				iw.main.execution {
+					var nv = newValue
+					if self.view.frame == .screenBounds && nv.bottom == 0 {
+						nv.bottom = .bottomSpacing
+					}
+					self.view.contentInset = nv
+					self.view.scrollIndicatorInsets = nv
+					self.scrollToTop()
 				}
 			}
 		}
@@ -87,7 +91,7 @@ extension IWView where View: UIScrollView {
 	
 	final func scrollToTop(force: Bool, animated: Bool) -> Void {
 		if force || (!force && self.canScroll) {
-			self.view.setContentOffset(makePoint(-self.contentInsets.left, -self.contentInsets.top), animated: animated)
+			self.view.setContentOffset(MakePoint(-self.contentInsets.left, -self.contentInsets.top), animated: animated)
 		}
 	}
 	
@@ -97,7 +101,7 @@ extension IWView where View: UIScrollView {
 	
 	final func scrollToBottom(animated: Bool = false) -> Void {
 		if self.canScroll {
-			self.view.setContentOffset(makePoint(self.view.contentOffset.x, self.view.contentSize.height + self.contentInsets.bottom - self.view.height), animated: animated)
+			self.view.setContentOffset(MakePoint(self.view.contentOffset.x, self.view.contentSize.height + self.contentInsets.bottom - self.view.height), animated: animated)
 		}
 	}
 }
@@ -106,8 +110,8 @@ fileprivate extension IWView where View: UIScrollView {
 	
 	final func asyncAutoSetEdge(_ superView: UIView) -> Void {
         
-        main {
-            if superView.bounds == ikScreenBounds {
+        iw.main.execution {
+            if superView.bounds == .screenBounds {
                 let vc = superView.iwe.viewController
                 if vc != nil {
                     var edge = UIEdgeInsets.zero
@@ -124,9 +128,11 @@ fileprivate extension IWView where View: UIScrollView {
                     
                     self.view.contentInset = edge
                     self.view.scrollIndicatorInsets = edge
-                    if IWDevice.isiPhoneX {
-                        self.view.contentOffset = CGPoint.init(x: 0, y: -edge.top)
-                    }
+					
+					// 滚动到顶部
+					if self.view.contentOffset.y != -edge.top {
+						self.view.contentOffset = CGPoint.init(x: 0, y: -edge.top)
+					}
                 }
             }
         }

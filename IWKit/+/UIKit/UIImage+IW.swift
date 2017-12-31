@@ -141,7 +141,7 @@ extension IWImage where Image: UIImage {
 		return imgOut
 	}
 	
-	/// 保持当前图片的形状不变, 使用指定的颜色去重新渲染它
+	/// 保持当前图片的形状和纹理不变, 使用指定的颜色去重新渲染它
 	///
 	/// - Parameter blendColor: 用于渲染的颜色
 	/// - Returns: 返回一张与当前图片形状纹理一致的经过 blendColor 颜色渲染的图片

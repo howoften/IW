@@ -59,7 +59,7 @@ class IWRootVC: UIViewController {
     }
 	
 	lazy var bottomSpacingBackgroundView: UIView = { [unowned self] in
-		let v = UIView(frame: MakeRect(0, ikScreenH - .bottomSpacing, ikScreenW, .bottomSpacing))
+		let v = UIView(frame: MakeRect(0, .screenHeight - .bottomSpacing, .screenWidth, .bottomSpacing))
 		if self.listView != nil {
 			v.backgroundColor = self.listView.backgroundColor
 		} else {
@@ -80,8 +80,8 @@ class IWRootVC: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-		previousViewController = self
+		
+		iw.previousViewController = self
 		if (isAutoHideBottomBarWhenPushed) { self.hidesBottomBarWhenPushed = false }
     }
 	
@@ -126,8 +126,8 @@ class IWRootVC: UIViewController {
 	
 	func insertSafeAreaBottomSpacingView(belowSubview: UIView, bgColor: UIColor? = nil) -> Void {
 		if IWDevice.isiPhoneX {
-			if belowSubview.bottom == ikScreenH {
-				belowSubview.bottom = ikScreenH - .bottomSpacing
+			if belowSubview.bottom == .screenHeight {
+				belowSubview.bottom = .screenHeight - .bottomSpacing
 			}
 			view.insertSubview(bottomSpacingBackgroundView, belowSubview: belowSubview)
 			if bgColor != nil {

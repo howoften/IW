@@ -7,6 +7,13 @@ import Foundation
 import WebKit
 
 extension UIView {
+    
+//    func track(_ attribute: String) -> Void {
+//        NotificationCenter.default.addObserver(self, forKeyPath: attribute, options: [.new, .old], context: nil)
+//    }
+//    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//
+//    }
 	
     var x: CGFloat {
         get { return self.frame.origin.x }
@@ -85,7 +92,7 @@ extension CGFloat {
 	static var tabbarHeight: CGFloat {
 		guard let vc = UIViewController.IWE.current() else { return 0 }
 		guard let tabBar = vc.tabBarController?.tabBar else { return 0 }
-		if !isShowingTabbar() || tabBar.isHidden {
+		if !iw.isTabbarExists || tabBar.isHidden {
 			if IWDevice.isiPhoneX {
 				return .bottomSpacing
 			}
@@ -114,7 +121,7 @@ extension CGFloat {
 	 iPhone6p(iOS11) margin = 20
 	*/
 	static var titleViewMargin: CGFloat {
-		return iOSVersion >= 11 ? (ikScreenW > 375 ? 20 : 16) : (ikScreenW > 375 ? 12 : 8)
+		return iw.system.version.toInt >= 11 ? (self.screenWidth > 375 ? 20 : 16) : (self.screenWidth > 375 ? 12 : 8)
 	}
 	
 	/**
@@ -123,7 +130,7 @@ extension CGFloat {
 	 iPhone6p(iOS8/iOS9/iOS10) margin = 20
 	*/
 	static var itemMargin: CGFloat {
-		return ikScreenW > 375 ? 20 : 16
+		return self.screenWidth > 375 ? 20 : 16
 	}
 	
 	/**
@@ -140,8 +147,9 @@ extension CGFloat {
 	
 	static let min: CGFloat = CGFloat.leastNormalMagnitude
     
-    static var screenHeight: CGFloat { return ikScreenH }
-    static var screenWidth: CGFloat { return ikScreenW }
+    static let screenHeight: CGFloat = { return iw.screenHeight }()
+    static let screenWidth: CGFloat = { return iw.screenWidth }()
+	//static let screenBounds: CGRect = { return iw.screenBounds }()
 	
 	static var safeAreaHeight: CGFloat {
 		var safeAh = screenHeight
@@ -329,7 +337,13 @@ extension String {
         return self.removingPercentEncoding ?? ""
     }
     
-    
+	var lastCharacter: String {
+		if self.count == 1 {
+			return self
+		}
+		var str = self
+		return str[str.index(before: str.endIndex)...].toString
+	}
     
     var removeLastCharacter: String {
         if self == "" {
@@ -398,22 +412,22 @@ extension String {
     
     func POST(_ paramters: Any? = nil, success: IWRequestResult.successedHandler?, failed: IWRequestResult.failedHandler? = nil) {
         IWRequest.post(self, parameters: paramters).result(success: { (data, dic, result) in
-            main {
+            iw.main.execution {
                 success?(data, dic, result)
             }
         }) { (error) in
-            main {
+            iw.main.execution {
                 failed?(error)
             }
         }
     }
     func GET(_ parameters: Any? = nil, success: IWRequestResult.successedHandler?, failed: IWRequestResult.failedHandler?) {
         IWRequest.get(self, parameters: parameters).result(success: { (data, dic, result) in
-            main {
+            iw.main.execution {
                 success?(data, dic, result)
             }
         }) { (error) in
-            main {
+            iw.main.execution {
                 failed?(error)
             }
         }
@@ -944,11 +958,11 @@ extension UIImageView {
                     if imgData != nil {
                         let img = UIImage(data: imgData!)
                         if img != nil {
-                            main { self.image = img }
+                            iw.main.execution { self.image = img }
                             self.save(image: imgData!)
                         } else {
                             if placeholder != "" {
-                                main { self.image = UIImage(named: placeholder) }
+                                iw.main.execution { self.image = UIImage(named: placeholder) }
                             }
                         }
                     }
@@ -999,4 +1013,9 @@ extension CGSize {
 		return size.width <= 0 || size.height <= 0
 	}
 	
+}
+
+extension CGRect {
+	
+	static let screenBounds: CGRect = { return iw.screenBounds }()
 }

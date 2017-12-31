@@ -168,7 +168,7 @@ extension IWView where View: UIView {
             objc_setAssociatedObject(self, &IWViewKey.showDebugColorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             if newValue {
                 self.view.subviews.forEach({ (v) in
-                    main { v.backgroundColor = self.debugColor }
+                    iw.main.execution { v.backgroundColor = self.debugColor }
                 })
             }
         }

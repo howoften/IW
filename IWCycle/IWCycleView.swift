@@ -52,9 +52,9 @@ class IWCycleView: UIView {
     /// page control 距离底部的距离
     public var distanceOfPageControlBottom: CGFloat = 0 {
         didSet {
-            main {
-                self.refreshDistanceOfPageControlBottom()
-            }
+			iw.main.execution {
+				self.refreshDistanceOfPageControlBottom()
+			}
         }
     }
     
@@ -184,17 +184,17 @@ extension IWCycleView {
     private func setUpPageControl() -> Void {
         pageControl.y = height - pageControl.minimumHeight
         pageControl.hidesForSinglePage = true
-        //pageControl.backgroundColor = .red
         addSubview(pageControl)
     }
     
     private func setUpTimer() -> Void {
-        let _ = delayExecution(TimeInterval(displayTime <= 0 ? 3.0 : displayTime)) {
-            if self.timer == nil {
-                self.timer = IWTimer.timer(TimeInterval(self.displayTime <= 0 ? 3.0 : self.displayTime), target: self, action: #selector(self.timerDidFired(_:)), userInfo: nil, repeats: true)
-            }
-            self.timer!.fireDate = .distantPast
-        }
+		
+		let _ = iw.delay.execution(delay: TimeInterval(displayTime <= 0 ? 3.0 : displayTime)) {
+			if self.timer == nil {
+				self.timer = IWTimer.timer(TimeInterval(self.displayTime <= 0 ? 3.0 : self.displayTime), target: self, action: #selector(self.timerDidFired(_:)), userInfo: nil, repeats: true)
+			}
+			self.timer!.fireDate = .distantPast
+		}
     }
     
     func pageControlPagesSetter(_ newValue: Int) -> Void {
@@ -218,14 +218,14 @@ extension IWCycleView {
     
     func imagesSetter(_ newValue: [Any]) -> Void {
         if newValue.count > 0 {
-            let temp = NSMutableArray()
+            let tmp = NSMutableArray()
             for obj in newValue {
                 if obj is String {
-                    temp.add(obj)
+                    tmp.add(obj)
                 }
             }
-            images = temp.copy() as! [Any]
-            imagesCount = temp.count
+            images = tmp.copy() as! [Any]
+            imagesCount = tmp.count
             pageControlPagesSetter(imagesCount)
         }
     }
@@ -233,7 +233,7 @@ extension IWCycleView {
     func currentIndexSetter(_ newValue: Int) -> Void {
         
         let prefixs = ["http:", "https:", "ftp:"]
-        if newValue >= 0 {
+        if newValue >= 0, imagesCount > 0 {
             currentIndex = newValue
             
             let leftIndex = (newValue + imagesCount - 1) % imagesCount
