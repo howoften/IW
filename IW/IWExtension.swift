@@ -341,7 +341,7 @@ extension String {
 		if self.count == 1 {
 			return self
 		}
-		var str = self
+		let str = self
 		return str[str.index(before: str.endIndex)...].toString
 	}
     
