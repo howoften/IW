@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA36CA591FF9061100714999 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36CA481FF9061000714999 /* StringExtension.swift */; };
+		DA36CA5A1FF9061100714999 /* injectXcodePath.sh in Resources */ = {isa = PBXBuildFile; fileRef = DA36CA561FF9061000714999 /* injectXcodePath.sh */; };
 		DA8C9CFF1FF889A400BF9B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */; };
 		DA8C9D011FF889A400BF9B38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D001FF889A400BF9B38 /* ViewController.swift */; };
 		DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D021FF889A400BF9B38 /* Main.storyboard */; };
@@ -75,14 +77,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DA36CA2B1FF8F46100714999 /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
-		DA36CA341FF8F8A200714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		DA36CA361FF8F8A200714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		DA36CA381FF8F8A200714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		DA36CA3A1FF8F8A200714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		DA36CA3C1FF8F8A300714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		DA36CA3E1FF8F8A300714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		DA36CA401FF8F8A300714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		DA36CA441FF9061000714999 /* CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCrypto.h; sourceTree = "<group>"; };
+		DA36CA471FF9061000714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		DA36CA481FF9061000714999 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		DA36CA4B1FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		DA36CA4D1FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		DA36CA4F1FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		DA36CA511FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		DA36CA531FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		DA36CA551FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		DA36CA561FF9061000714999 /* injectXcodePath.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = injectXcodePath.sh; sourceTree = "<group>"; };
+		DA36CA581FF9061000714999 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		DA8C9CFB1FF889A400BF9B38 /* IWExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IWExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA8C9D001FF889A400BF9B38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,20 +172,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DA36CA271FF8F45700714999 /* CommonCrypto */ = {
-			isa = PBXGroup;
-			children = (
-				DA36CA3F1FF8F8A300714999 /* appletvos */,
-				DA36CA3D1FF8F8A300714999 /* appletvsimulator */,
-				DA36CA3B1FF8F8A300714999 /* iphoneos */,
-				DA36CA391FF8F8A200714999 /* iphonesimulator */,
-				DA36CA351FF8F8A200714999 /* macosx */,
-				DA36CA371FF8F8A200714999 /* watchos */,
-				DA36CA331FF8F8A200714999 /* watchsimulator */,
-			);
-			path = CommonCrypto;
-			sourceTree = "<group>";
-		};
 		DA36CA2E1FF8F53F00714999 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,66 +179,124 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DA36CA331FF8F8A200714999 /* watchsimulator */ = {
+		DA36CA411FF9061000714999 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				DA36CA341FF8F8A200714999 /* module.modulemap */,
+				DA36CA421FF9061000714999 /* CommonCrypto */,
 			);
-			path = watchsimulator;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		DA36CA351FF8F8A200714999 /* macosx */ = {
+		DA36CA421FF9061000714999 /* CommonCrypto */ = {
 			isa = PBXGroup;
 			children = (
-				DA36CA361FF8F8A200714999 /* module.modulemap */,
+				DA36CA431FF9061000714999 /* include */,
+				DA36CA451FF9061000714999 /* CCommonCrypto */,
+				DA36CA481FF9061000714999 /* StringExtension.swift */,
 			);
-			path = macosx;
+			path = CommonCrypto;
 			sourceTree = "<group>";
 		};
-		DA36CA371FF8F8A200714999 /* watchos */ = {
+		DA36CA431FF9061000714999 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				DA36CA381FF8F8A200714999 /* module.modulemap */,
+				DA36CA441FF9061000714999 /* CommonCrypto.h */,
 			);
-			path = watchos;
+			path = include;
 			sourceTree = "<group>";
 		};
-		DA36CA391FF8F8A200714999 /* iphonesimulator */ = {
+		DA36CA451FF9061000714999 /* CCommonCrypto */ = {
 			isa = PBXGroup;
 			children = (
-				DA36CA3A1FF8F8A200714999 /* module.modulemap */,
+				DA36CA461FF9061000714999 /* include */,
 			);
-			path = iphonesimulator;
+			path = CCommonCrypto;
 			sourceTree = "<group>";
 		};
-		DA36CA3B1FF8F8A300714999 /* iphoneos */ = {
+		DA36CA461FF9061000714999 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				DA36CA3C1FF8F8A300714999 /* module.modulemap */,
+				DA36CA471FF9061000714999 /* module.modulemap */,
 			);
-			path = iphoneos;
+			path = include;
 			sourceTree = "<group>";
 		};
-		DA36CA3D1FF8F8A300714999 /* appletvsimulator */ = {
+		DA36CA491FF9061000714999 /* CocoaPods */ = {
 			isa = PBXGroup;
 			children = (
-				DA36CA3E1FF8F8A300714999 /* module.modulemap */,
+				DA36CA4A1FF9061000714999 /* appletvsimulator */,
+				DA36CA4C1FF9061000714999 /* watchos */,
+				DA36CA4E1FF9061000714999 /* iphoneos */,
+				DA36CA501FF9061000714999 /* appletvos */,
+				DA36CA521FF9061000714999 /* watchsimulator */,
+				DA36CA541FF9061000714999 /* macosx */,
+				DA36CA561FF9061000714999 /* injectXcodePath.sh */,
+				DA36CA571FF9061000714999 /* iphonesimulator */,
+			);
+			path = CocoaPods;
+			sourceTree = "<group>";
+		};
+		DA36CA4A1FF9061000714999 /* appletvsimulator */ = {
+			isa = PBXGroup;
+			children = (
+				DA36CA4B1FF9061000714999 /* module.map */,
 			);
 			path = appletvsimulator;
 			sourceTree = "<group>";
 		};
-		DA36CA3F1FF8F8A300714999 /* appletvos */ = {
+		DA36CA4C1FF9061000714999 /* watchos */ = {
 			isa = PBXGroup;
 			children = (
-				DA36CA401FF8F8A300714999 /* module.modulemap */,
+				DA36CA4D1FF9061000714999 /* module.map */,
+			);
+			path = watchos;
+			sourceTree = "<group>";
+		};
+		DA36CA4E1FF9061000714999 /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				DA36CA4F1FF9061000714999 /* module.map */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		DA36CA501FF9061000714999 /* appletvos */ = {
+			isa = PBXGroup;
+			children = (
+				DA36CA511FF9061000714999 /* module.map */,
 			);
 			path = appletvos;
+			sourceTree = "<group>";
+		};
+		DA36CA521FF9061000714999 /* watchsimulator */ = {
+			isa = PBXGroup;
+			children = (
+				DA36CA531FF9061000714999 /* module.map */,
+			);
+			path = watchsimulator;
+			sourceTree = "<group>";
+		};
+		DA36CA541FF9061000714999 /* macosx */ = {
+			isa = PBXGroup;
+			children = (
+				DA36CA551FF9061000714999 /* module.map */,
+			);
+			path = macosx;
+			sourceTree = "<group>";
+		};
+		DA36CA571FF9061000714999 /* iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				DA36CA581FF9061000714999 /* module.map */,
+			);
+			path = iphonesimulator;
 			sourceTree = "<group>";
 		};
 		DA8C9CF21FF889A400BF9B38 = {
 			isa = PBXGroup;
 			children = (
-				DA36CA271FF8F45700714999 /* CommonCrypto */,
+				DA36CA491FF9061000714999 /* CocoaPods */,
+				DA36CA411FF9061000714999 /* Sources */,
 				DA8C9D101FF889C000BF9B38 /* IW */,
 				DA8C9CFD1FF889A400BF9B38 /* IWExtensionDemo */,
 				DA8C9CFC1FF889A400BF9B38 /* Products */,
@@ -279,7 +328,6 @@
 		DA8C9D101FF889C000BF9B38 /* IW */ = {
 			isa = PBXGroup;
 			children = (
-				DA36CA2B1FF8F46100714999 /* CommonCrypto.xcconfig */,
 				DA8C9D111FF889C000BF9B38 /* IWBase */,
 				DA8C9D1A1FF889C000BF9B38 /* IWListView */,
 				DA8C9D221FF889C000BF9B38 /* IWShouldPop.swift */,
@@ -532,6 +580,7 @@
 				DA8C9D091FF889A400BF9B38 /* LaunchScreen.storyboard in Resources */,
 				DA8C9D061FF889A400BF9B38 /* Assets.xcassets in Resources */,
 				DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */,
+				DA36CA5A1FF9061100714999 /* injectXcodePath.sh in Resources */,
 				DA8C9D781FF889C000BF9B38 /* IWBundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,6 +624,7 @@
 				DA8C9D891FF889C000BF9B38 /* UIViewController+IWViewController.swift in Sources */,
 				DA8C9D941FF889C000BF9B38 /* iPrint.swift in Sources */,
 				DA8C9D801FF889C000BF9B38 /* UIImageView+IW.swift in Sources */,
+				DA36CA591FF9061100714999 /* StringExtension.swift in Sources */,
 				DA8C9D661FF889C000BF9B38 /* IWAppDelegate.swift in Sources */,
 				DA8C9D821FF889C000BF9B38 /* UILabel+IW.swift in Sources */,
 				DA8C9D841FF889C000BF9B38 /* UIView+IW.swift in Sources */,
@@ -746,13 +796,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
-				"SWIFT_INCLUDE_PATHS[sdk=appletvos*]" = "\"$(SRCROOT)/CommonCrypto/appletvos\"";
-				"SWIFT_INCLUDE_PATHS[sdk=appletvsimulator*]" = "\"$(SRCROOT)/CommonCrypto/appletvsimulator\"";
-				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "\"$(SRCROOT)/CommonCrypto/iphoneos\"";
-				"SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/CommonCrypto/iphonesimulator\"";
-				"SWIFT_INCLUDE_PATHS[sdk=macosx*]" = "\"$(SRCROOT)/CommonCrypto/macosx\"";
-				"SWIFT_INCLUDE_PATHS[sdk=watchos*]" = "\"$(SRCROOT)/CommonCrypto/watchos\"";
-				"SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]" = "\"$(SRCROOT)/CommonCrypto/watchsimulator\"";
+				"SWIFT_INCLUDE_PATHS[sdk=appletvos*]" = "\"$(SRCROOT)/CocoaPods/appletvos\"";
+				"SWIFT_INCLUDE_PATHS[sdk=appletvsimulator*]" = "\"$(SRCROOT)/CocoaPods/appletvsimulator\"";
+				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "\"$(SRCROOT)/CocoaPods/iphoneos\"";
+				"SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/CocoaPods/iphonesimulator\"";
+				"SWIFT_INCLUDE_PATHS[sdk=macosx*]" = "\"$(SRCROOT)/CocoaPods/macosx\"";
+				"SWIFT_INCLUDE_PATHS[sdk=watchos*]" = "\"$(SRCROOT)/Cocoapods/watchos\"";
+				"SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]" = "\"$(SRCROOT)/CocoaPods/watchsimulator\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -771,13 +821,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
-				"SWIFT_INCLUDE_PATHS[sdk=appletvos*]" = "\"$(SRCROOT)/CommonCrypto/appletvos\"";
-				"SWIFT_INCLUDE_PATHS[sdk=appletvsimulator*]" = "\"$(SRCROOT)/CommonCrypto/appletvsimulator\"";
-				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "\"$(SRCROOT)/CommonCrypto/iphoneos\"";
-				"SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/CommonCrypto/iphonesimulator\"";
-				"SWIFT_INCLUDE_PATHS[sdk=macosx*]" = "\"$(SRCROOT)/CommonCrypto/macosx\"";
-				"SWIFT_INCLUDE_PATHS[sdk=watchos*]" = "\"$(SRCROOT)/CommonCrypto/watchos\"";
-				"SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]" = "\"$(SRCROOT)/CommonCrypto/watchsimulator\"";
+				"SWIFT_INCLUDE_PATHS[sdk=appletvos*]" = "\"$(SRCROOT)/CocoaPods/appletvos\"";
+				"SWIFT_INCLUDE_PATHS[sdk=appletvsimulator*]" = "\"$(SRCROOT)/CocoaPods/appletvsimulator\"";
+				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "\"$(SRCROOT)/CocoaPods/iphoneos\"";
+				"SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/CocoaPods/iphonesimulator\"";
+				"SWIFT_INCLUDE_PATHS[sdk=macosx*]" = "\"$(SRCROOT)/CocoaPods/macosx\"";
+				"SWIFT_INCLUDE_PATHS[sdk=watchos*]" = "\"$(SRCROOT)/CocoaPods/watchos\"";
+				"SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]" = "\"$(SRCROOT)/CocoaPods/watchsimulator\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
