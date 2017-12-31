@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   s.source_files  = "IW/*", "IW/*.*", "IW/*/*.*"
   s.exclude_files = "*"
 
-  s.public_header_files = "IWExtension/IWExtensionHeader.h"
+  # s.public_header_files = "IWExtension/IWExtensionHeader.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
