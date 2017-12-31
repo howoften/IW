@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "IW"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "Make Swift faster and use it more smoothly."
 
   # This description is used to generate tags and improve search results.
@@ -90,9 +90,9 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "IW/*", "IW/*.*","IW/*/*.*"
-  #s.exclude_files = "*"
+  s.exclude_files = "*"
 
-  # s.public_header_files = "IWExtension/IWExtensionHeader.h"
+  s.public_header_files = "IWExtension/IWExtensionHeader.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
