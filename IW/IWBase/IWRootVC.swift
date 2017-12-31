@@ -104,7 +104,9 @@ class IWRootVC: UIViewController {
     }
     
     private func _init() {
-		self.automaticallyAdjustsScrollViewInsets = false
+		if #available(iOS 11, *) { } else {
+			self.automaticallyAdjustsScrollViewInsets = false
+		}
         self.isAutoHideBottomBarWhenPushed = true
         self.view.backgroundColor = .white
     }

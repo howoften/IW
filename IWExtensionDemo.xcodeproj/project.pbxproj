@@ -152,7 +152,6 @@
 		DA8C9D5E1FF889C000BF9B38 /* IWRequestManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestManage.swift; sourceTree = "<group>"; };
 		DA8C9D5F1FF889C000BF9B38 /* IWRequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestInfo.swift; sourceTree = "<group>"; };
 		DA8C9D601FF889C000BF9B38 /* IWBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWBundle.swift; sourceTree = "<group>"; };
-		DA8C9DA31FF890A000BF9B38 /* IWExtensionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IWExtensionHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,7 +187,6 @@
 			children = (
 				DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */,
 				DA8C9D001FF889A400BF9B38 /* ViewController.swift */,
-				DA8C9DA31FF890A000BF9B38 /* IWExtensionHeader.h */,
 				DA8C9D021FF889A400BF9B38 /* Main.storyboard */,
 				DA8C9D051FF889A400BF9B38 /* Assets.xcassets */,
 				DA8C9D071FF889A400BF9B38 /* LaunchScreen.storyboard */,
@@ -673,7 +671,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
 				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "\"$(SRCROOT)/IW\"";
-				SWIFT_OBJC_BRIDGING_HEADER = IWExtensionDemo/IWExtensionHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -692,7 +690,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
 				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "\"$(SRCROOT)/IW\"";
-				SWIFT_OBJC_BRIDGING_HEADER = IWExtensionDemo/IWExtensionHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

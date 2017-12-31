@@ -55,7 +55,8 @@ class IWAuthorization: NSObject {
         }
     }
     
-    
+	
+	/*
     /// 请求访问通讯录
     class func requestAddressBook(_ authResult: ((_ : Bool, _ : ABAddressBook?) -> Void)? = nil) {
         let addressBook = ABAddressBookCreateWithOptions(nil, nil)
@@ -72,7 +73,7 @@ class IWAuthorization: NSObject {
             return
         }
         authResult?(true, addressBook as ABAddressBook)
-    }
+    } */
     
     // MARK:- 系统服务
     /**

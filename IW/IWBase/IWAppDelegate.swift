@@ -117,31 +117,31 @@ extension IWAppDelegate: UNUserNotificationCenterDelegate {
             })
             
         } else  {
-            
+
+			// iOS8 or later
+			if let currentSettings = application.currentUserNotificationSettings {
+				if currentSettings.types != .init(rawValue: 0) {
+					self.executeResultHandler(true, result, "User allows remote notification.")
+				} else {
+					
+					// Not the first launch app
+					self.executeResultHandler(false, result, "The user does not allow remote notifications.")
+				}
+			} else {
+				
+				// First launch app
+				self.executeResultHandler(false, result, "The user does not allow remote notifications.")
+			}
+			
+			let settings: UIUserNotificationSettings = .init(types: [.badge, .alert, .sound], categories: nil)
+			application.registerUserNotificationSettings(settings)
+
+			/*
             if #available(iOS 8, *) {
-                // iOS8 or later
-                if let currentSettings = application.currentUserNotificationSettings {
-                    if currentSettings.types != .init(rawValue: 0) {
-                        self.executeResultHandler(true, result, "User allows remote notification.")
-                    } else {
-                        
-                        // Not the first launch app
-                        self.executeResultHandler(false, result, "The user does not allow remote notifications.")
-                    }
-                } else {
-                    
-                    // First launch app
-                    self.executeResultHandler(false, result, "The user does not allow remote notifications.")
-                }
-                
-                let settings: UIUserNotificationSettings = .init(types: [.badge, .alert, .sound], categories: nil)
-                application.registerUserNotificationSettings(settings)
-                
             } else {
-                
                 // iOS 8 and below
                 application.registerForRemoteNotifications(matching: [.alert, .badge, .sound])
-            }
+            } */
         }
         
         // Regist and get Token
