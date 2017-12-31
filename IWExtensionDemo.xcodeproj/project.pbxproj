@@ -33,7 +33,6 @@
 		DA8C9D731FF889C000BF9B38 /* IWAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */; };
 		DA8C9D741FF889C000BF9B38 /* IWCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D291FF889C000BF9B38 /* IWCycleView.swift */; };
 		DA8C9D751FF889C000BF9B38 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D2A1FF889C000BF9B38 /* LICENSE */; };
-		DA8C9D761FF889C000BF9B38 /* IWExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D2B1FF889C000BF9B38 /* IWExtension.podspec */; };
 		DA8C9D771FF889C000BF9B38 /* IWExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */; };
 		DA8C9D781FF889C000BF9B38 /* IWBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */; };
 		DA8C9D791FF889C000BF9B38 /* IWLocalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9D311FF889C000BF9B38 /* IWLocalAuthentication.swift */; };
@@ -108,7 +107,6 @@
 		DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAuthorization.swift; sourceTree = "<group>"; };
 		DA8C9D291FF889C000BF9B38 /* IWCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCycleView.swift; sourceTree = "<group>"; };
 		DA8C9D2A1FF889C000BF9B38 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		DA8C9D2B1FF889C000BF9B38 /* IWExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IWExtension.podspec; sourceTree = "<group>"; };
 		DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWExtension.swift; sourceTree = "<group>"; };
 		DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IWBundle.bundle; sourceTree = "<group>"; };
 		DA8C9D311FF889C000BF9B38 /* IWLocalAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWLocalAuthentication.swift; sourceTree = "<group>"; };
@@ -152,7 +150,7 @@
 		DA8C9D5E1FF889C000BF9B38 /* IWRequestManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestManage.swift; sourceTree = "<group>"; };
 		DA8C9D5F1FF889C000BF9B38 /* IWRequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRequestInfo.swift; sourceTree = "<group>"; };
 		DA8C9D601FF889C000BF9B38 /* IWBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWBundle.swift; sourceTree = "<group>"; };
-		DA8C9DA21FF889EB00BF9B38 /* IWExtensionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IWExtensionHeader.h; sourceTree = "<group>"; };
+		DA8C9DA31FF890A000BF9B38 /* IWExtensionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IWExtensionHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +186,7 @@
 			children = (
 				DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */,
 				DA8C9D001FF889A400BF9B38 /* ViewController.swift */,
+				DA8C9DA31FF890A000BF9B38 /* IWExtensionHeader.h */,
 				DA8C9D021FF889A400BF9B38 /* Main.storyboard */,
 				DA8C9D051FF889A400BF9B38 /* Assets.xcassets */,
 				DA8C9D071FF889A400BF9B38 /* LaunchScreen.storyboard */,
@@ -208,7 +207,6 @@
 				DA8C9D271FF889C000BF9B38 /* IWAuthorization.swift */,
 				DA8C9D281FF889C000BF9B38 /* IWCycle */,
 				DA8C9D2A1FF889C000BF9B38 /* LICENSE */,
-				DA8C9D2B1FF889C000BF9B38 /* IWExtension.podspec */,
 				DA8C9D2C1FF889C000BF9B38 /* IWExtension.swift */,
 				DA8C9D2D1FF889C000BF9B38 /* IWBundle.bundle */,
 				DA8C9D2E1FF889C000BF9B38 /* IWKit */,
@@ -221,7 +219,6 @@
 				DA8C9D591FF889C000BF9B38 /* .gitignore */,
 				DA8C9D5A1FF889C000BF9B38 /* IWReqeust */,
 				DA8C9D601FF889C000BF9B38 /* IWBundle.swift */,
-				DA8C9DA21FF889EB00BF9B38 /* IWExtensionHeader.h */,
 			);
 			path = IW;
 			sourceTree = "<group>";
@@ -451,7 +448,6 @@
 				DA8C9D9B1FF889C000BF9B38 /* .gitignore in Resources */,
 				DA8C9D701FF889C000BF9B38 /* .swift-version in Resources */,
 				DA8C9D091FF889A400BF9B38 /* LaunchScreen.storyboard in Resources */,
-				DA8C9D761FF889C000BF9B38 /* IWExtension.podspec in Resources */,
 				DA8C9D061FF889A400BF9B38 /* Assets.xcassets in Resources */,
 				DA8C9D931FF889C000BF9B38 /* Readme in Resources */,
 				DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */,
@@ -671,7 +667,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = IW/IWExtensionHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = IWExtensionDemo/IWExtensionHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -688,7 +684,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = IW/IWExtensionHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = IWExtensionDemo/IWExtensionHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
