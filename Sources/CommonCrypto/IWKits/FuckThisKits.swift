@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FuckThisKits: NSObject {
+public class FuckThisKits: NSObject {
 	
 	static let shared = FuckThisKits()
 	
