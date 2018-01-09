@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func md5Action(_ sender: Any) {
-		UIAlert.show(message: "123456".iwe.md5, config: nil)
+		//UIAlert.show(message: "123456".iwe.md5, config: nil)
 	}
 	
 }
