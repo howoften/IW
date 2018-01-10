@@ -4,6 +4,7 @@
 
 import UIKit
 
+/// (IWLoginNavController).
 public class IWLoginNavController: IWNavController {
 
     override public func viewDidLoad() {

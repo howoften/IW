@@ -10,11 +10,11 @@
 import UIKit
 import Foundation
 
-protocol IWCollectionViewFlowLayoutDelegate: UICollectionViewDelegateFlowLayout {
-    
-}
+/// (CollectionView 自动布局).
+public protocol IWCollectionViewFlowLayoutDelegate: UICollectionViewDelegateFlowLayout { }
 
-class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
+/// (CollectionView 自动布局).
+public class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     var itemAttributes: NSMutableArray! = nil
     weak var delegate: IWCollectionViewFlowLayoutDelegate?
@@ -23,7 +23,7 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     var lastedHeight: CGFloat = 0.0
     
-    override func prepare() {
+    public override func prepare() {
         super.prepare()
         
         allAttributes.removeAllObjects()
@@ -76,14 +76,14 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
         lastedHeight = lastHeight
     }
     
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return (itemAttributes as NSArray).filtered(using: NSPredicate.init(block: { (evaluatedObject, bindings) -> Bool in
             let attrs = evaluatedObject as! UICollectionViewLayoutAttributes
             return rect.intersects(attrs.frame)
         })) as? [UICollectionViewLayoutAttributes]
     }
     
-    override var collectionViewContentSize: CGSize {
+    public override var collectionViewContentSize: CGSize {
         var w: CGFloat = 0
         var h: CGFloat = 0
         if let collection = collectionView {
@@ -93,3 +93,4 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return CGSize(width: w, height: h)
     }
 }
+

@@ -8,34 +8,33 @@
 
 import UIKit
 
-private let sharedInstance = IWTimer()
-
-class IWTimer: Timer {
+/// (NSTimer 子类, 拥有更多便捷的使用方法).
+public class IWTimer: Timer {
     
-    class var shared: IWTimer {
-        return sharedInstance
-    }
+    /// (单例).
+    private static let shared = IWTimer()
     
     fileprivate lazy var countDonws: NSMutableArray = {
         return NSMutableArray()
     }()
     
     /// Count down with GCD.
+    /// (倒计时).
     ///
     /// - Parameters:
-    ///   - time: Total time
-    ///   - intervalTime: Interval time
-    ///   - identify: ID, ensure the uniqueness
-    ///   - loadingHandler: Loading block
-    ///   - loaded: Finished block
-    class func countDown(_ time: TimeInterval, intervalTime: TimeInterval, identify: String, loadingHandler:((_ currentTime: TimeInterval) -> Void)?, loaded:(() -> Void)?) {
+    ///   - time: 总时间
+    ///   - intervalTime: 间隔
+    ///   - identify: 标识, 请确保唯一性
+    ///   - loadingHandler: 倒计时过程回调
+    ///   - loaded: 倒计时完成回调
+    public class func countDown(_ time: TimeInterval, intervalTime: TimeInterval, identify: String, loadingHandler:((_ currentTime: TimeInterval) -> Void)?, loaded:(() -> Void)?) {
         
         var itime = time
         let iintervalTime = intervalTime
         let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
         let timer = DispatchSource.makeTimerSource(flags: [], queue: queue)
         timer.schedule(deadline: .now(), repeating: .seconds(Int(iintervalTime)), leeway: .seconds(Int(itime)))
-        timer.setEventHandler { 
+        timer.setEventHandler {
             if itime > 0 {
                 DispatchQueue.main.async {
                     loadingHandler?(itime)
@@ -66,7 +65,7 @@ class IWTimer: Timer {
     ///   - userInfo: User info
     ///   - repeats: Repeats
     /// - Returns: Timer
-    class func timer(_ interval: TimeInterval, target: AnyObject, action: Selector, userInfo: Any?, repeats: Bool) -> Timer {
+    public class func timer(_ interval: TimeInterval, target: AnyObject, action: Selector, userInfo: Any?, repeats: Bool) -> Timer {
         
         let timerTarget = IWWeakTimerTarget()
         timerTarget.iTarget = target
@@ -76,7 +75,7 @@ class IWTimer: Timer {
     }
     
     /// Block Timer
-    class func timer(_ interval: TimeInterval, loadingHandler:(_ userInfo: Any?) -> Void?, userInfo: Any?, repeats: Bool) -> Timer {
+    public class func timer(_ interval: TimeInterval, loadingHandler:(_ userInfo: Any?) -> Void?, userInfo: Any?, repeats: Bool) -> Timer {
         let m = NSMutableArray(object: loadingHandler)
         if let u = userInfo {
             m.add(u)
@@ -101,17 +100,20 @@ class IWTimer: Timer {
 // MARK:- Cancel
 extension IWTimer {
     
-    class func cancel(by identify: String) {
+    /// Cancel countdown by identity.
+    /// (通过 identity 取消倒计时).
+    ///
+    /// - Parameter identify: 唯一标识
+    public class func cancel(by identity: String) {
         var i = 0
         for row in IWTimer.shared.countDonws {
             let manage = row as! IWTimerManage
-            if manage.identify! == identify {
+            if manage.identify! == identity {
                 manage.timer!.cancel()
                 break
             }
             i += 1
         }
-        //IWTimer.shared.countDonws.remove(at: i)
         IWTimer.shared.countDonws.removeObject(at: i)
     }
     
@@ -125,9 +127,9 @@ private class IWWeakTimerTarget: NSObject {
     
     func fire(_ timer: Timer) {
         if let t = iTarget {
-        	t.perform(iSelector!, with: timer.userInfo, afterDelay: 0.0)
+            t.perform(iSelector!, with: timer.userInfo, afterDelay: 0.0)
         } else {
-			self.iTimer?.invalidate()
+            self.iTimer?.invalidate()
         }
     }
     
@@ -140,3 +142,4 @@ private class IWTimerManage: NSObject {
     var isFinished: Bool?
     
 }
+

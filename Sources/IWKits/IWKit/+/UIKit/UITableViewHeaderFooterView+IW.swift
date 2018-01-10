@@ -11,10 +11,10 @@ import UIKit
 extension IWView where View: UITableViewHeaderFooterView {
     
     /// Use in init(func `awakeFromNib` or `init`).
+    /// (修复背景颜色 Xcode 警告, 用在 awakeFromNib 或者 init 中).
     final func fixBackgroundColorWarning() -> Void {
-        // view.backgroundView = UIView()
-        // view.backgroundView!.backgroundColor = .clear
-		view.tintColor = .clear
+        view.backgroundView = UIView(frame: view.bounds)
+        view.backgroundView!.backgroundColor = .clear
     }
     
 }

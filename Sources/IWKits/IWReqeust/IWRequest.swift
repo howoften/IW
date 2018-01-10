@@ -4,6 +4,8 @@
 
 import UIKit
 
+/// Network Request.
+/// (网络请求类).
 public class IWRequest: NSObject {
     
     // 开启调试模式, 开启后输出所有信息
@@ -66,7 +68,7 @@ public class IWRequest: NSObject {
         operationQueue.maxConcurrentOperationCount = 1
         
         session = URLSession.init(configuration: sessionConfig, delegate: self, delegateQueue: operationQueue)
-		
+        
         let dataTask = session.dataTask(with: urlRequest)
         
         // Config(Record) Request info
@@ -76,10 +78,10 @@ public class IWRequest: NSObject {
             // Tips desc
             if let urlStr = urlRequest.url { print("Start request: \(urlStr)") }
         }
-		
-		// Add info to RequestManage instance
-		IWRequestManage.add(info)
-		
+        
+        // Add info to RequestManage instance
+        IWRequestManage.add(info)
+        
         // Resume
         dataTask.resume()
     }
@@ -140,16 +142,37 @@ extension IWRequest {
 }
 
 public extension IWRequest {
+    
     fileprivate class func request() -> IWRequest {
         return IWRequest()
     }
+    
+    
     // MARK: Class POST
+    
+    /// (POST 请求).
+    ///
+    /// - Parameters:
+    ///   - url: 请求地址
+    ///   - parameters: 请求参数, String 或 [String: Any]
+    ///   - desc: 请求描述
+    /// - Returns: 返回请求结果类
     public class func post(_ url: String, parameters: Any? = nil, desc: String? = nil) -> IWRequestResult {
         let request = IWRequest.request()
         request.config(post: url.toURL, parameters: parameters, desc: desc)
         return request.requestResult()
     }
+    
+    
     // MARK: Class GET
+    
+    /// (GET 请求).
+    ///
+    /// - Parameters:
+    ///   - url: 请求地址
+    ///   - parameters: 请求参数, String 或 [String: Any]
+    ///   - desc: 请求描述
+    /// - Returns: 返回请求结果类
     public class func get(_ url: String, parameters: Any? = nil, desc: String? = nil) -> IWRequestResult {
         let request = IWRequest.request()
         request.config(get: url.toURL, parameters: parameters, desc: desc)
@@ -194,8 +217,9 @@ extension IWRequest: URLSessionDataDelegate {
 
 extension IWRequest: URLSessionTaskDelegate {
     
-    // 进度
+    /// 进度
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         
     }
 }
+

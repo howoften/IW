@@ -19,6 +19,7 @@ public class IWRequestResult: NSObject {
     public var dictionary: [String: Any]?
     /// Data to Dictionary failed and try to String
     public var string: String?
+    public var stringValue: String!
     
     /// Request error
     public var error: Error?
@@ -61,10 +62,11 @@ public class IWRequestResult: NSObject {
             }
             if dic != nil {
                 self.dictionary = dic!
-				iw.main.execution { self.success!(self.data, dic, self); self.success = nil; }
+                iw.main.execution { self.success!(self.data, dic, self); self.success = nil; }
             } else {
-                self.string = String.init(data: data!, encoding: String.Encoding.utf8)
-				iw.main.execution { self.success!(self.data, nil, self); self.success = nil; }
+                self.string = data?.iwe.string
+                self.stringValue = data?.iwe.stringValue
+                iw.main.execution { self.success!(self.data, nil, self); self.success = nil; }
             }
         }
         //success = nil
@@ -72,7 +74,7 @@ public class IWRequestResult: NSObject {
     
     /// Execute failed action.
     public func executeFailHandler() -> Void {
-		iw.main.execution { self.failed?(self.error) }
+        iw.main.execution { self.failed?(self.error) }
     }
     
     public func printLog() {
@@ -161,7 +163,7 @@ public extension Data {
             }
             return nil
         } catch {
-			iPrint("The Data to Dictionary failed", error: error)
+            iPrint("The Data to Dictionary failed", error: error)
         }
         return nil
     }
@@ -171,10 +173,10 @@ public extension Data {
             let dic = try JSONSerialization.jsonObject(with: self, options: .allowFragments)
             return dic as? [Any]
         } catch {
-			iPrint("The Data to Array failed", error: error)
-			
+            iPrint("The Data to Array failed", error: error)
+            
         }
         return nil
     }
-    
 }
+

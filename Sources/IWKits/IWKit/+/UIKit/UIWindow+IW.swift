@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension IWView where View: UIWindow {
+public extension IWView where View: UIWindow {
 	
 	func show() -> Void {
 		view.isHidden = false

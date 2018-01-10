@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// (IWLoginVC 中的常量(函数)内容).
 public class IWLoginConst: NSObject {
     
     public static let buttonFontSize: Float = 17.0
@@ -40,7 +41,7 @@ public class IWLoginConst: NSObject {
         btn.iwe.titleColor(.gray, .disabled)
         
         btn.iwe.fontSize = buttonFontSize
-		btn.iwe.titleAlignment = .center
+        btn.iwe.titleAlignment = .center
     }
     
     public class func backgroundButton(_ btn: UIButton) {
@@ -48,7 +49,8 @@ public class IWLoginConst: NSObject {
         btn.iwe.titleColor(UIColor.white.alpha(0.4), .highlighted)
         
         btn.iwe.fontSize = buttonFontSize
-		btn.iwe.titleAlignment = .center
+        btn.iwe.titleAlignment = .center
         btn.backgroundColor = UIColor.button.default
     }
 }
+

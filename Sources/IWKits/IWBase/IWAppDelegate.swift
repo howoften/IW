@@ -9,15 +9,18 @@
 import UIKit
 import UserNotifications
 
-class IWAppDelegate: UIResponder, UIApplicationDelegate {
+/// (扩展功能的 AppDelegate).
+public class IWAppDelegate: UIResponder, UIApplicationDelegate {
     
-    typealias IWADDeviceTokenHandler = (_ token: String?) -> Void
-    typealias IWADReceiveRemoteNotificationHandler = (_ userInfo: [AnyHashable: Any]) -> Void
+    public typealias IWADDeviceTokenHandler = (_ token: String?) -> Void
+    public typealias IWADReceiveRemoteNotificationHandler = (_ userInfo: [AnyHashable: Any]) -> Void
     
-    var deviceTokenHandler: IWADDeviceTokenHandler?
-    var receiveRemoteNotificationHandler: IWADReceiveRemoteNotificationHandler?
+    public var deviceTokenHandler: IWADDeviceTokenHandler?
+    public var receiveRemoteNotificationHandler: IWADReceiveRemoteNotificationHandler?
     
-    func remoteNotification(_ tokenHandler: IWADDeviceTokenHandler?, _ receiveHanlder: IWADReceiveRemoteNotificationHandler?) -> Void {
+    /// Regist and Receive call back.
+    /// (注册/接收信息 回调处理).
+    final public func remoteNotification(_ tokenHandler: IWADDeviceTokenHandler?, _ receiveHanlder: IWADReceiveRemoteNotificationHandler?) -> Void {
         
         if tokenHandler != nil {
             deviceTokenHandler = tokenHandler!
@@ -27,7 +30,7 @@ class IWAppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // Register for remote notifications with device token.
         
         let token = deviceToken.deviceToken
@@ -36,21 +39,21 @@ class IWAppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    public func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         iPrint("Did fail to register for remote notifications with error", error: error)
     }
     
     // iOS 3 - 9
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+    public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         switch application.applicationState {
-            case .active: do {
-            	iPrint("in active")
+        case .active: do {
+            iPrint("in active")
             }
-        	case .background: do {
-            	iPrint("in background")
+        case .background: do {
+            iPrint("in background")
             }
-        	case .inactive: do {
-            	iPrint("in inactive")
+        case .inactive: do {
+            iPrint("in inactive")
             }
         }
         
@@ -60,7 +63,7 @@ class IWAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // iOS 7 or later
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let receive = receiveRemoteNotificationHandler {
             receive(userInfo)
         }
@@ -73,7 +76,7 @@ extension IWAppDelegate: UNUserNotificationCenterDelegate {
     
     
     @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // Will present 程序正在运行时 收到通知
         if notification.request.trigger is UNPushNotificationTrigger {
             // Remote notification
@@ -86,7 +89,7 @@ extension IWAppDelegate: UNUserNotificationCenterDelegate {
     }
     
     @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         // Did receive 程序在后台/不活动时 收到通知
         if response.notification.request.trigger is UNPushNotificationTrigger {
@@ -101,7 +104,7 @@ extension IWAppDelegate: UNUserNotificationCenterDelegate {
     }
     
     
-    func registRemoteNotifications(_ application: UIApplication, _ result: ((Bool) -> Void)? = nil) {
+    final public func registRemoteNotifications(_ application: UIApplication, _ result: ((Bool) -> Void)? = nil) {
         
         if #available(iOS 10, *) {
             // iOS10 or later
@@ -155,3 +158,4 @@ extension IWAppDelegate: UNUserNotificationCenterDelegate {
         }
     }
 }
+

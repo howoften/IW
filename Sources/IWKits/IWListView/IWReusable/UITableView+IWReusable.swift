@@ -8,18 +8,14 @@
 
 import UIKit
 
-extension UITableViewCell: IWNibReusable {
-    
-}
-
-extension UITableViewHeaderFooterView: IWNibReusable {
-    
-}
+extension UITableViewCell: IWNibReusable { }
+extension UITableViewHeaderFooterView: IWNibReusable { }
 
 // MARK:- Cell
-extension UITableView {
+public extension UITableView {
     
     // MARK: Regist reusable cell
+    /// (注册复用Cell).
     final func registReusable<T: UITableViewCell>(_ cell: T.Type) {
         let name = String(describing: cell)
         let xibPath = Bundle.main.path(forResource: name, ofType: "nib")
@@ -32,14 +28,14 @@ extension UITableView {
             register(cell.self, forCellReuseIdentifier: cell.identifier)
         }
     }
-    
+    /// (从复用池取出Cell).
     final func reuseCell<T: UITableViewCell>(_ cellType: T.Type = T.self) -> T {
         guard let cell = dequeueReusableCell(withIdentifier: cellType.identifier ) as? T else {
             fatalError("Failed to dequeue a cell with identifier \(cellType.identifier)")
         }
         return cell
     }
-    
+    /// (从复用池取出Cell).
     final func reuseCell<T: UITableViewCell>(for indexPath: IndexPath, cellType: T.Type = T.self) -> T {
         guard let cell = dequeueReusableCell(withIdentifier: cellType.identifier, for: indexPath) as? T else {
             fatalError("Failed to dequeue a cell with identifier \(cellType.identifier)")
@@ -50,9 +46,10 @@ extension UITableView {
 
 
 // MARK:- Header footer view
-extension UITableView {
+public extension UITableView {
     
     // MARK: Regist reusable header footer
+    /// (注册复用View).
     final func registReusable<T: UITableViewHeaderFooterView>(_ headerFooterView: T.Type = T.self) {
         let name = String(describing: headerFooterView)
         let xibPath = Bundle.main.path(forResource: name, ofType: "nib")
@@ -65,7 +62,7 @@ extension UITableView {
             register(headerFooterView.self, forHeaderFooterViewReuseIdentifier: headerFooterView.identifier)
         }
     }
-    
+    /// (从复用池取出View).
     final func reuseHeaderFooter<T: UITableViewHeaderFooterView>(_ type: T.Type = T.self) -> T {
         guard let view = dequeueReusableHeaderFooterView(withIdentifier: type.identifier) as? T else {
             fatalError("Failed to dequeue a header footer view with identifier \(type.identifier)")
@@ -73,3 +70,4 @@ extension UITableView {
         return view
     }
 }
+

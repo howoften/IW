@@ -8,17 +8,18 @@
 
 import UIKit
 
-public class IWSubVC: IWRootVC {
-
-    override public func viewDidLoad() {
+open class IWSubVC: IWRootVC {
+    
+    open override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-	
-    override public func didReceiveMemoryWarning() {
+    
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 }
+

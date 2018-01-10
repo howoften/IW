@@ -11,8 +11,13 @@ import UIKit
 private var kImageNameKey: Void?
 private let kImageCacheFolderPath = "IWImageCache"
 
-extension IWView where View: UIImageView {
+public extension IWView where View: UIImageView {
     
+    /// (设置图片 source为图片链接String或者图片URL).
+    ///
+    /// - Parameters:
+    ///   - remoteSource: 图片链接String或者图片URL
+    ///   - locationImageSource: 缺省图片(图片名称/图片路径).
     final func image<T>(source remoteSource: T?, placeholder locationImageSource: String? = nil) -> Void {
         let url = remoteSource
         if !(url.self is String) && !(url.self is URL) {
@@ -67,21 +72,21 @@ private extension IWView where View: UIImageView {
     // 解析图片
     final func extractImageData(with name: String?, result: (_ isExists: Bool, _ data: Data?) -> Void) -> Void {
         let pathOption = imageLocalPath.splicing(name ?? "")
-		if FileManager.default.fileExists(atPath: pathOption) {
-			view.image = UIImage(contentsOfFile: pathOption)
-			return
-		}
+        if FileManager.default.fileExists(atPath: pathOption) {
+            view.image = UIImage(contentsOfFile: pathOption)
+            return
+        }
         result(false, nil)
     }
     
     // 图片缓存路径
     final var imageLocalPath: String {
-		let addPath = IWSandbox.caches.splicing(kImageCacheFolderPath)
-		let bCreateDir = IWFileManage.create(kImageCacheFolderPath, in: IWSandbox.caches)
-		if !bCreateDir {
-			iPrint("The sandbox created birectory failed.")
-		}
-		return addPath
+        let addPath = IWSandbox.caches.splicing(kImageCacheFolderPath)
+        let bCreateDir = IWFileManage.create(kImageCacheFolderPath, in: IWSandbox.caches)
+        if !bCreateDir {
+            iPrint("The sandbox created birectory failed.")
+        }
+        return addPath
     }
     
     // 保存图片
@@ -94,38 +99,39 @@ private extension IWView where View: UIImageView {
             iPrint("The remote image cache failed.")
         }
     }
-	
-	/// 把 UIImageView 的宽高调整为能保持 image 宽高比例不变的同时又不超过给定的 `limitSize` 大小的最大frame, 建议在设置完 x/y 之后使用
-	final func sizeToFitKeepingImageAdpectRatio(inSize limitSize: CGSize) -> Void {
-		guard let img = self.view.image else {
-			return
-		}
-		var currentSize = self.view.frame.size
-		if currentSize.width <= 0 {
-			currentSize.width = img.size.width
-		}
-		if currentSize.height <= 0 {
-			currentSize.height = img.size.height
-		}
-		let horizontalRatio = limitSize.width / currentSize.width
-		let verticalRatio = limitSize.height / currentSize.height
-		let ratio = fmin(horizontalRatio, verticalRatio)
-		var f = self.view.frame
-		
-		func removeFloatMin(_ floatValue: CGFloat) -> CGFloat {
-			return floatValue == CGFloat.min ? 0 : floatValue
-		}
-		func flatSpecificScale(_ floatValue: CGFloat, _ scale: CGFloat) -> CGFloat {
-			let fv = removeFloatMin(floatValue)
-			let sc = (scale == 0 ? UIScreen.main.scale : scale)
-			let flattedValue = ceil(fv * sc) / sc
-			return flattedValue
-		}
-		func flat(_ floatValue: CGFloat) -> CGFloat {
-			return flatSpecificScale(floatValue, 0)
-		}
-		f.size.width = flat(currentSize.width * ratio)
-		f.size.height = flat(currentSize.height * ratio)
-		self.view.frame = f
-	}
+    
+    /// 把 UIImageView 的宽高调整为能保持 image 宽高比例不变的同时又不超过给定的 `limitSize` 大小的最大frame, 建议在设置完 x/y 之后使用
+    final func sizeToFitKeepingImageAdpectRatio(inSize limitSize: CGSize) -> Void {
+        guard let img = self.view.image else {
+            return
+        }
+        var currentSize = self.view.frame.size
+        if currentSize.width <= 0 {
+            currentSize.width = img.size.width
+        }
+        if currentSize.height <= 0 {
+            currentSize.height = img.size.height
+        }
+        let horizontalRatio = limitSize.width / currentSize.width
+        let verticalRatio = limitSize.height / currentSize.height
+        let ratio = fmin(horizontalRatio, verticalRatio)
+        var f = self.view.frame
+        
+        func removeFloatMin(_ floatValue: CGFloat) -> CGFloat {
+            return floatValue == CGFloat.min ? 0 : floatValue
+        }
+        func flatSpecificScale(_ floatValue: CGFloat, _ scale: CGFloat) -> CGFloat {
+            let fv = removeFloatMin(floatValue)
+            let sc = (scale == 0 ? UIScreen.main.scale : scale)
+            let flattedValue = ceil(fv * sc) / sc
+            return flattedValue
+        }
+        func flat(_ floatValue: CGFloat) -> CGFloat {
+            return flatSpecificScale(floatValue, 0)
+        }
+        f.size.width = flat(currentSize.width * ratio)
+        f.size.height = flat(currentSize.height * ratio)
+        self.view.frame = f
+    }
 }
+

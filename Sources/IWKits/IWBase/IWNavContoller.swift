@@ -7,28 +7,28 @@
 //
 
 import UIKit
-//import Foundation
 
+/// (UINavigationController 的子类, 相比较拥有更多快捷功能).
 public class IWNavController: UINavigationController {
     
+    /// (是否在 push 后隐藏返回按钮的标题).
     public static var withoutBackTitleWhenPushed: Bool = false
     
+    /// (是否开启向右滑动返回上一个控制器).
     public var isEnableRightSlideToPop: Bool = false {
         willSet {
-			
             iw.main.execution {
-                if newValue {
-                    self.enableRightSlideToPop()
-                    return
-                }
-                self.disableRightSlideToPop()
+                newValue ? self.enableRightSlideToPop() : self.disableRightSlideToPop()
             }
         }
     }
     
-    public var fullScreenGes: UIPanGestureRecognizer?
+    /// 全局手势委托
+    private var fullScreenGes: UIPanGestureRecognizer?
     
+    /// (UINavigationBar的下划线备份).
     private var shadowImageBackup: UIImageView? = nil
+    /// (是否隐藏 UINavigationBar 的下划线).
     public var isHiddenShadowImage: Bool = false {
         willSet {
             if newValue {
@@ -50,7 +50,8 @@ public class IWNavController: UINavigationController {
         }
     }
     
-    // 背景颜色: navigation bar background color
+    /// navigation bar background color.
+    /// (背景颜色).
     public var navBackgroundColor: UIColor? {
         willSet {
             if let color = newValue {
@@ -59,7 +60,7 @@ public class IWNavController: UINavigationController {
         }
     }
     
-    // 前景视图颜色: navgation item显示的颜色
+    /// (前景视图颜色: navgation item显示的颜色).
     public var navTintColor: UIColor? {
         willSet {
             if let color = newValue {
@@ -67,51 +68,48 @@ public class IWNavController: UINavigationController {
             }
         }
     }
-	
-	// Tabbar item显示的颜色
-	public var tabbarSelectedColor: UIColor? {
-		willSet {
-			if let color = newValue {
-				self.tabBarController?.tabBar.tintColor = color
-			}
-		}
-	}
-	
-	public override var isNavigationBarHidden: Bool {
-		get { return navigationBar.isHidden }
-		set {
-			navigationBar.isHidden = newValue
-			
-			/*
-			if let vc = UIViewController.IWE.current() {
-				for subv in vc.view.subviews {
-					if subv is IWListView {
-						(subv as! IWListView).iwe.autoSetEdge(vc.view)
-						(subv as! IWListView).scrollRectToVisible(.zero, animated: false)
-					}
-				}
-			}*/
-		}
-	}
+    
+    /// (tabbar item 显示的颜色).
+    public var tabbarSelectedColor: UIColor? {
+        willSet {
+            if let color = newValue {
+                self.tabBarController?.tabBar.tintColor = color
+            }
+        }
+    }
+    
+    /// (是否隐藏导航栏).
+    public override var isNavigationBarHidden: Bool {
+        get { return navigationBar.isHidden }
+        set { navigationBar.isHidden = newValue }
+    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override public func pushViewController(_ viewController: UIViewController, animated: Bool) {
+    public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if IWNavController.withoutBackTitleWhenPushed {
             topViewController?.navigationItem.backBarButtonItem = withoutTitleForBackItem()
         }
+        (viewController as? IWRootVC)?.isEnterByPush = true
         super.pushViewController(viewController, animated: animated)
     }
-	
+    
+    public override func popViewController(animated: Bool) -> UIViewController? {
+        let viewCs = self.viewControllers
+        if let preVC = viewCs[safe: viewCs.count - 2] {
+            (preVC as? IWRootVC)?.isEnterByPop = true
+        }
+        return super.popViewController(animated: animated)
+    }
 }
 
 extension IWNavController: UIGestureRecognizerDelegate {
@@ -148,3 +146,5 @@ extension IWNavController: UIGestureRecognizerDelegate {
         return false
     }
 }
+
+

@@ -9,13 +9,13 @@
 import UIKit
 //import Kingfisher
 
-enum IWCycleViewPageControlStyle {
-    case middle
-    case left
-    case right
-}
-
-class IWCycleView: UIView {
+public class IWCycleView: UIView {
+    
+    public enum IWCycleViewPageControlStyle {
+        case middle
+        case left
+        case right
+    }
     
     fileprivate var scrollView: UIScrollView = UIScrollView()
     
@@ -40,7 +40,7 @@ class IWCycleView: UIView {
     /// 当前index
     fileprivate var currentIndex: Int = 1
     
-    typealias IWCycleViewClickHandler = (_: Int, _: String) -> Void
+    public typealias IWCycleViewClickHandler = (_: Int, _: String) -> Void
     public var clickAction: IWCycleViewClickHandler?
     
     /// Page control height误差, 用于修正page control 的位置
@@ -51,17 +51,13 @@ class IWCycleView: UIView {
     public var displayTime: Float = 3.0
     /// page control 距离底部的距离
     public var distanceOfPageControlBottom: CGFloat = 0 {
-        didSet {
-			iw.main.execution {
-				self.refreshDistanceOfPageControlBottom()
-			}
-        }
+        didSet { iw.main.execution { self.refreshDistanceOfPageControlBottom() } }
     }
     
     /// 定时器, 自动滚动
     fileprivate var timer: Timer?
     
-    init(_ frame: CGRect, images: [Any], pageControlStyle: IWCycleViewPageControlStyle, clickHandler: IWCycleViewClickHandler?) {
+    public init(_ frame: CGRect, images: [Any], pageControlStyle: IWCycleViewPageControlStyle, clickHandler: IWCycleViewClickHandler?) {
         super.init(frame: frame)
         
         setUpViews()
@@ -70,7 +66,7 @@ class IWCycleView: UIView {
         currentIndexSetter(0)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -117,11 +113,11 @@ extension IWCycleView {
 
 extension IWCycleView: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         timer?.fireDate = .distantFuture
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if imagesCount > 1 && displayTime > 0.0 {
             timer?.fireDate = .init(timeIntervalSinceNow: TimeInterval(displayTime))
         } else {
@@ -129,7 +125,7 @@ extension IWCycleView: UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         calculateCurrentIndex()
     }
     
@@ -158,7 +154,7 @@ extension IWCycleView {
     }
     
     private func setUpScrollView() -> Void {
-    	scrollView.frame = bounds
+        scrollView.frame = bounds
         
         scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
@@ -188,13 +184,13 @@ extension IWCycleView {
     }
     
     private func setUpTimer() -> Void {
-		
-		let _ = iw.delay.execution(delay: TimeInterval(displayTime <= 0 ? 3.0 : displayTime)) {
-			if self.timer == nil {
-				self.timer = IWTimer.timer(TimeInterval(self.displayTime <= 0 ? 3.0 : self.displayTime), target: self, action: #selector(self.timerDidFired(_:)), userInfo: nil, repeats: true)
-			}
-			self.timer!.fireDate = .distantPast
-		}
+        
+        let _ = iw.delay.execution(delay: TimeInterval(displayTime <= 0 ? 3.0 : displayTime)) {
+            if self.timer == nil {
+                self.timer = IWTimer.timer(TimeInterval(self.displayTime <= 0 ? 3.0 : self.displayTime), target: self, action: #selector(self.timerDidFired(_:)), userInfo: nil, repeats: true)
+            }
+            self.timer!.fireDate = .distantPast
+        }
     }
     
     func pageControlPagesSetter(_ newValue: Int) -> Void {
@@ -272,3 +268,4 @@ extension IWCycleView {
     }
     
 }
+

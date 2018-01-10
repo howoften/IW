@@ -8,17 +8,23 @@
 
 import UIKit
 
-class IWViewModel: NSObject {
+public class IWViewModel: NSObject {
     
-    typealias SuccessHandler = (_ value: Any?) -> Void
-    typealias ErrorHandler = (_ value: Any?) -> Void
-    typealias FailureHandler = (_ error: Error?) -> Void
+    public typealias SuccessHandler = (_ value: Any?) -> Void
+    public typealias ErrorHandler = (_ value: Any?) -> Void
+    public typealias FailureHandler = (_ error: Error?) -> Void
     
     var successBlock: SuccessHandler?
     var errorBlock: ErrorHandler?
     var failureBlock: FailureHandler?
     
-    func model(successHandler: SuccessHandler?, errorHandler: ErrorHandler?, failureHandler: FailureHandler?) {
+    /// (回调处理).
+    ///
+    /// - Parameters:
+    ///   - successHandler: 成功.
+    ///   - errorHandler: 错误.
+    ///   - failureHandler: 失败.
+    public func model(successHandler: SuccessHandler?, errorHandler: ErrorHandler?, failureHandler: FailureHandler?) {
         
         successBlock = successHandler
         errorBlock = errorHandler

@@ -924,7 +924,6 @@ public extension UIImageView {
         set { objc_setAssociatedObject(self, &kUIImageView_imageNameKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
     }
     
-    
     /// Set image with URL
     ///
     /// - Parameters:
@@ -942,7 +941,7 @@ public extension UIImageView {
         if url.self is URL { urlString = (url as! URL).absoluteString }
         
         //imageName = urlString.lastPathNotHasPathExtension
-        // 以完整的地址命名, 更大程度的避免了重复文件名的几率
+        // 以完整的地址命名, 更大程度的避免了重复文件名的几率, 但可能解析力(速度)比较弱 hhhh
         imageName = urlString.replace(":", to: "_").replace("/", to: "_").replace("?", to: "_")
         
         extractImageData(with: imageName) { (isExists, data) in
@@ -969,7 +968,7 @@ public extension UIImageView {
         
     }
     
-    // 解析图片
+    /// 解析图片
     private func extractImageData(with name: String?, result: (_ isExists: Bool, _ data: Data?) -> Void) -> Void {
         let pathOption = imageLocalPath.splicing(name ?? "")
 		if FileManager.default.fileExists(atPath: pathOption) {
@@ -978,7 +977,7 @@ public extension UIImageView {
 		}
         result(false, nil)
     }
-    // 图片缓存路径
+    /// 图片缓存路径
     private var imageLocalPath: String {
 		let addPath = IWSandbox.caches.splicing(kImageCacheFolderPath)
 		let bCreateDir = IWFileManage.create(kImageCacheFolderPath, in: IWSandbox.caches)
@@ -987,7 +986,7 @@ public extension UIImageView {
 		}
 		return addPath
     }
-    // 保存图片
+    /// 保存图片
     private func save(image data: Data) {
         let imageFilepath = self.imageLocalPath.splicing(self.imageName ?? "")
         do {
@@ -1002,6 +1001,7 @@ public extension UIImageView {
 
 public extension CGSize {
 	
+    /// (是否为空, width<=0 or height<=0 则为空).
 	static func isEmpty(_ size: CGSize) -> Bool {
 		return size.width <= 0 || size.height <= 0
 	}
@@ -1010,5 +1010,6 @@ public extension CGSize {
 
 public extension CGRect {
 	
+    /// (屏幕大小, scrren bounds).
 	static let screenBounds: CGRect = { return iw.screenBounds }()
 }

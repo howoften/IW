@@ -8,13 +8,11 @@
 
 import UIKit
 
-
-protocol IWNavigationShouldPopOnBackButton: class {
-    
-    /// Default is true
+/// (拦截返回按钮).
+public protocol IWNavigationShouldPopOnBackButton: class {
+    /// (拦截返回按钮, 返回 false 则无法返回).
     func navigationShouldPopOnBackButton() -> Bool
 }
-
 extension UIViewController: IWNavigationShouldPopOnBackButton {
     @objc open func navigationShouldPopOnBackButton() -> Bool {
         return true
@@ -32,7 +30,7 @@ extension UINavigationController: UINavigationBarDelegate {
         }
         
         if shoudPop {
-            DispatchQueue.main.async {
+            iw.main.execution {
                 self.popViewController(animated: true)
             }
         } else {

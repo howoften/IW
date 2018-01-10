@@ -9,29 +9,30 @@
 import UIKit
 import WebKit
 
-public class IWWebView: WKWebView {
-	
-	fileprivate var _superView: UIView?
-	
-	override public init(frame: CGRect, configuration: WKWebViewConfiguration) {
-		super.init(frame: frame, configuration: configuration)
-		_init()
-	}
-	
-    required public init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	private func _init() {
-		
-	}
-	
+open class IWWebView: WKWebView {
+    
+    fileprivate var _superView: UIView?
+    
+    public override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        super.init(frame: frame, configuration: configuration)
+        _init()
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func _init() {
+        
+    }
+    
 }
 
-public extension IWWebView {
-	
-	public override func willMove(toSuperview newSuperview: UIView?) {
-		_superView = newSuperview
-		scrollView.iwe.autoSetEdge(_superView)
-	}
+extension IWWebView {
+    
+    open override func willMove(toSuperview newSuperview: UIView?) {
+        _superView = newSuperview
+        scrollView.iwe.autoSetEdge(_superView)
+    }
 }
+

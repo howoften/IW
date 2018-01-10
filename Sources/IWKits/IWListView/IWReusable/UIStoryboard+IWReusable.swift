@@ -9,9 +9,9 @@
 import UIKit
 
 public protocol IWStoryboardSceneBased: class {
-    /// The UIStoryboard to use when we want to instantiate this ViewController
+    /// The UIStoryboard to use when we want to instantiate this ViewController.
     static var sceneStoryboard: UIStoryboard { get }
-    /// The scene identifier to use when we want to instantiate this ViewController from its associated Storyboard
+    /// The scene identifier to use when we want to instantiate this ViewController from its associated Storyboard.
     static var sceneIdentifier: String { get }
 }
 
@@ -27,7 +27,8 @@ public extension IWStoryboardSceneBased {
 extension UIViewController: IWStoryboardSceneBased { }
 
 public extension IWStoryboardSceneBased where Self: UIViewController {
-    /// Use sceneIdentifier initial ViewController
+    /// Use sceneIdentifier initial ViewController.
+    /// (使用 sceneIdentifier 初始化控制器).
     static func instantiateWithIdentifier() -> Self {
         let storyboard = Self.sceneStoryboard
         guard let vc = storyboard.instantiateViewController(withIdentifier: self.sceneIdentifier) as? Self else {
@@ -36,6 +37,7 @@ public extension IWStoryboardSceneBased where Self: UIViewController {
         return vc
     }
     /// Initial ViewController
+    /// (初始化控制器).
     static func instantiate() -> Self {
         guard let vc = sceneStoryboard.instantiateInitialViewController() as? Self else {
             fatalError("The initialViewController of '\(sceneStoryboard)' is not of class '\(self)'")
@@ -43,3 +45,4 @@ public extension IWStoryboardSceneBased where Self: UIViewController {
         return vc
     }
 }
+

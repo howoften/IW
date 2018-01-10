@@ -6,66 +6,74 @@ import UIKit
 import Foundation
 import WebKit
 
-private let kDefaultTimeFormat = "YYYY-MM-dd HH:mm:ss"
-
-class IWTime: NSObject {
+/// Timestamp correlation.
+/// (时间戳相关).
+public class IWTime: NSObject {
     
-    /// Returns device current timestamp by String.
-    ///
-    /// - Returns: Device current timestamp by String.
-    class func current(_ formatter: String = kDefaultTimeFormat) -> String {
+    public static let _timeFormat = "YYYY-MM-dd HH:mm:ss"
+    
+    /// Returns device current timestamp by String, can set formatter.
+    /// (以字符串方式返回设备当前的时间戳, 可自定义格式, 默认为: YYYY-MM-dd HH:mm:ss, 单位: 秒).
+    public final class func current(_ formatter: String = _timeFormat) -> String {
         let date = Date()
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = formatter
         return dateformatter.string(from: date)
     }
     
-    static var currentTimestamp: String {
+    /// Returns device current timestamp by String.
+    /// (返回当前时间戳)
+    public static var currentTimestamp: String {
         return Date().timeIntervalSince1970.toString
     }
     
-    class func time(with timestamp: String) -> String {
+    /// Return the timestamp of the specified format.
+    /// (返回指定格式的时间戳).
+    public final class func time(with timestamp: String) -> String {
         let conformTimestamp = Date(timeIntervalSince1970: timestamp.toDouble)
         let timeFormat = DateFormatter()
-        timeFormat.dateFormat = kDefaultTimeFormat
+        timeFormat.dateFormat = _timeFormat
         let timeString = timeFormat.string(from: conformTimestamp)
         return timeString
     }
 }
 
-class IWStatus: NSObject {
+/// UIStatusBar correlation.
+/// (状态栏相关).
+public class IWStatus: NSObject {
     
     // Use these, you must set 'View controller-based status bar appearance': 'NO' to 'Info.plist'.
-    class func toWhiteStyle() {
+    public final class func toWhiteStyle() {
         UIApplication.shared.statusBarStyle = .lightContent
     }
-    class func toBlackStyle() {
+    public final class func toBlackStyle() {
         UIApplication.shared.statusBarStyle = .default
     }
     
-    // 返回一个和StatusBar大小一致的UIView
-    class func bgView(_ bgColor: UIColor = .white) -> UIView {
+    /// Return a UIView that is the same as the StatusBar size.
+    /// (返回一个和 StatusBar 大小一致的 UIView).
+    public final class func bgView(_ bgColor: UIColor = .white) -> UIView {
         let v = UIView(frame: CGRect.init(x: 0, y: 0, width: .screenWidth, height: .statusBarHeight))
         v.backgroundColor = bgColor
         return v
     }
-	
-	static var style: UIStatusBarStyle {
-		get { return UIApplication.shared.statusBarStyle }
-		set {
-			if newValue == .default {
-				toBlackStyle()
-			} else {
-				toWhiteStyle()
-			}
-		}
-	}
+    
+    /// Set UIStatusBarStyle.
+    public static var style: UIStatusBarStyle {
+        get { return UIApplication.shared.statusBarStyle }
+        set { newValue == .default ? toBlackStyle() : toWhiteStyle() }
+    }
     
 }
 
-
-class IWRegex: NSObject {
+/// Regex correlation.
+/// (正则表达式相关).
+public class IWRegex: NSObject {
     
+    /// is contain matching text?
+    /// (是否包含匹配的文本).
+    /// matches: expression(表达式)
+    /// content: 被查找的文本
     class func match(_ matches: String, _ content: String) -> Bool {
         let regex = try? NSRegularExpression.init(pattern: matches, options: .caseInsensitive)
         if let matches = regex?.matches(in: content, options: .init(rawValue: 0), range: NSMakeRange(0, content.count)) {
@@ -74,14 +82,16 @@ class IWRegex: NSObject {
         return false
     }
     
+    /// Matching exp, return finded str.
+    /// (匹配表达式, 返回找到的字符串).
     class func expression(_ expression: String, content: String) -> String? {
         let tempBody = content
         do {
             let regex = try NSRegularExpression.init(pattern: expression, options: .caseInsensitive)
             let firstMatch = regex.firstMatch(in: tempBody, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, tempBody.count))
-			if let match = firstMatch {
-				return (tempBody as NSString).substring(with: match.range)
-			}
+            if let match = firstMatch {
+                return (tempBody as NSString).substring(with: match.range)
+            }
             return nil
         } catch {
             return nil
@@ -90,30 +100,39 @@ class IWRegex: NSObject {
     
 }
 
-
-class IWSandbox: NSObject {
+/// Sanbox correlation.
+/// (沙盒相关).
+public class IWSandbox: NSObject {
     
-    static var documents: String {
+    /// Return documentDirectory path.
+    /// (返回文档路径).
+    public static var documents: String {
         return self.system(with: .documentDirectory)
     }
-    static var caches: String {
+    /// Return cachesDirectory path.
+    /// (返回缓存路径).
+    public static var caches: String {
         return self.system(with: .cachesDirectory)
     }
-    static var temp: String {
+    /// Return NSTemporaryDirectory path.
+    /// (返回临时文件夹路径).
+    public static var temp: String {
         return NSTemporaryDirectory()
     }
     private class func system(with type: FileManager.SearchPathDirectory) -> String {
-		if let result = NSSearchPathForDirectoriesInDomains(type, .userDomainMask, true).first {
-			return result
-		}
+        if let result = NSSearchPathForDirectoriesInDomains(type, .userDomainMask, true).first {
+            return result
+        }
         return ""
     }
 }
 
-
-class IWFileManage: FileManager {
+/// Related to the operation of the file.
+/// (文件操作相关).
+public class IWFileManage: FileManager {
     
-    class func create(_ directory: String, in rootDirectory: String) -> Bool {
+    /// (根据directory创建文件夹, rootDirectory为欲创建的文件夹的根目录).
+    public final class func create(_ directory: String, in rootDirectory: String) -> Bool {
         
         var createSuccess = false
         
@@ -154,6 +173,13 @@ class IWFileManage: FileManager {
         return createSuccess
     }
     
+    /// (创建文件).
+    ///
+    /// - Parameters:
+    ///   - path: 路径
+    ///   - data: 内容
+    ///   - attr: 参数
+    /// - Returns: 创建成功(true)/失败(false)
     class func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey : Any]? = nil) -> Bool {
         return FileManager.default.createFile(atPath: path, contents: data, attributes: attr)
     }
@@ -161,9 +187,11 @@ class IWFileManage: FileManager {
 }
 
 
-class IWSheetAlert: NSObject {
+/// .actionSheet style alert.
+/// (提示框相关).
+public class IWSheetAlert: NSObject {
     
-    /// Default added cancel action
+    /// Default added cancel action.
     class func show(_ title: String?, _ message: String?, configure:((_: UIAlertController) -> Void)?) {
         let sheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
@@ -173,22 +201,22 @@ class IWSheetAlert: NSObject {
         configure?(sheet)
         
         sheet.modalPresentationStyle = .popover
-		
-		// Add by iwe, in 2017.11/13. Get tips from Bugly. The reference solution: http://www.jianshu.com/p/c67d5bb31067 .
-		if IWDevice.isiPad {
-			sheet.popoverPresentationController?.sourceView = UIViewController.IWE.current()?.view
-			sheet.popoverPresentationController?.sourceRect = MakeRect(0, 0, 1.0, 1.0)
-		}
-		
+        
+        // Add by iwe, in 2017.11/13. Get tips from Bugly. The reference solution: http://www.jianshu.com/p/c67d5bb31067 .
+        if IWDevice.isiPad {
+            sheet.popoverPresentationController?.sourceView = UIViewController.IWE.current()?.view
+            sheet.popoverPresentationController?.sourceRect = MakeRect(0, 0, 1.0, 1.0)
+        }
+        
         UIViewController.IWE.current()?.iwe.modal(sheet)
     }
 }
 
-
-class IWCookies: NSObject {
+/// (Cookie相关).
+public class IWCookies: NSObject {
     
-    class func cookies(for url: URL) -> String? {
-        
+    /// (获取对应URL的Cookies, 访问过该URL才会有Cookies).
+    public final class func cookies(for url: URL) -> String? {
         var cookieValue = ""
         let mDictionary = NSMutableDictionary()
         
@@ -204,10 +232,10 @@ class IWCookies: NSObject {
     }
 }
 
-
-class IWCaches: NSObject {
+/// (WebView缓存相关).
+public class IWCaches: NSObject {
     
-    static var webSiteDiskAndMemoryCaches: [String]? {
+    public static var webSiteDiskAndMemoryCaches: [String]? {
         if #available(iOS 9.0, *) {
             return [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache]
         } else {
@@ -216,7 +244,7 @@ class IWCaches: NSObject {
         }
     }
     
-    static var allWebSiteDataCaches: [String]? {
+    public static var allWebSiteDataCaches: [String]? {
         if #available(iOS 9.0, *) {
             return [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache, WKWebsiteDataTypeCookies, WKWebsiteDataTypeSessionStorage, WKWebsiteDataTypeLocalStorage]
         } else {
@@ -225,7 +253,7 @@ class IWCaches: NSObject {
         }
     }
     
-    class func clearCaches(_ ios9CacheType: [String]? = nil) {
+    public final class func clearCaches(_ ios9CacheType: [String]? = nil) {
         let libraryDir = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
         let bundleID = Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
         let webkitFolderInLib = libraryDir.splicing("/WebKit")
@@ -267,3 +295,4 @@ class IWCaches: NSObject {
         
     }
 }
+

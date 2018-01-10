@@ -11,18 +11,21 @@ import AssetsLibrary
 import AddressBook
 import Intents
 
-class IWAuthorization: NSObject {
+/// (获取授权相关).
+public class IWAuthorization: NSObject {
     
-    typealias IWAuthorizationSelectedImageCallback = (_ imagePath: String?) -> Void
+    public typealias IWAuthorizationSelectedImageCallback = (_ imagePath: String?) -> Void
     
     private static let instance = IWAuthorization()
-    static var shared: IWAuthorization {
+    public static var shared: IWAuthorization {
         return IWAuthorization.instance
     }
-    var selectedCallback: IWAuthorizationSelectedImageCallback?
+    final public var selectedCallback: IWAuthorizationSelectedImageCallback?
     
     // MARK:- 请求访问相册
-    class func requestAlbumPermissions(_ authResult: ((_ : Bool) -> Void)? = nil, selectedImage:((_ : String?) -> Void)? = nil) {
+    /// Request access to Photos.
+    /// (请求访问相册)
+    final public class func requestAlbumPermissions(_ authResult: ((_ : Bool) -> Void)? = nil, selectedImage:((_ : String?) -> Void)? = nil) {
         let status = ALAssetsLibrary.authorizationStatus()
         if status == .restricted || status == .denied {
             // No permissions
@@ -36,7 +39,9 @@ class IWAuthorization: NSObject {
         }
     }
     // MARK:- 请求访问相机
-    class func requestCameraPermissions(_ authResult: ((_ : Bool) -> Void)? = nil, selectedImage:((_ : String?) -> Void)? = nil) {
+    /// Request access to Camera.
+    /// (请求访问相机)
+    final public class func requestCameraPermissions(_ authResult: ((_ : Bool) -> Void)? = nil, selectedImage:((_ : String?) -> Void)? = nil) {
         
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             print("Cameras are not available in the simulator, switch to iPhone.")
@@ -55,9 +60,9 @@ class IWAuthorization: NSObject {
         }
     }
     
-    
-    /// 请求访问通讯录
-    class func requestAddressBook(_ authResult: ((_ : Bool, _ : ABAddressBook?) -> Void)? = nil) {
+    /// Request access to Contact.
+    /// (请求访问通讯录)
+    final public class func requestAddressBook(_ authResult: ((_ : Bool, _ : ABAddressBook?) -> Void)? = nil) {
         let addressBook = ABAddressBookCreateWithOptions(nil, nil)
         
         let semaphore = DispatchSemaphore.init(value: 0)
@@ -78,7 +83,7 @@ class IWAuthorization: NSObject {
     /**
      需要在URL type中添加一个Prefs值
      参考：http://www.jianshu.com/p/5d82fb0c4051 */
-    class func toSystemSettings(_ type: String) {
+    final public class func toSystemSettings(_ type: String) {
         var urlPath = ""
         if iw.system.version.toInt <= 7 || (iw.system.version.toInt >= 8 && iw.system.version.toInt < 10) {
             urlPath = "prefs:root=\(type)"
@@ -92,23 +97,23 @@ class IWAuthorization: NSObject {
             UIAlert.show(message: "无法跳转, 请检查是否有误！", config: nil)
         }
     }
-	
-	// MARK:- 请求访问Siri
-	@available(iOS 10.0, *)
-	class func requestSiri() {
-		INPreferences.requestSiriAuthorization { (status) in
-			switch status {
-			case .authorized:
-				iPrint("已授权Siri.")
-			case .notDetermined:
-				iPrint("未决定是否授权Siri.")
-			case .restricted:
-				iPrint("Siri权限受限制.")
-			case .denied:
-				iPrint("用户拒绝授权Siri.")
-			}
-		}
-	}
+    
+    // MARK:- 请求访问Siri
+    @available(iOS 10.0, *)
+    final public class func requestSiri() {
+        INPreferences.requestSiriAuthorization { (status) in
+            switch status {
+            case .authorized:
+                iPrint("已授权Siri.")
+            case .notDetermined:
+                iPrint("未决定是否授权Siri.")
+            case .restricted:
+                iPrint("Siri权限受限制.")
+            case .denied:
+                iPrint("用户拒绝授权Siri.")
+            }
+        }
+    }
 }
 
 fileprivate extension IWAuthorization {
@@ -130,7 +135,7 @@ fileprivate extension IWAuthorization {
 
 extension IWAuthorization: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let type = info[UIImagePickerControllerMediaType] as! String
         if type == "public.image" {
             // image
@@ -164,3 +169,4 @@ extension IWAuthorization: UIImagePickerControllerDelegate, UINavigationControll
         }
     }
 }
+

@@ -4,40 +4,33 @@
 
 import UIKit
 
-public protocol IWConfigureReusableCell {
-    /// Take the place of 'cellForRowAtIndexPath'
-    func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
-    /// Take the place of 'didSelectAtIndexPath'
-    func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) -> Void
-}
+/*
+ public protocol IWConfigureReusableCell {
+ /// Take the place of 'cellForRowAtIndexPath'
+ func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
+ /// Take the place of 'didSelectAtIndexPath'
+ func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) -> Void
+ } */
 
-extension IWRootVC: IWConfigureReusableCell {
-    @objc public func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    @objc public func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) {
-        
-    }
-}
-
-public class IWRootVC: UIViewController {
+open class IWRootVC: UIViewController {
     
+    /// (IWListView).
     public var listView: IWListView! = nil
-	public lazy var listViewThread: DispatchQueue = {
-		return DispatchQueue(label: "cc.iwe.listView", attributes: .init(rawValue: 0))
-	}()
+    lazy var listViewThread: DispatchQueue = {
+        return DispatchQueue(label: "cc.iwe.listView", attributes: .init(rawValue: 0))
+    }()
     
-    /// The view background color
+    /// The view background color.
     public var backgroundColor: UIColor? {
         get { return self.view.backgroundColor }
         set { self.view.backgroundColor = newValue }
     }
-    /// Navigation item title
+    /// Navigation item title.
     public var navTitle: String? {
         get { return self.navigationItem.title }
         set { self.navigationItem.title = newValue }
     }
-    /// Tabbar item badge value
+    /// Tabbar item badge value.
     public var badgeValue: String? {
         get { return self.tabBarItem.badgeValue }
         set { self.tabBarItem.badgeValue = newValue }
@@ -49,134 +42,152 @@ public class IWRootVC: UIViewController {
         set { IWNavController.withoutBackTitleWhenPushed = newValue }
     }
     
+    /// View will appear by popViewController.
+    public var isEnterByPop: Bool = false
+    public var isEnterByPush: Bool = false
+    
     /// Auto hide bottom bar when pushed.
     public var isAutoHideBottomBarWhenPushed: Bool = false
     
-    /// Navigation item title color
+    /// Navigation item title color.
     public var navTitleColor: UIColor {
         get { return .white }
         set { self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: newValue] }
     }
-	
-	public lazy var bottomSpacingBackgroundView: UIView = { [unowned self] in
-		let v = UIView(frame: MakeRect(0, .screenHeight - .bottomSpacing, .screenWidth, .bottomSpacing))
-		if self.listView != nil {
-			v.backgroundColor = self.listView.backgroundColor
-		} else {
-			v.backgroundColor = self.backgroundColor
-		}
-		return v
-	}()
-	
-    override public var hidesBottomBarWhenPushed: Bool {
+    
+    public lazy var bottomSpacingBackgroundView: UIView = { [unowned self] in
+        let v = UIView(frame: MakeRect(0, .screenHeight - .bottomSpacing, .screenWidth, .bottomSpacing))
+        if self.listView != nil {
+            v.backgroundColor = self.listView.backgroundColor
+        } else {
+            v.backgroundColor = self.backgroundColor
+        }
+        return v
+        }()
+    
+    open override var hidesBottomBarWhenPushed: Bool {
         get { return self.navigationController?.topViewController != self }
         set {}
     }
-	
-    override public func viewWillAppear(_ animated: Bool) {
+    
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-		if (isAutoHideBottomBarWhenPushed) { self.hidesBottomBarWhenPushed = true }
+        if (isAutoHideBottomBarWhenPushed) { self.hidesBottomBarWhenPushed = true }
     }
-    override public func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-		
-		iw.previousViewController = self
-		if (isAutoHideBottomBarWhenPushed) { self.hidesBottomBarWhenPushed = false }
+        
+        iw.previousViewController = self
+        if (isAutoHideBottomBarWhenPushed) { self.hidesBottomBarWhenPushed = false }
     }
-	
+    
     deinit {
         iPrint("The view controller(\(self)) has been released.")
     }
     
-	// MARK:- View did load
-    override public func viewDidLoad() {
+    // MARK:- View did load
+    open override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-		_init()
+        _init()
     }
-	
-    override public func viewDidAppear(_ animated: Bool) {
+    
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // iPrint("The view controller is: \(self)")
     }
     
     private func _init() {
-		self.automaticallyAdjustsScrollViewInsets = false
+        self.automaticallyAdjustsScrollViewInsets = false
         self.isAutoHideBottomBarWhenPushed = true
         self.view.backgroundColor = .white
     }
     
+    /// (添加一个 Grouped 风格的 IWListView 到界面上).
     public func addGroupedListView() {
         self.listView = createListView(withFrame: self.view.bounds, style: .grouped)
         self.view.addSubview(self.listView)
     }
+    /// (添加一个 Plain 风格的 IWListView 到界面上).
     public func addPlainListView() {
         self.listView = createListView(withFrame: self.view.bounds, style: .plain)
         self.view.addSubview(self.listView)
     }
+    /// (返回一个IWListView).
     private func createListView(withFrame frame: CGRect, style: UITableViewStyle) -> IWListView {
         let lv = IWListView(frame: frame, style: style)
         lv.delegate = self
         lv.dataSource = self
         return lv
     }
-	
-	public func insertSafeAreaBottomSpacingView(belowSubview: UIView, bgColor: UIColor? = nil) -> Void {
-		if IWDevice.isiPhoneX {
-			if belowSubview.bottom == .screenHeight {
-				belowSubview.bottom = .screenHeight - .bottomSpacing
-			}
-			view.insertSubview(bottomSpacingBackgroundView, belowSubview: belowSubview)
-			if bgColor != nil {
-				bottomSpacingBackgroundView.backgroundColor = bgColor
-			}
-		}
-	}
     
-    override public func didReceiveMemoryWarning() {
+    /// (添加一个与view背景色相同的view, 到iPhoneX屏幕底部).
+    public func insertSafeAreaBottomSpacingView(belowSubview: UIView, bgColor: UIColor? = nil) -> Void {
+        if IWDevice.isiPhoneX {
+            if belowSubview.bottom == .screenHeight {
+                belowSubview.bottom = .screenHeight - .bottomSpacing
+            }
+            view.insertSubview(bottomSpacingBackgroundView, belowSubview: belowSubview)
+            if bgColor != nil {
+                bottomSpacingBackgroundView.backgroundColor = bgColor
+            }
+        }
+    }
+    
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-	// MARK:- 交给子类重写
-    public func initUserInterface() -> Void { }
-    public func initRequestData() -> Void { }
+    // MARK:- 交给子类重写
+    /// (用于加载 UI).
+    open func initUserInterface() -> Void { }
+    /// (用于配置一些其他信息, 例如网络请求等).
+    open func configure() -> Void { }
+    
+    /// (0.2.5 已废弃, 请使用 configureDidSelect(_:indexPath:)).
+    @available(iOS, introduced: 8.0, deprecated: 8.0, message: "Use configureDidSelect(_:indexPath:)")
+    open func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) { }
+    /// (Cell 点击/选中时触发).
+    open func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) { }
+    /// (Cell 渲染/加载时触发).
+    open func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell { return UITableViewCell() }
 }
 
 // MARK:- TableView 协议: DataSource
 extension IWRootVC: UITableViewDataSource {
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
-    
-    public final func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return configureReusableCell(tableView, indexPath: indexPath)
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
-    
-    public final func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        self.tableView(tableView, ofDidSelectAt: indexPath)
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if listView.isAutoDeselect {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        self.configureDidSelect(tableView, indexPath: indexPath)
     }
-    
 }
+
+
 // MARK:- TableView 协议: Delegate
 extension IWRootVC: UITableViewDelegate {
     
-    @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
     }
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
     }
     // iOS 11 中需要配置 viewForHeader viewForFooter 才会执行 heightForHeader heightForFooter
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView.style == .grouped {
             if section == 0 {
                 return 20.0
@@ -185,12 +196,11 @@ extension IWRootVC: UITableViewDelegate {
         }
         return .min
     }
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if tableView.style == .grouped {
             return 10.0
         }
         return .min
     }
-    
 }
 

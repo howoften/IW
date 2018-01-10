@@ -9,6 +9,7 @@
 import UIKit
 
 public final class IWArray<Arr> {
+    /// (自身).
     public let arr: Arr
     public init(_ arr: Arr) {
         self.arr =  arr
@@ -30,75 +31,81 @@ extension Array: IWArrayCompatible { }
 
 extension IWArray where Arr == Array<Any> {
     
-    var toString: String {
+    /// Convert to value,value.
+    final public var toString: String {
         return toOtherString(byType: .string, nil)
     }
-    var toParameters: String {
+    /// Convert to value&value.
+    final public var toParameters: String {
         return toOtherString(byType: .parameters, nil)
     }
-	private enum IWArrayToOtherType {
-		case parameters
-		case string
-		case custom
-	}
-	private func toOtherString(byType: IWArrayToOtherType, _ custom: String?) -> String {
-		var connect = ""
-		if byType == .parameters {
-			connect = "&"
-		} else if byType == .custom {
-			if custom != nil {
-				connect = custom!
-			}
-		} else {
-			connect = ","
-		}
-		var str = ""
-		for obj: Any in arr {
-			var temp = ""
-			if obj is String {
-				temp = obj as! String
-			}
-			if obj is Dictionary<String, Any> {
-				temp = "{" + (obj as! [String: Any]).toParameters + "}"
-			}
-			if obj is Array<Any> {
-				temp = "[" + (obj as! [Any]).toParameters + "]"
-			}
-			str = str + temp + connect
-		}
-		return str.removeLastCharacter
-	}
-	
-    var toURLString: String {
+    private enum IWArrayToOtherType {
+        case parameters
+        case string
+        case custom
+    }
+    private func toOtherString(byType: IWArrayToOtherType, _ custom: String?) -> String {
+        var connect = ""
+        if byType == .parameters {
+            connect = "&"
+        } else if byType == .custom {
+            if custom != nil {
+                connect = custom!
+            }
+        } else {
+            connect = ","
+        }
+        var str = ""
+        for obj: Any in arr {
+            var temp = ""
+            if obj is String {
+                temp = obj as! String
+            }
+            if obj is Dictionary<String, Any> {
+                temp = "{" + (obj as! [String: Any]).toParameters + "}"
+            }
+            if obj is Array<Any> {
+                temp = "[" + (obj as! [Any]).toParameters + "]"
+            }
+            str += (temp + connect)
+        }
+        return str.removeLastCharacter
+    }
+    
+    /// Convert to string.
+    /// (转换为字符串).
+    final public var toURLString: String {
         var tempString = ""
         for obj: Any in arr {
             if obj is [String: Any] {
                 let dic = obj as! [String: Any]
                 for (key, value) in dic {
-                    tempString = tempString + "\(key):\(value)"
+                    tempString += "\(key):\(value)"
                 }
             } else {
-                tempString = tempString + "\(obj)"
+                tempString += "\(obj)"
             }
         }
         tempString = tempString.removeLastCharacter
         return tempString
     }
-	
-	
-	/// 将多维数组按照一维数组进行遍历
-	func enumerateNested(_ handler: ((_ obj: Any, _ stop: inout Bool) -> Void)) -> Void {
-		var stop = false
-		for i in 0 ..< self.arr.count {
-			let object = self.arr[i]
-			if object is Array<Any> {
-				(object as! Array<Any>).iwe.enumerateNested(handler)
-			} else {
-				handler(object, &stop)
-			}
-			if stop {
-				break
-			}
-		}
-	}
+    
+    
+    /// Traversing a multidimensional array in a one-dimensional array.
+    /// (将多维数组按照一维数组进行遍历).
+    final public func enumerateNested(_ handler: ((_ obj: Any, _ stop: inout Bool) -> Void)) -> Void {
+        var stop = false
+        for i in 0 ..< self.arr.count {
+            let object = self.arr[i]
+            if object is Array<Any> {
+                (object as! Array<Any>).iwe.enumerateNested(handler)
+            } else {
+                handler(object, &stop)
+            }
+            if stop {
+                break
+            }
+        }
+    }
 }
+
