@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92620DF12005C2ED004ABD4E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 92620DF02005C2ED004ABD4E /* README.md */; };
 		926CB8B41FFC047500CBD434 /* IWCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8691FFC047500CBD434 /* IWCollectionViewFlowLayout.swift */; };
 		926CB8B51FFC047500CBD434 /* IWNavContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB86A1FFC047500CBD434 /* IWNavContoller.swift */; };
 		926CB8B61FFC047500CBD434 /* IWRootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB86B1FFC047500CBD434 /* IWRootVC.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		92620DF02005C2ED004ABD4E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		926CB8691FFC047500CBD434 /* IWCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		926CB86A1FFC047500CBD434 /* IWNavContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWNavContoller.swift; sourceTree = "<group>"; };
 		926CB86B1FFC047500CBD434 /* IWRootVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRootVC.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 		DA8C9CF21FF889A400BF9B38 = {
 			isa = PBXGroup;
 			children = (
+				92620DF02005C2ED004ABD4E /* README.md */,
 				DA36CA491FF9061000714999 /* CocoaPods */,
 				DA36CA411FF9061000714999 /* Sources */,
 				DA8C9CFD1FF889A400BF9B38 /* IWExtensionDemo */,
@@ -573,6 +576,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92620DF12005C2ED004ABD4E /* README.md in Resources */,
 				DA8C9D091FF889A400BF9B38 /* LaunchScreen.storyboard in Resources */,
 				DA8C9D061FF889A400BF9B38 /* Assets.xcassets in Resources */,
 				926CB8F21FFC06A200CBD434 /* IWBundle.bundle in Resources */,
