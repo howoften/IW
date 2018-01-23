@@ -1,7 +1,3 @@
-//
-//  IWSubVC.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/6/16.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -13,6 +9,12 @@ open class IWSubVC: IWRootVC {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        if #available(iOS 11, *) {
+            self.isEnableLargeTitlesStyle.true({
+                self.largeTitleDisplayMode = .never
+            })
+        }
         // Do any additional setup after loading the view.
     }
     

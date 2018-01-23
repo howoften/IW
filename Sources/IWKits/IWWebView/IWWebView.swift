@@ -1,7 +1,3 @@
-//
-//  IWWebView.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/9/20.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -30,9 +26,9 @@ open class IWWebView: WKWebView {
 
 extension IWWebView {
     
-    open override func willMove(toSuperview newSuperview: UIView?) {
-        _superView = newSuperview
-        scrollView.iwe.autoSetEdge(_superView)
-    }
+//    open override func willMove(toSuperview newSuperview: UIView?) {
+//        _superView = newSuperview
+//        scrollView.iwe.autoSetEdge(_superView)
+//    }
 }
 

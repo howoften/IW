@@ -1,7 +1,3 @@
-//
-//  IWGlobal.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/7/7.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -91,7 +87,7 @@ public class iw {
     /// (是否为 iPhone).
     public static let isiPhone = IWDevice.isiPhone
     /// (屏幕 Bounds).
-    public static let screenBounds = CGRect.screenBounds
+    public static let screenBounds = UIScreen.main.bounds
     /// (屏幕 Size).
     public static let screenSize = iw.screenBounds.size
     /// (屏幕 Width).
@@ -117,6 +113,17 @@ public class iw {
             #endif
             return isSim
         }()
+    }
+    
+    public struct `throw` {
+        public static func should(_ do:() throws -> Void) -> Error? {
+            do {
+                try `do`()
+                return nil
+            } catch {
+                return error
+            }
+        }
     }
 }
 

@@ -1,7 +1,3 @@
-//
-//  String+IWString.swift
-//  haoduobaduo
-//
 //  Created by iWw on 2017/11/22.
 //  Copyright © 2017年 iWe. All rights reserved.
 //

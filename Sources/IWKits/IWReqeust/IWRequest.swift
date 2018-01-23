@@ -152,14 +152,14 @@ public extension IWRequest {
     
     /// (POST 请求).
     ///
-    /// - Parameters:
+    /// - Parameters
     ///   - url: 请求地址
     ///   - parameters: 请求参数, String 或 [String: Any]
     ///   - desc: 请求描述
     /// - Returns: 返回请求结果类
     public class func post(_ url: String, parameters: Any? = nil, desc: String? = nil) -> IWRequestResult {
         let request = IWRequest.request()
-        request.config(post: url.toURL, parameters: parameters, desc: desc)
+        request.config(post: url.toURL.unwrapValue, parameters: parameters, desc: desc)
         return request.requestResult()
     }
     
@@ -175,7 +175,7 @@ public extension IWRequest {
     /// - Returns: 返回请求结果类
     public class func get(_ url: String, parameters: Any? = nil, desc: String? = nil) -> IWRequestResult {
         let request = IWRequest.request()
-        request.config(get: url.toURL, parameters: parameters, desc: desc)
+        request.config(get: url.toURL.unwrapValue, parameters: parameters, desc: desc)
         return request.requestResult()
     }
 }

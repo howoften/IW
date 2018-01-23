@@ -1,7 +1,3 @@
-//
-//  IWNavContoller.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/6/19.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -101,6 +97,14 @@ public class IWNavController: UINavigationController {
         }
         (viewController as? IWRootVC)?.isEnterByPush = true
         super.pushViewController(viewController, animated: animated)
+        
+        // 修复iPhoneX设备上 push 时 tabbar 会上移的 bug, 2018.01.21
+        if IWDevice.isiPhoneX, #available(iOS 11.0, *) {
+            if var tbframe = self.tabBarController?.tabBar.frame {
+                tbframe.origin.y = .screenHeight - tbframe.size.height
+                self.tabBarController?.tabBar.frame = tbframe
+            }
+        }
     }
     
     public override func popViewController(animated: Bool) -> UIViewController? {

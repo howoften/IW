@@ -1,7 +1,3 @@
-//
-//  IWRequestResult.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/6/15.
 //  Copyright © 2017年 iWe. All rights reserved.
 //

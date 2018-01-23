@@ -1,7 +1,3 @@
-//
-//  UIColor+IW.swift
-//  haoduobaduo
-//
 //  Created by iWw on 2017/12/2.
 //  Copyright © 2017年 iWe. All rights reserved.
 //

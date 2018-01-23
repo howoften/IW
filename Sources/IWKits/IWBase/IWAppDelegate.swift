@@ -1,7 +1,3 @@
-//
-//  IWAppDelegate.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/6/21.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -17,6 +13,13 @@ public class IWAppDelegate: UIResponder, UIApplicationDelegate {
     
     public var deviceTokenHandler: IWADDeviceTokenHandler?
     public var receiveRemoteNotificationHandler: IWADReceiveRemoteNotificationHandler?
+    
+    public func outputDeviceInfos() -> Void {
+        var infos = "\n-- IWKits.AppDelegate.DeviceInfos"
+        infos += "\n 机型: \(IWDevice.modelName), 标识: \(IWDevice.modelIdentifier), 系统版本: \(iw.system.version)"
+        infos += "\n--------------------------------"
+        print(infos)
+    }
     
     /// Regist and Receive call back.
     /// (注册/接收信息 回调处理).

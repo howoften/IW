@@ -1,7 +1,3 @@
-//
-//  IWWebVC.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/9/20.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -12,7 +8,7 @@ import JavaScriptCore
 
 fileprivate let kEstimatedProgress = "estimatedProgress"
 
-open class IWWebVC: IWRootVC {
+open class IWWebVC: IWSubVC {
     
     public var web: IWWebView!
     public var progressView: UIProgressView!
@@ -21,13 +17,20 @@ open class IWWebVC: IWRootVC {
         case `default`
         case mini
     }
+    
+    /// WebView 显示的样式
     public var style: Style = .default
     
-    public var requestURLString: String! = "" {
-        didSet {
-            web.load(requestURLString.toURLRequest)
-        }
-    }
+    public var requestURLString: String?
+    
+    /// 当前是否显示了工具栏
+    private var isShowActionTools: Bool = false
+    /// 工具栏
+    private lazy var actionToolsView: UIView = { [unowned self] in
+        let v = UIView()
+        v.backgroundColor = UIColor.white
+        return v
+    }()
     
     lazy var statusBackgroundView: UIView = self.initStatusBackgroundView()
     lazy var statusBackItem: IWStatusBackItem = { [unowned self] in
@@ -35,9 +38,8 @@ open class IWWebVC: IWRootVC {
             self?.hide()
         })
         return bi
-        }()
+    }()
     private var hostInfoLabel: UILabel = UILabel()
-    
     
     public typealias NavigationHandler = ((_ webView: IWWebView, _ navigation: WKNavigation?) -> Void)
     
@@ -90,9 +92,7 @@ open class IWWebVC: IWRootVC {
             showMiniStyle()
         }
         
-        if requestURLString != "" {
-            web.load(requestURLString.toURLRequest)
-        }
+        requestURLString?.toURLRequest.unwrapped({ web.load($0) })
     }
     
     open override func didReceiveMemoryWarning() {
@@ -105,31 +105,70 @@ open class IWWebVC: IWRootVC {
 extension IWWebVC {
     
     fileprivate func setupWebView() -> Void {
-        web = IWWebView(frame: view.bounds)
+        web = IWWebView()
         web.navigationDelegate = self
         web.uiDelegate = self
         showBackgroundColor()
         view.addSubview(web)
+        
+        web.translatesAutoresizingMaskIntoConstraints = false
+        // Add layout
+        let topConstraint = NSLayoutConstraint.init(item: web, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0)
+        let leftConstraint = NSLayoutConstraint.init(item: web, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
+        let rightConstraint = NSLayoutConstraint.init(item: self.view, attribute: .trailing, relatedBy: .equal, toItem: web, attribute: .trailing, multiplier: 1.0, constant: 0)
+        let bottomConstraint = NSLayoutConstraint.init(item: self.view, attribute: .bottom, relatedBy: .equal, toItem: web, attribute: .bottom, multiplier: 1.0, constant: 0)
+        NSLayoutConstraint.activate([topConstraint, leftConstraint, rightConstraint, bottomConstraint])
+        
         // Add observer
         web.addObserver(self, forKeyPath: kEstimatedProgress, options: .new, context: nil)
+        
+        if iw.system.version.toDouble < 11.0 {
+            web.scrollView.iwe.bothInsets = MakeEdge(.navBarHeight, 0, 0, 0)
+        }
+        
+        // Add show action gesture
+//        let screenEdgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(showActionTools(_:)))
+//        screenEdgeGesture.edges = .right
+//        web.addGestureRecognizer(screenEdgeGesture)
+    }
+    
+    // MARK:- 显示工具栏
+    /// 显示工具栏
+    @objc private func showActionTools(_ gesture: UIScreenEdgePanGestureRecognizer) -> Void {
+        
     }
     
     fileprivate func setupProgressView() -> Void {
-        progressView = UIProgressView(frame: MakeRect(0, .navBarHeight, view.width, 4))
+        progressView = UIProgressView()
         progressView.trackTintColor = view.backgroundColor
         progressView.progressTintColor = .black
         progressView.progress = 0
         view.addSubview(progressView)
+        
+        self.progressView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let topConstraint = NSLayoutConstraint.init(item: progressView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let leftConstraint = NSLayoutConstraint.init(item: progressView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
+        let rightConstraint = NSLayoutConstraint.init(item: self.view, attribute: .trailing, relatedBy: .equal, toItem: progressView, attribute: .trailing, multiplier: 1.0, constant: 0)
+        let heightConstraint = NSLayoutConstraint.init(item: progressView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 2)
+        NSLayoutConstraint.activate([topConstraint, leftConstraint, rightConstraint, heightConstraint])
     }
     
     fileprivate func setupHostInfoLabel() -> Void {
-        hostInfoLabel.frame = MakeRect(0, .navBarHeight + 10, view.width, 18)
         hostInfoLabel.numberOfLines = 1
-        hostInfoLabel.font = UIFont.IWE.fontFamily("Menlo")
+        hostInfoLabel.font = UIFont.init(name: "Menlo-Regular", size: 12)
         hostInfoLabel.textColor = "#a9a9a9".toColor
         hostInfoLabel.textAlignment = .center
         hostInfoLabel.isHidden = true
         view.insertSubview(hostInfoLabel, at: 0)
+        
+        hostInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let topConstraint = NSLayoutConstraint.init(item: hostInfoLabel, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 20)
+        let leftConstraint = NSLayoutConstraint.init(item: hostInfoLabel, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
+        let rightConstraint = NSLayoutConstraint.init(item: self.view, attribute: .trailing, relatedBy: .equal, toItem: hostInfoLabel, attribute: .trailing, multiplier: 1.0, constant: 0)
+        let heightConstraint = NSLayoutConstraint.init(item: hostInfoLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 18)
+        NSLayoutConstraint.activate([topConstraint, leftConstraint, rightConstraint, heightConstraint])
     }
     
     fileprivate func initStatusBackgroundView() -> UIView {
@@ -137,7 +176,7 @@ extension IWWebVC {
     }
     
     fileprivate func showDefaultStyle() -> Void {
-        progressView.top = iwe.navigationBarHeight
+        //progressView.top = iwe.navigationBarHeight
         // add host info label
         setupHostInfoLabel()
     }
@@ -160,7 +199,9 @@ extension IWWebVC {
         progressView.top = statusBackgroundView.bottom
         
         // reset edge insets
-        web.scrollView.iwe.autoSetEdge(view)
+        if iw.system.version.toDouble < 11.0 {
+            web.scrollView.iwe.autoSetEdge(view)
+        }
         
         // add host info label
         setupHostInfoLabel()
@@ -203,7 +244,7 @@ extension IWWebVC: WKNavigationDelegate, WKUIDelegate {
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         
-        print("WebView did start load: \(webView.url!.absoluteString)")
+        iPrint("网页 (\(webView.url!.absoluteString)) 开始加载.")
         
         if webView.url!.absoluteString == "about:blank" {
             return
@@ -213,7 +254,7 @@ extension IWWebVC: WKNavigationDelegate, WKUIDelegate {
         showBackgroundColor()
         
         if let host = webView.url?.host {
-            hostInfoLabel.text = "此网页由 \(host) 提供"
+            hostInfoLabel.text = "该网页由 \(host) 提供"
         } else {
             hostInfoLabel.text = "未能识别此域名"
         }
@@ -223,19 +264,23 @@ extension IWWebVC: WKNavigationDelegate, WKUIDelegate {
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
+        iPrint("网页 (\(webView.url!.absoluteString)) 加载完成.")
+        
         // set navigation bar title
         navTitle = webView.title
         
         // Handler background color
         hideBackgroundColor()
         
-        // fix unexecute when target='_blank'
-        webView.iwe.setAttrToLabel(byTagName: "a", attrName: "target", attrValue: "")
-        
         // load finished
         loadFinishedHandler?(web, navigation)
     }
     
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        // 处理新建标签页
+        navigationAction.targetFrame.on(none: { webView.load(navigationAction.request) })
+        decisionHandler(.allow)
+    }
 }
 
 extension IWWebVC {

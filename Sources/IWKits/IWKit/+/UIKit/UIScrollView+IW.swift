@@ -1,7 +1,3 @@
-//
-//  UIScrollView+IWView.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/9/20.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -126,7 +122,7 @@ fileprivate extension IWView where View: UIScrollView {
                     if self.theNavgationBarExists(vc) {
                         self.refreshEdgeWithNavigationBarExists(vc, edge: &edge)
                     } else {
-                        edge.top = self.findCompatibleValue(type: .top)
+                        edge.top = .statusBarHeight
                     }
                     
                     edge.bottom = self.findCompatibleValue(type: .bottom)
@@ -135,7 +131,7 @@ fileprivate extension IWView where View: UIScrollView {
                     
                     self.view.contentInset = edge
                     self.view.scrollIndicatorInsets = edge
-                    
+
                     // 滚动到顶部
                     if self.view.contentOffset.y != -edge.top {
                         self.view.contentOffset = CGPoint.init(x: 0, y: -edge.top)
@@ -186,7 +182,14 @@ fileprivate extension IWView where View: UIScrollView {
         
         switch type {
         case .top:
-            return (c.top == 0 && s.top == 0) ? .navBarHeight : max(c.top, s.top, .navBarHeight)
+            var t: CGFloat = 0
+            if c.top == 0 && s.top == 0 {
+                t = .navBarHeight
+            } else {
+                t = max(c.top, s.top, .navBarHeight)
+            }
+            
+            return t
         case .bottom:
             return (c.bottom == 0 && s.bottom == 0) ? .tabbarHeight : max(c.bottom, s.bottom, .tabbarHeight)
             

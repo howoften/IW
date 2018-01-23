@@ -1,7 +1,3 @@
-//
-//  IWArrayBase.swift
-//  haoduobaduo
-//
 //  Created by iWw on 2017/11/21.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -29,7 +25,7 @@ public extension IWArrayCompatible {
 
 extension Array: IWArrayCompatible { }
 
-extension IWArray where Arr == Array<Any> {
+extension IWArray where Arr: Collection {
     
     /// Convert to value,value.
     final public var toString: String {
@@ -95,8 +91,7 @@ extension IWArray where Arr == Array<Any> {
     /// (将多维数组按照一维数组进行遍历).
     final public func enumerateNested(_ handler: ((_ obj: Any, _ stop: inout Bool) -> Void)) -> Void {
         var stop = false
-        for i in 0 ..< self.arr.count {
-            let object = self.arr[i]
+        for object: Any in arr {
             if object is Array<Any> {
                 (object as! Array<Any>).iwe.enumerateNested(handler)
             } else {

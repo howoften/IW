@@ -1,8 +1,3 @@
-
-//
-//  IWCollectionViewFlowLayout.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/7/14.
 //  Copyright © 2017年 iWe. All rights reserved.
 //

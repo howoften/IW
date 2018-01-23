@@ -1,7 +1,3 @@
-//
-//  IWLocalAuthentication.swift
-//  haoduobaduo
-//
 //  Created by iWw on 2017/11/29.
 //  Copyright © 2017年 iWe. All rights reserved.
 //

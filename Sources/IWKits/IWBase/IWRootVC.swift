@@ -55,6 +55,21 @@ open class IWRootVC: UIViewController {
         set { self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: newValue] }
     }
     
+    /// Enable Large Titles.
+    /// (开启大标题模式, iOS 11 及以后支持)
+    @available(iOS 11, *)
+    public var isEnableLargeTitlesStyle: Bool {
+        get { return self.navigationController?.navigationBar.prefersLargeTitles ?? false }
+        set { self.navigationController?.navigationBar.prefersLargeTitles = newValue }
+    }
+    
+    /// (设置大标题存在方式, 默认为 .Automatic).
+    @available(iOS 11, *)
+    public var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode {
+        get { return self.navigationItem.largeTitleDisplayMode }
+        set { self.navigationItem.largeTitleDisplayMode = newValue }
+    }
+    
     public lazy var bottomSpacingBackgroundView: UIView = { [unowned self] in
         let v = UIView(frame: MakeRect(0, .screenHeight - .bottomSpacing, .screenWidth, .bottomSpacing))
         if self.listView != nil {
@@ -101,7 +116,10 @@ open class IWRootVC: UIViewController {
     }
     
     private func _init() {
-        self.automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11, *) {} else {
+            // iOS 11 以下开启
+            //self.automaticallyAdjustsScrollViewInsets = false
+        }
         self.isAutoHideBottomBarWhenPushed = true
         self.view.backgroundColor = .white
     }
@@ -169,7 +187,7 @@ extension IWRootVC: UITableViewDataSource {
         return UITableViewCell()
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if listView.isAutoDeselect {
+        if listView != nil, listView.isAutoDeselect {
             tableView.deselectRow(at: indexPath, animated: true)
         }
         self.configureDidSelect(tableView, indexPath: indexPath)

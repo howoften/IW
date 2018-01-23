@@ -1,3 +1,7 @@
+//  Created by iWe on 2017/7/24.
+//  Copyright © 2017年 iWe. All rights reserved.
+//
+
 /*********************************************
  *
  * The inspiration for these codes is under the MIT License (MIT)
@@ -7,9 +11,6 @@
  * The homepage: https://github.com/AliSoftware/Reusable
  *
  *********************************************/
-
-//  Created by iWe on 2017/7/24.
-//  Copyright © 2017年 iWe. All rights reserved.
 
 import UIKit
 

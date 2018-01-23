@@ -1,7 +1,3 @@
-//
-//  IWViewModel.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/8/23.
 //  Copyright © 2017年 iWe. All rights reserved.
 //

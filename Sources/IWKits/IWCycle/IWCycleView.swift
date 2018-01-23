@@ -1,14 +1,10 @@
-//
-//  IWCycleView.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/7/7.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
 import UIKit
-//import Kingfisher
 
+/// (轮播图类).
 public class IWCycleView: UIView {
     
     public enum IWCycleViewPageControlStyle {

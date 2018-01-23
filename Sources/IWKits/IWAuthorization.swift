@@ -1,7 +1,3 @@
-//
-//  IWAuthorization.swift
-//  haoduobaduo
-//
 //  Created by iWe on 2017/8/3.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -91,8 +87,8 @@ public class IWAuthorization: NSObject {
             urlPath = type
         }
         
-        if UIApplication.shared.canOpenURL(urlPath.toURL) {
-            UIApplication.shared.openURL(urlPath.toURL)
+        if UIApplication.shared.canOpenURL(urlPath.toURL.unwrapValue) {
+            UIApplication.shared.openURL(urlPath.toURL.unwrapValue)
         } else {
             UIAlert.show(message: "无法跳转, 请检查是否有误！", config: nil)
         }

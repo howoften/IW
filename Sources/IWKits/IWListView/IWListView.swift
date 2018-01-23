@@ -53,6 +53,13 @@ public class IWListView: UITableView {
     
     fileprivate var moveToSuperView: UIView?
     
+    /// (重新加载目前显示在视图上的 Cell).
+    public func reloadVisiableRows(with animation: UITableViewRowAnimation) -> Void {
+        if let visiableRowIndexPaths = self.indexPathsForVisibleRows {
+            self.reloadRows(at: visiableRowIndexPaths, with: animation)
+        }
+    }
+    
     public override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         
@@ -83,7 +90,7 @@ extension IWListView {
         
         autoresizingMask = .flexibleWidth
         
-        separatorColor = .groupTableViewBackground
+        //separatorColor = .groupTableViewBackground
         
         tableHeaderView = UIView(frame: MakeRect(0, 0, .screenWidth, .min))
         tableFooterView = UIView()
@@ -95,10 +102,11 @@ extension IWListView {
 
 extension IWListView {
     
+    /*
     public override func willMove(toSuperview newSuperview: UIView?) {
         moveToSuperView = newSuperview
         iwe.autoSetEdge(moveToSuperView)
-    }
+    } */
     
     @objc public final func touchHideKeyboard() {
         self.endEditing(true)
