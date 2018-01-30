@@ -18,6 +18,15 @@ pod 'IW'
 
 
 # 更新说明
+#### 2018.0130
+`A`&ensp;`Optional+IWExt`：可选值扩展，详情参见：[Optional的扩展](https://www.iwecon.cc/2018/98.html)；\
+`A`&ensp;`IWStoreProductVC`：App Store 应用详情；\
+`A`&ensp;`IWTabBarController`：用于自定义TabBar；\
+`A`&ensp;`IWWaveLoadingView`：波浪形 loading view；\
+`A`&ensp;修正一些不符合逻辑的地方；\
+`A`&ensp;`Demo` 添加部分展示，后续会持续完善；\
+`R`&ensp;拆分 `IWExtension.swift`；\
+
 #### 2018.0110
 期间修改了不少东西，并且支持 `CocoaPods` 安装了！喜大普奔 折腾了好久 ~_~||| \
 新增加了 `类名`、`方法名` 的 `中文注释`; \
