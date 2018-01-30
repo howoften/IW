@@ -1,12 +1,15 @@
 # IW
 IW Extension \
+\
 一套快速开发框架, 集成了许多日常使用的方法
 \
 `适用于`: `iOS`, `Swift 4.0`
 \
+\
 **安装方法**
-1. 将 `Sources` 拖入工程中, command + b 编译通过即可；
-2. `CocoaPods`：
+
+方式一：将 `Sources` 拖入工程中, command + b 编译通过即可；\
+方式二：`CocoaPods`：
 ```
 pod 'IW'
 ```
@@ -68,8 +71,8 @@ pod 'IW'
 `F`&ensp;`IWExtension.swift` 修复 `tabbarHeight` 和 `statusBarheight` 的获取逻辑; 
 
 #### 2017.1201
-`C` 修改 `IWLocalAuthentication` 部分变量定义; 
+`C`&ensp;修改 `IWLocalAuthentication` 部分变量定义; 
 
 #### 2017.1130
-`A` 新增 `IWLocalAuthentication` 类, 用于本地认证 ( `Face ID` / `Touch ID`); \
-使用例子：[参见使用说明](http://iwecon.cc/index.php/archives/16/);
+`A`&ensp;新增 `IWLocalAuthentication` 类, 用于本地认证 ( `Face ID` / `Touch ID`); \
+使用例子：[参见使用说明](https://www.iwecon.cc/2017/16.html);
