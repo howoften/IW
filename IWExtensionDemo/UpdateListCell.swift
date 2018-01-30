@@ -12,6 +12,8 @@ class UpdateListCell: UITableViewCell {
     
     @IBOutlet weak var titLabel: UILabel!
     @IBOutlet weak var subLabel: UILabel!
+    
+    var actionID: String?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +25,7 @@ class UpdateListCell: UITableViewCell {
     func config(_ info: [String: String]) -> Void {
         titLabel.text = info["tit"]
         subLabel.text = info["sub"]
+        actionID = info[safe: "acid"] ?? nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

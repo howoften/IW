@@ -30,17 +30,43 @@ public extension UIAlertController {
         alertController.show()
     }
     
-    func addCancel(title: String? = "取消", handler: ((_ action: UIAlertAction) -> Void)?) {
+    func addCancel(title: String? = "取消", handler: ((_ action: UIAlertAction) -> Void)?) -> Void {
         let cancel = UIAlertAction(title: title, style: .cancel, handler: handler)
         addAction(cancel)
     }
     
-    func addConfirm(title: String? = "确定", style: UIAlertActionStyle = .default, handler: ((_ action: UIAlertAction) -> Void)?) {
+    func addConfirm(title: String? = "确定", style: UIAlertActionStyle = .default, handler: ((_ action: UIAlertAction) -> Void)?) -> Void {
         let confirm = UIAlertAction(title: title, style: style, handler: handler)
         addAction(confirm)
     }
     
-    func show() {
+    func show() -> Void {
         UIViewController.IWE.current()?.present(self, animated: true, completion: nil)
     }
+    
+    func setMessageAlignment(to alignment: NSTextAlignment) -> Void {
+        if let containLabels = self.findContainLabelsView(self.view) {
+            // 1 为内容, 0 为标题
+            (containLabels[1] as? UILabel)?.textAlignment = alignment
+        }
+    }
+    func setTitleAlignment(to alignment: NSTextAlignment) -> Void {
+        if let containLabels = self.findContainLabelsView(self.view) {
+            // 1 为内容, 0 为标题
+            (containLabels[0] as? UILabel)?.textAlignment = alignment
+        }
+    }
+    /// 查找 UILabel
+    private func findContainLabelsView(_ view: UIView) -> [UIView]? {
+        for i in view.subviews {
+            if i is UILabel {
+                return view.subviews
+            }
+            if let resultV = self.findContainLabelsView(i) {
+                return resultV
+            }
+        }
+        return nil
+    }
+    
 }

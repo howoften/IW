@@ -192,10 +192,29 @@ public extension IWView where View: UIView {
             }
         }
     }
-    
     /// (随机设置一个颜色, 透明度为0.8).
     private var debugColor: UIColor {
         return UIColor.IWE.randomColor.alpha(0.8)
+    }
+    
+    func gradient(colors: [UIColor], startPoint: CGPoint, endPoint: CGPoint) -> Void {
+        let gradientLayers = self.view.layer.sublayers?.map({ (layer) -> CAGradientLayer? in
+            if layer is CAGradientLayer {
+                return layer as? CAGradientLayer
+            }
+            return nil
+        })
+        gradientLayers.unwrapped ({ (oldLayer) in
+            oldLayer.forEach({ $0?.removeFromSuperlayer() })
+        })
+        
+        let gradientColors = colors.map({ $0.cgColor })
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = gradientColors
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        gradientLayer.frame = self.view.bounds
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
 }

@@ -68,10 +68,10 @@ public extension Optional {
         `todo`(unwrapped)
     }
     
-    /// (若解析, 有值则处理时间, 值为 nil 则执行 else).
+    /// (若解析, 有值则处理事件, 值为 nil 则执行 else).
     func unwrapped(_ todo: (Wrapped) -> Void, else: (() -> Void)? = nil) -> Void {
         guard let unwapped = self else {
-            `else`.isSome ? `else`!() : iPrint("目标为nil")
+            `else`?()
             return
         }
         `todo`(unwapped)

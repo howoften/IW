@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import StoreKit // 应用内打开 app store 详情页
 
 public typealias UIAlert = UIAlertController
 public typealias UITap = UITapGestureRecognizer
@@ -115,6 +116,7 @@ public class iw {
         }()
     }
     
+    /// (try 事件).
     public struct `throw` {
         public static func should(_ do:() throws -> Void) -> Error? {
             do {
@@ -123,6 +125,25 @@ public class iw {
             } catch {
                 return error
             }
+        }
+    }
+    
+    /// (在 App 内打开 app store 详情页).
+    public struct appstore {
+        /// (通过 AppID 显示对应的应用详情页).
+        public static func show(with appID: String?) {
+            let productViewController = IWStoreProductVC()
+            productViewController.show(with: appID)
+        }
+    }
+    
+    /// (等待).
+    public struct loading {
+        public static func stopWaveLoading() -> Void {
+            IWWaveLoadingView.shared.stopWave()
+        }
+        public static func showWaveLoading(withMaskType maskType: IWWaveLoadingView.MaskViewType = .none) -> Void {
+            IWWaveLoadingView.shared.startWave(UIViewController.IWE.current(), useMask: maskType == .none ? false : true, maskType: maskType)
         }
     }
 }

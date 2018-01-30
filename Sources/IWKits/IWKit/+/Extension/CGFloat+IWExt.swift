@@ -84,6 +84,5 @@ public extension CGFloat {
         safeAh -= tabbarHeight
         return safeAh
     }
-    
 }
 

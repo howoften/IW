@@ -202,20 +202,34 @@ public extension Bool {
         if !self { `todo`() } else { `else`?() }
     }
     
+    func `true`<T>(_ return: () -> T, elseReturn: () -> T) -> T {
+        return self ? `return`() : elseReturn()
+    }
+    func `true`<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
+        return self ? `return`() : elseReturn()
+    }
+    
+    func `false`<T>(_ return: () -> T, elseReturn: () -> T) -> T {
+        return !self ? `return`() : elseReturn()
+    }
+    func `false`<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
+        return !self ? `return`() : elseReturn()
+    }
+    
     /// (或).
     func or(_ other:@autoclosure () -> Bool) -> Bool {
         return self || other()
     }
     /// (或).
-    func or(_ other: Bool) -> Bool {
-        return self || other
+    func or(_ other: () -> Bool) -> Bool {
+        return self || other()
     }
     /// (且).
     func and(_ other:@autoclosure () -> Bool) -> Bool {
         return self && other()
     }
     /// (且).
-    func and(_ other: Bool) -> Bool {
-        return self && other
+    func and(_ other: () -> Bool) -> Bool {
+        return self && other()
     }
 }

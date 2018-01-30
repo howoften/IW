@@ -61,8 +61,8 @@ public extension UIColor {
         return color
     }
     
-    func alpha(_ value: Float) -> UIColor {
-        return self.withAlphaComponent(value.toCGFloat)
+    func alpha(_ value: CGFloat) -> UIColor {
+        return self.withAlphaComponent(value)
     }
     
 }

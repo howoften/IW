@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		923BF08C2016172200299DEF /* UpdateListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923BF08A2016172200299DEF /* UpdateListCell.swift */; };
 		923BF08D2016172200299DEF /* UpdateListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923BF08B2016172200299DEF /* UpdateListCell.xib */; };
+		923E71032018219D004B9D1F /* IWStoreProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923E71022018219D004B9D1F /* IWStoreProductVC.swift */; };
+		923E7105201821C3004B9D1F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923E7104201821C3004B9D1F /* StoreKit.framework */; };
+		923E7107201821C9004B9D1F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923E7106201821C9004B9D1F /* WebKit.framework */; };
+		923E710A201826D2004B9D1F /* IWWaveLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923E7109201826D2004B9D1F /* IWWaveLoadingView.swift */; };
 		9257E0BE20146EAC00D7C10F /* SubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9257E0BD20146EAC00D7C10F /* SubViewController.swift */; };
 		92620DF12005C2ED004ABD4E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 92620DF02005C2ED004ABD4E /* README.md */; };
 		926CB8B41FFC047500CBD434 /* IWCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8691FFC047500CBD434 /* IWCollectionViewFlowLayout.swift */; };
@@ -74,6 +78,7 @@
 		928BE5F020178F7B00B6D673 /* UIImageView+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BE5EF20178F7B00B6D673 /* UIImageView+IWExt.swift */; };
 		928BE5F220178FA100B6D673 /* CGSize+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BE5F120178FA100B6D673 /* CGSize+IWExt.swift */; };
 		928BE5F420178FB300B6D673 /* CGRect+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BE5F320178FB300B6D673 /* CGRect+IWExt.swift */; };
+		928DA2BF201B1E940025A064 /* IWTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DA2BE201B1E940025A064 /* IWTabBarController.swift */; };
 		92A3C3602017583C00EDBB77 /* Optional+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C35F2017583C00EDBB77 /* Optional+IWExt.swift */; };
 		92A3C3642017855400EDBB77 /* UIView+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C3632017855400EDBB77 /* UIView+IWExt.swift */; };
 		92A3C3662017863200EDBB77 /* CGFloat+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C3652017863200EDBB77 /* CGFloat+IWExt.swift */; };
@@ -94,6 +99,10 @@
 /* Begin PBXFileReference section */
 		923BF08A2016172200299DEF /* UpdateListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListCell.swift; sourceTree = "<group>"; };
 		923BF08B2016172200299DEF /* UpdateListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateListCell.xib; sourceTree = "<group>"; };
+		923E71022018219D004B9D1F /* IWStoreProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWStoreProductVC.swift; sourceTree = "<group>"; };
+		923E7104201821C3004B9D1F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		923E7106201821C9004B9D1F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		923E7109201826D2004B9D1F /* IWWaveLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWWaveLoadingView.swift; sourceTree = "<group>"; };
 		9257E0BD20146EAC00D7C10F /* SubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewController.swift; sourceTree = "<group>"; };
 		92620DF02005C2ED004ABD4E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		926CB8691FFC047500CBD434 /* IWCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -159,6 +168,7 @@
 		928BE5EF20178F7B00B6D673 /* UIImageView+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+IWExt.swift"; sourceTree = "<group>"; };
 		928BE5F120178FA100B6D673 /* CGSize+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+IWExt.swift"; sourceTree = "<group>"; };
 		928BE5F320178FB300B6D673 /* CGRect+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+IWExt.swift"; sourceTree = "<group>"; };
+		928DA2BE201B1E940025A064 /* IWTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWTabBarController.swift; sourceTree = "<group>"; };
 		92A3C35F2017583C00EDBB77 /* Optional+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+IWExt.swift"; sourceTree = "<group>"; };
 		92A3C3632017855400EDBB77 /* UIView+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IWExt.swift"; sourceTree = "<group>"; };
 		92A3C3652017863200EDBB77 /* CGFloat+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+IWExt.swift"; sourceTree = "<group>"; };
@@ -193,15 +203,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923E7107201821C9004B9D1F /* WebKit.framework in Frameworks */,
+				923E7105201821C3004B9D1F /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		923E710820182692004B9D1F /* IWLoading */ = {
+			isa = PBXGroup;
+			children = (
+				923E7109201826D2004B9D1F /* IWWaveLoadingView.swift */,
+			);
+			path = IWLoading;
+			sourceTree = "<group>";
+		};
 		926CB8671FFC047500CBD434 /* IWKits */ = {
 			isa = PBXGroup;
 			children = (
+				923E710820182692004B9D1F /* IWLoading */,
 				926CB8F01FFC06A200CBD434 /* IWBundle */,
 				926CB8AC1FFC047500CBD434 /* IWReqeust */,
 				926CB8A71FFC047500CBD434 /* IWLogin */,
@@ -232,6 +253,8 @@
 				926CB86E1FFC047500CBD434 /* IWAppDelegate.swift */,
 				926CB86F1FFC047500CBD434 /* IWWebVC.swift */,
 				926CB8701FFC047500CBD434 /* IWStatusBackItem.swift */,
+				923E71022018219D004B9D1F /* IWStoreProductVC.swift */,
+				928DA2BE201B1E940025A064 /* IWTabBarController.swift */,
 			);
 			path = IWBase;
 			sourceTree = "<group>";
@@ -409,6 +432,8 @@
 		DA36CA2E1FF8F53F00714999 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				923E7106201821C9004B9D1F /* WebKit.framework */,
+				923E7104201821C3004B9D1F /* StoreKit.framework */,
 				DA36CA7D1FF92CEC00714999 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -670,11 +695,13 @@
 				926CB8CB1FFC047500CBD434 /* UIGestureRecognizer+IWExt.swift in Sources */,
 				926CB8CE1FFC047500CBD434 /* CGSize+IW.swift in Sources */,
 				92A3C37220178DA700EDBB77 /* UINib+IWExt.swift in Sources */,
+				923E710A201826D2004B9D1F /* IWWaveLoadingView.swift in Sources */,
 				926CB8CF1FFC047500CBD434 /* UIScrollView+IW.swift in Sources */,
 				926CB8D51FFC047500CBD434 /* UIView+IW.swift in Sources */,
 				926CB8DD1FFC047500CBD434 /* String+IW.swift in Sources */,
 				926CB8B81FFC047500CBD434 /* IWViewModel.swift in Sources */,
 				926CB8C21FFC047500CBD434 /* IWShouldPop.swift in Sources */,
+				923E71032018219D004B9D1F /* IWStoreProductVC.swift in Sources */,
 				926CB8C61FFC047500CBD434 /* IWCycleView.swift in Sources */,
 				926CB8BB1FFC047500CBD434 /* IWStatusBackItem.swift in Sources */,
 				926CB8CC1FFC047500CBD434 /* UIControl+IWExt.swift in Sources */,
@@ -686,6 +713,7 @@
 				92A3C37020178D8800EDBB77 /* Data+IWExt.swift in Sources */,
 				923BF08C2016172200299DEF /* UpdateListCell.swift in Sources */,
 				928BE5EC20178F3800B6D673 /* UITextField+IWExt.swift in Sources */,
+				928DA2BF201B1E940025A064 /* IWTabBarController.swift in Sources */,
 				926CB8D01FFC047500CBD434 /* UIImageView+IW.swift in Sources */,
 				926CB8D61FFC047500CBD434 /* UIFont+IW.swift in Sources */,
 				928BE5EE20178F6400B6D673 /* UIPageControl+IWExt.swift in Sources */,
