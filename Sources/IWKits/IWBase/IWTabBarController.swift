@@ -6,6 +6,13 @@ import UIKit
 
 open class IWTabBarController: UITabBarController {
     
+    /// (与原始背景相似的 effect view).
+    private lazy var likeOrignalVisualEffectView: UIVisualEffectView? = {
+        let effectView = UIVisualEffectView(effect: UIBlurEffect.init(style: .light))
+        effectView.frame = MakeRect(0, 0, .screenWidth, .tabbarHeight)
+        return effectView
+    }()
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         
