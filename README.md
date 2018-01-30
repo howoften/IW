@@ -2,18 +2,15 @@
 IW Extension \
 一套快速开发框架, 集成了许多日常使用的方法
 \
-\
 `适用于`: `iOS`, `Swift 4.0`
 \
-\
 **安装方法**
+1. 将 `Sources` 拖入工程中, command + b 编译通过即可；
+2. `CocoaPods`：
 ```
 pod 'IW'
 ```
 \
-\
-**扩展详情说明**
-参见: [详情说明](http://iwecon.cc/index.php/archives/7/) \
 有任何疑问或使用过程中出现的问题, 请发 `Issues` 告知, 就此先`谢`过了
 
 
