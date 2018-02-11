@@ -10,13 +10,11 @@ public extension Dictionary {
     subscript (safe key: Key) -> Value? {
         return self.keys.contains(key) ? self[key] : nil
     }
-    
-    var toCookieValue: String {
+    /// (转化字符串类型的 Cookies).
+    public var toCookieValue: String {
         var temp = ""
         for (keyHas, valueHas) in self {
-            
             let key = keyHas as! String
-            
             if valueHas is [Any] {
                 temp = temp + "\(key)=[\((valueHas as! [Any]).toURLString)];"
             } else if valueHas is [String: Any] {
@@ -28,11 +26,13 @@ public extension Dictionary {
         return temp
     }
     
-    var toString: String {
+    /// (: , 拼接. 例如: key:value,key1:value1).
+    public var toString: String {
         return toOtherString(byParameters: false)
     }
     
-    var toParameters: String {
+    /// (= $ 拼接. 例如: key=value&key1=value1).
+    public var toParameters: String {
         return toOtherString(byParameters: true)
     }
     
@@ -68,16 +68,17 @@ public extension Dictionary {
         return str.removeLastCharacter.removeLastCharacter
     }
     
-    var toJSONString: String {
+    /// (失败返回 nil).
+    public var toJSONString: String? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
             if let json = String.init(data: jsonData, encoding: String.Encoding.utf8) {
                 return json.remove(["\n", "\\"])
             }
-            return ""
+            return nil
         } catch {
             iPrint(error.localizedDescription)
-            return ""
+            return nil
         }
     }
 }
@@ -89,15 +90,17 @@ public extension Array {
         return (0 ..< count).contains(index) ? self[index] : nil
     }
     
-    var toString: String {
+    /// (, 拼接. 例如: value1,value2,value3).
+    public var toString: String {
         return toOtherString(byType: .string, nil)
     }
     
-    var toParameters: String {
+    /// (& 拼接. 例如: value1&value2&value3).
+    public var toParameters: String {
         return toOtherString(byType: .parameters, nil)
     }
     
-    var toURLString: String {
+    public var toURLString: String {
         
         var tempString = ""
         for obj: Any in self {
@@ -152,7 +155,7 @@ public extension Array {
 // MARK:- Double
 public extension Double {
     
-    var toString: String {
+    public var toString: String {
         return "\(self)"
     }
     
@@ -161,10 +164,10 @@ public extension Double {
 // MARK:- Int
 public extension Int {
     
-    var toString: String {
+    public var toString: String {
         get { return "\(self)" }
     }
-    var toAnyObject: AnyObject {
+    public var toAnyObject: AnyObject {
         get { return self as AnyObject }
     }
 }
@@ -174,13 +177,15 @@ public extension Int {
 // MARK:- Float
 public extension Float {
     
-    var toCGFloat: CGFloat {
+    public var toCGFloat: CGFloat {
         get { return CGFloat(self) }
     }
-    var retain: String {
+    /// (保留两位小数).
+    public var retain: String {
         return String(format: "%0.2f", self)
     }
-    func retain(_ digit: Int) -> String {
+    /// (保留 digit 位小数).
+    public func retain(_ digit: Int) -> String {
         return String(format: "%0.\(digit)f", self)
     }
 }
@@ -189,47 +194,55 @@ public extension Float {
 // MARK:- Bool
 public extension Bool {
     
-    mutating func toggle() -> Void {
+    public mutating func toggle() -> Void {
         self = !self
     }
     
     /// (true 时执行todo, false 时执行 else).
-    func `true`(_ todo: () -> Void, else: (() -> Void)? = nil) -> Void {
+    public func `true`(_ todo: (() -> Void), else: (() -> Void)? = nil) -> Void {
         if self { `todo`() } else { `else`?() }
     }
     /// (false 时执行todo, true 时执行 else).
-    func `false`(_ todo: () -> Void, else: (() -> Void)? = nil) -> Void {
+    public func `false`(_ todo: (() -> Void), else: (() -> Void)? = nil) -> Void {
         if !self { `todo`() } else { `else`?() }
     }
     
-    func `true`<T>(_ return: () -> T, elseReturn: () -> T) -> T {
+    public func `true`<T>(_ return: (() -> T), elseReturn: (() -> T)) -> T {
         return self ? `return`() : elseReturn()
     }
-    func `true`<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
+    public func `true`<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
         return self ? `return`() : elseReturn()
+    }
+    /// (value ? true : false).
+    public func trueOrFalse() -> Bool {
+        return self ? true : false
     }
     
-    func `false`<T>(_ return: () -> T, elseReturn: () -> T) -> T {
+    public func `false`<T>(_ return: (() -> T), elseReturn: (() -> T)) -> T {
         return !self ? `return`() : elseReturn()
     }
-    func `false`<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
+    public func `false`<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
         return !self ? `return`() : elseReturn()
+    }
+    /// (!value ? true : false).
+    public func falseOrTrue() -> Bool {
+        return !self ? true : false
     }
     
     /// (或).
-    func or(_ other:@autoclosure () -> Bool) -> Bool {
+    public func or(_ other:@autoclosure () -> Bool) -> Bool {
         return self || other()
     }
     /// (或).
-    func or(_ other: () -> Bool) -> Bool {
+    public func or(_ other: (() -> Bool)) -> Bool {
         return self || other()
     }
     /// (且).
-    func and(_ other:@autoclosure () -> Bool) -> Bool {
+    public func and(_ other:@autoclosure () -> Bool) -> Bool {
         return self && other()
     }
     /// (且).
-    func and(_ other: () -> Bool) -> Bool {
+    public func and(_ other: (() -> Bool)) -> Bool {
         return self && other()
     }
 }

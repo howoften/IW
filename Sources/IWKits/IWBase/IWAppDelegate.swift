@@ -14,6 +14,7 @@ public class IWAppDelegate: UIResponder, UIApplicationDelegate {
     public var deviceTokenHandler: IWADDeviceTokenHandler?
     public var receiveRemoteNotificationHandler: IWADReceiveRemoteNotificationHandler?
     
+    /// (输出设备信息, 机型 标识 OS版本).
     public func outputDeviceInfos() -> Void {
         var infos = "\n-- IWKits.AppDelegate.DeviceInfos"
         infos += "\n 机型: \(IWDevice.modelName), 标识: \(IWDevice.modelIdentifier), 系统版本: \(iw.system.version)"

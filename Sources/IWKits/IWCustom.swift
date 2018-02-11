@@ -205,7 +205,8 @@ public class IWSheetAlert: NSObject {
         // Add by iwe, in 2017.11/13. Get tips from Bugly. The reference solution: http://www.jianshu.com/p/c67d5bb31067 .
         if IWDevice.isiPad {
             sheet.popoverPresentationController?.sourceView = UIViewController.IWE.current()?.view
-            sheet.popoverPresentationController?.sourceRect = MakeRect(0, 0, 1.0, 1.0)
+            // 2018.02/06. 修正: 使其默认在屏幕中间显示
+            sheet.popoverPresentationController?.sourceRect = MakeRect(.screenWidth / 2, .screenWidth - .tabbarHeightNormal, 0.5, 0.5)
         }
         
         UIViewController.IWE.current()?.iwe.modal(sheet)

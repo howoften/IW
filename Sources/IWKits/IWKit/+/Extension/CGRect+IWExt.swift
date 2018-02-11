@@ -7,7 +7,27 @@ import UIKit
 public extension CGRect {
     
     /// (屏幕大小, scrren bounds).
-    static let screenBounds: CGRect = { return iw.screenBounds }()
+    public static let screenBounds: CGRect = { return iw.screenBounds }()
+    
+    public var x: CGFloat {
+        get { return self.origin.x }
+        set { self.origin.x = newValue }
+    }
+    
+    public var y: CGFloat {
+        get { return self.origin.y }
+        set { self.origin.y = newValue }
+    }
+    
+    public var width: CGFloat {
+        get { return self.size.width }
+        set { self.size.width = newValue }
+    }
+    
+    public var height: CGFloat {
+        get { return self.size.height }
+        set { self.size.height = newValue }
+    }
 }
 
 

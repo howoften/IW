@@ -6,11 +6,13 @@ import UIKit
 
 public extension UIPageControl {
     
-    var minimumHeight: CGFloat {
+    /// (最小高度).
+    public var minimumHeight: CGFloat {
         return size(forNumberOfPages: numberOfPages).height - 24
     }
     
-    var minimumWidth: CGFloat {
+    /// (最小宽度).
+    public var minimumWidth: CGFloat {
         return size(forNumberOfPages: numberOfPages).width
     }
     

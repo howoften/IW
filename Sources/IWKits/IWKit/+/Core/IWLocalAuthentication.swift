@@ -5,6 +5,7 @@
 import UIKit
 import LocalAuthentication
 
+/// (指纹认证/面容ID认证，使用在 iOS 9.0+ 版本).
 public class IWLocalAuthentication: NSObject {
     
     /// (识别结果类型).
@@ -58,6 +59,9 @@ public class IWLocalAuthentication: NSObject {
         return laContext.canEvaluatePolicy(policy, error: &errorPointer)
     }
     
+    /// (指纹是否变更).
+    public var isAuthInfoChanged: Bool = false
+    
     /// (初始化本地认证信息, 用于记录认证信息是否变更).
     public final func initLocalAuthentication() -> Void {
         if !IWFileManage.default.fileExists(atPath: domainStateDataSavedPath) {
@@ -107,6 +111,7 @@ public class IWLocalAuthentication: NSObject {
             if success {
                 if self.isLocalAuthenticationChanged(withContext: context) {
                     iPrint("The Local Authentication passed, But the info changed.")
+                    self.isAuthInfoChanged = true
                     handler(.passedButInfoChanged)
                     return
                 }
@@ -127,6 +132,7 @@ public class IWLocalAuthentication: NSObject {
     public final func updateLocalAuthenticationInfos() -> Void {
         if #available(iOS 9.0, *), let context = runningLaContext {
             if let domainState = context.evaluatedPolicyDomainState {
+                self.isAuthInfoChanged = false
                 saveDomainState(domainState)
             }
         }

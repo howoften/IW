@@ -7,12 +7,27 @@ import UIKit
 /// (设备信息相关).
 public class IWDevice: NSObject {
     
+    static let DeviceOrientationDidChange: String = "IWDeviceOrientationDidChange"
+    
     /// (是否为 iPad).
     public static let isiPad: Bool = { return (UIDevice.current.model == "iPad") }()
     /// (是否为 iPhone).
     public static let isiPhone: Bool = { return (UIDevice.current.model == "iPhone") }()
     /// (是否为 iPhone X).
     public static let isiPhoneX: Bool = { return (IWDevice.isiPhone && CGFloat.screenHeight == 812) }()
+    
+    /// (设备方向).
+    static var orientation: UIDeviceOrientation {
+        return UIDevice.current.orientation
+    }
+    /// (注册设备旋转通知, 使用 DeviceOrientationDidChange 接收通知).
+    class func registerOrientationDidChange() -> Void {
+        NotificationCenter.default.addObserver(self, selector: #selector(postChangeNotification), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    @objc class func postChangeNotification() -> Void {
+        NotificationCenter.default.post(name: NSNotification.Name.init(DeviceOrientationDidChange), object: orientation)
+    }
+    
     
     /// (返回机型内部标识, 例如: iPhone9,1).
     public static var modelIdentifier: String {

@@ -4,40 +4,40 @@
 
 import UIKit
 
-public extension UIView {
+extension UIView {
     
-    var x: CGFloat {
+    public var x: CGFloat {
         get { return self.frame.origin.x }
         set { self.frame.origin.x = newValue }
     }
-    var y: CGFloat {
+    public var y: CGFloat {
         get { return self.frame.origin.y }
         set { self.frame.origin.y = newValue }
     }
     
-    var width: CGFloat {
+    public var width: CGFloat {
         get { return self.frame.width }
         set { self.frame.size.width = newValue }
     }
-    var height: CGFloat {
+    public var height: CGFloat {
         get { return self.frame.height }
         set { self.frame.size.height = newValue }
     }
     
-    var left: CGFloat {
+    public var left: CGFloat {
         get { return self.frame.origin.x }
         set { self.frame.origin.x = newValue }
     }
-    var right: CGFloat {
+    public var right: CGFloat {
         get { return self.frame.origin.x + self.frame.size.width }
         set { self.frame.origin.x = newValue - self.frame.size.width }
     }
     
-    var top: CGFloat {
+    public var top: CGFloat {
         get { return self.frame.origin.y }
         set { self.frame.origin.y = newValue }
     }
-    var bottom: CGFloat {
+    public var bottom: CGFloat {
         get { return self.frame.origin.y + self.frame.size.height }
         set { self.frame.origin.y = newValue - self.frame.size.height }
     }

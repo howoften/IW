@@ -6,29 +6,29 @@ import UIKit
 
 public extension UIColor {
     
-    static var iwe_tinyBlack: UIColor {
+    public static var iwe_tinyBlack: UIColor {
         return "#3f4458".toColor
     }
     
-    static var iwe_orangeRed: UIColor {
+    public static var iwe_orangeRed: UIColor {
         return "#ff4500".toColor
     }
     
-    static var iwe_adadad: UIColor {
+    public static var iwe_adadad: UIColor {
         return "#adadad".toColor
     }
     
-    static var iwe_gainsboro: UIColor {
+    public static var iwe_gainsboro: UIColor {
         return "#dcdcdc".toColor
     }
     
-    class button: UIColor {
-        class var `default`: UIColor {
+    public class button: UIColor {
+        public class var `default`: UIColor {
             return UIColor(red: 0, green: 0.478431, blue: 1, alpha: 1)
         }
     }
     
-    class func iwe_hex(_ hex: String, _ alpha: Float = 1.0) -> UIColor {
+    public class func iwe_hex(_ hex: String, _ alpha: Float = 1.0) -> UIColor {
         var color = UIColor.red
         var cStr : String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         
@@ -61,7 +61,7 @@ public extension UIColor {
         return color
     }
     
-    func alpha(_ value: CGFloat) -> UIColor {
+    public func alpha(_ value: CGFloat) -> UIColor {
         return self.withAlphaComponent(value)
     }
     

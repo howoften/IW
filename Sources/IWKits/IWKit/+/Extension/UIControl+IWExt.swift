@@ -38,21 +38,21 @@ fileprivate class IWControlWrapper: NSObject {
 private struct IWControlKey {
     static var dic: Void?
 }
-public extension UIControl {
-    
-    private var iwe_events: [String: IWControlWrapper?]? {
+
+extension UIControl {
+    /// (记录手势以及对应的操作).
+    private var iwe_events: [String : IWControlWrapper?]? {
         get { return objc_getAssociatedObject(self, &IWControlKey.dic) as? [String: IWControlWrapper?] }
         set { objc_setAssociatedObject(self, &IWControlKey.dic, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
     /// Events default is .touchUpInside.
-    /// (触发事件).
+    /// (触发事件, 默认手势为 .touchUpInside).
     ///
     /// - Parameters:
     ///   - controlEvents: Default is .touchUpInSide
     ///   - handler: Handler action
-    final func iwe_addEvents(for controlEvents: UIControlEvents = .touchUpInside, _ handler: IWEventsHandler?) -> Void {
-        
+    public func iwe_addEvents(for controlEvents: UIControlEvents = .touchUpInside, _ handler: IWEventsHandler?) {
         if handler == nil { return }
         if iwe_events == nil { iwe_events = [String: IWControlWrapper?]() }
         
@@ -65,14 +65,11 @@ public extension UIControl {
     /// (移除指定的事件).
     ///
     /// - Parameter controlEvents: UIControlEvents.
-    final func iwe_removeEvents(for controlEvents: UIControlEvents = .touchUpInside) -> Void {
+    public func iwe_removeEvents(for controlEvents: UIControlEvents = .touchUpInside) -> Void {
         if iwe_events == nil { iwe_events = [String: IWControlWrapper?]() }
         
         let key = IWControlWrapper.getHashKey(for: controlEvents)
-        if let _ = iwe_events![key] {
-            iwe_events!.removeValue(forKey: key)
-            self.removeTarget(key, action: nil, for: controlEvents)
-        }
+        iwe_events?.keys.contains(key).true({ iwe_events!.removeValue(forKey: key); self.removeTarget(key, action: nil, for: controlEvents) })
     }
     
     /// Control events has been exists.
@@ -80,15 +77,12 @@ public extension UIControl {
     ///
     /// - Parameter controlEvents: UIControlEvents.
     /// - Returns: There is a return to true, otherwise false is returned.
-    final func iwe_hasHandler(forControlEvents controlEvents: UIControlEvents = .touchUpInside) -> Bool {
+    public func iwe_hasHandler(for controlEvents: UIControlEvents = .touchUpInside) -> Bool {
         if iwe_events == nil { iwe_events = [String: IWControlWrapper?]() }
         
         let key = IWControlWrapper.getHashKey(for: controlEvents)
-        if let _ = iwe_events![key] {
-            return true
-        }
-        return false
+        return iwe_events![key].and(then: { $0.isSome }).or(false)
     }
-    
 }
+
 

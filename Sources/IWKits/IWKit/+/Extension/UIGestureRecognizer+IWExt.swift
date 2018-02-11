@@ -9,7 +9,7 @@ private struct IWGestureRecognizerKey {
     static var handlerDelay: Void?
     static var shouldhandlerAction: Void?
 }
-public extension UIGestureRecognizer {
+extension UIGestureRecognizer {
     
     public typealias IWGestureRecognizerHandler = (_ sender: UIGestureRecognizer, _ view: UIView?, _ state: UIGestureRecognizerState, _ location: CGPoint) -> Void
     
@@ -32,7 +32,7 @@ public extension UIGestureRecognizer {
     ///   - handler: 手势处理的事件
     ///   - delay: 延迟执行时间
     /// - Returns: 返回设定好的手势
-    class func iwe_recognizer(withHandler handler: IWGestureRecognizerHandler?, delay: TimeInterval = 0.0) -> UIGestureRecognizer {
+    public class func iwe_recognizer(withHandler handler: IWGestureRecognizerHandler?, delay: TimeInterval = 0.0) -> UIGestureRecognizer {
         let a = self.init()
         a.iwe_handler = handler
         a.iwe_handlerDelay = delay
@@ -57,7 +57,7 @@ public extension UIGestureRecognizer {
     }
     
     /// (获取当前手势直接作用到的 view).
-    final var iwe_targetView: UIView? {
+    public var iwe_targetView: UIView? {
         let lc = self.location(in: self.view)
         let tgv = self.view?.hitTest(lc, with: nil)
         return tgv

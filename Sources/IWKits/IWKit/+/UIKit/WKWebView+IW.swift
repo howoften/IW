@@ -38,7 +38,7 @@ public extension IWView where View: WKWebView {
     /// - Parameters:
     ///   - identity: Label identifier
     func removeChild(byIdentity: String, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
-        let script = "var removeObj = document.getElementById('\(byIdentity)'); document.body.removeChild(removeObj);"
+        let script = "var removeObj = document.getElementById('\(byIdentity)'); removeObj.parentNode.removeChild(removeObj);"
         view.evaluateJavaScript(script, completionHandler: completionHandler)
     }
     

@@ -50,12 +50,29 @@ public class IWCycleView: UIView {
         didSet { iw.main.execution { self.refreshDistanceOfPageControlBottom() } }
     }
     
+    /// (image view 显示模式, 默认为 .redraw).
+    public var imagesContentMode: UIViewContentMode = .redraw {
+        didSet {
+            leftIMGV.contentMode = imagesContentMode
+            rightIMGV.contentMode = imagesContentMode
+            middleIMGV.contentMode = imagesContentMode
+        }
+    }
+    
     /// 定时器, 自动滚动
     fileprivate var timer: Timer?
     
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     public init(_ frame: CGRect, images: [Any], pageControlStyle: IWCycleViewPageControlStyle, clickHandler: IWCycleViewClickHandler?) {
         super.init(frame: frame)
-        
+        self.config(images, clickHandler: clickHandler)
+    }
+    
+    public func config(_ images: [Any], clickHandler: IWCycleViewClickHandler?) -> Void {
+        self.layoutIfNeeded()
         setUpViews()
         imagesSetter(images)
         clickAction = clickHandler
@@ -162,7 +179,7 @@ extension IWCycleView {
     }
     
     private func setUpImageViews() -> Void {
-        leftIMGV.contentMode = .redraw
+        leftIMGV.contentMode = imagesContentMode
         rightIMGV.contentMode = leftIMGV.contentMode
         middleIMGV.contentMode = leftIMGV.contentMode
         

@@ -28,8 +28,8 @@ open class IWTabBarController: UITabBarController {
 
 public extension IWTabBarController {
     
+    /// (隐藏 tabbar 上划线).
     public func hideLine() -> Void {
-        
         // 隐藏线
         self.tabBar.shadowImage = UIImage()
         // 隐藏背景, 若不隐藏背景则无法隐藏线

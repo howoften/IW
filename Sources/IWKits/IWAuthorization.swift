@@ -34,6 +34,7 @@ public class IWAuthorization: NSObject {
             shared.openPhotoLibrary()
         }
     }
+    
     // MARK:- 请求访问相机
     /// Request access to Camera.
     /// (请求访问相机)
