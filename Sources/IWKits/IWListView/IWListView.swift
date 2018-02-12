@@ -78,6 +78,21 @@ public class IWListView: UITableView {
         super.reloadData()
     }
     
+    /// (注册复用 Cells).
+    public final func registerCells<T: UITableViewCell>(_ cells: [T.Type]) -> Void {
+        for i in cells {
+            self.registReusable(i)
+        }
+    }
+    /// (注册复用 HeaderFooterViews).
+    public final func registerViews<T: UITableViewHeaderFooterView>(_ headerFooterViews: [T.Type]) -> Void {
+        for i in headerFooterViews {
+            self.registReusable(i)
+        }
+    }
+    
+
+    
 }
 
 

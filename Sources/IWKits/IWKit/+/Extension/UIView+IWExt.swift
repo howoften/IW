@@ -4,7 +4,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     
     public var x: CGFloat {
         get { return self.frame.origin.x }
@@ -42,7 +42,7 @@ extension UIView {
         set { self.frame.origin.y = newValue - self.frame.size.height }
     }
     
-    static var xib: UIView? {
+    public static var xib: UIView? {
         let path = _xibPath()
         if path != nil {
             let className = String(describing: self)
@@ -53,7 +53,7 @@ extension UIView {
         }
         return nil
     }
-    private final class func _xibPath() -> String? {
+    private class func _xibPath() -> String? {
         let className = String(describing: self)
         let path = Bundle.main.path(forResource: className, ofType: ".nib")
         guard let filePath = path else {

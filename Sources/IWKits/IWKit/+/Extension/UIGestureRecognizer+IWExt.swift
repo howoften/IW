@@ -9,7 +9,8 @@ private struct IWGestureRecognizerKey {
     static var handlerDelay: Void?
     static var shouldhandlerAction: Void?
 }
-extension UIGestureRecognizer {
+
+public extension UIGestureRecognizer {
     
     public typealias IWGestureRecognizerHandler = (_ sender: UIGestureRecognizer, _ view: UIView?, _ state: UIGestureRecognizerState, _ location: CGPoint) -> Void
     

@@ -11,12 +11,12 @@ public protocol IWCollectionViewFlowLayoutDelegate: UICollectionViewDelegateFlow
 /// (CollectionView 瀑布流式自动布局).
 public class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
-    var itemAttributes: NSMutableArray! = nil
-    weak var delegate: IWCollectionViewFlowLayoutDelegate?
+    private var itemAttributes: NSMutableArray! = nil
+    public weak var delegate: IWCollectionViewFlowLayoutDelegate?
     
-    var allAttributes = NSMutableDictionary()
+    private var allAttributes = NSMutableDictionary()
     
-    var lastedHeight: CGFloat = 0.0
+    private var lastedHeight: CGFloat = 0.0
     
     public override func prepare() {
         super.prepare()

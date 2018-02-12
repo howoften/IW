@@ -10,9 +10,9 @@ public class IWViewModel: NSObject {
     public typealias ErrorHandler = (_ value: Any?) -> Void
     public typealias FailureHandler = (_ error: Error?) -> Void
     
-    var successBlock: SuccessHandler?
-    var errorBlock: ErrorHandler?
-    var failureBlock: FailureHandler?
+    public var successBlock: SuccessHandler?
+    public var errorBlock: ErrorHandler?
+    public var failureBlock: FailureHandler?
     
     /// (回调处理).
     ///

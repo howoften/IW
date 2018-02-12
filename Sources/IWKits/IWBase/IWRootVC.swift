@@ -125,12 +125,12 @@ open class IWRootVC: UIViewController {
     }
     
     /// (添加一个 Grouped 风格的 IWListView 到界面上).
-    public func addGroupedListView() {
+    open func addGroupedListView() {
         self.listView = createListView(withFrame: self.view.bounds, style: .grouped)
         self.view.addSubview(self.listView)
     }
     /// (添加一个 Plain 风格的 IWListView 到界面上).
-    public func addPlainListView() {
+    open func addPlainListView() {
         self.listView = createListView(withFrame: self.view.bounds, style: .plain)
         self.view.addSubview(self.listView)
     }
