@@ -18,14 +18,44 @@ pod 'IW'
 
 
 # 更新说明
+#### 2018.0301
+###### A
+
+全局（`IWGlobal.swift`）方法，断言: iw.assert.failure；
+
+全局（`IWGlobal.swift`）方法，app设置: iw.app.hideStatusBar, iw.app.showStatusBar；
+
+全局（`IWGlobal.swift`）方法，是否为Debug模式: iw.isDebugMode;
+
+`extension Bool`：isFalse、isTrue、func enable()、func disable()、func toFalse()、func toTrue()；
+
+###### C
+
+字体类型设置方式（`UIFont+IWExt.swift`）；
+
+瀑布流布局 （`IWCollectionViewFlowLayout.swift`）；
+
+`extension Bool`，函数名 true/false 修改为 founded、unfounded；
+
+（`IWDevice.swift`）是否为 iPhone X 判断方式；
+
+（`CGFloat+IWExt.swift`）设备方向动态获取增加限制条件（`IWApp.supportRotation = true` 时才会动态获取）；
+
 #### 2018.0130
-`A`&ensp;`Optional+IWExt`：可选值扩展，详情参见：[Optional的扩展](https://www.iwecon.cc/2018/98.html)；\
-`A`&ensp;`IWStoreProductVC`：App Store 应用详情；\
-`A`&ensp;`IWTabBarController`：用于自定义TabBar；\
-`A`&ensp;`IWWaveLoadingView`：波浪形 loading view；\
-`A`&ensp;修正一些不符合逻辑的地方；\
-`A`&ensp;`Demo` 添加部分展示，后续会持续完善；\
-`R`&ensp;拆分 `IWExtension.swift`；\
+###### A
+`Optional+IWExt`：可选值扩展，详情参见：[Optional的扩展](https://www.iwecon.cc/2018/98.html)；
+
+`IWStoreProductVC`：App Store 应用详情；
+
+`IWTabBarController`：用于自定义TabBar；
+
+`IWWaveLoadingView`：波浪形 loading view；
+
+修正一些不符合逻辑的地方；
+
+`Demo` 添加部分展示，后续会持续完善；
+
+拆分 `IWExtension.swift`；
 
 #### 2018.0110
 期间修改了不少东西，并且支持 `CocoaPods` 安装了！喜大普奔 折腾了好久 ~_~||| \
