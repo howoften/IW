@@ -70,6 +70,11 @@ class ViewController: IWRootVC {
         }
     }
     
+    func showLoginVC() -> Void {
+        let vc = IWLoginNavController()
+        self.iwe.modal(vc)
+    }
+    
     override func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) {
         (tableView.cellForRow(at: indexPath) as? UpdateListCell).and(then: { $0.actionID }).unwrapped ({ (actionID) in
             switch actionID {
@@ -79,6 +84,7 @@ class ViewController: IWRootVC {
             case "showWaveDark":         self.showWave(with: .dark)
             case "showWaveLight":        self.showWave(with: .light)
             case "showWaveTransparent":  self.showWave(with: .transparent)
+            case "login":                self.showLoginVC()
             default: break
             }
         })
@@ -101,7 +107,14 @@ extension ViewController {
         
         let cell = tableView.reuseCell() as UpdateListCell
         
-        updateLists[safe: indexPath.section].and(then: { $0[safe: "list"] as? [[String: String]] }).and(then: { $0[safe: indexPath.row] }).unwrapped({ cell.config($0) })
+        updateLists[safe: indexPath.section].and(then: { $0[safe: "list"] as? [[String: String]] }).and(then: { $0[safe: indexPath.row] }).unwrapped({
+            cell.config($0)
+            if $0.keys.contains("acid") {
+                cell.accessoryType = .disclosureIndicator
+            } else {
+                cell.accessoryType = .none
+            }
+        })
         
         return cell
     }

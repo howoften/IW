@@ -56,7 +56,7 @@ class IWStatusBackItem: UIWindow {
 		
 		tipsLabel.frame = MakeRect(imageView.right + 4, (frame.height - 12) / 2, (baseView.width - (imageView.right + 4)), 12)
 		tipsLabel.text = tips ?? "返回"
-		tipsLabel.font = UIFont.IWE.fontFamily("Menlo", type: .regular, size: 12)
+		tipsLabel.font = UIFont.fontFamily("Menlo", type: .regular, size: 12)
 		tipsLabel.textColor = .black
 		baseView.addSubview(tipsLabel)
 	}

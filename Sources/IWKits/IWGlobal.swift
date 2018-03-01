@@ -10,6 +10,34 @@ public typealias UITap = UITapGestureRecognizer
 
 /// (IW 全局公共方法/属性)
 public class iw {
+    /// (断言).
+    public struct assert {
+        /// (condition 成立时，assertion failure 输出 message).
+        public static func failure(_ condition: Bool, msg message: String) -> Void {
+            condition.founded({ assertionFailure(message) })
+        }
+    }
+    
+    /// (App 全局设置).
+    public struct app {
+        /// (隐藏状态栏).
+        public static func hideStatusBar(with animation: UIStatusBarAnimation) -> Void {
+            UIApplication.shared.setStatusBarHidden(true, with: animation)
+        }
+        /// (显示状态栏).
+        public static func showStatusBar(with animation: UIStatusBarAnimation) -> Void {
+            UIApplication.shared.setStatusBarHidden(false, with: animation)
+        }
+    }
+    
+    /// (是否为 Debug 模式).
+    public static let isDebugMode: Bool = {
+        #if DEBUG
+            return true
+        #else
+            return false
+        #endif
+    }()
     
     ///  Previous viewController, set in `IWRootVC.viewWillDisappear`.
     /// (上一个控制器, 在 IWRootVC.viewWillDisappear 进行赋值).
@@ -28,7 +56,7 @@ public class iw {
         let tabbarClass: AnyClass! = NSClassFromString("UILayoutContainerView")
         let windowFirst = window.subviews.first!
         if (windowFirst.isKind(of: tabbarClass)) {
-            let findTabbar = iw.find(tabbarIn: window.subviews.first?.subviews as NSArray?)
+            let findTabbar = iw.find(tabbarIn: window.subviews.first?.subviews)
             if hasTabbar && findTabbar { return true }
         }
         return false
@@ -149,16 +177,12 @@ public class iw {
 }
 
 fileprivate extension iw {
-    static func find(tabbarIn array: NSArray?) -> Bool {
-        if array != nil {
+    static func find(tabbarIn array: [UIView]?) -> Bool {
+        if array.isSome {
             for obj in array! {
-                let v = obj as! UIView
+                let v = obj
                 if v is UITabBar {
-                    let tabbar = v as! UITabBar
-                    if tabbar.isHidden {
-                        return false
-                    }
-                    return true
+                    return !(v as! UITabBar).isHidden
                 }
             }
         }

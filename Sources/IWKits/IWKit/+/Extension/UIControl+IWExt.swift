@@ -69,7 +69,7 @@ extension UIControl {
         if iwe_events == nil { iwe_events = [String: IWControlWrapper?]() }
         
         let key = IWControlWrapper.getHashKey(for: controlEvents)
-        iwe_events?.keys.contains(key).true({ iwe_events!.removeValue(forKey: key); self.removeTarget(key, action: nil, for: controlEvents) })
+        iwe_events?.keys.contains(key).founded({ iwe_events!.removeValue(forKey: key); self.removeTarget(key, action: nil, for: controlEvents) })
     }
     
     /// Control events has been exists.

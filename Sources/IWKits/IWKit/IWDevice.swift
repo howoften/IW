@@ -14,7 +14,9 @@ public class IWDevice: NSObject {
     /// (是否为 iPhone).
     public static let isiPhone: Bool = { return (UIDevice.current.model == "iPhone") }()
     /// (是否为 iPhone X).
-    public static let isiPhoneX: Bool = { return (IWDevice.isiPhone && CGFloat.screenHeight == 812) }()
+    public static let isiPhoneX: Bool = {
+        return iw.isDebugMode.founded({ iw.screenHeight == 812 }, elseReturn: { IWDevice.isiPhone.and(iw.screenHeight == 812) })
+    }()
     
     /// (设备方向).
     static var orientation: UIDeviceOrientation {

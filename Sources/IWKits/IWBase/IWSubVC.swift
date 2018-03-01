@@ -11,7 +11,7 @@ open class IWSubVC: IWRootVC {
         
         
         if #available(iOS 11, *) {
-            self.isEnableLargeTitlesStyle.true({
+            self.isEnableLargeTitlesStyle.founded({
                 self.largeTitleDisplayMode = .never
             })
         }

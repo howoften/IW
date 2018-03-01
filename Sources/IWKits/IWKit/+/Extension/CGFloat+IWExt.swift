@@ -36,12 +36,12 @@ public extension CGFloat {
     
     /// (不考虑是否隐藏的情况下， tabbar 的高度).
     public static var tabbarHeightNormal: CGFloat {
-        return IWDevice.isiPhoneX.true({ 83 }, elseReturn: { 49 })
+        return IWDevice.isiPhoneX.founded({ 83 }, elseReturn: { 49 })
     }
     
     /// (不考虑是否隐藏的情况下， navBar 的高度).
     public static var navBarHeightNormal: CGFloat {
-        return IWDevice.isiPhoneX.true({ 88 }, elseReturn: { 64 })
+        return IWDevice.isiPhoneX.founded({ 88 }, elseReturn: { 64 })
     }
     
     public static var statusBarHeight: CGFloat {
@@ -85,13 +85,13 @@ public extension CGFloat {
     /// (最大值).
     public static let max: CGFloat = CGFloat.greatestFiniteMagnitude
     
-    /// (屏幕高度, 会根据设备方向的不同返回不同值).
+    /// (屏幕高度, 会根据设备方向的不同返回不同值, 需要先设置 IWApp.supportRotation 才会触发自动识别高度).
     public static var screenHeight: CGFloat {
-        return (IWDevice.orientation == .unknown).or({ IWDevice.orientation.isPortrait }).true({ iw.screenHeight }, elseReturn: { iw.screenWidth })
+        return (IWApp.supportRotation && (IWDevice.orientation == .unknown || IWDevice.orientation.isPortrait)) ? iw.screenWidth : iw.screenHeight
     }
-    /// (屏幕宽度, 会根据设备方向的不同返回不同值).
+    /// (屏幕宽度, 会根据设备方向的不同返回不同值, 需要先设置 IWApp.supportRotation 才会触发自动识别宽度).
     public static var screenWidth: CGFloat {
-        return (IWDevice.orientation == .unknown).or({ IWDevice.orientation.isPortrait }).true({ iw.screenWidth }, elseReturn: { iw.screenHeight })
+        return (IWApp.supportRotation && (IWDevice.orientation == .unknown || IWDevice.orientation.isPortrait)) ? iw.screenHeight : iw.screenWidth
     }
     public static var screenBounds: CGRect {
         return UIScreen.main.bounds

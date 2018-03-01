@@ -194,43 +194,66 @@ public extension Float {
 // MARK:- Bool
 public extension Bool {
     
+    /// (值为 false 返回 true).
+    public var isFalse: Bool {
+        return !self
+    }
+    /// (值为 true 返回 true).
+    public var isTrue: Bool {
+        return self
+    }
+    
+    /// (obj = true).
+    public mutating func enable() -> Void {
+        self = true
+    }
+    /// (obj = false).
+    public mutating func disable() -> Void {
+        self = false
+    }
+    
+    /// (obj = false).
+    public mutating func toFalse() -> Void {
+        self = false
+    }
+    /// (obj = true).
+    public mutating func toTrue() -> Void {
+        self = true
+    }
+    /// (切换值).
     public mutating func toggle() -> Void {
         self = !self
     }
     
-    /// (true 时执行todo, false 时执行 else).
-    public func `true`(_ todo: (() -> Void), else: (() -> Void)? = nil) -> Void {
+    /// (条件成立时执行 todo, 不成立时执行 else).
+    public func founded(_ todo: (() -> Void), else: (() -> Void)? = nil) -> Void {
         if self { `todo`() } else { `else`?() }
     }
-    /// (false 时执行todo, true 时执行 else).
-    public func `false`(_ todo: (() -> Void), else: (() -> Void)? = nil) -> Void {
+    /// (条件不成立时执行 todo, 成立时执行 else).
+    public func unfounded(_ todo: (() -> Void), else: (() -> Void)? = nil) -> Void {
         if !self { `todo`() } else { `else`?() }
     }
-    
-    public func `true`<T>(_ return: (() -> T), elseReturn: (() -> T)) -> T {
+    /// (条件成立时返回 return，不成立时返回 elseReturn).
+    public func founded<T>(_ return: (() -> T), elseReturn: (() -> T)) -> T {
         return self ? `return`() : elseReturn()
     }
-    public func `true`<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
+    /// (条件成立时返回 return，不成立时返回 elseReturn).
+    public func founded<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
         return self ? `return`() : elseReturn()
     }
-    /// (value ? true : false).
-    public func trueOrFalse() -> Bool {
-        return self ? true : false
+    
+    /// (条件不成立时返回 return，成立时返回 elseReturn).
+    public func unfounded<T>(_ return: (() -> T), elseReturn: (() -> T)) -> T {
+        return !self ? `return`() : elseReturn()
+    }
+    /// (条件不成立时返回 return，成立时返回 elseReturn).
+    public func unfounded<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
+        return !self ? `return`() : elseReturn()
     }
     
-    public func `false`<T>(_ return: (() -> T), elseReturn: (() -> T)) -> T {
-        return !self ? `return`() : elseReturn()
-    }
-    public func `false`<T>(_ return: @autoclosure () -> T, elseReturn: @autoclosure () -> T) -> T {
-        return !self ? `return`() : elseReturn()
-    }
-    /// (!value ? true : false).
-    public func falseOrTrue() -> Bool {
-        return !self ? true : false
-    }
     
     /// (或).
-    public func or(_ other:@autoclosure () -> Bool) -> Bool {
+    public func or(_ other: @autoclosure () -> Bool) -> Bool {
         return self || other()
     }
     /// (或).

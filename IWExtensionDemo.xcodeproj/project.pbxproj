@@ -38,14 +38,10 @@
 		926CB8CB1FFC047500CBD434 /* UIGestureRecognizer+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8881FFC047500CBD434 /* UIGestureRecognizer+IWExt.swift */; };
 		926CB8CC1FFC047500CBD434 /* UIControl+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8891FFC047500CBD434 /* UIControl+IWExt.swift */; };
 		926CB8CD1FFC047500CBD434 /* WKWebView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB88B1FFC047500CBD434 /* WKWebView+IW.swift */; };
-		926CB8CE1FFC047500CBD434 /* CGSize+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB88C1FFC047500CBD434 /* CGSize+IW.swift */; };
 		926CB8CF1FFC047500CBD434 /* UIScrollView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB88D1FFC047500CBD434 /* UIScrollView+IW.swift */; };
 		926CB8D01FFC047500CBD434 /* UIImageView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB88E1FFC047500CBD434 /* UIImageView+IW.swift */; };
-		926CB8D11FFC047500CBD434 /* UIImage+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB88F1FFC047500CBD434 /* UIImage+IW.swift */; };
 		926CB8D21FFC047500CBD434 /* UILabel+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8901FFC047500CBD434 /* UILabel+IW.swift */; };
-		926CB8D41FFC047500CBD434 /* UIButton+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8921FFC047500CBD434 /* UIButton+IW.swift */; };
 		926CB8D51FFC047500CBD434 /* UIView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8931FFC047500CBD434 /* UIView+IW.swift */; };
-		926CB8D61FFC047500CBD434 /* UIFont+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8941FFC047500CBD434 /* UIFont+IW.swift */; };
 		926CB8D71FFC047500CBD434 /* UITableViewHeaderFooterView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8951FFC047500CBD434 /* UITableViewHeaderFooterView+IW.swift */; };
 		926CB8D81FFC047500CBD434 /* UIWindow+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8961FFC047500CBD434 /* UIWindow+IW.swift */; };
 		926CB8D91FFC047500CBD434 /* IWViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8971FFC047500CBD434 /* IWViewBase.swift */; };
@@ -80,6 +76,10 @@
 		928BE5F220178FA100B6D673 /* CGSize+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BE5F120178FA100B6D673 /* CGSize+IWExt.swift */; };
 		928BE5F420178FB300B6D673 /* CGRect+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BE5F320178FB300B6D673 /* CGRect+IWExt.swift */; };
 		928DA2BF201B1E940025A064 /* IWTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DA2BE201B1E940025A064 /* IWTabBarController.swift */; };
+		9296C2702043A8EF002A6303 /* UIButton+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296C26F2043A8EF002A6303 /* UIButton+IWExt.swift */; };
+		9296C2722043AE12002A6303 /* UIFont+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296C2712043AE12002A6303 /* UIFont+IWExt.swift */; };
+		9296C2742043AFCA002A6303 /* UIImage+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296C2732043AFCA002A6303 /* UIImage+IWExt.swift */; };
+		9296C2762043B4A5002A6303 /* UILabel+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296C2752043B4A5002A6303 /* UILabel+IWExt.swift */; };
 		92A3C3602017583C00EDBB77 /* Optional+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C35F2017583C00EDBB77 /* Optional+IWExt.swift */; };
 		92A3C3642017855400EDBB77 /* UIView+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C3632017855400EDBB77 /* UIView+IWExt.swift */; };
 		92A3C3662017863200EDBB77 /* CGFloat+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C3652017863200EDBB77 /* CGFloat+IWExt.swift */; };
@@ -131,14 +131,10 @@
 		926CB8881FFC047500CBD434 /* UIGestureRecognizer+IWExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+IWExt.swift"; sourceTree = "<group>"; };
 		926CB8891FFC047500CBD434 /* UIControl+IWExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+IWExt.swift"; sourceTree = "<group>"; };
 		926CB88B1FFC047500CBD434 /* WKWebView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+IW.swift"; sourceTree = "<group>"; };
-		926CB88C1FFC047500CBD434 /* CGSize+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+IW.swift"; sourceTree = "<group>"; };
 		926CB88D1FFC047500CBD434 /* UIScrollView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+IW.swift"; sourceTree = "<group>"; };
 		926CB88E1FFC047500CBD434 /* UIImageView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+IW.swift"; sourceTree = "<group>"; };
-		926CB88F1FFC047500CBD434 /* UIImage+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+IW.swift"; sourceTree = "<group>"; };
 		926CB8901FFC047500CBD434 /* UILabel+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+IW.swift"; sourceTree = "<group>"; };
-		926CB8921FFC047500CBD434 /* UIButton+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+IW.swift"; sourceTree = "<group>"; };
 		926CB8931FFC047500CBD434 /* UIView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+IW.swift"; sourceTree = "<group>"; };
-		926CB8941FFC047500CBD434 /* UIFont+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+IW.swift"; sourceTree = "<group>"; };
 		926CB8951FFC047500CBD434 /* UITableViewHeaderFooterView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewHeaderFooterView+IW.swift"; sourceTree = "<group>"; };
 		926CB8961FFC047500CBD434 /* UIWindow+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+IW.swift"; sourceTree = "<group>"; };
 		926CB8971FFC047500CBD434 /* IWViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWViewBase.swift; sourceTree = "<group>"; };
@@ -173,6 +169,10 @@
 		928BE5F120178FA100B6D673 /* CGSize+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+IWExt.swift"; sourceTree = "<group>"; };
 		928BE5F320178FB300B6D673 /* CGRect+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+IWExt.swift"; sourceTree = "<group>"; };
 		928DA2BE201B1E940025A064 /* IWTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWTabBarController.swift; sourceTree = "<group>"; };
+		9296C26F2043A8EF002A6303 /* UIButton+IWExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+IWExt.swift"; sourceTree = "<group>"; };
+		9296C2712043AE12002A6303 /* UIFont+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+IWExt.swift"; sourceTree = "<group>"; };
+		9296C2732043AFCA002A6303 /* UIImage+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+IWExt.swift"; sourceTree = "<group>"; };
+		9296C2752043B4A5002A6303 /* UILabel+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+IWExt.swift"; sourceTree = "<group>"; };
 		92A3C35F2017583C00EDBB77 /* Optional+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+IWExt.swift"; sourceTree = "<group>"; };
 		92A3C3632017855400EDBB77 /* UIView+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IWExt.swift"; sourceTree = "<group>"; };
 		92A3C3652017863200EDBB77 /* CGFloat+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+IWExt.swift"; sourceTree = "<group>"; };
@@ -336,10 +336,12 @@
 		926CB8871FFC047500CBD434 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				92A3C3632017855400EDBB77 /* UIView+IWExt.swift */,
+				9296C2752043B4A5002A6303 /* UILabel+IWExt.swift */,
+				9296C26F2043A8EF002A6303 /* UIButton+IWExt.swift */,
 				926CB8881FFC047500CBD434 /* UIGestureRecognizer+IWExt.swift */,
 				926CB8891FFC047500CBD434 /* UIControl+IWExt.swift */,
 				92A3C35F2017583C00EDBB77 /* Optional+IWExt.swift */,
-				92A3C3632017855400EDBB77 /* UIView+IWExt.swift */,
 				92A3C3652017863200EDBB77 /* CGFloat+IWExt.swift */,
 				92A3C369201788B600EDBB77 /* Basic+IWExt.swift */,
 				92A3C36B20178D0A00EDBB77 /* UIColor+IWExt.swift */,
@@ -353,6 +355,8 @@
 				928BE5F120178FA100B6D673 /* CGSize+IWExt.swift */,
 				928BE5F320178FB300B6D673 /* CGRect+IWExt.swift */,
 				927129FA202952B500D19B7B /* UIRectCorner+IWExt.swift */,
+				9296C2712043AE12002A6303 /* UIFont+IWExt.swift */,
+				9296C2732043AFCA002A6303 /* UIImage+IWExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -362,14 +366,10 @@
 			children = (
 				926CB8981FFC047500CBD434 /* ViewController */,
 				926CB88B1FFC047500CBD434 /* WKWebView+IW.swift */,
-				926CB88C1FFC047500CBD434 /* CGSize+IW.swift */,
 				926CB88D1FFC047500CBD434 /* UIScrollView+IW.swift */,
 				926CB88E1FFC047500CBD434 /* UIImageView+IW.swift */,
-				926CB88F1FFC047500CBD434 /* UIImage+IW.swift */,
 				926CB8901FFC047500CBD434 /* UILabel+IW.swift */,
-				926CB8921FFC047500CBD434 /* UIButton+IW.swift */,
 				926CB8931FFC047500CBD434 /* UIView+IW.swift */,
-				926CB8941FFC047500CBD434 /* UIFont+IW.swift */,
 				926CB8951FFC047500CBD434 /* UITableViewHeaderFooterView+IW.swift */,
 				926CB8961FFC047500CBD434 /* UIWindow+IW.swift */,
 				926CB8971FFC047500CBD434 /* IWViewBase.swift */,
@@ -676,8 +676,8 @@
 			files = (
 				926CB8E71FFC047500CBD434 /* IWVerificationCodeVC.swift in Sources */,
 				926CB8BF1FFC047500CBD434 /* UITableView+IWReusable.swift in Sources */,
-				926CB8D41FFC047500CBD434 /* UIButton+IW.swift in Sources */,
 				928BE5F220178FA100B6D673 /* CGSize+IWExt.swift in Sources */,
+				9296C2722043AE12002A6303 /* UIFont+IWExt.swift in Sources */,
 				926CB8EA1FFC047500CBD434 /* IWRequest.swift in Sources */,
 				DA8C9D011FF889A400BF9B38 /* ViewController.swift in Sources */,
 				926CB8C91FFC047500CBD434 /* IWLocalAuthentication.swift in Sources */,
@@ -702,12 +702,12 @@
 				926CB8DF1FFC047500CBD434 /* IWAudio.swift in Sources */,
 				926CB8DC1FFC047500CBD434 /* Data+IW.swift in Sources */,
 				926CB8CB1FFC047500CBD434 /* UIGestureRecognizer+IWExt.swift in Sources */,
-				926CB8CE1FFC047500CBD434 /* CGSize+IW.swift in Sources */,
 				92A3C37220178DA700EDBB77 /* UINib+IWExt.swift in Sources */,
 				923E710A201826D2004B9D1F /* IWWaveLoadingView.swift in Sources */,
 				926CB8CF1FFC047500CBD434 /* UIScrollView+IW.swift in Sources */,
 				926CB8D51FFC047500CBD434 /* UIView+IW.swift in Sources */,
 				926CB8DD1FFC047500CBD434 /* String+IW.swift in Sources */,
+				9296C2702043A8EF002A6303 /* UIButton+IWExt.swift in Sources */,
 				92E53FF02022C61D002C5CA6 /* IWTableViewCell.swift in Sources */,
 				926CB8B81FFC047500CBD434 /* IWViewModel.swift in Sources */,
 				927129FB202952B500D19B7B /* UIRectCorner+IWExt.swift in Sources */,
@@ -718,6 +718,7 @@
 				926CB8CC1FFC047500CBD434 /* UIControl+IWExt.swift in Sources */,
 				926CB8DE1FFC047500CBD434 /* UIColor+IW.swift in Sources */,
 				92B6F1422022A53400FA34AA /* DetailViewController.swift in Sources */,
+				9296C2762043B4A5002A6303 /* UILabel+IWExt.swift in Sources */,
 				926CB8DB1FFC047500CBD434 /* IWViewControllerBase.swift in Sources */,
 				926CB8C51FFC047500CBD434 /* IWAuthorization.swift in Sources */,
 				92A3C36E20178D2900EDBB77 /* String+IWExt.swift in Sources */,
@@ -727,7 +728,6 @@
 				928BE5EC20178F3800B6D673 /* UITextField+IWExt.swift in Sources */,
 				928DA2BF201B1E940025A064 /* IWTabBarController.swift in Sources */,
 				926CB8D01FFC047500CBD434 /* UIImageView+IW.swift in Sources */,
-				926CB8D61FFC047500CBD434 /* UIFont+IW.swift in Sources */,
 				928BE5EE20178F6400B6D673 /* UIPageControl+IWExt.swift in Sources */,
 				926CB8B91FFC047500CBD434 /* IWAppDelegate.swift in Sources */,
 				926CB8D91FFC047500CBD434 /* IWViewBase.swift in Sources */,
@@ -742,13 +742,13 @@
 				926CB8C11FFC047500CBD434 /* IWNibLoadable.swift in Sources */,
 				926CB8B61FFC047500CBD434 /* IWRootVC.swift in Sources */,
 				926CB8CA1FFC047500CBD434 /* Array+IW.swift in Sources */,
+				9296C2742043AFCA002A6303 /* UIImage+IWExt.swift in Sources */,
 				926CB8E51FFC047500CBD434 /* IWLogConfiguration.swift in Sources */,
 				926CB8DA1FFC047500CBD434 /* UIViewController+IWViewController.swift in Sources */,
 				926CB8C01FFC047500CBD434 /* UICollectionView+IWReusable.swift in Sources */,
 				926CB8D81FFC047500CBD434 /* UIWindow+IW.swift in Sources */,
 				926CB8B51FFC047500CBD434 /* IWNavContoller.swift in Sources */,
 				928BE5F420178FB300B6D673 /* CGRect+IWExt.swift in Sources */,
-				926CB8D11FFC047500CBD434 /* UIImage+IW.swift in Sources */,
 				DA8C9CFF1FF889A400BF9B38 /* AppDelegate.swift in Sources */,
 				92A3C3662017863200EDBB77 /* CGFloat+IWExt.swift in Sources */,
 				926CB8C31FFC047500CBD434 /* IWTimer.swift in Sources */,

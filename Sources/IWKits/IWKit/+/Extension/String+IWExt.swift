@@ -95,11 +95,11 @@ public extension String {
     
     /// (获取最后一个字符串).
     public var lastCharacter: String {
-        return (self.count == 1).true({ self }, elseReturn: { self[self.index(before: self.endIndex)...].toString })
+        return (self.count == 1).founded({ self }, elseReturn: { self[self.index(before: self.endIndex)...].toString })
     }
     /// (移除最后一个字符串).
     public var removeLastCharacter: String {
-        return (self == "").true({ self }, elseReturn: { var str = self; str.remove(at: self.index(before: self.endIndex)); return str })
+        return (self == "").founded({ self }, elseReturn: { var str = self; str.remove(at: self.index(before: self.endIndex)); return str })
     }
     
     /// (移除所有空格).
@@ -273,7 +273,7 @@ public extension String {
     public static func hexLetterString(withInteger integer: NSInteger) -> String {
         assert(integer < 16, "要转换的数必须是16进制里的个位数，即小于16，但你写的是\(integer)")
         let hex = ["A", "B", "C", "D", "E", "F"]
-        return (integer >= 10).true({ hex[integer - 10] }, elseReturn: { "\(integer)" })
+        return (integer >= 10).founded({ hex[integer - 10] }, elseReturn: { "\(integer)" })
     }
     
     public func index(offsetBy: String.IndexDistance) -> String.Index {

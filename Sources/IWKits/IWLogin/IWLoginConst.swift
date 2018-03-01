@@ -32,21 +32,25 @@ public class IWLoginConst: NSObject {
     }
     
     public class func nobackgroundButton(_ btn: UIButton) {
-        btn.iwe.titleColor(UIColor.button.default, .normal)
-        btn.iwe.titleColor(UIColor.button.default.alpha(0.4), .highlighted)
-        btn.iwe.titleColor(.gray, .disabled)
-        
-        btn.iwe.fontSize = buttonFontSize
-        btn.iwe.titleAlignment = .center
+        btn.config { (sender) in
+            sender.titleColor(UIColor.button.default, .normal)
+            sender.titleColor(UIColor.button.default.alpha(0.4), .highlighted)
+            sender.titleColor(.gray, .disabled)
+            
+            sender.fontSize = buttonFontSize
+            sender.titleAlignment = .center
+        }
     }
     
     public class func backgroundButton(_ btn: UIButton) {
-        btn.iwe.titleColor(.white, .normal)
-        btn.iwe.titleColor(UIColor.white.alpha(0.4), .highlighted)
-        
-        btn.iwe.fontSize = buttonFontSize
-        btn.iwe.titleAlignment = .center
-        btn.backgroundColor = UIColor.button.default
+        btn.config { (sender) in
+            sender.titleColor(.white, .normal)
+            sender.titleColor(UIColor.white.alpha(0.4), .highlighted)
+            
+            sender.fontSize = buttonFontSize
+            sender.titleAlignment = .center
+            sender.backgroundColor = UIColor.button.default
+        }
     }
 }
 

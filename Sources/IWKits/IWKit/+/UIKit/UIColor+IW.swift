@@ -178,11 +178,11 @@ public extension IWColor where Color: UIColor {
         context.setFillColor(co.cgColor)
         
         if cornerRadius > 0 {
-            let path = UIBezierPath.init(roundedRect: sz.iwe.rect, cornerRadius: cornerRadius)
+            let path = UIBezierPath.init(roundedRect: sz.toRect, cornerRadius: cornerRadius)
             path.addClip()
             path.fill()
         } else {
-            context.fill(sz.iwe.rect)
+            context.fill(sz.toRect)
         }
         
         resultImage = UIGraphicsGetImageFromCurrentImageContext()

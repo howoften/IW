@@ -150,7 +150,7 @@ public class IWWaveLoadingView: UIView {
         addTo.unwrapped ({ (vc) in
             self.alpha = 0
             self.y = .screenHeight - .tabbarHeight
-            IWDevice.isiPhoneX.and({ !iw.isTabbarExists }).true({
+            IWDevice.isiPhoneX.and({ !iw.isTabbarExists }).founded({
                 self.height = 24 + .bottomSpacing
             })
             
