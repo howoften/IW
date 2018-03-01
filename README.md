@@ -19,48 +19,36 @@ pod 'IW'
 
 # 更新说明
 #### 2018.0301
-###### A
+###### A  
 
-全局（`IWGlobal.swift`）方法，断言: iw.assert.failure；
+全局（`IWGlobal.swift`）方法，断言: iw.assert.failure；  
+全局（`IWGlobal.swift`）方法，app设置: iw.app.hideStatusBar, iw.app.showStatusBar；  
+全局（`IWGlobal.swift`）方法，是否为Debug模式: iw.isDebugMode;  
+`extension Bool`：isFalse、isTrue、func enable()、func disable()、func toFalse()、func toTrue()；  
+  
+###### C  
 
-全局（`IWGlobal.swift`）方法，app设置: iw.app.hideStatusBar, iw.app.showStatusBar；
-
-全局（`IWGlobal.swift`）方法，是否为Debug模式: iw.isDebugMode;
-
-`extension Bool`：isFalse、isTrue、func enable()、func disable()、func toFalse()、func toTrue()；
-
-###### C
-
-字体类型设置方式（`UIFont+IWExt.swift`）；
-
-瀑布流布局 （`IWCollectionViewFlowLayout.swift`）；
-
-`extension Bool`，函数名 true/false 修改为 founded、unfounded；
-
-（`IWDevice.swift`）是否为 iPhone X 判断方式；
-
-（`CGFloat+IWExt.swift`）设备方向动态获取增加限制条件（`IWApp.supportRotation = true` 时才会动态获取）；
-
+字体类型设置方式（`UIFont+IWExt.swift`）；  
+瀑布流布局 （`IWCollectionViewFlowLayout.swift`）；  
+`extension Bool`，函数名 true/false 修改为 founded、unfounded；  
+（`IWDevice.swift`）是否为 iPhone X 判断方式；  
+（`CGFloat+IWExt.swift`）设备方向动态获取增加限制条件（`IWApp.supportRotation = true` 时才会动态获取）；  
+  
 #### 2018.0130
-###### A
-`Optional+IWExt`：可选值扩展，详情参见：[Optional的扩展](https://www.iwecon.cc/2018/98.html)；
+###### A  
 
-`IWStoreProductVC`：App Store 应用详情；
-
-`IWTabBarController`：用于自定义TabBar；
-
-`IWWaveLoadingView`：波浪形 loading view；
-
-修正一些不符合逻辑的地方；
-
-`Demo` 添加部分展示，后续会持续完善；
-
-拆分 `IWExtension.swift`；
+修正一些不符合逻辑的地方；  
+`Optional+IWExt`：可选值扩展，详情参见：[Optional的扩展](https://www.iwecon.cc/2018/98.html)；  
+`IWStoreProductVC`：App Store 应用详情；  
+`IWTabBarController`：用于自定义TabBar；  
+`IWWaveLoadingView`：波浪形 loading view；  
+`Demo` 添加部分展示，后续会持续完善；  
+拆分 `IWExtension.swift`；  
 
 #### 2018.0110
-期间修改了不少东西，并且支持 `CocoaPods` 安装了！喜大普奔 折腾了好久 ~_~||| \
-新增加了 `类名`、`方法名` 的 `中文注释`; \
-新增加了 `IWRootVC` 两个属性 `isEnterByPop` 和 `isEnterByPush` , 功能分别为判断该视图`是否为push进入`, `是否为pop进入`; \
+期间修改了不少东西，并且支持 `CocoaPods` 安装了！喜大普奔 折腾了好久 ~_~|||   
+新增加了 `类名`、`方法名` 的 `中文注释`;   
+新增加了 `IWRootVC` 两个属性 `isEnterByPop` 和 `isEnterByPush` , 功能分别为判断该视图`是否为push进入`, `是否为pop进入`;   
 
 #### 2017.1204
 `A`&ensp;新增 `UIColor+IW` 用于处理颜色这一块儿; \
