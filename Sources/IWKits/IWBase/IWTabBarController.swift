@@ -17,6 +17,13 @@ open class IWTabBarController: UITabBarController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        _init()
+    }
+    
+    private func _init() {
+        // 不透明 tabBar
+        self.tabBar.isTranslucent = false
     }
     
     open override func didReceiveMemoryWarning() {

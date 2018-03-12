@@ -34,7 +34,7 @@ public extension IWView where View: UIScrollView {
         get { return view.contentInset }
         set {
             (viewController as? IWRootVC)?.listViewThread.async {
-                iw.main.execution {
+                iw.queue.main {
                     var nv = newValue
                     if self.view.frame == .screenBounds && nv.bottom == 0 {
                         nv.bottom = .bottomSpacing
@@ -113,7 +113,7 @@ fileprivate extension IWView where View: UIScrollView {
     
     final func asyncAutoSetEdge(_ superView: UIView) -> Void {
         
-        iw.main.execution {
+        iw.queue.main {
             if superView.bounds == .screenBounds {
                 let vc = superView.iwe.viewController
                 if vc != nil {

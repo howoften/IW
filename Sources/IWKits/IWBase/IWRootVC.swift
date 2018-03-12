@@ -4,14 +4,6 @@
 
 import UIKit
 
-/*
- public protocol IWConfigureReusableCell {
- /// Take the place of 'cellForRowAtIndexPath'
- func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
- /// Take the place of 'didSelectAtIndexPath'
- func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) -> Void
- } */
-
 open class IWRootVC: UIViewController {
     
     /// (IWListView).
@@ -48,6 +40,30 @@ open class IWRootVC: UIViewController {
     
     /// Auto hide bottom bar when pushed.
     public var isAutoHideBottomBarWhenPushed: Bool = false
+    
+    /// (指示状态).
+    public lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        indicator.hidesWhenStopped = true
+        indicator.startAnimating()
+        return indicator
+    }()
+    /// (在导航栏右侧按钮上显示指示状态).
+    public var showActivityIndicatorToNavRightItem: Bool = false {
+        didSet {
+            if showActivityIndicatorToNavRightItem { self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator) } else {
+                self.navigationItem.leftBarButtonItem = nil
+            }
+        }
+    }
+    /// (在导航栏左侧按钮上显示指示状态).
+    public var showActivityIndicatorToNavLeftItem: Bool = false {
+        didSet {
+            if showActivityIndicatorToNavLeftItem { self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: activityIndicator) } else {
+                self.navigationItem.leftBarButtonItem = nil
+            }
+        }
+    }
     
     /// Navigation item title color.
     public var navTitleColor: UIColor {
@@ -116,10 +132,11 @@ open class IWRootVC: UIViewController {
     }
     
     private func _init() {
-        if #available(iOS 11, *) {} else {
-            // iOS 11 以下开启
-            //self.automaticallyAdjustsScrollViewInsets = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        if self.tabBarController.and(then: { $0.tabBar.isTranslucent }).or(true).isFalse {
+            self.edgesForExtendedLayout = .bottom
         }
+        
         self.isAutoHideBottomBarWhenPushed = true
         self.view.backgroundColor = .white
     }
@@ -166,8 +183,8 @@ open class IWRootVC: UIViewController {
     /// (用于配置一些其他信息, 例如网络请求等).
     open func configure() -> Void { }
     
-    /// (0.2.5 已废弃, 请使用 configureDidSelect(_:indexPath:)).
-    @available(iOS, introduced: 8.0, deprecated: 8.0, message: "Use configureDidSelect(_:indexPath:)")
+    /// (v0.2.5 已废弃, 请使用 configureDidSelect(_:indexPath:)).
+    @available(*, deprecated: 0.2.5, message: "Use configureDidSelect(_:indexPath:)")
     open func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) { }
     /// (Cell 点击/选中时触发).
     open func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) { }

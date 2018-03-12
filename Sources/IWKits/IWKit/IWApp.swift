@@ -40,5 +40,6 @@ class IWApp: NSObject {
     
     /// (支持旋转, 设置后会响应 CGFloat.screenWidth, .screenHeight 动态取值).
     public static var supportRotation = false
+    
 }
 

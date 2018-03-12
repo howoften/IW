@@ -47,7 +47,7 @@ public class IWCycleView: UIView {
     public var displayTime: Float = 3.0
     /// page control 距离底部的距离
     public var distanceOfPageControlBottom: CGFloat = 0 {
-        didSet { iw.main.execution { self.refreshDistanceOfPageControlBottom() } }
+        didSet { iw.queue.main { self.refreshDistanceOfPageControlBottom() } }
     }
     
     /// (image view 显示模式, 默认为 .redraw).
@@ -198,7 +198,7 @@ extension IWCycleView {
     
     private func setUpTimer() -> Void {
         
-        let _ = iw.delay.execution(delay: TimeInterval(displayTime <= 0 ? 3.0 : displayTime)) {
+        iw.delay.execution(delay: TimeInterval(displayTime <= 0 ? 3.0 : displayTime)) {
             if self.timer == nil {
                 self.timer = IWTimer.timer(TimeInterval(self.displayTime <= 0 ? 3.0 : self.displayTime), target: self, action: #selector(self.timerDidFired(_:)), userInfo: nil, repeats: true)
             }

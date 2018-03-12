@@ -227,7 +227,7 @@ extension IWWebVC {
             if newProgress >= 1.0 {
                 progressView.setProgress(1.0, animated: true)
                 
-                let _ = iw.delay.execution(delay: 1.0, toRun: {
+                iw.delay.execution(delay: 1.0, toRun: {
                     self.progressView.isHidden = true
                     self.progressView.setProgress(0, animated: false)
                 })
@@ -288,7 +288,7 @@ extension IWWebVC {
     fileprivate func hideBackgroundColor() -> Void {
         web.backgroundColor = .clear
         web.iwe.wkContentView?.backgroundColor = .clear
-        let _ = iw.delay.execution(delay: 0.5) {
+        iw.delay.execution(delay: 0.5) {
             self.hostInfoLabel.isHidden = false
         }
     }

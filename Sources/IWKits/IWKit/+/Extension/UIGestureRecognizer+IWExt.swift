@@ -52,7 +52,7 @@ public extension UIGestureRecognizer {
         }
         
         self.iwe_shouldHandlerAction = true
-        let _ = iw.delay.execution(delay: delay) {
+        iw.delay.execution(delay: delay) {
             block()
         }
     }

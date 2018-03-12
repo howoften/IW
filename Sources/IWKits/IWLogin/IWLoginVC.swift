@@ -141,7 +141,7 @@ public class IWLoginVC: IWRootVC {
         helpButton.isEnabled = false
         navRightActivityView.startAnimating()
 		
-		let _ = iw.delay.execution(delay: 3.0) {
+		iw.delay.execution(delay: 3.0) {
 			self.verifyCompleted()
 		}
     }

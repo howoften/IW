@@ -13,7 +13,7 @@ public class IWNavController: UINavigationController {
     /// (是否开启向右滑动返回上一个控制器).
     public var isEnableRightSlideToPop: Bool = false {
         willSet {
-            iw.main.execution {
+            iw.queue.main {
                 newValue ? self.enableRightSlideToPop() : self.disableRightSlideToPop()
             }
         }
@@ -84,6 +84,11 @@ public class IWNavController: UINavigationController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        _init()
+    }
+    
+    private func _init() {
+        self.navigationBar.isTranslucent = false
     }
     
     override public func didReceiveMemoryWarning() {

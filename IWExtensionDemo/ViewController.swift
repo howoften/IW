@@ -59,13 +59,13 @@ class ViewController: IWRootVC {
     }
     func showWaveLoading() -> Void {
         iw.loading.showWaveLoading()
-        let _ = iw.delay.execution(delay: 3) {
+        iw.delay.execution(delay: 3) {
             iw.loading.stopWaveLoading()
         }
     }
     func showWave(with maskType: IWWaveLoadingView.MaskViewType) {
         iw.loading.showWaveLoading(withMaskType: maskType)
-        let _ = iw.delay.execution(delay: 3) {
+        iw.delay.execution(delay: 3) {
             iw.loading.stopWaveLoading()
         }
     }

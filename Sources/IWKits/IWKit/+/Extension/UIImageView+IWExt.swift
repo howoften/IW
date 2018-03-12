@@ -39,11 +39,11 @@ public extension UIImageView {
                     if imgData != nil {
                         let img = UIImage(data: imgData!)
                         if img != nil {
-                            iw.main.execution { self.image = img }
+                            iw.queue.main { self.image = img }
                             self.save(image: imgData!)
                         } else {
                             if placeholder != "" {
-                                iw.main.execution { self.image = UIImage(named: placeholder) }
+                                iw.queue.main { self.image = UIImage(named: placeholder) }
                             }
                         }
                     }

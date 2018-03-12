@@ -26,7 +26,7 @@ extension UINavigationController: UINavigationBarDelegate {
         }
         
         if shoudPop {
-            iw.main.execution {
+            iw.queue.main {
                 self.popViewController(animated: true)
             }
         } else {

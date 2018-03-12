@@ -76,6 +76,8 @@
 		928BE5F220178FA100B6D673 /* CGSize+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BE5F120178FA100B6D673 /* CGSize+IWExt.swift */; };
 		928BE5F420178FB300B6D673 /* CGRect+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BE5F320178FB300B6D673 /* CGRect+IWExt.swift */; };
 		928DA2BF201B1E940025A064 /* IWTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DA2BE201B1E940025A064 /* IWTabBarController.swift */; };
+		9293119920564CBF00D9B42B /* IWFullscreenPopGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293119820564CBF00D9B42B /* IWFullscreenPopGesture.swift */; };
+		9293119B20564D1500D9B42B /* DispatchQueue+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293119A20564D1500D9B42B /* DispatchQueue+IWExt.swift */; };
 		9296C2702043A8EF002A6303 /* UIButton+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296C26F2043A8EF002A6303 /* UIButton+IWExt.swift */; };
 		9296C2722043AE12002A6303 /* UIFont+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296C2712043AE12002A6303 /* UIFont+IWExt.swift */; };
 		9296C2742043AFCA002A6303 /* UIImage+IWExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296C2732043AFCA002A6303 /* UIImage+IWExt.swift */; };
@@ -169,6 +171,8 @@
 		928BE5F120178FA100B6D673 /* CGSize+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+IWExt.swift"; sourceTree = "<group>"; };
 		928BE5F320178FB300B6D673 /* CGRect+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+IWExt.swift"; sourceTree = "<group>"; };
 		928DA2BE201B1E940025A064 /* IWTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWTabBarController.swift; sourceTree = "<group>"; };
+		9293119820564CBF00D9B42B /* IWFullscreenPopGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWFullscreenPopGesture.swift; sourceTree = "<group>"; };
+		9293119A20564D1500D9B42B /* DispatchQueue+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+IWExt.swift"; sourceTree = "<group>"; };
 		9296C26F2043A8EF002A6303 /* UIButton+IWExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+IWExt.swift"; sourceTree = "<group>"; };
 		9296C2712043AE12002A6303 /* UIFont+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+IWExt.swift"; sourceTree = "<group>"; };
 		9296C2732043AFCA002A6303 /* UIImage+IWExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+IWExt.swift"; sourceTree = "<group>"; };
@@ -228,9 +232,10 @@
 		926CB8671FFC047500CBD434 /* IWKits */ = {
 			isa = PBXGroup;
 			children = (
+				9293119720564CB300D9B42B /* IWFullscreenPopGesture */,
 				923E710820182692004B9D1F /* IWLoading */,
 				926CB8F01FFC06A200CBD434 /* IWBundle */,
-				926CB8AC1FFC047500CBD434 /* IWReqeust */,
+				926CB8AC1FFC047500CBD434 /* IWRequest */,
 				926CB8A71FFC047500CBD434 /* IWLogin */,
 				926CB8A41FFC047500CBD434 /* IWLog */,
 				926CB8A21FFC047500CBD434 /* IWWebView */,
@@ -357,6 +362,7 @@
 				927129FA202952B500D19B7B /* UIRectCorner+IWExt.swift */,
 				9296C2712043AE12002A6303 /* UIFont+IWExt.swift */,
 				9296C2732043AFCA002A6303 /* UIImage+IWExt.swift */,
+				9293119A20564D1500D9B42B /* DispatchQueue+IWExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -417,7 +423,7 @@
 			path = IWLogin;
 			sourceTree = "<group>";
 		};
-		926CB8AC1FFC047500CBD434 /* IWReqeust */ = {
+		926CB8AC1FFC047500CBD434 /* IWRequest */ = {
 			isa = PBXGroup;
 			children = (
 				926CB8AD1FFC047500CBD434 /* IWRequest.swift */,
@@ -426,7 +432,7 @@
 				926CB8B01FFC047500CBD434 /* IWRequestManage.swift */,
 				926CB8B11FFC047500CBD434 /* IWRequestInfo.swift */,
 			);
-			path = IWReqeust;
+			path = IWRequest;
 			sourceTree = "<group>";
 		};
 		926CB8F01FFC06A200CBD434 /* IWBundle */ = {
@@ -435,6 +441,14 @@
 				926CB8F11FFC06A200CBD434 /* IWBundle.bundle */,
 			);
 			path = IWBundle;
+			sourceTree = "<group>";
+		};
+		9293119720564CB300D9B42B /* IWFullscreenPopGesture */ = {
+			isa = PBXGroup;
+			children = (
+				9293119820564CBF00D9B42B /* IWFullscreenPopGesture.swift */,
+			);
+			path = IWFullscreenPopGesture;
 			sourceTree = "<group>";
 		};
 		DA36CA2E1FF8F53F00714999 /* Frameworks */ = {
@@ -681,6 +695,7 @@
 				926CB8EA1FFC047500CBD434 /* IWRequest.swift in Sources */,
 				DA8C9D011FF889A400BF9B38 /* ViewController.swift in Sources */,
 				926CB8C91FFC047500CBD434 /* IWLocalAuthentication.swift in Sources */,
+				9293119920564CBF00D9B42B /* IWFullscreenPopGesture.swift in Sources */,
 				926CB8E21FFC047500CBD434 /* IWCustom.swift in Sources */,
 				926CB8EB1FFC047500CBD434 /* IWRequestResult.swift in Sources */,
 				926CB8CD1FFC047500CBD434 /* WKWebView+IW.swift in Sources */,
@@ -732,6 +747,7 @@
 				926CB8B91FFC047500CBD434 /* IWAppDelegate.swift in Sources */,
 				926CB8D91FFC047500CBD434 /* IWViewBase.swift in Sources */,
 				926CB8D21FFC047500CBD434 /* UILabel+IW.swift in Sources */,
+				9293119B20564D1500D9B42B /* DispatchQueue+IWExt.swift in Sources */,
 				926CB8E91FFC047500CBD434 /* IWLoginVC.swift in Sources */,
 				926CB8B71FFC047500CBD434 /* IWSubVC.swift in Sources */,
 				92A3C36C20178D0A00EDBB77 /* UIColor+IWExt.swift in Sources */,

@@ -58,11 +58,11 @@ public class IWRequestResult: NSObject {
             }
             if dic != nil {
                 self.dictionary = dic!
-                iw.main.execution { self.success!(self.data, dic, self); self.success = nil; }
+                iw.queue.main { self.success!(self.data, dic, self); self.success = nil; }
             } else {
                 self.string = data?.iwe.string
                 self.stringValue = data?.iwe.stringValue
-                iw.main.execution { self.success!(self.data, nil, self); self.success = nil; }
+                iw.queue.main { self.success!(self.data, nil, self); self.success = nil; }
             }
         }
         //success = nil
@@ -70,7 +70,7 @@ public class IWRequestResult: NSObject {
     
     /// Execute failed action.
     public func executeFailHandler() -> Void {
-        iw.main.execution { self.failed?(self.error) }
+        iw.queue.main { self.failed?(self.error) }
     }
     
     public func printLog() {

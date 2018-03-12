@@ -53,7 +53,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="znS-ON-hzh">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KQt-mF-MAL" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KQt-mF-MAL" customClass="IWTabBarController" customModule="IWExtensionDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1ag-5G-0UQ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

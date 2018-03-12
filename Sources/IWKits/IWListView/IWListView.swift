@@ -78,6 +78,14 @@ public class IWListView: UITableView {
         super.reloadData()
     }
     
+    open func reloadDataWithAnimation(_ animation: UIViewAnimationOptions = .transitionCrossDissolve) -> Void {
+        UIView.transition(with: self, duration: 0.35, options: animation, animations: {
+            self.reloadData()
+        }) { (finished) in
+            self.layer.removeAllAnimations()
+        }
+    }
+    
     /// (注册复用 Cells).
     public final func registerCells<T: UITableViewCell>(_ cells: [T.Type]) -> Void {
         for i in cells {
@@ -90,8 +98,6 @@ public class IWListView: UITableView {
             self.registReusable(i)
         }
     }
-    
-
     
 }
 
@@ -109,6 +115,16 @@ extension IWListView {
         
         tableHeaderView = UIView(frame: MakeRect(0, 0, .screenWidth, .min))
         tableFooterView = UIView()
+        
+        if let tabbar = UIViewController.IWE.current()?.tabBarController?.tabBar, !tabbar.isTranslucent {
+            if iw.isTabbarExists {
+                self.contentInset = MakeEdge(0, 0, .navBarHeightNormal + 49, 0)
+                self.scrollIndicatorInsets = self.contentInset
+            } else {
+                self.contentInset = MakeEdge(0, 0, .navBarHeightNormal, 0)
+                self.scrollIndicatorInsets = self.contentInset
+            }
+        }
         
         registReusable(UITableViewCell.self)
     }

@@ -313,22 +313,22 @@ public extension String {
     
     public func POST(_ paramters: Any? = nil, success: IWRequestResult.successedHandler?, failed: IWRequestResult.failedHandler? = nil) {
         IWRequest.post(self, parameters: paramters).result(success: { (data, dic, result) in
-            iw.main.execution {
+            iw.queue.main {
                 success?(data, dic, result)
             }
         }) { (error) in
-            iw.main.execution {
+            iw.queue.main {
                 failed?(error)
             }
         }
     }
     public func GET(_ parameters: Any? = nil, success: IWRequestResult.successedHandler?, failed: IWRequestResult.failedHandler?) {
         IWRequest.get(self, parameters: parameters).result(success: { (data, dic, result) in
-            iw.main.execution {
+            iw.queue.main {
                 success?(data, dic, result)
             }
         }) { (error) in
-            iw.main.execution {
+            iw.queue.main {
                 failed?(error)
             }
         }

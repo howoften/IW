@@ -264,7 +264,7 @@ public extension UIView {
             objc_setAssociatedObject(self, &IWViewKey.showDebugColorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             if newValue {
                 self.subviews.forEach({ (v) in
-                    iw.main.execution { v.backgroundColor = self.debugColor }
+                    iw.queue.main { v.backgroundColor = self.debugColor }
                 })
             }
         }

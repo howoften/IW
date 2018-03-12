@@ -34,7 +34,7 @@ public extension IWViewController where ViewController: UIViewController {
             return false
         }
         set {
-            iw.main.execution {
+            iw.queue.main {
                 if newValue {
                     self.hideNavigationBar()
                 } else {

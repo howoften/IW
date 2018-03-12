@@ -30,6 +30,56 @@ public class IWDevice: NSObject {
         NotificationCenter.default.post(name: NSNotification.Name.init(DeviceOrientationDidChange), object: orientation)
     }
     
+    /// (设置 通用 关于本机 名称).
+    public static var aboutPhoneName: String {
+        return UIDevice.current.name
+    }
+    
+    /// (设备名称 eg: iOS).
+    public static var deviceName: String {
+        return UIDevice.current.systemName
+    }
+    
+    /// (设备区域化型号 eg: iPhone).
+    public static var localPhoneModel: String {
+        return UIDevice.current.localizedModel
+    }
+    
+    /// (电池状态).
+    public static var batterState: UIDeviceBatteryState {
+        return UIDevice.current.batteryState
+    }
+    
+    /// (电池电量).
+    public static var batteryQuantity: Float {
+        return UIDevice.current.batteryLevel
+    }
+    
+    private static let examineBreakToolPathes: [String] = ["/Applications/Cydia.app",  "/Library/MobileSubstrate/MobileSubstrate.dylib", "/bin/bash", "/usr/sbin/sshd", "/etc/apt"]
+    public static var isJailbroken: Bool {
+        // 1. 是否存在越狱文件
+        if examineBreakToolPathes.filter({ FileManager.default.fileExists(atPath: $0) }).count > 0 {
+            return true
+        }
+        
+        // 2. 是否存在 cydia 应用
+        if UIApplication.shared.canOpenURL("cydia://".toURLValue) {
+            return true
+        }
+        
+        // 3. 是否可以读取所有应用
+        if FileManager.default.fileExists(atPath: "/User/Applications/") {
+            return true
+        }
+        
+        // 4. 是否可以读取环境变量
+        return (getenv("DYLD_INSERT_LIBRARIES") != nil)
+    }
+    
+    /// (设备标识 eg: E621E1F8-C36C-495A-93FC-0C247A3E6E5F).
+    public static var UUID: String? {
+        return UIDevice.current.identifierForVendor?.uuidString
+    }
     
     /// (返回机型内部标识, 例如: iPhone9,1).
     public static var modelIdentifier: String {

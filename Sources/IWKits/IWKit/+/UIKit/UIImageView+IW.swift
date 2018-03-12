@@ -34,10 +34,10 @@ public extension IWView where View: UIImageView {
                     if imgData != nil {
                         let img = UIImage(data: imgData!)
                         if img != nil {
-                            iw.main.execution { self.view.image = img }
+                            iw.queue.main { self.view.image = img }
                             self.save(image: imgData!)
                         } else {
-                            iw.main.execution { self.setLocationImageSource(locationImageSource) }
+                            iw.queue.main { self.setLocationImageSource(locationImageSource) }
                         }
                     }
                 }, failed: { (error) in

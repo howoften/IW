@@ -90,7 +90,7 @@ private func outputLine(_ output: inout String, line: Int) {
 }
 
 private func saveToLocal(_ output: String) {
-    iw.subThread.execution(queueLabel: "iw.writelog") {
+    iw.queue.subThread(label: "iw.writelog") {
         if IWLogConfiguration.shared.isSaveToLocal {
             if let path = IWLogConfiguration.shared.recordLogPath {
                 if let logData = IWFileManage.default.contents(atPath: path) {

@@ -10,6 +10,34 @@ public typealias UITap = UITapGestureRecognizer
 
 /// (IW 全局公共方法/属性)
 public class iw {
+    
+    /// (线程).
+    public struct queue {
+        
+        /// (单例).
+        public static func once(token: String, block: @escaping () -> Void) -> Void {
+            DispatchQueue.once(token: token, block: block)
+        }
+        
+        /// (主线程执行).
+        public static func main(_ task: @escaping () -> Void) -> Void {
+            DispatchQueue.main.async { task() }
+        }
+        
+        /// (子线程执行).
+        ///
+        /// - Parameters:
+        ///   - qlabel: 子线程标识
+        public static func subThread(label qlabel: String, _ task: @escaping () -> Void) -> Void {
+            DispatchQueue(label: qlabel).async { task() }
+        }
+    }
+    
+    /// (批量设置圆角).
+    public static func round(_ corner: CGFloat, toViews views: [UIView]) {
+        views.forEach({ $0.iwe.round(corner) })
+    }
+    
     /// (断言).
     public struct assert {
         /// (condition 成立时，assertion failure 输出 message).
@@ -66,7 +94,7 @@ public class iw {
     public struct delay {
         public typealias Task = (_ cancel: Bool) -> Void
         /// Running.
-        public static func execution(delay dly: TimeInterval, toRun task: @escaping () -> ()) -> Task? {
+        @discardableResult public static func execution(delay dly: TimeInterval, toRun task: @escaping () -> ()) -> Task? {
             func dispatch_later(block: @escaping ()->()) {
                 let t = DispatchTime.now() + dly
                 DispatchQueue.main.asyncAfter(deadline: t, execute: block)
@@ -89,27 +117,6 @@ public class iw {
         /// (取消延迟执行的任务 (执行开始前使用)).
         public static func cancel(_ task: Task?) {
             task?(true)
-        }
-    }
-    
-    /// (主线程).
-    public struct main {
-        
-        /// (主线程执行).
-        public static func execution(_ task: @escaping () -> Void) -> Void {
-            DispatchQueue.main.async { task() }
-        }
-    }
-    
-    /// (子线程).
-    public struct subThread {
-        
-        /// (子线程执行).
-        ///
-        /// - Parameters:
-        ///   - qlabel: 子线程标识
-        public static func execution(queueLabel qlabel: String, _ task: @escaping () -> Void) -> Void {
-            DispatchQueue(label: qlabel).async { task() }
         }
     }
     
@@ -173,6 +180,27 @@ public class iw {
         public static func showWaveLoading(withMaskType maskType: IWWaveLoadingView.MaskViewType = .none) -> Void {
             IWWaveLoadingView.shared.startWave(UIViewController.IWE.current(), useMask: maskType == .none ? false : true, maskType: maskType)
         }
+    }
+    
+    /// (输出设备信息, 机型 标识 OS版本).
+    public static func outputDeviceInfos() -> Void {
+        var infos = "\n-- iw.outputDeviceInfos"
+        infos += """
+        
+        设备: \t\(IWDevice.deviceName)
+        机型: \t\(IWDevice.modelName)
+        机名: \t\(IWDevice.aboutPhoneName)
+        系统版本: \t\(iw.system.version)
+        内部标识: \t\(IWDevice.modelIdentifier)
+        是否越狱: \t\(IWDevice.isJailbroken ? "是" : "否")
+        应用名称: \t\(IWApp.name.or("")), 版本: \(IWApp.shortVersion.or("1.0")) build \(IWApp.build.or("1"))
+        
+        设备屏幕缩放比例: \(UIScreen.main.scale)
+        设备屏幕物理分辨率 width x height: \(iw.screenWidth) x \(iw.screenHeight)
+        设备屏幕实际分辨率 width x height: \(iw.screenWidth * UIScreen.main.scale) x \(iw.screenHeight * UIScreen.main.scale)
+        """
+        infos += "\n----------------------------------------------------------------"
+        print(infos)
     }
 }
 

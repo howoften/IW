@@ -39,7 +39,6 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
         
-        //guard let dg = delegate else { return }
         guard let collect = collectionView else { return }
         
         // config
@@ -80,7 +79,7 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
             (0 ..< collect.numberOfItems(inSection: section)).forEach({ (row) in
                 
                 let index = MakeIndex(row, section)
-                let calcSize = delegate.expect("需要实现该协议.").collectionView!(collect, layout: self, sizeForItemAt: index)
+                let calcSize = delegate.expect("需要实现该协议(IWCollectionViewFlowLayoutDelegate)!").collectionView!(collect, layout: self, sizeForItemAt: index)
                 
                 if itemX + calcSize.width <= maxWidth {
                     // 同行
@@ -177,7 +176,7 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         let index = MakeIndex(0, section)
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: index)
-        let dgSize = delegate.expect("需要实现该协议!").collectionView?(collectionView.expect("collection view is nil."), layout: self, referenceSizeForHeaderInSection: section)
+        let dgSize = delegate.expect("需要实现该协议(IWCollectionViewFlowLayoutDelegate)!").collectionView?(collectionView.expect("collection view is nil."), layout: self, referenceSizeForHeaderInSection: section)
         
         if (headerReferenceSize.height > 0).or(dgSize.or(.zero).height > 0) {
             
@@ -209,13 +208,11 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
     func setFooterAttributes(with section: Int, offsetY: CGFloat) -> SetAttributesInfo {
         let index = MakeIndex(0, section)
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, with: index)
-        let dgSize = delegate.expect("需要实现该协议!").collectionView?(collectionView.expect("collection view is nil."), layout: self, referenceSizeForHeaderInSection: section)
+        let dgSize = delegate.expect("需要实现该协议(IWCollectionViewFlowLayoutDelegate)!").collectionView?(collectionView.expect("collection view is nil."), layout: self, referenceSizeForHeaderInSection: section)
         if (footerReferenceSize.height > 0).or(dgSize.or(.zero).height > 0) {
             
             var fixFrame = footerReferenceSize.toRect
-            (dgSize.or(.zero).height > 0).founded({
-                fixFrame = dgSize!.toRect
-            })
+            (dgSize.or(.zero).height > 0).founded({ fixFrame = dgSize!.toRect })
             fixFrame.origin.x = sectionInset.left
             fixFrame.origin.y = offsetY + itemAttributes.last!.values.first!.frame.height
             setAttributesFrame(with: attributes, fixFrame: fixFrame)
@@ -362,9 +359,9 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
         var h: CGFloat = 0
         if let collection = collectionView {
             w = collection.width
-            h = maxContentHeight //collection.contentInset.bottom
+            h = maxContentHeight // 最大高度
         }
         return CGSize(width: w, height: h)
     }
-    
 }
+

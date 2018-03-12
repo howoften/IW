@@ -17,7 +17,7 @@ class AppDelegate: IWAppDelegate{
 		// Override point for customization after application launch.
         
         self.window?.backgroundColor = UIColor.white
-        self.outputDeviceInfos()
+        iw.outputDeviceInfos()
         
 		return true
 	}

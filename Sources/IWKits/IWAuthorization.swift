@@ -154,9 +154,9 @@ extension IWAuthorization: UIImagePickerControllerDelegate, UINavigationControll
                     let createFile = manager.createFile(atPath: documentsPath.appending("/selectedImage.png"), contents: data, attributes: nil)
                     if createFile {
                         let filePath = documentsPath.splicing("/selectedImage.png")
-                        iw.main.execution { self.selectedCallback?(filePath) }
+                        iw.queue.main { self.selectedCallback?(filePath) }
                     } else {
-                        iw.main.execution { self.selectedCallback?(nil) }
+                        iw.queue.main { self.selectedCallback?(nil) }
                     }
                     picker.dismiss(animated: true, completion: nil)
                 } catch {
