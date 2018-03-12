@@ -21,30 +21,30 @@ pod 'IW'
 #### 2018.0312
 ##### A
 
-`iw.delay.execution` 增加 `@discardableResult` 标识；
-`DispatchQueue+IWExt.swift`, 本次加入 `once(::)` 单例模式；
-`iw.queue.once` 单例模式；
-`IWDevice`: `.aboutPhoneName`(关于本机名称)，`.isJailbroken`(是否越狱)，`.UUID`(设备标识)；
-`IWRootVC`: `.activityIndicator`(指示状态)，`.showActivityIndicatorToNavRightItem`(添加指示状态到导航栏右上角)，`.showActivityIndicatorToNavLeftItem`(添加指示状态到导航栏左上角)；
-`IWNavController`: `self.navigationBar.isTranslucent = false` (导航栏默认不透明);
+`iw.delay.execution` 增加 `@discardableResult` 标识；  
+`DispatchQueue+IWExt.swift`, 本次加入 `once(::)` 单例模式；  
+`iw.queue.once` 单例模式；  
+`IWDevice`: `.aboutPhoneName`(关于本机名称)，`.isJailbroken`(是否越狱)，`.UUID`(设备标识)；  
+`IWRootVC`: `.activityIndicator`(指示状态)，`.showActivityIndicatorToNavRightItem`(添加指示状态到导航栏右上角)，`.showActivityIndicatorToNavLeftItem`(添加指示状态到导航栏左上角)；   
+`IWNavController`: `self.navigationBar.isTranslucent = false` (导航栏默认不透明);  
 
-#### C
+#### C 
 
-`iw.main.execution`、`iw.subThread.execution`，移动到  `iw.queue.main`、`iw.queue.subThread`；
+`iw.main.execution`、`iw.subThread.execution`，移动到  `iw.queue.main`、`iw.queue.subThread`；  
 
 #### 2018.0301
 ###### A  
 
-全局（`IWGlobal.swift`）方法，断言: `iw.assert.failure`；
-全局（`IWGlobal.swift`）方法，app设置: `iw.app.hideStatusBar`, `iw.app.showStatusBar`；
-全局（`IWGlobal.swift`）方法，是否为Debug模式: `iw.isDebugMode`;
-`extension Bool`：`.isFalse`、`.isTrue`、`func enable()`、`func disable()`、`func toFalse()`、`func toTrue()`；
+全局（`IWGlobal.swift`）方法，断言: `iw.assert.failure`；  
+全局（`IWGlobal.swift`）方法，app设置: `iw.app.hideStatusBar`, `iw.app.showStatusBar`；  
+全局（`IWGlobal.swift`）方法，是否为Debug模式: `iw.isDebugMode`；  
+`extension Bool`：`.isFalse`、`.isTrue`、`func enable()`、`func disable()`、`func toFalse()`、`func toTrue()`；  
   
 ###### C  
 
 字体类型设置方式（`UIFont+IWExt.swift`）；  
 瀑布流布局 （`IWCollectionViewFlowLayout.swift`）；  
-`extension Bool`，函数名 true/false 修改为 `.founded`、`.unfounded`；
+`extension Bool`，函数名 true/false 修改为 `.founded`、`.unfounded`； 
 （`IWDevice.swift`）是否为 iPhone X 判断方式；  
 （`CGFloat+IWExt.swift`）设备方向动态获取增加限制条件（`IWApp.supportRotation = true` 时才会动态获取）；  
   
