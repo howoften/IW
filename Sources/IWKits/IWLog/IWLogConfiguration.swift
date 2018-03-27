@@ -46,7 +46,7 @@ public final class IWLogConfiguration: NSObject {
     }
     
     private func enableRecordLog() -> Void {
-        let logPath = "\(IWSandbox.temp)".splicing("\(IWTime.current("YYYY-MM-dd_HH-mm-ss")).log")
+        let logPath = "\(IWSandbox.temp)".splicing("\(IWTime.current("YYYY年MM月dd日 HH:mm:ss")).log")
         recordLogPath = logPath
         
         let isCreate = IWFileManage.default.createFile(atPath: logPath, contents: nil, attributes: nil)

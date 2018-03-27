@@ -33,8 +33,8 @@ public class IWLoginConst: NSObject {
     
     public class func nobackgroundButton(_ btn: UIButton) {
         btn.config { (sender) in
-            sender.titleColor(UIColor.button.default, .normal)
-            sender.titleColor(UIColor.button.default.alpha(0.4), .highlighted)
+            sender.titleColor(.defaultOfButton, .normal)
+            sender.titleColor(UIColor.defaultOfButton.alpha(0.4), .highlighted)
             sender.titleColor(.gray, .disabled)
             
             sender.fontSize = buttonFontSize
@@ -49,7 +49,7 @@ public class IWLoginConst: NSObject {
             
             sender.fontSize = buttonFontSize
             sender.titleAlignment = .center
-            sender.backgroundColor = UIColor.button.default
+            sender.backgroundColor = .defaultOfButton
         }
     }
 }

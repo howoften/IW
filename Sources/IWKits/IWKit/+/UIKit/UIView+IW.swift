@@ -193,8 +193,8 @@ public extension IWView where View: UIView {
         }
     }
     /// (随机设置一个颜色, 透明度为0.8).
-    private var debugColor: UIColor {
-        return UIColor.IWE.randomColor.alpha(0.8)
+    private var debugColor: IWColor {
+        return IWColor.random.alpha(0.8)
     }
     
     func gradient(colors: [UIColor], startPoint: CGPoint, endPoint: CGPoint) -> Void {

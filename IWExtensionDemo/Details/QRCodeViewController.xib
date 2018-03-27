@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QRCodeViewController" customModule="IWExtensionDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="qrContent" destination="NIJ-JJ-FpT" id="dro-SY-t8k"/>
+                <outlet property="qrImageView" destination="gkn-M9-CwM" id="sBv-4u-yc7"/>
+                <outlet property="qrLogoTypeControl" destination="VE5-WY-Wv7" id="cXE-3z-V51"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="gkn-M9-CwM">
+                    <rect key="frame" x="127" y="20" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="hpn-yn-Pab"/>
+                        <constraint firstAttribute="width" constant="120" id="jQJ-TV-rDx"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://github.com/iWECon/IW" placeholder="二维码内容" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NIJ-JJ-FpT">
+                    <rect key="frame" x="20" y="160" width="335" height="17"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VE5-WY-Wv7">
+                    <rect key="frame" x="144.5" y="197" width="86" height="29"/>
+                    <segments>
+                        <segment title="无"/>
+                        <segment title="小"/>
+                        <segment title="大"/>
+                    </segments>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PA7-Jh-lUi">
+                    <rect key="frame" x="149" y="245" width="77" height="30"/>
+                    <state key="normal" title="生成二维码"/>
+                    <connections>
+                        <action selector="generateQRCodeAction:" destination="-1" eventType="touchUpInside" id="jNC-wy-L2D"/>
+                    </connections>
+                </button>
+                <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePi-y6-CTY">
+                    <rect key="frame" x="20" y="182" width="335" height="0.5"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="ZId-v8-2E6"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NrQ-bj-zJj">
+                    <rect key="frame" x="197.5" y="295" width="157.5" height="30"/>
+                    <state key="normal" title="保存整个视图到相册"/>
+                    <connections>
+                        <action selector="saveViewAction:" destination="-1" eventType="touchUpInside" id="52h-2G-KUV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQ6-Jh-x6U">
+                    <rect key="frame" x="20" y="295" width="157.5" height="30"/>
+                    <state key="normal" title="保存二维码到相册"/>
+                    <connections>
+                        <action selector="saveQRCodeAction:" destination="-1" eventType="touchUpInside" id="YHQ-Jx-bTs"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="NrQ-bj-zJj" firstAttribute="leading" secondItem="kQ6-Jh-x6U" secondAttribute="trailing" constant="20" id="4Mo-Kg-lG0"/>
+                <constraint firstItem="NIJ-JJ-FpT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="680-A2-hFQ"/>
+                <constraint firstItem="gkn-M9-CwM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9N4-UM-vU9"/>
+                <constraint firstItem="kQ6-Jh-x6U" firstAttribute="top" secondItem="PA7-Jh-lUi" secondAttribute="bottom" constant="20" id="9Qg-54-bno"/>
+                <constraint firstItem="VE5-WY-Wv7" firstAttribute="top" secondItem="NIJ-JJ-FpT" secondAttribute="bottom" constant="20" id="AS3-5r-dlg"/>
+                <constraint firstAttribute="trailing" secondItem="NIJ-JJ-FpT" secondAttribute="trailing" constant="20" id="E18-eR-3x0"/>
+                <constraint firstItem="PA7-Jh-lUi" firstAttribute="top" secondItem="VE5-WY-Wv7" secondAttribute="bottom" constant="20" id="JHb-bB-eSk"/>
+                <constraint firstItem="NrQ-bj-zJj" firstAttribute="top" secondItem="PA7-Jh-lUi" secondAttribute="bottom" constant="20" id="MNP-QH-E9L"/>
+                <constraint firstItem="gkn-M9-CwM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="U3x-zA-H4r"/>
+                <constraint firstItem="ePi-y6-CTY" firstAttribute="top" secondItem="NIJ-JJ-FpT" secondAttribute="bottom" constant="5" id="YJO-ZT-5tt"/>
+                <constraint firstItem="NIJ-JJ-FpT" firstAttribute="centerX" secondItem="gkn-M9-CwM" secondAttribute="centerX" id="daY-1A-QkJ"/>
+                <constraint firstItem="NIJ-JJ-FpT" firstAttribute="top" secondItem="gkn-M9-CwM" secondAttribute="bottom" constant="20" id="ek6-PK-Qs3"/>
+                <constraint firstItem="ePi-y6-CTY" firstAttribute="trailing" secondItem="NIJ-JJ-FpT" secondAttribute="trailing" id="hx6-4p-2j2"/>
+                <constraint firstItem="kQ6-Jh-x6U" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="kPG-Zi-wZ0"/>
+                <constraint firstAttribute="trailing" secondItem="NrQ-bj-zJj" secondAttribute="trailing" constant="20" id="lb4-3H-IAB"/>
+                <constraint firstItem="NrQ-bj-zJj" firstAttribute="width" secondItem="kQ6-Jh-x6U" secondAttribute="width" id="luK-sY-ZPh"/>
+                <constraint firstItem="VE5-WY-Wv7" firstAttribute="centerX" secondItem="NIJ-JJ-FpT" secondAttribute="centerX" id="mOO-Du-YHg"/>
+                <constraint firstItem="PA7-Jh-lUi" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pOh-Fr-QcI"/>
+                <constraint firstItem="ePi-y6-CTY" firstAttribute="leading" secondItem="NIJ-JJ-FpT" secondAttribute="leading" id="vOb-xb-7n5"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo" width="60" height="60"/>
+    </resources>
+</document>

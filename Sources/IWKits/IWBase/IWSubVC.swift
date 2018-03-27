@@ -9,11 +9,8 @@ open class IWSubVC: IWRootVC {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        if #available(iOS 11, *) {
-            self.isEnableLargeTitlesStyle.founded({
-                self.largeTitleDisplayMode = .never
-            })
+        if #available(iOS 11, *), self.largeTitleDisplayMode == .automatic {
+            self.largeTitleDisplayMode = .never
         }
         // Do any additional setup after loading the view.
     }

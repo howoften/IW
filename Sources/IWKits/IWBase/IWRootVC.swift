@@ -11,6 +11,8 @@ open class IWRootVC: UIViewController {
     lazy var listViewThread: DispatchQueue = {
         return DispatchQueue(label: "cc.iwe.listView", attributes: .init(rawValue: 0))
     }()
+//    private var _numberOfSections: Int = 0
+//    private var _numberOfRowsInSection: Int = 0
     
     /// The view background color.
     public var backgroundColor: UIColor? {
@@ -141,6 +143,16 @@ open class IWRootVC: UIViewController {
         self.view.backgroundColor = .white
     }
     
+    public var useLayoutGuide: Bool = false {
+        didSet {
+            if useLayoutGuide {
+                self.edgesForExtendedLayout = .init(rawValue: 0)
+            } else {
+                self.edgesForExtendedLayout = .all //[.left, .right]
+            }
+        }
+    }
+    
     /// (添加一个 Grouped 风格的 IWListView 到界面上).
     open func addGroupedListView() {
         self.listView = createListView(withFrame: self.view.bounds, style: .grouped)
@@ -201,7 +213,7 @@ extension IWRootVC: UITableViewDataSource {
         return 0
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        return configureReusableCell(tableView, indexPath: indexPath)
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if listView != nil, listView.isAutoDeselect {
@@ -215,27 +227,27 @@ extension IWRootVC: UITableViewDataSource {
 // MARK:- TableView 协议: Delegate
 extension IWRootVC: UITableViewDelegate {
     
-    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
-    // iOS 11 中需要配置 viewForHeader viewForFooter 才会执行 heightForHeader heightForFooter
-    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if tableView.style == .grouped {
-            if section == 0 {
-                return 20.0
-            }
-            return 10.0
-        }
-        return .min
-    }
-    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if tableView.style == .grouped {
-            return 10.0
-        }
-        return .min
-    }
+//    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return nil
+//    }
+//    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        return nil
+//    }
+//    // iOS 11 中需要配置 viewForHeader viewForFooter 才会执行 heightForHeader heightForFooter
+//    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if tableView.style == .grouped {
+//            if section == 0 {
+//                return 20.0
+//            }
+//            return 10.0
+//        }
+//        return .min
+//    }
+//    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        if tableView.style == .grouped {
+//            return 10.0
+//        }
+//        return .min
+//    }
 }
 

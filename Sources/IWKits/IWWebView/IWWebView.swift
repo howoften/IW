@@ -22,13 +22,10 @@ open class IWWebView: WKWebView {
         
     }
     
+    var disableScale: Bool = false {
+        didSet {
+            //<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+            
+        }
+    }
 }
-
-extension IWWebView {
-    
-//    open override func willMove(toSuperview newSuperview: UIView?) {
-//        _superView = newSuperview
-//        scrollView.iwe.autoSetEdge(_superView)
-//    }
-}
-

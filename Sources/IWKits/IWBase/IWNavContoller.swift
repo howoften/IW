@@ -88,6 +88,7 @@ public class IWNavController: UINavigationController {
     }
     
     private func _init() {
+        // 导航栏是否透明, 为 true 时导航栏默认为白色
         self.navigationBar.isTranslucent = false
     }
     

@@ -9,22 +9,26 @@ public typealias UIAlert = UIAlertController
 public typealias UITap = UITapGestureRecognizer
 
 /// (IW 全局公共方法/属性)
-public class iw {
+public struct iw {
+    
+    public struct appInfoDictionary {
+        public static let infoDictionary: [String: Any]? = Bundle.main.infoDictionary
+    }
     
     /// (线程).
     public struct queue {
         
-        /// (单例).
+        /// (单例, DispatchQueue.once).
         public static func once(token: String, block: @escaping () -> Void) -> Void {
             DispatchQueue.once(token: token, block: block)
         }
         
-        /// (主线程执行).
+        /// (主线程执行, DispatchQueue.main.async).
         public static func main(_ task: @escaping () -> Void) -> Void {
             DispatchQueue.main.async { task() }
         }
         
-        /// (子线程执行).
+        /// (子线程执行, DispatchQueue(label: qlabel).async { }).
         ///
         /// - Parameters:
         ///   - qlabel: 子线程标识
@@ -184,23 +188,52 @@ public class iw {
     
     /// (输出设备信息, 机型 标识 OS版本).
     public static func outputDeviceInfos() -> Void {
-        var infos = "\n-- iw.outputDeviceInfos"
+        var infos = "-- iw.outputDeviceInfos"
         infos += """
         
-        设备: \t\(IWDevice.deviceName)
-        机型: \t\(IWDevice.modelName)
-        机名: \t\(IWDevice.aboutPhoneName)
-        系统版本: \t\(iw.system.version)
-        内部标识: \t\(IWDevice.modelIdentifier)
-        是否越狱: \t\(IWDevice.isJailbroken ? "是" : "否")
-        应用名称: \t\(IWApp.name.or("")), 版本: \(IWApp.shortVersion.or("1.0")) build \(IWApp.build.or("1"))
+         固件类型: \t\(IWDevice.deviceName)
+         设备机型: \t\(IWDevice.modelName)
+         设备机名: \t\(IWDevice.aboutPhoneName)
+         系统版本: \t\(iw.system.version)
+         内部标识: \t\(IWDevice.modelIdentifier)
+         是否越狱: \t\(IWDevice.isJailbroken ? "是" : "否")
+         应用名称: \t\(IWApp.name.or(""))
+         应用版本: \t\(IWApp.shortVersion.or("1.0")) build \(IWApp.build.or("1"))
         
-        设备屏幕缩放比例: \(UIScreen.main.scale)
-        设备屏幕物理分辨率 width x height: \(iw.screenWidth) x \(iw.screenHeight)
-        设备屏幕实际分辨率 width x height: \(iw.screenWidth * UIScreen.main.scale) x \(iw.screenHeight * UIScreen.main.scale)
+         设备屏幕缩放比例: \(UIScreen.main.scale)
+         物理分辨率(width*height): \(iw.screenWidth) * \(iw.screenHeight)
+         实际分辨率(width*height): \(iw.screenWidth * UIScreen.main.scale) * \(iw.screenHeight * UIScreen.main.scale)
         """
-        infos += "\n----------------------------------------------------------------"
-        print(infos)
+        infos += "\n--------------------------------------------------"
+        iPrint(infos)
+    }
+    
+    /// (是否安装).
+    public struct installed {
+        /// (是否安装 QQ).
+        static var qq: Bool {
+            return UIApplication.shared.canOpenURL("qq://".toURLValue)
+        }
+        /// (是否安装 TIM).
+        static var tim: Bool {
+            return UIApplication.shared.canOpenURL("tim://".toURLValue)
+        }
+        /// (是否安装 微信).
+        static var wechat: Bool {
+            return UIApplication.shared.canOpenURL("wechat://".toURLValue)
+        }
+        /// (是否安装 支付宝).
+        static var alipay: Bool {
+            return UIApplication.shared.canOpenURL("alipay://".toURLValue)
+        }
+        /// (是否安装 淘宝).
+        static var taobao: Bool {
+            return UIApplication.shared.canOpenURL("taobao://".toURLValue)
+        }
+        /// (是否安装 微博).
+        static var weibo: Bool {
+            return UIApplication.shared.canOpenURL("weibo://".toURLValue)
+        }
     }
 }
 

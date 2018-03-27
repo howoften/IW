@@ -75,7 +75,7 @@ public class IWLoginVC: IWRootVC {
         
         // 取消按钮
         let cancelItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(navCancelItemAction))
-        cancelItem.tintColor = UIColor.button.default
+        cancelItem.tintColor = .defaultOfButton
         navigationItem.leftBarButtonItem = cancelItem
         navLeftCancelItem = cancelItem
         

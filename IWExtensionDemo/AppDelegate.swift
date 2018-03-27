@@ -16,8 +16,11 @@ class AppDelegate: IWAppDelegate{
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
         
-        self.window?.backgroundColor = UIColor.white
+        IWLogConfiguration.shared.isSaveToLocal = true
         iw.outputDeviceInfos()
+        self.window?.backgroundColor = UIColor.white
+        // 全局手势返回
+        IWFullscreenPopGesture.configuration()
         
 		return true
 	}

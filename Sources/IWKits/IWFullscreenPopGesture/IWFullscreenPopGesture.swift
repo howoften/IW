@@ -169,7 +169,7 @@ public extension UINavigationController {
         }
     }
     
-    func iwe_setupViewControllerBasedNavigationBarAppearanceIfNeeded(_ appearingViewController: UIViewController) -> Void {
+    private func iwe_setupViewControllerBasedNavigationBarAppearanceIfNeeded(_ appearingViewController: UIViewController) -> Void {
         guard self.iwe_viewControllerBasedNavigationBarAppearanceEnabled else {
             return
         }
@@ -185,7 +185,7 @@ public extension UINavigationController {
     }
     
     
-    var iwe_fullscreenPopGestureRecognizer: UIPanGestureRecognizer {
+    private var iwe_fullscreenPopGestureRecognizer: UIPanGestureRecognizer {
         guard let pan = objc_getAssociatedObject(self, &Key.fullscreenPopGestureRecognizer) as? UIPanGestureRecognizer else {
             let pg = UIPanGestureRecognizer()
             pg.maximumNumberOfTouches = 1
@@ -205,7 +205,7 @@ public extension UINavigationController {
         return dg
     }
     
-    var iwe_viewControllerBasedNavigationBarAppearanceEnabled: Bool {
+    private var iwe_viewControllerBasedNavigationBarAppearanceEnabled: Bool {
         get {
             guard let nb = objc_getAssociatedObject(self, &Key.viewControllerBasedNavigationBarAppearanceEnabled) as? Bool else {
                 self.iwe_viewControllerBasedNavigationBarAppearanceEnabled = true

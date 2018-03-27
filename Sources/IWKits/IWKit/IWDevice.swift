@@ -7,7 +7,7 @@ import UIKit
 /// (设备信息相关).
 public class IWDevice: NSObject {
     
-    static let DeviceOrientationDidChange: String = "IWDeviceOrientationDidChange"
+    public static let DeviceOrientationDidChange: String = "IWDeviceOrientationDidChange"
     
     /// (是否为 iPad).
     public static let isiPad: Bool = { return (UIDevice.current.model == "iPad") }()
@@ -19,14 +19,14 @@ public class IWDevice: NSObject {
     }()
     
     /// (设备方向).
-    static var orientation: UIDeviceOrientation {
+    public static var orientation: UIDeviceOrientation {
         return UIDevice.current.orientation
     }
     /// (注册设备旋转通知, 使用 DeviceOrientationDidChange 接收通知).
-    class func registerOrientationDidChange() -> Void {
+    public static func registerOrientationDidChange() -> Void {
         NotificationCenter.default.addObserver(self, selector: #selector(postChangeNotification), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
-    @objc class func postChangeNotification() -> Void {
+    @objc private static func postChangeNotification() -> Void {
         NotificationCenter.default.post(name: NSNotification.Name.init(DeviceOrientationDidChange), object: orientation)
     }
     
@@ -35,7 +35,7 @@ public class IWDevice: NSObject {
         return UIDevice.current.name
     }
     
-    /// (设备名称 eg: iOS).
+    /// (系统类型 eg: iOS/tvOS/watchOS).
     public static var deviceName: String {
         return UIDevice.current.systemName
     }
@@ -56,27 +56,25 @@ public class IWDevice: NSObject {
     }
     
     private static let examineBreakToolPathes: [String] = ["/Applications/Cydia.app",  "/Library/MobileSubstrate/MobileSubstrate.dylib", "/bin/bash", "/usr/sbin/sshd", "/etc/apt"]
+    /// (是否越狱).
     public static var isJailbroken: Bool {
         // 1. 是否存在越狱文件
         if examineBreakToolPathes.filter({ FileManager.default.fileExists(atPath: $0) }).count > 0 {
             return true
         }
-        
         // 2. 是否存在 cydia 应用
         if UIApplication.shared.canOpenURL("cydia://".toURLValue) {
             return true
         }
-        
         // 3. 是否可以读取所有应用
         if FileManager.default.fileExists(atPath: "/User/Applications/") {
             return true
         }
-        
         // 4. 是否可以读取环境变量
         return (getenv("DYLD_INSERT_LIBRARIES") != nil)
     }
     
-    /// (设备标识 eg: E621E1F8-C36C-495A-93FC-0C247A3E6E5F).
+    /// (设备标识, 推荐使用 IWUUID. eg: E621E1F8-C36C-495A-93FC-0C247A3E6E5F).
     public static var UUID: String? {
         return UIDevice.current.identifierForVendor?.uuidString
     }

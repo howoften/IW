@@ -7,12 +7,13 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
-import Foundation
 
-protocol IWCollectionViewFlowLayoutDelegate: UICollectionViewDelegateFlowLayout { }
+public protocol IWCollectionViewFlowLayoutDelegate: UICollectionViewDelegateFlowLayout { }
 
-class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
+// (自动布局).
+public class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     class SetAttributesInfo {
         public var indexPath: IndexPath?
@@ -29,14 +30,27 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
     }
     
-    weak var delegate: IWCollectionViewFlowLayoutDelegate?
+    public weak var delegate: IWCollectionViewFlowLayoutDelegate?
     
     /// (记录布局).
-    var itemAttributes: [[IndexPath: UICollectionViewLayoutAttributes]] = []
+    private var itemAttributes: [[IndexPath: UICollectionViewLayoutAttributes]] = []
     /// (content height).
-    var maxContentHeight: CGFloat = 0.0
+    private var maxContentHeight: CGFloat = 0.0
+    /// (content width).
+    private var maxContentWidth: CGFloat = 0.0
     
-    override func prepare() {
+    /// (两个 section 的距离).
+    public var sectionSpacing: CGFloat = 0.0
+    
+    convenience init(delegate: IWCollectionViewFlowLayoutDelegate?, minLineSpacing: CGFloat = 0, minItemSpacing: CGFloat = 0, scrollDirection direction: UICollectionViewScrollDirection = .vertical) {
+        self.init()
+        self.delegate = delegate
+        self.minimumLineSpacing = minLineSpacing
+        self.minimumInteritemSpacing = minItemSpacing
+        self.scrollDirection = direction
+    }
+    
+    public override func prepare() {
         super.prepare()
         
         guard let collect = collectionView else { return }
@@ -46,7 +60,8 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         var itemX = sectionInset.left  // x
         var itemY = sectionInset.top   // y
-        let maxWidth = collect.width - sectionInset.left - sectionInset.right
+        var maxWidth: CGFloat = 0.0 // collect.width - sectionInset.left - sectionInset.right
+        let limitWidth = collect.width - sectionInset.left - sectionInset.right
         var maxHeight = sectionInset.top + sectionInset.bottom
         
         var currentLine = 0
@@ -64,7 +79,7 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
         (0 ..< collect.numberOfSections).forEach ({ (section) in
             
             if itemAttributes.count != 0 {
-                itemY += itemAttributes.last!.values.first!.frame.height + minimumLineSpacing
+                itemY += sectionSpacing //itemAttributes.last!.values.first!.frame.height + minimumLineSpacing
             }
             let headerAttriInfo = setHeaderAttributes(with: section, offsetY: itemY)
             hasSectionHeader = headerAttriInfo.hasHeader
@@ -81,7 +96,7 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 let index = MakeIndex(row, section)
                 let calcSize = delegate.expect("需要实现该协议(IWCollectionViewFlowLayoutDelegate)!").collectionView!(collect, layout: self, sizeForItemAt: index)
                 
-                if itemX + calcSize.width <= maxWidth {
+                if itemX + calcSize.width <= limitWidth || scrollDirection == .horizontal {
                     // 同行
                     currentLine += 1
                     
@@ -105,9 +120,9 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
                             
                         }
                     }
+                    maxWidth += calcSize.width
                     
                     bottoms.append(itemY + calcSize.height)
-                    
                     lineCount += 1
                 } else {
                     // 换行
@@ -156,18 +171,25 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
             
             
             // section footer
+            itemY = bottoms.max().or(itemY) + minimumLineSpacing
             let footerAttriInfo = setFooterAttributes(with: section, offsetY: itemY)
             hasSectionFooter = footerAttriInfo.hasFooter
             hasSectionFooter.founded({
                 itemX = sectionInset.left + footerAttriInfo.frame.or(.zero).width
-                itemY += headerAttriInfo.frame.or(.zero).height + minimumLineSpacing
+                itemY += footerAttriInfo.frame.or(.zero).height + minimumLineSpacing
                 bottoms.append(itemY - minimumLineSpacing)
             })
-            maxHeight = bottoms.max().or(itemY - minimumLineSpacing) + minimumLineSpacing + sectionInset.bottom
+            maxHeight = bottoms.max().or(itemY - minimumLineSpacing) + sectionInset.bottom
         })
         
         // 整体高度/内容高度
         maxContentHeight = maxHeight
+        
+        if scrollDirection == .horizontal {
+            maxContentWidth = maxWidth + sectionInset.right
+        } else {
+            maxContentWidth = collect.width - sectionInset.right - sectionInset.left
+        }
     }
     
     
@@ -208,13 +230,13 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
     func setFooterAttributes(with section: Int, offsetY: CGFloat) -> SetAttributesInfo {
         let index = MakeIndex(0, section)
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, with: index)
-        let dgSize = delegate.expect("需要实现该协议(IWCollectionViewFlowLayoutDelegate)!").collectionView?(collectionView.expect("collection view is nil."), layout: self, referenceSizeForHeaderInSection: section)
+        let dgSize = delegate.expect("需要实现该协议(IWCollectionViewFlowLayoutDelegate)!").collectionView?(collectionView.expect("collection view is nil."), layout: self, referenceSizeForFooterInSection: section)
         if (footerReferenceSize.height > 0).or(dgSize.or(.zero).height > 0) {
             
             var fixFrame = footerReferenceSize.toRect
             (dgSize.or(.zero).height > 0).founded({ fixFrame = dgSize!.toRect })
             fixFrame.origin.x = sectionInset.left
-            fixFrame.origin.y = offsetY + itemAttributes.last!.values.first!.frame.height
+            fixFrame.origin.y = offsetY // + itemAttributes.last!.values.first!.frame.height
             setAttributesFrame(with: attributes, fixFrame: fixFrame)
             
             let save = [index: attributes]
@@ -229,139 +251,30 @@ class IWCollectionViewFlowLayout: UICollectionViewFlowLayout {
         attributes.frame = fixFrame
     }
     
-    /*
-     override func prepare() {
-     super.prepare()
-     
-     var itemCount = 0
-     for sec in 0 ..< collectionView!.numberOfSections {
-     itemCount += collectionView!.numberOfItems(inSection: sec)
-     }
-     self.itemAttributes = []
-     
-     var xOffset = sectionInset.left
-     var yOffset = sectionInset.top
-     var xNextOffset = sectionInset.left
-     
-     var lineBottoms: [CGFloat] = []
-     var previousLineBottoms: [CGFloat] = []
-     var hasHeader: Bool = false
-     
-     var lastHeight: CGFloat = minimumLineSpacing
-     
-     for sec in 0 ..< collectionView!.numberOfSections {
-     
-     let indexPath = IndexPath(item: 0, section: sec)
-     let layoutAttributesHeader = UICollectionViewLayoutAttributes.init(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: indexPath)
-     let headerSize = self.headerReferenceSize
-     layoutAttributesHeader.frame = CGRect(x: 0, y: lastHeight, width: headerSize.width, height: headerSize.height)
-     //itemAttributes.add(layoutAttributesHeader)
-     (headerSize.height > 0).true({
-     let headerAttributes = [indexPath: layoutAttributesHeader]
-     itemAttributes.append(headerAttributes)
-     lastHeight += headerSize.height
-     })
-     
-     yOffset = (layoutAttributesHeader.frame.origin.y + headerSize.height + sectionInset.top)
-     xNextOffset = headerSize.width
-     hasHeader = (headerSize.width > 0 || headerSize.height > 0)
-     
-     var wrapCount = 0
-     var changeIdx = 0
-     for idx in 0 ..< collectionView!.numberOfItems(inSection: sec) {
-     let indexPath = IndexPath(item: idx, section: sec)
-     let itemSize = delegate!.collectionView!(collectionView!, layout: self, sizeForItemAt: indexPath)
-     
-     xNextOffset += (minimumInteritemSpacing + itemSize.width)
-     if xNextOffset > collectionView!.width - sectionInset.right {
-     
-     xOffset = sectionInset.left
-     xNextOffset = sectionInset.left + minimumInteritemSpacing + itemSize.width
-     
-     if hasHeader {
-     // 有头部时
-     (idx == 0).true({ yOffset -= self.minimumLineSpacing }, else: { yOffset += self.minimumLineSpacing + itemSize.height })
-     } else {
-     if lineBottoms.count == 1 {
-     lineBottoms[safe: 0].unwrapped({ yOffset = $0 + minimumLineSpacing })
-     } else {
-     lineBottoms[safe: idx - changeIdx - wrapCount].unwrapped({ yOffset = $0 + minimumLineSpacing }, else: { yOffset += headerSize.height + self.minimumLineSpacing })
-     }
-     }
-     changeIdx = idx
-     
-     print(lineBottoms)
-     
-     previousLineBottoms = lineBottoms
-     lineBottoms = []
-     wrapCount = 1
-     } else {
-     xOffset = xNextOffset - (minimumInteritemSpacing + itemSize.width)
-     if !hasHeader {
-     if idx != 0 {
-     if previousLineBottoms.count == 1 {
-     yOffset = previousLineBottoms[0] + minimumLineSpacing
-     } else {
-     (previousLineBottoms.count > 0).true({ yOffset = previousLineBottoms[safe: idx - changeIdx].or(0.00) + minimumLineSpacing })
-     }
-     }
-     }
-     wrapCount += 1
-     }
-     lineBottoms.append(yOffset + itemSize.height)
-     
-     let layoutAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-     layoutAttributes.frame = CGRect(x: xOffset, y: yOffset, width: itemSize.width, height: itemSize.height)
-     let rowAttributes = [indexPath: layoutAttributes]
-     itemAttributes.append(rowAttributes)
-     
-     lastHeight = lineBottoms.max().map({ $0 + sectionInset.bottom }, else: { yOffset + itemSize.height + self.minimumLineSpacing + sectionInset.bottom })
-     }
-     
-     let footerLayoutAttributes = UICollectionViewLayoutAttributes.init(forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, with: indexPath)
-     let footerSize = self.footerReferenceSize
-     footerLayoutAttributes.frame = CGRect(x: 0, y: lastHeight, width: footerSize.width, height: footerSize.height)
-     (footerSize.height > 0).true({
-     let footerAttributes = [indexPath: footerLayoutAttributes]
-     itemAttributes.append(footerAttributes)
-     lastHeight += footerSize.height
-     })
-     
-     xNextOffset = sectionInset.left
-     }
-     
-     contentHeight = lastHeight
-     }*/
-    
-    
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let ia = itemAttributes.filter { (attributes) -> Bool in
             return rect.intersects(attributes.values.first!.frame)
         }
         return ia.map({ $0.values.first! })
     }
     
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let containerAttributes = itemAttributes.filter({ $0.keys.first! == indexPath })
         let attbs = containerAttributes.first!.values.first!
         return attbs
     }
     
     /// (顶部/尾部视图，类似于 tableView 的 HeaderFooterView).
-    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let containerAttributes = itemAttributes.filter({ $0.keys.first! == indexPath && $0.values.first!.representedElementCategory == .supplementaryView && $0.values.first!.representedElementKind == elementKind })
         let attbs = containerAttributes.first!.values.first!
         return attbs
     }
     
-    override var collectionViewContentSize: CGSize {
-        var w: CGFloat = 0
-        var h: CGFloat = 0
-        if let collection = collectionView {
-            w = collection.width
-            h = maxContentHeight // 最大高度
-        }
-        return CGSize(width: w, height: h)
+    public override var collectionViewContentSize: CGSize {
+        return CGSize(width: maxContentWidth, height: maxContentHeight)
     }
+    
 }
 
+#endif

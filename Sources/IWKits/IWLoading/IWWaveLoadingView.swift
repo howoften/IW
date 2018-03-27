@@ -44,17 +44,17 @@ public class IWWaveLoadingView: UIView {
     
     private lazy var firstWaveLayer: CAShapeLayer = {
         let layer = CAShapeLayer.init()
-        layer.fillColor = UIColor.iwe_hex("#0096B3").alpha(0.4).cgColor
+        layer.fillColor = UIColor.hex("#0096B3").alpha(0.4).cgColor
         return layer
     }()
     private var secondWaveLayer: CAShapeLayer = {
         let layer = CAShapeLayer.init()
-        layer.fillColor = UIColor.iwe_hex("#8FEDFF").alpha(0.6).cgColor
+        layer.fillColor = UIColor.hex("#8FEDFF").alpha(0.6).cgColor
         return layer
     }()
     private var thirdWaveLayer: CAShapeLayer = {
         let layer = CAShapeLayer.init()
-        layer.fillColor = UIColor.iwe_hex("#35DEFF").alpha(0.2).cgColor
+        layer.fillColor = UIColor.hex("#35DEFF").alpha(0.2).cgColor
         return layer
     }()
     

@@ -23,7 +23,7 @@ open class IWTabBarController: UITabBarController {
     
     private func _init() {
         // 不透明 tabBar
-        self.tabBar.isTranslucent = false
+        //self.tabBar.isTranslucent = false
     }
     
     open override func didReceiveMemoryWarning() {

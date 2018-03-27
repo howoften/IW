@@ -39,7 +39,14 @@ class ViewController: IWRootVC {
             listView.rowHeight = UITableViewAutomaticDimension
         }
         
+        self.iwe.addRightNavBtn("Debug Log", target: self, action: #selector(showDebugLog))
+        
         listView.registReusable(UpdateListCell.self)
+    }
+    
+    @objc func showDebugLog() -> Void {
+        let vc = IWDebugLogVC()
+        iwe.push(to: vc)
     }
     
     override func configure() -> Void {
@@ -75,9 +82,25 @@ class ViewController: IWRootVC {
         self.iwe.modal(vc)
     }
     
+    func showKeychainUsed() {
+        let vc = KeyChainViewController.initFromXib()
+        self.iwe.push(to: vc)
+    }
+    func showFlowLayout() {
+        let vc = CollectionViewLayoutViewController.initFromXib()
+        self.iwe.push(to: vc)
+    }
+    func showQRCode() {
+        let vc = QRCodeViewController.initFromXib()
+        self.iwe.push(to: vc)
+    }
+    
     override func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) {
         (tableView.cellForRow(at: indexPath) as? UpdateListCell).and(then: { $0.actionID }).unwrapped ({ (actionID) in
             switch actionID {
+            case "generateQRCode":       self.showQRCode()
+            case "keychain":             self.showKeychainUsed()
+            case "flowlayout":           self.showFlowLayout()
             case "storeProduct":         self.showStoreProduct()
             case "showWave":             self.showWaveLoading()
             case "stopWave":             iw.loading.stopWaveLoading()
@@ -88,9 +111,8 @@ class ViewController: IWRootVC {
             default: break
             }
         })
-        
     }
-
+    
 }
 
 extension ViewController {
@@ -121,9 +143,6 @@ extension ViewController {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return updateLists[safe: section].and(then: { $0["tit"] }) as? String
-    }
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 28
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

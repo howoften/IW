@@ -1,3 +1,7 @@
+//
+//  iPrint.swift
+//  haoduobaduo
+//
 //  Created by iWe on 2017/10/27.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
@@ -5,44 +9,37 @@
 import UIKit
 import Foundation
 
-#if DEBUG
-    public let isDebugMode = true
-#else
-    public let isDebugMode = false
-#endif
-
 private let config = IWLogConfiguration.shared
 
 // Print in Debug mode.
-public func iPrint(_ item: Any..., file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
+func iPrint(_ item: Any..., file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
     
     var output = handlerPrint(fileName: file.lastPath, functionName: function, line: line)
-    output += ": \(item.last!)\n"
-    if isDebugMode == true {
+    output += ":\n\(item.last!)"
+    if iw.isDebugMode {
         print(output)
     }
     saveToLocal(output)
 }
 
 // Print Error in Debug mode.
-public func iPrint(_ desc: String? = "", error: Error?, file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
+func iPrint(_ desc: String? = "", error: Error?, file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
     var output = handlerPrint(fileName: file.lastPath, functionName: function, line: line)
     
     var info = ""
     if let er = error {
-        let nsError = er as NSError
-        info = ": \((desc == nil || desc == "") ? "" : "\(desc!)," ) errorCode=\(nsError.code), description: \(nsError.localizedDescription)\n"
+        info = ": \((desc == nil) ? "" : "\(desc!)," ) code=\(er.code), desc: \(er.description)"
     } else {
-        info = ": \(desc ?? "")\n"
+        info = ": \(desc ?? "")"
     }
     
     output += info.replace("  ", to: " ")
     
-    if isDebugMode == true, info != ": \n" {
+    if iw.isDebugMode, info != ": " {
         print(output)
     }
     
-    if info != ": \n" {
+    if info != ": " {
         saveToLocal(output)
     }
 }
@@ -59,13 +56,13 @@ private func handlerPrint(fileName: String, functionName: String, line: Int) -> 
 
 private func outputTime(_ output: inout String) {
     if config.isOutputTime {
-        output += "\(IWTime.current("YYYY-MM-dd HH:mm:ss.SSS"))"
+        output += "---- \(IWTime.current("YYYY-MM-dd HH:mm:ss.SSS"))"
     }
 }
 
 private func outputFileName(_ output: inout String, fileName: String) {
     if config.isOutputFileName {
-        output += " \(fileName)"
+        output += ", \(fileName)"
     }
 }
 
@@ -93,16 +90,15 @@ private func saveToLocal(_ output: String) {
     iw.queue.subThread(label: "iw.writelog") {
         if IWLogConfiguration.shared.isSaveToLocal {
             if let path = IWLogConfiguration.shared.recordLogPath {
-                if let logData = IWFileManage.default.contents(atPath: path) {
-                    let logString = logData.stringValue + "\n\(output)"
-                    do {
-                        try logString.write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
-                    } catch {
-                        iPrint("Record failed.")
+                // 追加写入 而不是覆盖写入
+                if let fileHandler = FileHandle.init(forUpdatingAtPath: path) {
+                    fileHandler.seekToEndOfFile()
+                    if let writingData = "\n\(output)".data(using: .utf8) {
+                        fileHandler.write(writingData)
+                        fileHandler.closeFile()
                     }
                 }
             }
         }
     }
 }
-
