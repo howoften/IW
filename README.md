@@ -18,6 +18,18 @@ pod 'IW'
 
 
 # 更新说明
+#### 2018.0327
+##### A
+`IWExtension_UIImage.swift`: 新增生成二维码, `UIImage.generateQRCode(withContent:withSize:logoImage:logoSizeType:)`, 使用参见 Demo 03月27日；  
+  
+#### 2018.0318
+##### A
+
+`IWKeyChainManager.swift`: KeyChain的使用，效果参见 Demo 03月18日；  
+`IWCollectionViewFlowLayout.swift`: 调整横竖排列时错误的问题，效果参见 Demo 03月18日；  
+`IWRootVC.swift`: 新增 `var useLayoutGuide: Bool` 使用扩展(延展) `(self.edgesForExtendedLayout = .all)` 布局；  
+
+  
 #### 2018.0312
 ##### A
 
