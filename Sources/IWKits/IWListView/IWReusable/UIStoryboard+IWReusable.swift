@@ -33,7 +33,7 @@ public extension IWStoryboardSceneBased where Self: UIViewController {
         return vc
     }
     /// Initial ViewController
-    /// (初始化控制器).
+    /// (通过 故事版 初始化控制器).
     static func instantiate() -> Self {
         guard let vc = sceneStoryboard.instantiateInitialViewController() as? Self else {
             fatalError("The initialViewController of '\(sceneStoryboard)' is not of class '\(self)'")

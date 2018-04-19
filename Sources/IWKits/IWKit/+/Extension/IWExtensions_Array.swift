@@ -159,6 +159,7 @@ public extension Array {
         return count
     }
     
+    /// (倒序遍历).
     public func forEachReversed(_ body: (Element) throws -> Void) rethrows {
         // From SwifterSwift: https://github.com/SwifterSwift/
         try reversed().forEach({ try body($0) })
@@ -169,6 +170,19 @@ public extension Array {
         // From SwifterSwift: https://github.com/SwifterSwift/
         for element in self where try condition(element) {
             try body(element)
+        }
+    }
+    
+    /// (多维数组按照一维数组进行遍历).
+    public func enumerateNested(_ handler: (_ obj: Any, _ stop: inout Bool) -> Void) -> Void {
+        var stop = false
+        for i in self {
+            if i is [Any] {
+                (i as! [Any]).enumerateNested(handler)
+            } else {
+                handler(i, &stop)
+            }
+            if stop { break }
         }
     }
 }

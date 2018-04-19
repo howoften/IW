@@ -45,8 +45,9 @@ class ViewController: IWRootVC {
     }
     
     @objc func showDebugLog() -> Void {
-        let vc = IWDebugLogVC()
-        iwe.push(to: vc)
+        //let vc = IWDebugLogVC()
+        //iwe.push(to: vc)
+        iw.naver.url("t1/KeyChainViewController/QRCodeViewController")
     }
     
     override func configure() -> Void {
@@ -83,21 +84,36 @@ class ViewController: IWRootVC {
     }
     
     func showKeychainUsed() {
-        let vc = KeyChainViewController.initFromXib()
-        self.iwe.push(to: vc)
+        //let vc = KeyChainViewController.initFromXib()
+        //self.iwe.push(to: vc)
+        iw.naver.url("./KeyChainViewController")
     }
     func showFlowLayout() {
-        let vc = CollectionViewLayoutViewController.initFromXib()
-        self.iwe.push(to: vc)
+        //let vc = CollectionViewLayoutViewController.initFromXib()
+        //self.iwe.push(to: vc)
+        iw.naver.url("./CollectionViewLayoutViewController")
     }
     func showQRCode() {
-        let vc = QRCodeViewController.initFromXib()
-        self.iwe.push(to: vc)
+        //let vc = QRCodeViewController.initFromXib()
+        //self.iwe.push(to: vc)
+        iw.naver.url("./QRCodeViewController")
+    }
+    func scanQR() {
+        //let vc = ScanQRViewController.initFromXib()
+        //self.iwe.push(to: vc)
+        iw.naver.url("./ScanQRViewController")
+    }
+    func permissions() {
+        //let vc = PermissionsViewController.initFromXib()
+        //self.iwe.push(to: vc)
+        iw.naver.url("./PermissionsViewController")
     }
     
     override func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) {
         (tableView.cellForRow(at: indexPath) as? UpdateListCell).and(then: { $0.actionID }).unwrapped ({ (actionID) in
             switch actionID {
+            case "permissions":          self.permissions()
+            case "scanQR":               self.scanQR()
             case "generateQRCode":       self.showQRCode()
             case "keychain":             self.showKeychainUsed()
             case "flowlayout":           self.showFlowLayout()

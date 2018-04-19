@@ -8,10 +8,15 @@ import UIKit
 public protocol IWNavigationShouldPopOnBackButton: class {
     /// (拦截返回按钮, 返回 false 则无法返回).
     func navigationShouldPopOnBackButton() -> Bool
+    /// (拦截返回事件, 可自定义点击 返回按钮后的事件)
+    func navigationPopOnBackHandler() -> Void
 }
 extension UIViewController: IWNavigationShouldPopOnBackButton {
     @objc open func navigationShouldPopOnBackButton() -> Bool {
         return true
+    }
+    @objc open func navigationPopOnBackHandler() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -26,8 +31,14 @@ extension UINavigationController: UINavigationBarDelegate {
         }
         
         if shoudPop {
-            iw.queue.main {
-                self.popViewController(animated: true)
+            if let topVC = vc, topVC.responds(to: #selector(navigationPopOnBackHandler)) {
+                iw.queue.main {
+                    topVC.navigationPopOnBackHandler()
+                }
+            } else {
+                iw.queue.main {
+                    self.popViewController(animated: true)
+                }
             }
         } else {
             for subview in navigationBar.subviews {

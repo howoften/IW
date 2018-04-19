@@ -15,6 +15,12 @@ public struct iw {
         public static let infoDictionary: [String: Any]? = Bundle.main.infoDictionary
     }
     
+    struct naver {
+        static func url(_ url: String) {
+            IWNaver.shared.naver(url)
+        }
+    }
+    
     /// (线程).
     public struct queue {
         
@@ -25,7 +31,11 @@ public struct iw {
         
         /// (主线程执行, DispatchQueue.main.async).
         public static func main(_ task: @escaping () -> Void) -> Void {
-            DispatchQueue.main.async { task() }
+            if Thread.isMainThread {
+                task()
+            } else {
+                DispatchQueue.main.async { task() }
+            }
         }
         
         /// (子线程执行, DispatchQueue(label: qlabel).async { }).

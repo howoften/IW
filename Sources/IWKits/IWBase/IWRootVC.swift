@@ -88,6 +88,9 @@ open class IWRootVC: UIViewController {
         set { self.navigationItem.largeTitleDisplayMode = newValue }
     }
     
+    /// (通过 naver 传递的参数).
+    public var naver: IWNaverInfo?
+    
     public lazy var bottomSpacingBackgroundView: UIView = { [unowned self] in
         let v = UIView(frame: MakeRect(0, .screenHeight - .bottomSpacing, .screenWidth, .bottomSpacing))
         if self.listView != nil {

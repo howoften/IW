@@ -50,6 +50,10 @@ public extension String {
     public var toURLRequestValue: URLRequest {
         return toURLRequest!
     }
+    /// Convert to [String]?
+    public var toArray: [String]? {
+        return self.map({ String($0) })
+    }
     /// Convert to AnyClass
     public var toAnyClass: AnyClass? {
         return NSClassFromString(self)
@@ -328,7 +332,7 @@ public extension String {
     
     /// (10进制转16进制, integer < 16).
     public static func hexLetterString(withInteger integer: NSInteger) -> String {
-        assert(integer < 16, "要转换的数必须是16进制里的个位数，即小于16，但你写的是\(integer)")
+        assert(integer < 16, "要转换的数必须是16进制里的个位数，即小于16，但你写的是 \(integer)")
         let hex = ["A", "B", "C", "D", "E", "F"]
         return (integer >= 10).founded({ hex[integer - 10] }, elseReturn: { "\(integer)" })
     }

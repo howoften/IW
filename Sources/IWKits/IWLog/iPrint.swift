@@ -12,7 +12,7 @@ import Foundation
 private let config = IWLogConfiguration.shared
 
 // Print in Debug mode.
-func iPrint(_ item: Any..., file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
+public func iPrint(_ item: Any..., file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
     
     var output = handlerPrint(fileName: file.lastPath, functionName: function, line: line)
     output += ":\n\(item.last!)"
@@ -23,7 +23,7 @@ func iPrint(_ item: Any..., file: String = #file, _ function: String = #function
 }
 
 // Print Error in Debug mode.
-func iPrint(_ desc: String? = "", error: Error?, file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
+public func iPrint(_ desc: String? = "", error: Error?, file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
     var output = handlerPrint(fileName: file.lastPath, functionName: function, line: line)
     
     var info = ""

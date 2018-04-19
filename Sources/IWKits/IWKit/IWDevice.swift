@@ -55,7 +55,6 @@ public class IWDevice: NSObject {
         return UIDevice.current.batteryLevel
     }
     
-    private static let examineBreakToolPathes: [String] = ["/Applications/Cydia.app",  "/Library/MobileSubstrate/MobileSubstrate.dylib", "/bin/bash", "/usr/sbin/sshd", "/etc/apt"]
     /// (是否越狱).
     public static var isJailbroken: Bool {
         // 1. 是否存在越狱文件
@@ -127,5 +126,29 @@ public class IWDevice: NSObject {
         default:                                        return identifier
         }
     }
+}
+
+extension IWDevice {
+    
+    private static func sizeAddDigit(with size: Float) -> String {
+        let kb: Float = 1024
+        let mb = kb * kb;
+        let gb = mb * kb;
+        
+        if size < 10 {
+            return "0 B"
+        } else if size < kb {
+            return "< 1 KB"
+        } else if size < mb {
+            return String.init(format: "%.2f KB", size)
+        } else if size < gb {
+            return String.init(format: "%.2f MB", size / mb)
+        } else {
+            return String.init(format: "%.2f GB", size / gb)
+        }
+    }
+    
+    private static let examineBreakToolPathes: [String] = ["/Applications/Cydia.app",  "/Library/MobileSubstrate/MobileSubstrate.dylib", "/bin/bash", "/usr/sbin/sshd", "/etc/apt"]
+    
 }
 

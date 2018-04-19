@@ -4,6 +4,36 @@
 <array>
 	<dict>
 		<key>tit</key>
+		<string>04月11日</string>
+		<key>list</key>
+		<array>
+			<dict>
+				<key>tit</key>
+				<string>IWPermissionsManager.swift</string>
+				<key>sub</key>
+				<string>[功能演示] 权限请求/状态/管理</string>
+				<key>acid</key>
+				<string>permissions</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>tit</key>
+		<string>04月03日</string>
+		<key>list</key>
+		<array>
+			<dict>
+				<key>tit</key>
+				<string>IWScanQR.swift</string>
+				<key>sub</key>
+				<string>[功能演示] 扫描二维码</string>
+				<key>acid</key>
+				<string>scanQR</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>tit</key>
 		<string>03月27日</string>
 		<key>list</key>
 		<array>

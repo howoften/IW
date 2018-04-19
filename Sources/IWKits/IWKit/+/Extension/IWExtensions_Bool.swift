@@ -91,6 +91,10 @@ public extension Bool {
         return !self ? `return`() : elseReturn()
     }
     
+    public func ope<T>(_ arg1: @autoclosure () -> T, _ arg2: @autoclosure () -> T) -> T {
+        return self ? arg1() : arg2()
+    }
+    
     /// (或).
     public func or(_ other: @autoclosure () -> Bool) -> Bool {
         return self || other()

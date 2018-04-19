@@ -48,6 +48,5 @@ class KeyChainViewController: IWSubVC {
     @IBAction func deleteAction(_ sender: Any) {
         IWKeyChainManager.delete(service: keyIndex.text!)
     }
-    
 }
 

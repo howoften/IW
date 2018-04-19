@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9203BE8D2081B91400390065 /* IWNaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203BE8C2081B91400390065 /* IWNaver.swift */; };
+		9203BE8F2081BB5100390065 /* IWNaverInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203BE8E2081BB5100390065 /* IWNaverInfo.swift */; };
+		9203BE932081C25D00390065 /* IWTest_Naver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203BE922081C25D00390065 /* IWTest_Naver.swift */; };
+		920F7BE82087178100581F3E /* IWTest_JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920F7BE72087178100581F3E /* IWTest_JSON.swift */; };
+		921D07102079C2990019C690 /* IWJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D070F2079C2990019C690 /* IWJSON.swift */; };
 		923BF08C2016172200299DEF /* UpdateListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923BF08A2016172200299DEF /* UpdateListCell.swift */; };
 		923BF08D2016172200299DEF /* UpdateListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923BF08B2016172200299DEF /* UpdateListCell.xib */; };
 		923E71032018219D004B9D1F /* IWStoreProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923E71022018219D004B9D1F /* IWStoreProductVC.swift */; };
@@ -22,6 +27,11 @@
 		926133712058CC2700ED0A87 /* IWExtensions_Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926133702058CC2700ED0A87 /* IWExtensions_Float.swift */; };
 		926133732058CD8700ED0A87 /* IWExtensions_Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926133722058CD8700ED0A87 /* IWExtensions_Int.swift */; };
 		92620DF12005C2ED004ABD4E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 92620DF02005C2ED004ABD4E /* README.md */; };
+		9266010D2073310F00C50211 /* IWScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9266010C2073310F00C50211 /* IWScan.swift */; };
+		9266010F207347E200C50211 /* IWScanQR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9266010E207347E200C50211 /* IWScanQR.swift */; };
+		9266011220734D1400C50211 /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9266011020734D1400C50211 /* ScanQRViewController.swift */; };
+		9266011320734D1400C50211 /* ScanQRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9266011120734D1400C50211 /* ScanQRViewController.xib */; };
+		926C93F2207E122F00D5D064 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 926C93F1207E122F00D5D064 /* HealthKit.framework */; };
 		926CB8B41FFC047500CBD434 /* IWCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8691FFC047500CBD434 /* IWCollectionViewFlowLayout.swift */; };
 		926CB8B51FFC047500CBD434 /* IWNavContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB86A1FFC047500CBD434 /* IWNavContoller.swift */; };
 		926CB8B61FFC047500CBD434 /* IWRootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB86B1FFC047500CBD434 /* IWRootVC.swift */; };
@@ -41,7 +51,6 @@
 		926CB8C41FFC047500CBD434 /* IWGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB87C1FFC047500CBD434 /* IWGlobal.swift */; };
 		926CB8C51FFC047500CBD434 /* IWAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB87D1FFC047500CBD434 /* IWAuthorization.swift */; };
 		926CB8C61FFC047500CBD434 /* IWCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB87F1FFC047500CBD434 /* IWCycleView.swift */; };
-		926CB8CA1FFC047500CBD434 /* Array+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8861FFC047500CBD434 /* Array+IW.swift */; };
 		926CB8CB1FFC047500CBD434 /* IWExtensions_UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8881FFC047500CBD434 /* IWExtensions_UIGestureRecognizer.swift */; };
 		926CB8CC1FFC047500CBD434 /* IWExtensions_UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8891FFC047500CBD434 /* IWExtensions_UIControl.swift */; };
 		926CB8CD1FFC047500CBD434 /* WKWebView+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB88B1FFC047500CBD434 /* WKWebView+IW.swift */; };
@@ -120,6 +129,10 @@
 		92A3C37220178DA700EDBB77 /* IWExtensions_UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C37120178DA700EDBB77 /* IWExtensions_UINib.swift */; };
 		92A3C37420178DD700EDBB77 /* IWExtensions_UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C37320178DD700EDBB77 /* IWExtensions_UIAlertController.swift */; };
 		92B6F1422022A53400FA34AA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B6F1412022A53400FA34AA /* DetailViewController.swift */; };
+		92CAA7D020737A1400C5AF81 /* IWPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAA7CF20737A1400C5AF81 /* IWPermissions.swift */; };
+		92D29DF6207DAEB50031EFAD /* PermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D29DF4207DAEB50031EFAD /* PermissionsViewController.swift */; };
+		92D29DF7207DAEB50031EFAD /* PermissionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D29DF5207DAEB50031EFAD /* PermissionsViewController.xib */; };
+		92D77569207A60BE00AFA7FB /* IWExtensions_Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D77568207A60BE00AFA7FB /* IWExtensions_Codable.swift */; };
 		92E53FF02022C61D002C5CA6 /* IWTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E53FEF2022C61D002C5CA6 /* IWTableViewCell.swift */; };
 		DA36CA5A1FF9061100714999 /* injectXcodePath.sh in Resources */ = {isa = PBXBuildFile; fileRef = DA36CA561FF9061000714999 /* injectXcodePath.sh */; };
 		DA8C9CFF1FF889A400BF9B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8C9CFE1FF889A400BF9B38 /* AppDelegate.swift */; };
@@ -140,6 +153,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9203BE8C2081B91400390065 /* IWNaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWNaver.swift; sourceTree = "<group>"; };
+		9203BE8E2081BB5100390065 /* IWNaverInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWNaverInfo.swift; sourceTree = "<group>"; };
+		9203BE922081C25D00390065 /* IWTest_Naver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWTest_Naver.swift; sourceTree = "<group>"; };
+		920F7BE72087178100581F3E /* IWTest_JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWTest_JSON.swift; sourceTree = "<group>"; };
+		921D070F2079C2990019C690 /* IWJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWJSON.swift; sourceTree = "<group>"; };
 		923BF08A2016172200299DEF /* UpdateListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListCell.swift; sourceTree = "<group>"; };
 		923BF08B2016172200299DEF /* UpdateListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateListCell.xib; sourceTree = "<group>"; };
 		923E71022018219D004B9D1F /* IWStoreProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWStoreProductVC.swift; sourceTree = "<group>"; };
@@ -155,6 +173,11 @@
 		926133702058CC2700ED0A87 /* IWExtensions_Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_Float.swift; sourceTree = "<group>"; };
 		926133722058CD8700ED0A87 /* IWExtensions_Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_Int.swift; sourceTree = "<group>"; };
 		92620DF02005C2ED004ABD4E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9266010C2073310F00C50211 /* IWScan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWScan.swift; sourceTree = "<group>"; };
+		9266010E207347E200C50211 /* IWScanQR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWScanQR.swift; sourceTree = "<group>"; };
+		9266011020734D1400C50211 /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
+		9266011120734D1400C50211 /* ScanQRViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanQRViewController.xib; sourceTree = "<group>"; };
+		926C93F1207E122F00D5D064 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		926CB8691FFC047500CBD434 /* IWCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		926CB86A1FFC047500CBD434 /* IWNavContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWNavContoller.swift; sourceTree = "<group>"; };
 		926CB86B1FFC047500CBD434 /* IWRootVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWRootVC.swift; sourceTree = "<group>"; };
@@ -174,7 +197,6 @@
 		926CB87C1FFC047500CBD434 /* IWGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWGlobal.swift; sourceTree = "<group>"; };
 		926CB87D1FFC047500CBD434 /* IWAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAuthorization.swift; sourceTree = "<group>"; };
 		926CB87F1FFC047500CBD434 /* IWCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCycleView.swift; sourceTree = "<group>"; };
-		926CB8861FFC047500CBD434 /* Array+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+IW.swift"; sourceTree = "<group>"; };
 		926CB8881FFC047500CBD434 /* IWExtensions_UIGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWExtensions_UIGestureRecognizer.swift; sourceTree = "<group>"; };
 		926CB8891FFC047500CBD434 /* IWExtensions_UIControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWExtensions_UIControl.swift; sourceTree = "<group>"; };
 		926CB88B1FFC047500CBD434 /* WKWebView+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+IW.swift"; sourceTree = "<group>"; };
@@ -258,6 +280,10 @@
 		92A3C37120178DA700EDBB77 /* IWExtensions_UINib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_UINib.swift; sourceTree = "<group>"; };
 		92A3C37320178DD700EDBB77 /* IWExtensions_UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_UIAlertController.swift; sourceTree = "<group>"; };
 		92B6F1412022A53400FA34AA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		92CAA7CF20737A1400C5AF81 /* IWPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWPermissions.swift; sourceTree = "<group>"; };
+		92D29DF4207DAEB50031EFAD /* PermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsViewController.swift; sourceTree = "<group>"; };
+		92D29DF5207DAEB50031EFAD /* PermissionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionsViewController.xib; sourceTree = "<group>"; };
+		92D77568207A60BE00AFA7FB /* IWExtensions_Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_Codable.swift; sourceTree = "<group>"; };
 		92E53FEF2022C61D002C5CA6 /* IWTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWTableViewCell.swift; sourceTree = "<group>"; };
 		DA36CA441FF9061000714999 /* CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCrypto.h; sourceTree = "<group>"; };
 		DA36CA471FF9061000714999 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -291,6 +317,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926C93F2207E122F00D5D064 /* HealthKit.framework in Frameworks */,
 				923E7107201821C9004B9D1F /* WebKit.framework in Frameworks */,
 				923E7105201821C3004B9D1F /* StoreKit.framework in Frameworks */,
 			);
@@ -299,6 +326,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9203BE8B2081B91400390065 /* IWNaver */ = {
+			isa = PBXGroup;
+			children = (
+				9203BE8C2081B91400390065 /* IWNaver.swift */,
+				9203BE8E2081BB5100390065 /* IWNaverInfo.swift */,
+			);
+			path = IWNaver;
+			sourceTree = "<group>";
+		};
+		921D070E2079C2840019C690 /* IWJSON */ = {
+			isa = PBXGroup;
+			children = (
+				921D070F2079C2990019C690 /* IWJSON.swift */,
+			);
+			path = IWJSON;
+			sourceTree = "<group>";
+		};
 		923E710820182692004B9D1F /* IWLoading */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,22 +351,35 @@
 			path = IWLoading;
 			sourceTree = "<group>";
 		};
+		9266010B207330FA00C50211 /* IWScan */ = {
+			isa = PBXGroup;
+			children = (
+				9266010C2073310F00C50211 /* IWScan.swift */,
+				9266010E207347E200C50211 /* IWScanQR.swift */,
+			);
+			path = IWScan;
+			sourceTree = "<group>";
+		};
 		926CB8671FFC047500CBD434 /* IWKits */ = {
 			isa = PBXGroup;
 			children = (
 				926CB8821FFC047500CBD434 /* IWKit */,
 				926CB8A41FFC047500CBD434 /* IWLog */,
 				926CB8681FFC047500CBD434 /* IWBase */,
+				9266010B207330FA00C50211 /* IWScan */,
 				9289442220575EA600AD7C70 /* IWUUID */,
+				921D070E2079C2840019C690 /* IWJSON */,
 				926CB87E1FFC047500CBD434 /* IWCycle */,
-				926CB87A1FFC047500CBD434 /* IWTimer */,
 				926CB8A71FFC047500CBD434 /* IWLogin */,
+				926CB87A1FFC047500CBD434 /* IWTimer */,
+				9203BE8B2081B91400390065 /* IWNaver */,
 				926CB8F01FFC06A200CBD434 /* IWBundle */,
 				923E710820182692004B9D1F /* IWLoading */,
 				926CB8711FFC047500CBD434 /* IWListView */,
 				926CB8AC1FFC047500CBD434 /* IWRequest */,
 				926CB8A21FFC047500CBD434 /* IWWebView */,
 				92980C73205A3A7000CF9F74 /* IWLocalAuth */,
+				92CAA7CE20737A0C00C5AF81 /* IWPermissions */,
 				9293119720564CB300D9B42B /* IWFullscreenPopGesture */,
 				926CB8791FFC047500CBD434 /* IWShouldPop.swift */,
 				926CB87C1FFC047500CBD434 /* IWGlobal.swift */,
@@ -402,19 +459,10 @@
 		926CB8831FFC047500CBD434 /* + */ = {
 			isa = PBXGroup;
 			children = (
-				926CB8841FFC047500CBD434 /* Core */,
 				926CB8871FFC047500CBD434 /* Extension */,
 				926CB88A1FFC047500CBD434 /* UIKit */,
 			);
 			path = "+";
-			sourceTree = "<group>";
-		};
-		926CB8841FFC047500CBD434 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				926CB8861FFC047500CBD434 /* Array+IW.swift */,
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		926CB8871FFC047500CBD434 /* Extension */ = {
@@ -459,6 +507,7 @@
 				927398312058D02700E09742 /* IWExtensions_FloatingPoint.swift */,
 				9273982F2058CF6C00E09742 /* IWExtensions_SignedInteger.swift */,
 				9293119A20564D1500D9B42B /* IWExtensions_DispatchQueue.swift */,
+				92D77568207A60BE00AFA7FB /* IWExtensions_Codable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -583,6 +632,10 @@
 				9287875F205F4B96004C570A /* CollectionViewLayoutViewController.xib */,
 				9241A9282069F5C200FA8821 /* QRCodeViewController.swift */,
 				9241A9292069F5C200FA8821 /* QRCodeViewController.xib */,
+				9266011020734D1400C50211 /* ScanQRViewController.swift */,
+				9266011120734D1400C50211 /* ScanQRViewController.xib */,
+				92D29DF4207DAEB50031EFAD /* PermissionsViewController.swift */,
+				92D29DF5207DAEB50031EFAD /* PermissionsViewController.xib */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -591,13 +644,24 @@
 			isa = PBXGroup;
 			children = (
 				9298111C205E4A9A00040A0E /* IWTest_KeyChain.swift */,
+				9203BE922081C25D00390065 /* IWTest_Naver.swift */,
+				920F7BE72087178100581F3E /* IWTest_JSON.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		92CAA7CE20737A0C00C5AF81 /* IWPermissions */ = {
+			isa = PBXGroup;
+			children = (
+				92CAA7CF20737A1400C5AF81 /* IWPermissions.swift */,
+			);
+			path = IWPermissions;
 			sourceTree = "<group>";
 		};
 		DA36CA2E1FF8F53F00714999 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				926C93F1207E122F00D5D064 /* HealthKit.framework */,
 				92981117205E495A00040A0E /* XcodeKit.framework */,
 				92981115205E46C300040A0E /* XCTest.framework */,
 				923E7106201821C9004B9D1F /* WebKit.framework */,
@@ -819,6 +883,9 @@
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -864,7 +931,9 @@
 				DA8C9D041FF889A400BF9B38 /* Main.storyboard in Resources */,
 				927129FD2029A2ED00D19B7B /* UpdateLists.plist in Resources */,
 				9241A92B2069F5C200FA8821 /* QRCodeViewController.xib in Resources */,
+				92D29DF7207DAEB50031EFAD /* PermissionsViewController.xib in Resources */,
 				92981125205E607000040A0E /* KeyChainViewController.xib in Resources */,
+				9266011320734D1400C50211 /* ScanQRViewController.xib in Resources */,
 				923BF08D2016172200299DEF /* UpdateListCell.xib in Resources */,
 				DA36CA5A1FF9061100714999 /* injectXcodePath.sh in Resources */,
 				92878761205F4B96004C570A /* CollectionViewLayoutViewController.xib in Resources */,
@@ -878,6 +947,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9203BE932081C25D00390065 /* IWTest_Naver.swift in Sources */,
+				920F7BE82087178100581F3E /* IWTest_JSON.swift in Sources */,
 				92981112205E443D00040A0E /* IWExtensionDemoTests.swift in Sources */,
 				9298111D205E4A9A00040A0E /* IWTest_KeyChain.swift in Sources */,
 			);
@@ -905,7 +976,10 @@
 				926CB8C41FFC047500CBD434 /* IWGlobal.swift in Sources */,
 				926CB8E41FFC047500CBD434 /* iPrint.swift in Sources */,
 				926CB8EC1FFC047500CBD434 /* IWRequestManageModel.swift in Sources */,
+				9266010F207347E200C50211 /* IWScanQR.swift in Sources */,
 				926CB8BA1FFC047500CBD434 /* IWWebVC.swift in Sources */,
+				9266011220734D1400C50211 /* ScanQRViewController.swift in Sources */,
+				92D29DF6207DAEB50031EFAD /* PermissionsViewController.swift in Sources */,
 				926CB8E01FFC047500CBD434 /* IWApp.swift in Sources */,
 				9273983C205903BF00E09742 /* IWExtensions_CAAnimation.swift in Sources */,
 				928BE5F020178F7B00B6D673 /* IWExtensions_UIImageView.swift in Sources */,
@@ -917,6 +991,7 @@
 				926CB8BE1FFC047500CBD434 /* UIStoryboard+IWReusable.swift in Sources */,
 				926CB8ED1FFC047500CBD434 /* IWRequestManage.swift in Sources */,
 				926CB8DF1FFC047500CBD434 /* IWAudio.swift in Sources */,
+				92D77569207A60BE00AFA7FB /* IWExtensions_Codable.swift in Sources */,
 				926CB8DC1FFC047500CBD434 /* Data+IW.swift in Sources */,
 				926CB8CB1FFC047500CBD434 /* IWExtensions_UIGestureRecognizer.swift in Sources */,
 				92A3C37220178DA700EDBB77 /* IWExtensions_UINib.swift in Sources */,
@@ -924,6 +999,7 @@
 				923E710A201826D2004B9D1F /* IWWaveLoadingView.swift in Sources */,
 				9298112B205E785600040A0E /* IWLogDetailsVC.swift in Sources */,
 				926CB8CF1FFC047500CBD434 /* UIScrollView+IW.swift in Sources */,
+				9203BE8D2081B91400390065 /* IWNaver.swift in Sources */,
 				9289442820575EFD00AD7C70 /* IWKeyChainManager.swift in Sources */,
 				926CB8D51FFC047500CBD434 /* UIView+IW.swift in Sources */,
 				926CB8DD1FFC047500CBD434 /* String+IW.swift in Sources */,
@@ -960,23 +1036,26 @@
 				928DA2BF201B1E940025A064 /* IWTabBarController.swift in Sources */,
 				9273983E2059062E00E09742 /* IWExtensions_UICollectionView.swift in Sources */,
 				926CB8D01FFC047500CBD434 /* UIImageView+IW.swift in Sources */,
+				9203BE8F2081BB5100390065 /* IWNaverInfo.swift in Sources */,
 				928BE5EE20178F6400B6D673 /* IWExtensions_UIPageControl.swift in Sources */,
 				926CB8B91FFC047500CBD434 /* IWAppDelegate.swift in Sources */,
 				926133712058CC2700ED0A87 /* IWExtensions_Float.swift in Sources */,
 				926CB8D91FFC047500CBD434 /* IWViewBase.swift in Sources */,
 				926CB8D21FFC047500CBD434 /* UILabel+IW.swift in Sources */,
 				9293119B20564D1500D9B42B /* IWExtensions_DispatchQueue.swift in Sources */,
+				92CAA7D020737A1400C5AF81 /* IWPermissions.swift in Sources */,
 				926CB8E91FFC047500CBD434 /* IWLoginVC.swift in Sources */,
 				926CB8B71FFC047500CBD434 /* IWSubVC.swift in Sources */,
 				92A3C36C20178D0A00EDBB77 /* IWExtensions_UIColor.swift in Sources */,
+				921D07102079C2990019C690 /* IWJSON.swift in Sources */,
 				92A3C3642017855400EDBB77 /* IWExtensions_UIView.swift in Sources */,
 				9273984020591C8700E09742 /* IWExtensions_CGColor.swift in Sources */,
 				927398342058F27D00E09742 /* IWExtensions_Date.swift in Sources */,
 				926CB8BC1FFC047500CBD434 /* IWListView.swift in Sources */,
 				926CB8B41FFC047500CBD434 /* IWCollectionViewFlowLayout.swift in Sources */,
 				926CB8C11FFC047500CBD434 /* IWNibLoadable.swift in Sources */,
+				9266010D2073310F00C50211 /* IWScan.swift in Sources */,
 				926CB8B61FFC047500CBD434 /* IWRootVC.swift in Sources */,
-				926CB8CA1FFC047500CBD434 /* Array+IW.swift in Sources */,
 				9296C2742043AFCA002A6303 /* IWExtensions_UIImage.swift in Sources */,
 				926CB8E51FFC047500CBD434 /* IWLogConfiguration.swift in Sources */,
 				926CB8DA1FFC047500CBD434 /* UIViewController+IWViewController.swift in Sources */,
@@ -1032,7 +1111,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P55DG9QH44;
 				INFOPLIST_FILE = IWExtensionDemoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1049,7 +1128,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P55DG9QH44;
 				INFOPLIST_FILE = IWExtensionDemoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.iwecon.IWExtensionDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

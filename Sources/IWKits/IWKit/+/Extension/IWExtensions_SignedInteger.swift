@@ -18,6 +18,10 @@ public extension SignedInteger {
     public var isEven: Bool { return (self % 2) == 0 }
     /// (是否为奇数, (int % 2) != 0).
     public var isOdd: Bool { return (self % 2) != 0 }
+    /// (Bool, value > 0?).
+    public var bool: Bool {
+        return self > 0
+    }
     
     public var timeStr: String {
         guard self > 0 else { return "0 sec" }

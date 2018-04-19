@@ -5,7 +5,7 @@
 import UIKit
 
 /// (App 相关信息).
-class IWApp: NSObject {
+public class IWApp: NSObject {
     
     private struct Key {
         /// App version
@@ -16,9 +16,11 @@ class IWApp: NSObject {
         
         /// App name
         static let displayNameKey = "CFBundleDisplayName"
+        
+        static let bundleNameKey = "CFBundleName"
     }
     
-    private static var infoDictionary: [String: Any]? = { return Bundle.main.infoDictionary }()
+    public static var infoDictionary: [String: Any]? = { return Bundle.main.infoDictionary }()
     
     /// App Version.
     /// (Version 关键词被OC占用).
@@ -41,5 +43,9 @@ class IWApp: NSObject {
     /// (支持旋转, 设置后会响应 CGFloat.screenWidth, .screenHeight 动态取值).
     public static var supportRotation = false
     
+    /// (project name / bundle name).
+    public static var bundleName: String? {
+        return infoDictionary?[Key.bundleNameKey] as? String
+    }
 }
 

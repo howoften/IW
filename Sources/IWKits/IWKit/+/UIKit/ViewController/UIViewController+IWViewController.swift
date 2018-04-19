@@ -45,6 +45,24 @@ public extension IWViewController where ViewController: UIViewController {
         }
     }
     
+    public var shouldUsePop: Bool {
+        if let controllers = vc.navigationController?.viewControllers, controllers.count > 1 {
+            if controllers[safe: controllers.count - 1] == vc {
+                // push
+                return true
+            }
+        }
+        return false
+    }
+    
+    public var shouldUseDimiss: Bool {
+        if let controllers = vc.navigationController?.viewControllers, controllers.count > 1 {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     /// NavigationBar height.
     /// (导航栏高度).
     var navigationBarHeight: CGFloat {
@@ -109,8 +127,16 @@ public extension IWViewController where ViewController: UIViewController {
     }
     /// Auto back previous viewController.
     /// (自动识别并处理返回事件).
-    func backToPreviousViewController() -> Void {
-        backToPreviousController()
+    func backToPreviousController(_ animated: Bool = true) {
+        if let controllers = vc.navigationController?.viewControllers, controllers.count > 1 {
+            if controllers[safe: controllers.count - 1] == vc {
+                // push
+                vc.navigationController?.popViewController(animated: animated)
+            }
+        } else {
+            // presnet
+            vc.dismiss(animated: animated, completion: nil)
+        }
     }
     
     /// Show navigationBar.
@@ -178,18 +204,6 @@ fileprivate extension IWViewController where ViewController: UIViewController {
             return displayController
         }
         return nil
-    }
-    
-    func backToPreviousController(_ animated: Bool = true) {
-        if let controllers = vc.navigationController?.viewControllers, controllers.count > 1 {
-            if controllers[safe: controllers.count - 1] == vc {
-                // push
-                vc.navigationController?.popViewController(animated: animated)
-            }
-        } else {
-            // presnet
-            vc.dismiss(animated: animated, completion: nil)
-        }
     }
 }
 

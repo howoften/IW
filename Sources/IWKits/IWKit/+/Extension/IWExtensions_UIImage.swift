@@ -25,7 +25,11 @@ public extension UIImage {
     
     /// (获取图片均色, 原理：将图片压缩至 1x1, 然后取色值, 如果获取的颜色比较淡, 可使用 iwe.colorWithoutAlpha 转换).
     public var averageColor: UIColor? {
+        #if swift(>=4.1)
+        let data = UnsafeMutableRawPointer.allocate(byteCount: 4, alignment: 1) // unsigned char = 4 bytes
+        #else
         let data = UnsafeMutableRawPointer.allocate(bytes: 4, alignedTo: 1) // unsigned char = 4 bytes
+        #endif
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         guard let context = CGContext.init(data: data, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue) else {
             assertionFailure("非法 context.")
