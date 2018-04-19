@@ -18,6 +18,11 @@ pod 'IW'
 
 
 # 更新说明
+#### 2018.0419
+##### A  
+`IWNaver` 负责导航栏跳转，提供 `URL` 式的跳转方式，以 host 域名为跳转方式。具体参见 `IWNaver.swift`；
+加入 QR扫描、权限管理面板，详情参见 Demo 04月03日、04月11日；
+
 #### 2018.0327
 ##### A
 `IWExtension_UIImage.swift`: 新增生成二维码, `UIImage.generateQRCode(withContent:withSize:logoImage:logoSizeType:)`, 使用参见 Demo 03月27日；  
@@ -120,3 +125,4 @@ pod 'IW'
 #### 2017.1130
 `A`&ensp;新增 `IWLocalAuthentication` 类, 用于本地认证 ( `Face ID` / `Touch ID`); \
 使用例子：[参见使用说明](https://www.iwecon.cc/2017/16.html);
+
