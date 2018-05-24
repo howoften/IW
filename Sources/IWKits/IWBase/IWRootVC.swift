@@ -7,10 +7,10 @@ import UIKit
 open class IWRootVC: UIViewController {
     
     /// (IWListView).
-    public var listView: IWListView! = nil
-    lazy var listViewThread: DispatchQueue = {
-        return DispatchQueue(label: "cc.iwe.listView", attributes: .init(rawValue: 0))
-    }()
+    //public var listView: IWListView! = nil
+//    lazy var listViewThread: DispatchQueue = {
+//        return DispatchQueue(label: "cc.iwe.listView", attributes: .init(rawValue: 0))
+//    }()
 //    private var _numberOfSections: Int = 0
 //    private var _numberOfRowsInSection: Int = 0
     
@@ -89,7 +89,7 @@ open class IWRootVC: UIViewController {
     }
     
     /// (通过 naver 传递的参数).
-    public var naver: IWNaverInfo?
+    public var naverInfo: IWNaverInfo?
     
     public lazy var bottomSpacingBackgroundView: UIView = { [unowned self] in
         let v = UIView(frame: MakeRect(0, .screenHeight - .bottomSpacing, .screenWidth, .bottomSpacing))
@@ -119,7 +119,7 @@ open class IWRootVC: UIViewController {
     }
     
     deinit {
-        iPrint("The view controller(\(self)) has been released.")
+        iPrint("\(self) has been released.")
     }
     
     // MARK:- View did load
@@ -146,6 +146,7 @@ open class IWRootVC: UIViewController {
         self.view.backgroundColor = .white
     }
     
+    /// (xib 初始化界面后，不适配导航栏位置的解决方式).
     public var useLayoutGuide: Bool = false {
         didSet {
             if useLayoutGuide {
@@ -169,10 +170,28 @@ open class IWRootVC: UIViewController {
     /// (返回一个IWListView).
     private func createListView(withFrame frame: CGRect, style: UITableViewStyle) -> IWListView {
         let lv = IWListView(frame: frame, style: style)
-        lv.delegate = self
-        lv.dataSource = self
+//        lv.delegate = self
+//        lv.dataSource = self
         return lv
     }
+    
+//    open func addPlainListView(with dataSource: UITableViewDataSource) -> Void {
+//        self.listView = createListView(withFrame: self.view.bounds, style: .plain)
+//        self.listView.dataSource = dataSource
+//        self.listView.delegate = self
+//        self.view.addSubview(self.listView)
+//
+//        self.addLayoutToBaseView()
+//    }
+    
+    /// (给 listView 添加约束).
+//    private func addLayoutToBaseView() -> Void {
+//        let topConstraint = NSLayoutConstraint.init(item: self.listView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0)
+//        let leftConstraint = NSLayoutConstraint.init(item: self.listView, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
+//        let rightConstraint = NSLayoutConstraint.init(item: self.view, attribute: .right, relatedBy: .equal, toItem: self.listView, attribute: .trailing, multiplier: 1.0, constant: 0)
+//        let bottomConstraint = NSLayoutConstraint.init(item: self.view, attribute: .bottom, relatedBy: .equal, toItem: self.listView, attribute: .bottom, multiplier: 1.0, constant: 0)
+//        NSLayoutConstraint.activate([topConstraint, leftConstraint, rightConstraint, bottomConstraint])
+//    }
     
     /// (添加一个与view背景色相同的view, 到iPhoneX屏幕底部).
     public func insertSafeAreaBottomSpacingView(belowSubview: UIView, bgColor: UIColor? = nil) -> Void {
@@ -199,58 +218,80 @@ open class IWRootVC: UIViewController {
     open func configure() -> Void { }
     
     /// (v0.2.5 已废弃, 请使用 configureDidSelect(_:indexPath:)).
-    @available(*, deprecated: 0.2.5, message: "Use configureDidSelect(_:indexPath:)")
-    open func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) { }
-    /// (Cell 点击/选中时触发).
-    open func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) { }
-    /// (Cell 渲染/加载时触发).
-    open func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell { return UITableViewCell() }
+//    @available(*, deprecated: 0.2.5, message: "Use configureDidSelect(_:indexPath:)")
+//    open func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) { }
+//    /// (Cell 点击/选中时触发).
+//    open func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) { }
+//    /// (Cell 渲染/加载时触发).
+//    open func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell { return UITableViewCell() }
 }
 
-// MARK:- TableView 协议: DataSource
-extension IWRootVC: UITableViewDataSource {
-    open func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return configureReusableCell(tableView, indexPath: indexPath)
-    }
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if listView != nil, listView.isAutoDeselect {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
-        self.configureDidSelect(tableView, indexPath: indexPath)
-    }
-}
+//// MARK:- TableView 协议: DataSource
+//extension IWRootVC: UITableViewDataSource {
+//    open func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 0
+//    }
+//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        return configureReusableCell(tableView, indexPath: indexPath)
+//    }
+//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if listView != nil, listView.isAutoDeselect {
+//            tableView.deselectRow(at: indexPath, animated: true)
+//        }
+//        self.configureDidSelect(tableView, indexPath: indexPath)
+//    }
+//}
 
 
-// MARK:- TableView 协议: Delegate
-extension IWRootVC: UITableViewDelegate {
+
+//// MARK:- TableView 协议: Delegate
+//extension IWRootVC: UITableViewDelegate {
+//
+////    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+////        return nil
+////    }
+////    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+////        return nil
+////    }
+////    // iOS 11 中需要配置 viewForHeader viewForFooter 才会执行 heightForHeader heightForFooter
+////    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+////        if tableView.style == .grouped {
+////            if section == 0 {
+////                return 20.0
+////            }
+////            return 10.0
+////        }
+////        return .min
+////    }
+////    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+////        if tableView.style == .grouped {
+////            return 10.0
+////        }
+////        return .min
+////    }
+//}
+
+
+extension IWRootVC: IWTableViewInitProtocol {
     
-//    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return nil
-//    }
-//    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        return nil
-//    }
-//    // iOS 11 中需要配置 viewForHeader viewForFooter 才会执行 heightForHeader heightForFooter
-//    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if tableView.style == .grouped {
-//            if section == 0 {
-//                return 20.0
-//            }
-//            return 10.0
-//        }
-//        return .min
-//    }
-//    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        if tableView.style == .grouped {
-//            return 10.0
-//        }
-//        return .min
-//    }
+    public var listView: IWListView! {
+        get {
+            return objc_getAssociatedObject(self, &IWListView.Key.listViewKey) as! IWListView
+        }
+        set {
+            objc_setAssociatedObject(self, &IWListView.Key.listViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    /// (初始化一个 listView).
+    public func initListView(_ frame: CGRect, style: UITableViewStyle) -> IWListView {
+        let lsv = IWListView.init(frame: frame, style: style)
+        self.listView = lsv
+        return lsv
+    }
+    
 }
 

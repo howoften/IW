@@ -53,45 +53,45 @@ public class IWDebugLogVC: IWSubVC {
         // Dispose of any resources that can be recreated.
     }
     
-    override public func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.reuseCell()
-        cell.textLabel!.text = outputFiles[safe: indexPath.row]?.lastPathNotHasPathExtension
-        return cell
-    }
-    
-    override public func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) {
-        let filePath = outputFiles[safe: indexPath.row]
-        let detailsVC = IWLogDetailsVC()
-        detailsVC.filePath = filePath
-        iwe.push(to: detailsVC)
-    }
+//    override public func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.reuseCell()
+//        cell.textLabel!.text = outputFiles[safe: indexPath.row]?.lastPathNotHasPathExtension
+//        return cell
+//    }
+//
+//    override public func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) {
+//        let filePath = outputFiles[safe: indexPath.row]
+//        let detailsVC = IWLogDetailsVC()
+//        detailsVC.filePath = filePath
+//        iwe.push(to: detailsVC)
+//    }
     
 }
 
 
 extension IWDebugLogVC {
     
-    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return outputFiles.count
-    }
-    
-    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .delete
-    }
-    
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if let path = outputFiles[safe: indexPath.row] {
-                if FileManager.default.fileExists(atPath: path) {
-                    do {
-                        try FileManager.default.removeItem(atPath: path)
-                        tableView.deleteRows(at: [indexPath], with: .left)
-                    } catch {
-                        iPrint("Remove logs \(path) failed.")
-                    }
-                }
-            }
-        }
-    }
+//    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return outputFiles.count
+//    }
+//
+//    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .delete
+//    }
+//
+//    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            if let path = outputFiles[safe: indexPath.row] {
+//                if FileManager.default.fileExists(atPath: path) {
+//                    do {
+//                        try FileManager.default.removeItem(atPath: path)
+//                        tableView.deleteRows(at: [indexPath], with: .left)
+//                    } catch {
+//                        iPrint("Remove logs \(path) failed.")
+//                    }
+//                }
+//            }
+//        }
+//    }
     
 }

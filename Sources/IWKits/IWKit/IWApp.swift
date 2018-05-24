@@ -17,7 +17,17 @@ public class IWApp: NSObject {
         /// App name
         static let displayNameKey = "CFBundleDisplayName"
         
+        /// Bunlde name
         static let bundleNameKey = "CFBundleName"
+        
+        /// Bunlde Ideintifier
+        static let bundleIdentifier = "CFBundleIdentifier"
+        
+        /// MinimumOSVersion
+        static let minimumOSVersion = "MinimumOSVersion"
+        
+        /// CFBundleDevelopmentRegion
+        static let developmentRegion = "CFBundleDevelopmentRegion"
     }
     
     public static var infoDictionary: [String: Any]? = { return Bundle.main.infoDictionary }()
@@ -46,6 +56,21 @@ public class IWApp: NSObject {
     /// (project name / bundle name).
     public static var bundleName: String? {
         return infoDictionary?[Key.bundleNameKey] as? String
+    }
+    
+    /// (Bunlde Identifier).
+    public static var bundleIdentifier: String? {
+        return infoDictionary?[Key.bundleIdentifier] as? String
+    }
+    
+    /// (最低支持版本).
+    public static var minimumOSVersion: String? {
+        return infoDictionary?[Key.minimumOSVersion] as? String
+    }
+    
+    /// (开发地区).
+    public static var developmentRegion: String? {
+        return infoDictionary?[Key.developmentRegion] as? String
     }
 }
 

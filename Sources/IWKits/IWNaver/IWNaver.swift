@@ -21,12 +21,8 @@
  
  t0/xx/xx1/xx2/xx3 切换到第0个标签 并push到xx3 (xx3默认返回到 xx2)
  
- 
  t0/xx/xx1/xx2    当前目录切换到第0个标签并push到xx2
  ./t0/xx/xx1/xx2  当前目录切换到第0个标签并push到xx2
- 
- // ../t0/xx/xx1/xx2 当前目录返回上一级再切换到0 再push到xx2
- 
  */
 
 import UIKit
@@ -39,10 +35,23 @@ public let IWNaverBackToPrevious = ".."
 /// (Push/Back, URL 解决方案).
 public class IWNaver: NSObject {
     
+    struct FailedTips {
+        static let bundleNameTips = "获取 bundle name 失败, 若不知道怎么处理，直接将 bdName 改成当前项目的名称即可!"
+    }
+    
+    private let appScheme = "naver"
+    private var bundleName: String { return IWApp.bundleName.expect(FailedTips.bundleNameTips) }
+    
+    public typealias CompletedHandler = (_: IWNaverInfo) -> Void
+    public typealias FailedHandler = (_: IWNaverInfo) -> Void
+    private var completedHandler: CompletedHandler?
+    private var failedHandler: FailedHandler?
+    
     public static let shared = IWNaver()
     
     /// (使用别名进行解析, 默认为 false).
-    public var useAlias = false
+    // TODO: 别名解析待开发
+    //public var useAlias = false
     
     private var _nextPushWithoutAnimation = false
     /// (下一次 push 时，没有动画效果).
@@ -70,13 +79,10 @@ public class IWNaver: NSObject {
         set { _nextPopWithoutAnimation = newValue }
     }
     
-    private let appScheme = "naver"
-    private var bundleName: String {
-        return IWApp.bundleName.expect("获取 bundle name 失败, 若不知道怎么处理，直接将 bdName 改成当前项目的名称即可!")
-    }
-    
+    /// (跳转).
     public func naver(_ url: String) {
         let ana = analysis(str: url)
+        
         // 为 naver 方式
         if ana.scheme == appScheme {
             
@@ -89,26 +95,52 @@ public class IWNaver: NSObject {
             
         } else if ana.scheme.is(in: ["http", "https"]) {
             // 浏览器链接
-            iPrint("\(ana.url.absoluteString) 是浏览器链接")
+            iPrint("\(ana.url.absoluteString) 是 Web URL 链接, 重定向到 IWWebVC")
+            getCurrentVC().iwe.push(to: IWWebVC(url: ana.url.absoluteString))
         } else {
             // 其它类型链接
             iPrint("\(ana.url.absoluteString) 是其它类型链接")
         }
+        
+        self.completedHandler?(ana)
+        self.completedHandler = nil
     }
     
-    public func push(to url: String) {
-        naver(url)
+    /// (completed 跳转完成后的回调事件).
+    public func naver(_ url: String, completed: CompletedHandler?) {
+        self.completedHandler = completed
+        self.naver(url)
     }
+    
+}
+
+
+// MARK:- 解析/跳转
+extension IWNaver {
     
     private func analysis(str: String) -> IWNaverInfo {
         var checkStr = str
         if !str.containsEx(in: ["http://", "https://", "naver://"]) {
             checkStr = "naver://" + str
         }
-        guard let url = URL(string: checkStr) else { fatalError("无法转换为 url") }
+        guard let urlEncode = checkStr.urlEncode else { fatalError("URLEncode 格式化失败") }
+        guard let url = URL(string: urlEncode) else { fatalError("无法转换为 url") }
         guard let scheme = url.scheme else { fatalError("非法 scheme") }
         //guard let host = url.host else { fatalError("非法 host") }
         let host = url.host
+        
+        var naverType: IWNaverInfo.NaverType = .unknow
+        if isBackToRootVC(checkStr) {
+            naverType = .toRoot
+        } else if hasOnePoint(in: host.orEmpty) || hasTwoPoints(in: host.orEmpty) {
+            naverType = .points
+        } else if hasTabbar(in: url.host.orEmpty) {
+            naverType = .tabbar
+        }
+        return generateNaverInfo(withURL: url, scheme: scheme, host: url.host, naverType: naverType)
+    }
+    
+    private func generateNaverInfo(withURL url: URL, scheme: String, host: String?, naverType: IWNaverInfo.NaverType) -> IWNaverInfo {
         
         let model = IWNaverInfo()
         model.url = url
@@ -117,34 +149,20 @@ public class IWNaver: NSObject {
         model.params = url.submissionParameters?.toParameters
         model.pathComponents = url.pathComponents
         model.lastPath = url.lastPathComponent
-        
-        if isBackToRootVC(checkStr) {
-            model.naverType = .toRoot
-        } else if hasOnePoint(in: host.orEmpty) || hasTwoPoints(in: host.orEmpty) {
-            model.naverType = .points
-        } else if hasTabbar(in: url.host.orEmpty) {
-            model.naverType = .tabbar
-        } else {
-            model.naverType = .unknow
-        }
+        model.naverType = naverType
         
         return model
+        
     }
     
     private func handlerPathComponents(with naver: IWNaverInfo) {
         
-        guard naver.pathComponents.count > 1 || naver.lastPath != "" else {
-            return
-        }
-        
-        if naver.lastPath == "" {
-            return
-        }
+        guard naver.pathComponents.count > 1 || naver.lastPath != "" else { return }
         
         let irvc = initViewController(with: naver.lastPath)
         naver.previousVC = "\(getCurrentVC())"
         naver.previousVCInstance = getCurrentVC()
-        irvc.naver = naver
+        irvc.naverInfo = naver
         getCurrentVC().iwe.push(to: irvc, !nextPushWithoutAnimation)
         
         guard naver.pathComponents.count > 2 else { return }
@@ -154,13 +172,16 @@ public class IWNaver: NSObject {
         guard let displayVCCurrentIdx = vcs.index(of: getCurrentVC()) else { fatalError("无法找到当前显示在屏幕的控制器的位置") }
         for (idx, pathClassStr) in naver.pathComponents.enumerated() {
             if idx == 0, pathClassStr == "/" { continue }
-            if idx == naver.pathComponents.count - 1 {
-                // 最后一个
-                break
-            } else {
-                let irvc = initViewController(with: pathClassStr)
-                vcs.insert(irvc, at: naver.naverType == .tabbar ? (displayVCCurrentIdx + idx) : (displayVCCurrentIdx + idx - 1))
-            }
+            
+            guard idx != naver.pathComponents.count - 1 else { break }
+            let irvc = initViewController(with: pathClassStr)
+            vcs.insert(irvc, at: naver.naverType == .tabbar ? (displayVCCurrentIdx + idx) : (displayVCCurrentIdx + idx - 1))
+//            if idx == naver.pathComponents.count - 1 {
+//                // 最后一个
+//                break
+//            } else {
+//                
+//            }
         }
         getCurrentVC().navigationController?.viewControllers = vcs
     }
@@ -172,6 +193,7 @@ public class IWNaver: NSObject {
         handlerPathComponents(with: naver)
     }
     
+    /// .模式跳转
     private func pushWithPoints(_ naver: IWNaverInfo) {
         guard let points = naver.host else {
             if naver.lastPath == "/", naver.pathComponents.count == 1 {
@@ -198,8 +220,23 @@ public class IWNaver: NSObject {
             }
         }
     }
+    
 }
 
+
+//// MARK:- UseAlias
+//extension IWNaver {
+//
+//    static func register(_ urlPattern: String, toHandler: () -> Void) {
+//
+//    }
+//
+//}
+
+
+
+
+// MARK:- Private
 extension IWNaver {
     
     /// 修正 class
@@ -225,6 +262,7 @@ extension IWNaver {
     
 }
 
+// MARK:- Private
 extension IWNaver {
     
     private func _pushToRootVC() {
@@ -259,7 +297,7 @@ extension IWNaver {
 }
 
 
-// MARK:- has Private
+// MARK:- Private
 extension IWNaver {
     
     /// 是否为返回到根视图
@@ -278,7 +316,7 @@ extension IWNaver {
     private func hasTwoPoints(in host: String) -> Bool {
         return host == ".."
     }
-    
+    /// 是否为切换 tabbar
     private func hasTabbar(in host: String) -> Bool {
         return host.matches("^t\\d+$")
     }

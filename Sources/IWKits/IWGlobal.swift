@@ -16,8 +16,12 @@ public struct iw {
     }
     
     struct naver {
-        static func url(_ url: String) {
-            IWNaver.shared.naver(url)
+        static func url(_ url: String, completed: IWNaver.CompletedHandler? = nil) {
+            if completed.isSome {
+                IWNaver.shared.naver(url, completed: completed!)
+            } else {
+                IWNaver.shared.naver(url)
+            }
         }
     }
     
@@ -135,15 +139,24 @@ public struct iw {
     }
     
     /// (是否为 iPhone).
-    public static let isiPhone = IWDevice.isiPhone
+//    public static let isiPhone = IWDevice.isiPhone
     /// (屏幕 Bounds).
-    public static let screenBounds = UIScreen.main.bounds
-    /// (屏幕 Size).
-    public static let screenSize = iw.screenBounds.size
-    /// (屏幕 Width).
-    public static let screenWidth = iw.screenSize.width
-    /// (屏幕 高度).
-    public static let screenHeight = iw.screenSize.height
+//    public static let screenBounds = UIScreen.main.bounds
+//    /// (屏幕 Size).
+//    public static let screenSize = iw.screenBounds.size
+//    /// (屏幕 Width).
+//    public static let screenWidth = iw.screenSize.width
+//    /// (屏幕 高度).
+//    public static let screenHeight = iw.screenSize.height
+    
+    public struct screen {
+        public static let bounds = UIScreen.main.bounds
+        public static let size = screen.bounds.size
+        public static let width = screen.size.width
+        public static let height = screen.size.height
+        
+        public static let scale = UIScreen.main.scale
+    }
     
     /// (设备系统).
     public struct system {
@@ -163,6 +176,9 @@ public struct iw {
             #endif
             return isSim
         }()
+        
+        public static let isiPhone: Bool = IWDevice.isiPhone
+        public static let isiPhoneX: Bool = IWDevice.isiPhoneX
     }
     
     /// (try 事件).
@@ -201,18 +217,21 @@ public struct iw {
         var infos = "-- iw.outputDeviceInfos"
         infos += """
         
-         固件类型: \t\(IWDevice.deviceName)
-         设备机型: \t\(IWDevice.modelName)
-         设备机名: \t\(IWDevice.aboutPhoneName)
-         系统版本: \t\(iw.system.version)
-         内部标识: \t\(IWDevice.modelIdentifier)
-         是否越狱: \t\(IWDevice.isJailbroken ? "是" : "否")
-         应用名称: \t\(IWApp.name.or(""))
-         应用版本: \t\(IWApp.shortVersion.or("1.0")) build \(IWApp.build.or("1"))
+         固件类型: \(IWDevice.deviceName)
+         设备机型: \(IWDevice.modelName)
+         设备机名: \(IWDevice.aboutPhoneName)
+         系统版本: \(iw.system.version)
+         内部标识: \(IWDevice.modelIdentifier)
+         是否越狱: \(IWDevice.isJailbroken.map("是", "否"))
+         应用名称: \(IWApp.name.or("未知"))
+         应用版本: \(IWApp.shortVersion.or("1.0")) build \(IWApp.build.or("1"))
+         应用标识: \(IWApp.bundleIdentifier.or("未知"))
+         最低支持: \(IWApp.minimumOSVersion.or("未知"))
+         需要加入: \(IWApp.infoDictionary.map({ $0.has(key: "UIRequiredDeviceCapabilities").map("无需加入 UIRequiredDeviceCapabilities", "需要在 info.plist 中添加 UIRequiredDeviceCapabilities") }).or("未知"))
         
          设备屏幕缩放比例: \(UIScreen.main.scale)
-         物理分辨率(width*height): \(iw.screenWidth) * \(iw.screenHeight)
-         实际分辨率(width*height): \(iw.screenWidth * UIScreen.main.scale) * \(iw.screenHeight * UIScreen.main.scale)
+         物理分辨率(width*height): \(iw.screen.width) * \(iw.screen.height)
+         实际分辨率(width*height): \(iw.screen.width * UIScreen.main.scale) * \(iw.screen.height * UIScreen.main.scale)
         """
         infos += "\n--------------------------------------------------"
         iPrint(infos)

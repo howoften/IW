@@ -11,7 +11,7 @@ import UIKit
 public extension CAAnimation {
     
     private struct Key {
-        static let keepStateAtEndKey: String = "KEEP"
+        static var keepStateAtEndKey: Void?
     }
     
 }
@@ -21,8 +21,8 @@ public extension CAAnimation {
     
     /// (保持动画结束后的状态).
     var isKeepStateAtEnd: Bool {
-        get { return objc_getAssociatedObject(self, Key.keepStateAtEndKey).or(false) as! Bool }
-        set { objc_setAssociatedObject(self, Key.keepStateAtEndKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN); setKeepStateAtEnd(with: newValue) }
+        get { return objc_getAssociatedObject(self, &Key.keepStateAtEndKey).or(false) as! Bool }
+        set { objc_setAssociatedObject(self, &Key.keepStateAtEndKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN); setKeepStateAtEnd(with: newValue) }
     }
     
 }

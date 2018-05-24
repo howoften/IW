@@ -90,11 +90,11 @@ public extension CGFloat {
     
     /// (屏幕高度, 会根据设备方向的不同返回不同值, 需要先设置 IWApp.supportRotation 才会触发自动识别高度).
     public static var screenHeight: CGFloat {
-        return (IWApp.supportRotation && (IWDevice.orientation == .unknown || IWDevice.orientation.isPortrait)) ? iw.screenWidth : iw.screenHeight
+        return (IWApp.supportRotation && (IWDevice.orientation == .unknown || IWDevice.orientation.isPortrait)) ? iw.screen.width : iw.screen.height
     }
     /// (屏幕宽度, 会根据设备方向的不同返回不同值, 需要先设置 IWApp.supportRotation 才会触发自动识别宽度).
     public static var screenWidth: CGFloat {
-        return (IWApp.supportRotation && (IWDevice.orientation == .unknown || IWDevice.orientation.isPortrait)) ? iw.screenHeight : iw.screenWidth
+        return (IWApp.supportRotation && (IWDevice.orientation == .unknown || IWDevice.orientation.isPortrait)) ? iw.screen.height : iw.screen.width
     }
     public static var screenBounds: CGRect {
         return UIScreen.main.bounds

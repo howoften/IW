@@ -128,8 +128,8 @@ extension Optional {
     }
     
     /// (self 有值则执行 some 闭包).
-    public func on(some: () throws -> Void) rethrows {
-        if self != nil { try some() }
+    public func on(some: (_ unwrapped: Wrapped) throws -> Void) rethrows {
+        if self != nil { try some(self!) }
     }
     
     /// (self 为 nil 则执行 none 闭包).

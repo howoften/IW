@@ -93,12 +93,12 @@ public extension String {
     }
     /// (URL 编码).
     public var urlEncode: String? {
-        guard #available(iOS 9, *) else {
-            let legalURLCharactersToBeEscaped: CFString = ":&=;+!@#$()',*" as CFString
-            let str = CFURLCreateStringByAddingPercentEscapes(nil, self as CFString, nil, legalURLCharactersToBeEscaped, CFStringBuiltInEncodings.UTF8.rawValue) as String
-            return str
-        }
-        return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        guard #available(iOS 9, *) else {
+//            let legalURLCharactersToBeEscaped: CFString = "&=;+!@#$()',*" as CFString
+//            let str = CFURLCreateStringByAddingPercentEscapes(nil, self as CFString, nil, legalURLCharactersToBeEscaped, CFStringBuiltInEncodings.UTF8.rawValue) as String
+//            return str
+//        }
+        return self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     }
     /// (URL 解码).
     public var urlDecode: String {

@@ -8,8 +8,10 @@
 
 public extension UIView {
     
-    enum InsertType {
+    public enum InsertType {
+        /// (在 ... 上面).
         case above
+        /// (在 ... 下面).
         case below
     }
     
@@ -35,6 +37,16 @@ public extension UIView {
         set { self.frame.size.height = newValue }
     }
     
+    public var size: CGSize {
+        get { return self.frame.size }
+        set { self.frame.size = newValue }
+    }
+    
+    public var origin: CGPoint {
+        get { return self.frame.origin }
+        set { self.frame.origin = newValue }
+    }
+    
     public var left: CGFloat {
         get { return self.frame.origin.x }
         set { self.frame.origin.x = newValue }
@@ -42,6 +54,17 @@ public extension UIView {
     public var right: CGFloat {
         get { return self.frame.origin.x + self.frame.size.width }
         set { self.frame.origin.x = newValue - self.frame.size.width }
+    }
+    
+    /// (视图右边距离 superView 右边的距离).
+    public var absRight: CGFloat {
+        get {
+            guard let sv = self.superview else { return self.right }
+            return sv.width - self.right
+        }
+        set {
+            guard let sv = self.superview else { self.right = 0; return }
+            self.right = sv.width - newValue }
     }
     
     public var top: CGFloat {

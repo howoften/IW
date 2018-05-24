@@ -211,6 +211,16 @@ public extension Array where Element: Equatable {
     }
 }
 
+public extension Array where Element: StringProtocol {
+    
+    public func merge() -> String {
+        var mg = ""
+        self.forEach({ mg = mg + String($0) })
+        return mg
+    }
+    
+}
+
 // MARK:- Numeric
 public extension Array where Element: Numeric {
     

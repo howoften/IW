@@ -85,9 +85,7 @@ public class IWTimer: Timer {
         if userInfo.count == 2 {
             info = userInfo.last
         }
-        if block != nil {
-            block!(info)
-        }
+        block?(info)
     }
     
 }

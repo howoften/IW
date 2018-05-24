@@ -7,6 +7,14 @@ import UIKit
 extension UITableViewCell: IWNibReusable { }
 extension UITableViewHeaderFooterView: IWNibReusable { }
 
+public extension UITableView {
+    
+    private struct _IWKey {
+        static var belongViewControllerKey: Void?
+    }
+    
+}
+
 // MARK:- Cell
 public extension UITableView {
     
@@ -37,6 +45,22 @@ public extension UITableView {
             fatalError("Failed to dequeue a cell with identifier \(cellType.identifier)")
         }
         return cell
+    }
+    
+    /// (TableView 所属 ViewController).
+    public var belongViewController: UIViewController? {
+        return _belongViewController
+    }
+    private var _belongViewController: UIViewController? {
+        get { return objc_getAssociatedObject(self, &_IWKey.belongViewControllerKey) as? UIViewController }
+        set { objc_setAssociatedObject(self, &_IWKey.belongViewControllerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    }
+}
+
+extension UITableView {
+    open override func willMove(toSuperview newSuperview: UIView?) {
+        self._belongViewController = newSuperview?.viewController
+        super.willMove(toSuperview: newSuperview)
     }
 }
 

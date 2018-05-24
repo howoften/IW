@@ -13,8 +13,6 @@ class UpdateListCell: UITableViewCell {
     @IBOutlet weak var titLabel: UILabel!
     @IBOutlet weak var subLabel: UILabel!
     
-    var actionID: String?
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,10 +20,14 @@ class UpdateListCell: UITableViewCell {
         subLabel.numberOfLines = 0
     }
     
-    func config(_ info: [String: String]) -> Void {
-        titLabel.text = info["tit"]
-        subLabel.text = info["sub"]
-        actionID = info[safe: "acid"] ?? nil
+    func setupInfo(with model: SubItemModel) -> Void {
+        titLabel.text = model.tit
+        subLabel.text = model.sub
+        if model.acid.isSome {
+            self.accessoryType = .disclosureIndicator
+        } else {
+            self.accessoryType = .none
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

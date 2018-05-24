@@ -39,7 +39,7 @@ class ScanQRViewController: IWSubVC {
     func initScan() -> Void {
         scanQR = IWScanQR.init(videoFrame: self.containerView.bounds)
         containerView.layer.addSublayer(scanQR.videoPreviewLayer)
-        scanQR.scaned { (opObjs) in
+        scanQR.scaned { [weak self] (opObjs) in
             if let objs = opObjs {
                 var outp = ""
                 for (idx, value) in objs.enumerated() {
@@ -48,7 +48,7 @@ class ScanQRViewController: IWSubVC {
                 UIAlert.show(message: outp, config: { (alert) in
                     alert.addCancel(title: "好的", handler: nil)
                     alert.addConfirm(title: "继续扫描", style: .default, handler: { (act) in
-                        self.scanQR.startScanning()
+                        self?.scanQR.startScanning()
                     })
                 })
             }

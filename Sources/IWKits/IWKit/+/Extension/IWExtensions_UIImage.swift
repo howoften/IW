@@ -101,7 +101,7 @@ public extension UIImage {
     
 }
 
-
+// MARK:- Function
 public extension UIImage {
     
     /// (设置图片的透明度).
@@ -161,12 +161,12 @@ public extension UIImage {
         return resultImage
     }
     
+    /// (二维码大小).
     public enum QRCodeLogoImageSizeType {
         case big
         case small
         case none
     }
-    
     /// Generate QRCode with txt.
     /// (生成二维码).
     public static func generateQRCode(withContent content: String, withSize size: CGFloat, logoImage: UIImage?, logoSizeType sizeType: QRCodeLogoImageSizeType) -> UIImage? {
@@ -182,7 +182,7 @@ public extension UIImage {
         guard let outputImage = filter.outputImage else { return nil }
         return self.createNoneInterpolatedUIImage(from: outputImage, withSize: size, logoImage: logoImage, withLogoSizeType: sizeType)
     }
-    
+    /// (创建非插值UII图).
     public static func createNoneInterpolatedUIImage(from ciimage: CIImage, withSize size: CGFloat, logoImage: UIImage?, withLogoSizeType sizeType: QRCodeLogoImageSizeType) -> UIImage? {
         let extent = ciimage.extent
         let scale = min(size / extent.width, size / extent.height)
@@ -233,6 +233,21 @@ public extension UIImage {
         let newPic = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newPic
+    }
+    
+    
+    /// (缩放图像至 size 大小).
+    ///
+    /// - Parameters:
+    ///   - size: 缩放至 ... 大小
+    ///   - opaque: 是否透明, 默认为不透明
+    /// - Returns: 返回缩放后的图像, 可能为nil
+    public func scale(to size: CGSize, opaque: Bool = false) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+        self.draw(in: size.toRect)
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return scaledImage
     }
     
 }

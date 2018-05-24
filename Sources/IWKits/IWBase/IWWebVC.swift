@@ -55,6 +55,7 @@ open class IWWebVC: IWSubVC {
         self.loadFinishedHandler = handler
     }
     
+    /// (推荐初始化方式).
     convenience init(url: String, style: Style = .default) {
         self.init()
         self.requestURLString = url
