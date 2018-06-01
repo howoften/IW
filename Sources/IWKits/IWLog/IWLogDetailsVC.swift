@@ -14,11 +14,9 @@ public class IWLogDetailsVC: IWSubVC {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-        initUserInterface()
     }
     
-    override public func initUserInterface() {
+    override public func setupUserInterface() {
         title = "Output Details"
         
         txtView.isEditable = false

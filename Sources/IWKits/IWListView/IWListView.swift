@@ -12,9 +12,6 @@ protocol IWTableViewInitProtocol {
     func setupPlainListView(to view: UIView) -> Void
     /// (初始化).
     func initListView(_ frame: CGRect, style: UITableViewStyle) -> IWListView
-    
-    /// (添加约束).
-    //func _constraintsAddedOfListView(_ view: UIView) -> Void
 }
 
 extension IWTableViewInitProtocol {
@@ -126,13 +123,7 @@ public class IWListView: UITableView {
     }
     
     @objc public override func reloadData() {
-        print("r self: \(self)")
-        print("r selfds: \(self.dataSource as Any)")
-        
         super.reloadData()
-        
-        print("self: \(self)")
-        print("selfds: \(self.dataSource as Any)")
     }
     
     open func reloadDataWithAnimation(_ animation: UIViewAnimationOptions = .transitionCrossDissolve) -> Void {
@@ -147,9 +138,6 @@ public class IWListView: UITableView {
     public func configrationProtocols<T: UITableViewCell, P: UITableViewHeaderFooterView>(delegate: UITableViewDelegate?, dataSource: UITableViewDataSource?, rcells: [T.Type]?, rviews: [P.Type]?) -> Void {
         self.delegate = delegate
         self.dataSource = dataSource
-        
-        print("self: \(self)")
-        print("selfds: \(self.dataSource as Any)")
         
         if rcells.isSome { self.registerCells(rcells!) }
         if rviews.isSome { self.registerViews(rviews!) }
@@ -185,7 +173,7 @@ extension IWListView {
         tableHeaderView = UIView(frame: MakeRect(0, 0, .screenWidth, .min))
         tableFooterView = UIView()
         
-        if let tabbar = UIViewController.IWE.current()?.tabBarController?.tabBar, !tabbar.isTranslucent {
+        if let tabbar = UIViewController.current?.tabBarController?.tabBar, !tabbar.isTranslucent {
             if iw.isTabbarExists {
                 self.contentInset = MakeEdge(0, 0, .navBarHeightNormal + 49, 0)
                 self.scrollIndicatorInsets = self.contentInset

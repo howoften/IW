@@ -7,11 +7,3 @@
 //
 
 import UIKit
-
-extension NSObject {
-    
-    var currentViewController: UIViewController? {
-        return UIViewController.IWE.current()
-    }
-    
-}

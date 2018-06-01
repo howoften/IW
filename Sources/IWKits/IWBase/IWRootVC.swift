@@ -6,30 +6,6 @@ import UIKit
 
 open class IWRootVC: UIViewController {
     
-    /// (IWListView).
-    //public var listView: IWListView! = nil
-//    lazy var listViewThread: DispatchQueue = {
-//        return DispatchQueue(label: "cc.iwe.listView", attributes: .init(rawValue: 0))
-//    }()
-//    private var _numberOfSections: Int = 0
-//    private var _numberOfRowsInSection: Int = 0
-    
-    /// The view background color.
-    public var backgroundColor: UIColor? {
-        get { return self.view.backgroundColor }
-        set { self.view.backgroundColor = newValue }
-    }
-    /// Navigation item title.
-    public var navTitle: String? {
-        get { return self.navigationItem.title }
-        set { self.navigationItem.title = newValue }
-    }
-    /// Tabbar item badge value.
-    public var badgeValue: String? {
-        get { return self.tabBarItem.badgeValue }
-        set { self.tabBarItem.badgeValue = newValue }
-    }
-    
     /// Hide back item title when pushed.
     public var isHideBackItemTitleWhenPushed: Bool {
         get { return IWNavController.withoutBackTitleWhenPushed }
@@ -109,13 +85,13 @@ open class IWRootVC: UIViewController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (isAutoHideBottomBarWhenPushed) { self.hidesBottomBarWhenPushed = true }
+        if (isAutoHideBottomBarWhenPushed) { hidesBottomBarWhenPushed = true }
     }
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         iw.previousViewController = self
-        if (isAutoHideBottomBarWhenPushed) { self.hidesBottomBarWhenPushed = false }
+        if (isAutoHideBottomBarWhenPushed) { hidesBottomBarWhenPushed = false }
     }
     
     deinit {
@@ -130,20 +106,19 @@ open class IWRootVC: UIViewController {
         _init()
     }
     
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // iPrint("The view controller is: \(self)")
-    }
-    
     private func _init() {
-        self.extendedLayoutIncludesOpaqueBars = true
-        if self.tabBarController.and(then: { $0.tabBar.isTranslucent }).or(true).isFalse {
-            self.edgesForExtendedLayout = .bottom
+        extendedLayoutIncludesOpaqueBars.enable()
+        if tabBarController.and(then: { $0.tabBar.isTranslucent }).orTrue.isFalse {
+            edgesForExtendedLayout = .bottom
         }
         
-        self.isAutoHideBottomBarWhenPushed = true
-        self.view.backgroundColor = .white
+        isAutoHideBottomBarWhenPushed.enable()
+        backgroundColor = .white
+        
+        preconfiguration()
+        setupUserInterface()
+        configureUserInterface()
+        configure()
     }
     
     /// (xib 初始化界面后，不适配导航栏位置的解决方式).
@@ -156,42 +131,6 @@ open class IWRootVC: UIViewController {
             }
         }
     }
-    
-    /// (添加一个 Grouped 风格的 IWListView 到界面上).
-    open func addGroupedListView() {
-        self.listView = createListView(withFrame: self.view.bounds, style: .grouped)
-        self.view.addSubview(self.listView)
-    }
-    /// (添加一个 Plain 风格的 IWListView 到界面上).
-    open func addPlainListView() {
-        self.listView = createListView(withFrame: self.view.bounds, style: .plain)
-        self.view.addSubview(self.listView)
-    }
-    /// (返回一个IWListView).
-    private func createListView(withFrame frame: CGRect, style: UITableViewStyle) -> IWListView {
-        let lv = IWListView(frame: frame, style: style)
-//        lv.delegate = self
-//        lv.dataSource = self
-        return lv
-    }
-    
-//    open func addPlainListView(with dataSource: UITableViewDataSource) -> Void {
-//        self.listView = createListView(withFrame: self.view.bounds, style: .plain)
-//        self.listView.dataSource = dataSource
-//        self.listView.delegate = self
-//        self.view.addSubview(self.listView)
-//
-//        self.addLayoutToBaseView()
-//    }
-    
-    /// (给 listView 添加约束).
-//    private func addLayoutToBaseView() -> Void {
-//        let topConstraint = NSLayoutConstraint.init(item: self.listView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0)
-//        let leftConstraint = NSLayoutConstraint.init(item: self.listView, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
-//        let rightConstraint = NSLayoutConstraint.init(item: self.view, attribute: .right, relatedBy: .equal, toItem: self.listView, attribute: .trailing, multiplier: 1.0, constant: 0)
-//        let bottomConstraint = NSLayoutConstraint.init(item: self.view, attribute: .bottom, relatedBy: .equal, toItem: self.listView, attribute: .bottom, multiplier: 1.0, constant: 0)
-//        NSLayoutConstraint.activate([topConstraint, leftConstraint, rightConstraint, bottomConstraint])
-//    }
     
     /// (添加一个与view背景色相同的view, 到iPhoneX屏幕底部).
     public func insertSafeAreaBottomSpacingView(belowSubview: UIView, bgColor: UIColor? = nil) -> Void {
@@ -212,68 +151,23 @@ open class IWRootVC: UIViewController {
     }
     
     // MARK:- 交给子类重写
-    /// (用于加载 UI).
-    open func initUserInterface() -> Void { }
+    /**
+     viewDidLoad 中
+     先走 preconfiguration
+     再走 setupUserInterface
+     再走 configureUserInterface
+     最后 configure
+     */
+    
+    /// (前置配置).
+    open func preconfiguration() -> Void { }
+    /// (添加视图).
+    open func setupUserInterface() -> Void { }
+    /// (配置视图).
+    open func configureUserInterface() -> Void { }
     /// (用于配置一些其他信息, 例如网络请求等).
     open func configure() -> Void { }
-    
-    /// (v0.2.5 已废弃, 请使用 configureDidSelect(_:indexPath:)).
-//    @available(*, deprecated: 0.2.5, message: "Use configureDidSelect(_:indexPath:)")
-//    open func tableView(_ tableView: UITableView, ofDidSelectAt indexPath: IndexPath) { }
-//    /// (Cell 点击/选中时触发).
-//    open func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) { }
-//    /// (Cell 渲染/加载时触发).
-//    open func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell { return UITableViewCell() }
 }
-
-//// MARK:- TableView 协议: DataSource
-//extension IWRootVC: UITableViewDataSource {
-//    open func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 0
-//    }
-//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        return configureReusableCell(tableView, indexPath: indexPath)
-//    }
-//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if listView != nil, listView.isAutoDeselect {
-//            tableView.deselectRow(at: indexPath, animated: true)
-//        }
-//        self.configureDidSelect(tableView, indexPath: indexPath)
-//    }
-//}
-
-
-
-//// MARK:- TableView 协议: Delegate
-//extension IWRootVC: UITableViewDelegate {
-//
-////    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-////        return nil
-////    }
-////    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-////        return nil
-////    }
-////    // iOS 11 中需要配置 viewForHeader viewForFooter 才会执行 heightForHeader heightForFooter
-////    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-////        if tableView.style == .grouped {
-////            if section == 0 {
-////                return 20.0
-////            }
-////            return 10.0
-////        }
-////        return .min
-////    }
-////    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-////        if tableView.style == .grouped {
-////            return 10.0
-////        }
-////        return .min
-////    }
-//}
-
 
 extension IWRootVC: IWTableViewInitProtocol {
     
@@ -294,4 +188,3 @@ extension IWRootVC: IWTableViewInitProtocol {
     }
     
 }
-

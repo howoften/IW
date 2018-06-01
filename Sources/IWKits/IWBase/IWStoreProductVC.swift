@@ -27,7 +27,7 @@ public class IWStoreProductVC: SKStoreProductViewController {
             self.loadProduct(withParameters: dic, completionBlock: { (ok, error) in
                 iw.loading.stopWaveLoading()
                 ok.founded({
-                    UIViewController.IWE.current()?.present(self, animated: true, completion: nil)
+                    UIViewController.current?.present(self, animated: true, completion: nil)
                 })
             })
         })

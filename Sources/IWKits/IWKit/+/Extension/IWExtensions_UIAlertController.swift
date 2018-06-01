@@ -42,7 +42,7 @@ public extension UIAlertController {
     }
     
     public func show() -> Void {
-        UIViewController.IWE.current()?.present(self, animated: true, completion: nil)
+        UIViewController.current?.present(self, animated: true, completion: nil)
     }
     
     public func setMessageAlignment(to alignment: NSTextAlignment) -> Void {

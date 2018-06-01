@@ -187,7 +187,7 @@ public extension UIView {
     /// in viewController / Top viewController?
     /// (当前显示的 viewController).
     var viewController: UIViewController? {
-        return UIViewController.IWE.current()
+        return UIViewController.current
     }
     
     /// Add to view.
@@ -371,7 +371,7 @@ public extension UIView {
                         scrView.contentInset = MakeEdge(convertFrame.size.height, 0, 0, 0)
                         scrView.scrollIndicatorInsets = scrView.contentInset
                     } else {
-                        if let vc = UIViewController.IWE.current() as? IWRootVC, !vc.automaticallyAdjustsScrollViewInsets {
+                        if let vc = UIViewController.current as? IWRootVC, !vc.automaticallyAdjustsScrollViewInsets {
                             scrView.contentInset = MakeEdge(convertFrame.origin.y + convertFrame.size.height, 0, 0, 0)
                             scrView.scrollIndicatorInsets = scrView.contentInset
                             return

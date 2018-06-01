@@ -8,35 +8,41 @@
 
 import UIKit
 
-class ViewControllerViewModel: NSObject {
+class ViewControllerViewModel: IWViewModel {
+    
+    private var tableView: UITableView!
     
     var _model: ViewControllerModel!
     var plist: [[String: Any]]!
     override init() {
         super.init()
         
-        iw.queue.main {
-            guard let p = Bundle.main.path(forResource: "UpdateLists", ofType: "plist") else { fatalError("error") }
-            if let pp = NSArray.init(contentsOfFile: p) {
-                self.plist = pp as! [[String: Any]]
-            }
-            self._model = ViewControllerModel(self.plist)
+        guard let p = Bundle.main.path(forResource: "UpdateLists", ofType: "plist") else { fatalError("error") }
+        if let pp = NSArray.init(contentsOfFile: p) {
+            self.plist = pp as! [[String: Any]]
         }
+        self._model = ViewControllerModel(self.plist)
     }
     
-    var numberOfSections: Int {
+    
+    override var numberOfSections: Int {
         return _model.itemModel.unwrapCount
     }
     
-    func numberOfRows(in section: Int) -> Int {
+    override func numberOfRows(in section: Int) -> Int {
         return _model.itemModel![section].list.unwrapCount
     }
-    
-    func subItemModel(with indexPath: IndexPath) -> SubItemModel {
-        return _model.itemModel![indexPath.section].list![indexPath.row]
+    override func cellModel<T>(with indexPath: IndexPath) -> T? where T : NSObject {
+        return _model.itemModel![indexPath.section].list![indexPath.row] as? T
     }
     
     func titleForHeader(in section: Int) -> String? {
         return _model.itemModel![section].tit
+    }
+    
+    func bind(_ tableView: UITableView, delegate: UITableViewDelegate?, dataSource: UITableViewDataSource?) -> Void {
+        self.tableView = tableView
+        tableView.delegate = delegate
+        tableView.dataSource = dataSource
     }
 }

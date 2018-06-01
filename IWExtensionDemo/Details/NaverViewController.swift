@@ -14,11 +14,9 @@ class NaverViewController: IWSubVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        initUserInterface()
     }
     
-    override func initUserInterface() {
+    override func configureUserInterface() {
         self.useLayoutGuide.enable()
         self.title = naverInfo?.params?.getParameterValue("title")
     }

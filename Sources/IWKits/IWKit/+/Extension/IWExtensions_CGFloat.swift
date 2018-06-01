@@ -18,7 +18,7 @@ public extension CGFloat {
      note: 根据 iPhoneX SafeAreaGuide 进行了修正
      Changed by iwe. */
     public static var tabbarHeight: CGFloat {
-        guard let vc = UIViewController.IWE.current() else { return 0 }
+        guard let vc = UIViewController.current else { return 0 }
         guard let tabBar = vc.tabBarController?.tabBar else { return 0 }
         if !iw.isTabbarExists || tabBar.isHidden {
             if IWDevice.isiPhoneX {
@@ -29,7 +29,7 @@ public extension CGFloat {
         return tabBar.height
     }
     public static var navBarHeight: CGFloat {
-        guard let vc = UIViewController.IWE.current() else { return 0 }
+        guard let vc = UIViewController.current else { return 0 }
         guard let navBar = vc.navigationController?.navigationBar else { return 0 }
         if navBar.isHidden {
             return statusBarHeight

@@ -20,7 +20,7 @@ class KeyChainViewController: IWSubVC {
 
         // Do any additional setup after loading the view.
         self.useLayoutGuide = true
-        self.navTitle = "钥匙串 Keychain"
+        self.navigationItemTitle = "钥匙串 Keychain"
     }
 
     override func didReceiveMemoryWarning() {

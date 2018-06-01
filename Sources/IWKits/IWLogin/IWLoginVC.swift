@@ -63,10 +63,9 @@ public class IWLoginVC: IWRootVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        initUserInterface()
     }
     
-    override public func initUserInterface() {
+    public override func setupUserInterface() {
         
         isHideBackItemTitleWhenPushed = true
         
@@ -93,7 +92,7 @@ public class IWLoginVC: IWRootVC {
     }
     
     @objc func navCancelItemAction() {
-        iwe.dismiss()
+        dismiss()
     }
     
     func setUpView() {

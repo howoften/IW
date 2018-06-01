@@ -10,13 +10,8 @@ public class IWVerificationCodeVC: IWSubVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        initUserInterface()
     }
     
-    override public func initUserInterface() {
-        
-    }
 
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

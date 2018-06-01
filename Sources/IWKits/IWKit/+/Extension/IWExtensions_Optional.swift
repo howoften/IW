@@ -161,6 +161,15 @@ extension Optional {
     }
 }
 
+extension Optional where Wrapped == Bool {
+    public var orTrue: Bool {
+        return true
+    }
+    public var orFalse: Bool {
+        return false
+    }
+}
+
 extension Optional where Wrapped == String {
     /// (Wrapped == String. 返回 "").
     public var orEmpty: String { return self ?? "" }

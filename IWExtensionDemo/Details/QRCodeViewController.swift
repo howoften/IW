@@ -20,7 +20,7 @@ class QRCodeViewController: IWSubVC {
 
         // Do any additional setup after loading the view.
         self.useLayoutGuide.enable()
-        self.navTitle = "生成二维码"
+        self.navigationItemTitle = "生成二维码"
     }
 
     override func didReceiveMemoryWarning() {

@@ -19,12 +19,11 @@ class ScanQRViewController: IWSubVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        initUserInterface()
     }
     
-    override func initUserInterface() {
+    override func configureUserInterface() {
         self.useLayoutGuide = true
-        self.navTitle = "扫描二维码"
+        self.navigationItemTitle = "扫描二维码"
         
         let sta = IWPermissionManager<IWPCamera>.init().authorizationStatus
         if sta != .none && sta != .denied && sta != .restricted {

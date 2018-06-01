@@ -50,14 +50,13 @@ class PermissionsViewController: IWSubVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        initUserInterface()
     }
     
-    override func initUserInterface() {
-        self.navTitle = "权限请求/管理"
-        self.useLayoutGuide.enable()
+    override func configureUserInterface() {
+        navigationItemTitle = "权限请求/管理"
+        useLayoutGuide.enable()
         
-        self.iwe.addRightNavBtn("App设置", target: self, action: #selector(openAppSettingsInSettings))
+        setupRightBarButtomItem("App设置", target: self, action: #selector(openAppSettingsInSettings))
         
         refreshAuthoritionStatus()
     }

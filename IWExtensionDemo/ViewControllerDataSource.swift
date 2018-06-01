@@ -8,39 +8,22 @@
 
 import UIKit
 
-class ViewControllerDataSource: NSObject {
+class ViewControllerDataSource: IWListViewMoreSectionDataSource {
     
-    var viewModel: ViewControllerViewModel!
-    
-    init(_ vm: ViewControllerViewModel) {
-        self.viewModel = vm
-    }
-
-}
-
-
-extension ViewControllerDataSource: UITableViewDataSource  {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections
+    private var _viewModel: ViewControllerViewModel? {
+        return _baseViewModel as? ViewControllerViewModel
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(in: section)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+    override func _cell(forRowAt indexPath: IndexPath, with tableView: UITableView) -> UITableViewCell {
         let cell = tableView.reuseCell() as UpdateListCell
         
-        let subItemModel = viewModel.subItemModel(with: indexPath)
-        cell.setupInfo(with: subItemModel)
-        
+        if let cellModel = _baseViewModel.cellModel(with: indexPath) as? SubItemModel {
+            cell.setupInfo(with: cellModel)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.titleForHeader(in: section)
+        return _viewModel?.titleForHeader(in: section)
     }
-    
 }

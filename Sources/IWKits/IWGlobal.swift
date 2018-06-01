@@ -7,6 +7,7 @@ import StoreKit // 应用内打开 app store 详情页
 
 public typealias UIAlert = UIAlertController
 public typealias UITap = UITapGestureRecognizer
+public typealias UIVC = UIViewController
 
 /// (IW 全局公共方法/属性)
 public struct iw {
@@ -96,7 +97,7 @@ public struct iw {
         if window.subviews.count == 0 { return false }
         
         var hasTabbar = false
-        let vc = UIViewController.IWE.current()
+        let vc = UIViewController.current
         if vc != nil { if (vc?.tabBarController?.tabBar) != nil { hasTabbar = !vc!.tabBarController!.tabBar.isHidden } }
         
         let tabbarClass: AnyClass! = NSClassFromString("UILayoutContainerView")
@@ -208,7 +209,7 @@ public struct iw {
             IWWaveLoadingView.shared.stopWave()
         }
         public static func showWaveLoading(withMaskType maskType: IWWaveLoadingView.MaskViewType = .none) -> Void {
-            IWWaveLoadingView.shared.startWave(UIViewController.IWE.current(), useMask: maskType == .none ? false : true, maskType: maskType)
+            IWWaveLoadingView.shared.startWave(UIViewController.current, useMask: maskType == .none ? false : true, maskType: maskType)
         }
     }
     

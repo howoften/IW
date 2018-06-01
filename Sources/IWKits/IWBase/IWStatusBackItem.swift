@@ -27,7 +27,7 @@ class IWStatusBackItem: UIWindow {
 		self.tips = tips
 		self.tapHandler = tapHandler
 		
-		initUserInterface()
+        initUserInterface()
 	}
 	
 	override init(frame: CGRect) {

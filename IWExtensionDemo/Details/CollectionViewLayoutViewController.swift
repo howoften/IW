@@ -16,16 +16,17 @@ class CollectionViewLayoutViewController: IWSubVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        initUserInterface()
     }
     
-    override func initUserInterface() {
-        self.navTitle = "自动布局"
-        //self.useLayoutGuide.enable()
-        self.setupCollectionView()
+    override func setupUserInterface() {
     }
     
-    func setupCollectionView() -> Void {
+    override func configureUserInterface() {
+        navigationItemTitle = "自动布局"
+        configCollectionView()
+    }
+    
+    func configCollectionView() -> Void {
         let layout = IWCollectionViewFlowLayout()
         layout.delegate = self
         layout.sectionSpacing = 0               // 两个section的间距

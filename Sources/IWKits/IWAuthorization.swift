@@ -125,7 +125,7 @@ fileprivate extension IWAuthorization {
         picker.delegate = self
         picker.sourceType = type
         picker.allowsEditing = true
-        UIViewController.IWE.current()?.iwe.modal(picker)
+        UIViewController.current?.modal(picker)
     }
 }
 

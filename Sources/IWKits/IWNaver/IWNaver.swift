@@ -96,7 +96,7 @@ public class IWNaver: NSObject {
         } else if ana.scheme.is(in: ["http", "https"]) {
             // 浏览器链接
             iPrint("\(ana.url.absoluteString) 是 Web URL 链接, 重定向到 IWWebVC")
-            getCurrentVC().iwe.push(to: IWWebVC(url: ana.url.absoluteString))
+            getCurrentVC().push(to: IWWebVC.init(url: ana.url.absoluteString))
         } else {
             // 其它类型链接
             iPrint("\(ana.url.absoluteString) 是其它类型链接")
@@ -163,7 +163,7 @@ extension IWNaver {
         naver.previousVC = "\(getCurrentVC())"
         naver.previousVCInstance = getCurrentVC()
         irvc.naverInfo = naver
-        getCurrentVC().iwe.push(to: irvc, !nextPushWithoutAnimation)
+        getCurrentVC().push(to: irvc, !nextPushWithoutAnimation)
         
         guard naver.pathComponents.count > 2 else { return }
         
@@ -176,12 +176,6 @@ extension IWNaver {
             guard idx != naver.pathComponents.count - 1 else { break }
             let irvc = initViewController(with: pathClassStr)
             vcs.insert(irvc, at: naver.naverType == .tabbar ? (displayVCCurrentIdx + idx) : (displayVCCurrentIdx + idx - 1))
-//            if idx == naver.pathComponents.count - 1 {
-//                // 最后一个
-//                break
-//            } else {
-//                
-//            }
         }
         getCurrentVC().navigationController?.viewControllers = vcs
     }
@@ -190,6 +184,7 @@ extension IWNaver {
         guard let tabbarInfo = naver.host.toArray else { fatalError("无法解析 \(naver.url.absoluteString)") }
         getCurrentVC().tabBarController?.selectedIndex = tabbarInfo.last.or("0").toInt
         
+        iPrint("切换 Tabbar: \(tabbarInfo.last.or("0"))")
         handlerPathComponents(with: naver)
     }
     
@@ -204,6 +199,7 @@ extension IWNaver {
         }
         if hasOnePoint(in: points) {
             // naver://./UIViewController
+            iPrint("Push to: \(naver.lastPath)")
             handlerPathComponents(with: naver)
         } else {
             // naver://../UIViewController     naver://..      naver://../
@@ -222,18 +218,6 @@ extension IWNaver {
     }
     
 }
-
-
-//// MARK:- UseAlias
-//extension IWNaver {
-//
-//    static func register(_ urlPattern: String, toHandler: () -> Void) {
-//
-//    }
-//
-//}
-
-
 
 
 // MARK:- Private
@@ -271,21 +255,24 @@ extension IWNaver {
     
     /// 返回上一级界面
     private func _backToPrevious() {
-        if getCurrentVC().iwe.shouldUsePop {
-            getCurrentVC().iwe.backToPreviousController(!nextPopWithoutAnimation)
+        iPrint("< 返回")
+        if getCurrentVC().shouldUsePop {
+            getCurrentVC().backToPreviousController(!nextPopWithoutAnimation)
             return
         }
-        getCurrentVC().iwe.backToPreviousController()
+        getCurrentVC().backToPreviousController()
     }
     
     /// 返回上一级界面 并 再次 push 到另一个界面
     private func _backToPrevious(andPushWith naver: IWNaverInfo) {
         _backToPrevious()
+        iPrint("< 返回 & Push to: \(naver.lastPath)")
         handlerPathComponents(with: naver)
     }
     
     /// 返回根视图
     private func backToRootVC() {
+        iPrint("< 返回根视图")
         if let controllers = getCurrentVC().navigationController?.viewControllers, controllers.count > 1 {
             if controllers[safe: controllers.count - 1] == getCurrentVC() {
                 // push
@@ -322,7 +309,7 @@ extension IWNaver {
     }
     
     private func getCurrentVC() -> UIViewController {
-        guard let vc = UIViewController.IWE.current() else { fatalError("没有获取到当前控制器") }
+        guard let vc = UIViewController.current else { fatalError("没有获取到当前控制器") }
         return vc
     }
     

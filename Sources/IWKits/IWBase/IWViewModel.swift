@@ -4,7 +4,7 @@
 
 import UIKit
 
-public class IWViewModel: NSObject {
+open class IWViewModel: NSObject {
     
     public typealias SuccessHandler = (_ value: Any?) -> Void
     public typealias ErrorHandler = (_ value: Any?) -> Void
@@ -26,24 +26,14 @@ public class IWViewModel: NSObject {
         failureBlock = failureHandler
     }
     
-    /// ---------------------------------------------- TableView
-    public var customDataSource: [Any]?
-    @discardableResult init(_ arr: [Any]) {
-        super.init()
-        self.customDataSource = arr
+    open var numberOfSections: Int {
+        return 0
     }
-    public var numberOfSection = 0
-    private func _analysisNumberOfSectionInCustomDataSource() {
-        self.numberOfSection = customDataSource.unwrapCount
+    open func numberOfRows(in section: Int) -> Int {
+        return 0
     }
-    public func analysisNumberOfRowsInCustomDataSource(section: Int) -> Int { return 0 }
-    
-    public var tbView: UITableView!
-    init(bind tableView: UITableView) {
-        super.init()
-        self.tbView = tableView
+    open func cellModel<T: NSObject>(with indexPath: IndexPath) -> T? {
+        return nil
     }
-    /// ---------------------------------------------- TableView END
-    
 }
 

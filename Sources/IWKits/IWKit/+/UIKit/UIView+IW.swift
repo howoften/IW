@@ -79,7 +79,7 @@ public extension IWView where View: UIView {
     /// in viewController / Top viewController?
     /// (当前显示的 viewController).
     var viewController: UIViewController? {
-        return UIViewController.IWE.current()
+        return UIViewController.current
     }
     
     /// Add to view.

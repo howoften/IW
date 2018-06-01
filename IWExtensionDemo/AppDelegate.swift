@@ -18,7 +18,7 @@ class AppDelegate: IWAppDelegate{
         
         IWLogConfiguration.shared.isSaveToLocal = true
         iw.outputDeviceInfos()
-        self.window?.backgroundColor = UIColor.white
+        self.window?.backgroundColor = IWColor.white
         // 全局手势返回
         IWFullscreenPopGesture.configuration()
         

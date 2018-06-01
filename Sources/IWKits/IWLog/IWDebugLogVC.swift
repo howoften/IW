@@ -32,16 +32,19 @@ public class IWDebugLogVC: IWSubVC {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        initUserInterface()
     }
     
-    override public func initUserInterface() {
+    public override func preconfiguration() {
         title = "Debug logs"
-        
-        addPlainListView()
-        listView.registReusable(UITableViewCell.self)
-        
-        self.iwe.addRightNavBtn("编辑", target: self, action: #selector(showEditingStyle))
+    }
+    
+    override public func setupUserInterface() {
+        setupPlainListView(to: self.view)
+    }
+    
+    public override func configureUserInterface() {
+        listView.configrationProtocols(delegate: self, dataSource: self, rcells: nil, rviews: nil)
+        setupRightBarButtomItem("编辑", target: self, action: #selector(showEditingStyle))
     }
     
     @objc func showEditingStyle() {
@@ -52,46 +55,46 @@ public class IWDebugLogVC: IWSubVC {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    override public func configureReusableCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.reuseCell()
-//        cell.textLabel!.text = outputFiles[safe: indexPath.row]?.lastPathNotHasPathExtension
-//        return cell
-//    }
-//
-//    override public func configureDidSelect(_ tableView: UITableView, indexPath: IndexPath) {
-//        let filePath = outputFiles[safe: indexPath.row]
-//        let detailsVC = IWLogDetailsVC()
-//        detailsVC.filePath = filePath
-//        iwe.push(to: detailsVC)
-//    }
-    
 }
 
 
-extension IWDebugLogVC {
+extension IWDebugLogVC: UITableViewDelegate, UITableViewDataSource {
     
-//    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return outputFiles.count
-//    }
-//
-//    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-//        return .delete
-//    }
-//
-//    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            if let path = outputFiles[safe: indexPath.row] {
-//                if FileManager.default.fileExists(atPath: path) {
-//                    do {
-//                        try FileManager.default.removeItem(atPath: path)
-//                        tableView.deleteRows(at: [indexPath], with: .left)
-//                    } catch {
-//                        iPrint("Remove logs \(path) failed.")
-//                    }
-//                }
-//            }
-//        }
-//    }
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return outputFiles.count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.reuseCell()
+        cell.textLabel?.text = outputFiles[safe: indexPath.row]?.lastPathNotHasPathExtension
+        return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let filePath = outputFiles[safe: indexPath.row]
+        let detailsVC = IWLogDetailsVC()
+        detailsVC.filePath = filePath
+        push(to: detailsVC)
+    }
+    
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let path = outputFiles[safe: indexPath.row] {
+                if FileManager.default.fileExists(atPath: path) {
+                    do {
+                        try FileManager.default.removeItem(atPath: path)
+                        tableView.deleteRows(at: [indexPath], with: .left)
+                    } catch {
+                        iPrint("Remove logs \(path) failed.")
+                    }
+                }
+            }
+        }
+    }
     
 }
