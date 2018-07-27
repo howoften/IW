@@ -2,7 +2,11 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(macOS)
+import Cocoa
+#else
 import UIKit
+#endif
 
 public final class IWData<iData> {
     /// (自身).
@@ -40,4 +44,5 @@ extension IWData where iData == Data {
     }
     
 }
+
 
