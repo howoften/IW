@@ -28,6 +28,10 @@ extension ViewControllerDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch (_viewModel.cellModel(with: indexPath) as? SubItemModel)?.acid {
+        case "guidevc": do {
+            let nav = IWNavController(rootViewController: IWGuideVC())
+            UIViewController.current?.modal(nav)
+        }
         case "naver":                               iw.naver.url("./NaverViewController?title=URL跳转解决方案")
         case "permissions":                         iw.naver.url("./PermissionsViewController")
         case "scanQR":                              iw.naver.url("./ScanQRViewController")

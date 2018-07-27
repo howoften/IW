@@ -174,11 +174,11 @@ public extension Array {
     }
     
     /// (多维数组按照一维数组进行遍历).
-    public func enumerateNested(_ handler: (_ obj: Any, _ stop: inout Bool) -> Void) -> Void {
+    public func enumerateNested(_ handler: (_ obj: Element, _ stop: inout Bool) -> Void) -> Void {
         var stop = false
         for i in self {
-            if i is [Any] {
-                (i as! [Any]).enumerateNested(handler)
+            if i is [Element] {
+                (i as! [Element]).enumerateNested(handler)
             } else {
                 handler(i, &stop)
             }

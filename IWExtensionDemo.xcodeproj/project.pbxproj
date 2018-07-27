@@ -95,6 +95,7 @@
 		9273983E2059062E00E09742 /* IWExtensions_UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9273983D2059062E00E09742 /* IWExtensions_UICollectionView.swift */; };
 		9273984020591C8700E09742 /* IWExtensions_CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9273983F20591C8700E09742 /* IWExtensions_CGColor.swift */; };
 		927398422059234000E09742 /* IWExtensions_Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927398412059234000E09742 /* IWExtensions_Error.swift */; };
+		927DD21720C6EE3100968079 /* IWGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927DD21620C6EE3100968079 /* IWGuideVC.swift */; };
 		92878760205F4B96004C570A /* CollectionViewLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9287875E205F4B96004C570A /* CollectionViewLayoutViewController.swift */; };
 		92878761205F4B96004C570A /* CollectionViewLayoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9287875F205F4B96004C570A /* CollectionViewLayoutViewController.xib */; };
 		9289442420575EAC00AD7C70 /* IWUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9289442320575EAC00AD7C70 /* IWUUID.swift */; };
@@ -139,6 +140,7 @@
 		92B6F1422022A53400FA34AA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B6F1412022A53400FA34AA /* DetailViewController.swift */; };
 		92BCD14120958CD9004831DB /* IWExtensions_UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD14020958CD9004831DB /* IWExtensions_UITableView.swift */; };
 		92CAA7D020737A1400C5AF81 /* IWPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAA7CF20737A1400C5AF81 /* IWPermissions.swift */; };
+		92CF983020DC064C009DD6C1 /* IWTest_Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF982F20DC064C009DD6C1 /* IWTest_Optional.swift */; };
 		92D29DF6207DAEB50031EFAD /* PermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D29DF4207DAEB50031EFAD /* PermissionsViewController.swift */; };
 		92D29DF7207DAEB50031EFAD /* PermissionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D29DF5207DAEB50031EFAD /* PermissionsViewController.xib */; };
 		92D77569207A60BE00AFA7FB /* IWExtensions_Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D77568207A60BE00AFA7FB /* IWExtensions_Codable.swift */; };
@@ -252,6 +254,7 @@
 		9273983D2059062E00E09742 /* IWExtensions_UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_UICollectionView.swift; sourceTree = "<group>"; };
 		9273983F20591C8700E09742 /* IWExtensions_CGColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_CGColor.swift; sourceTree = "<group>"; };
 		927398412059234000E09742 /* IWExtensions_Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_Error.swift; sourceTree = "<group>"; };
+		927DD21620C6EE3100968079 /* IWGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWGuideVC.swift; sourceTree = "<group>"; };
 		9287875E205F4B96004C570A /* CollectionViewLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayoutViewController.swift; sourceTree = "<group>"; };
 		9287875F205F4B96004C570A /* CollectionViewLayoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewLayoutViewController.xib; sourceTree = "<group>"; };
 		9289442320575EAC00AD7C70 /* IWUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWUUID.swift; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 		92B6F1412022A53400FA34AA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		92BCD14020958CD9004831DB /* IWExtensions_UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_UITableView.swift; sourceTree = "<group>"; };
 		92CAA7CF20737A1400C5AF81 /* IWPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWPermissions.swift; sourceTree = "<group>"; };
+		92CF982F20DC064C009DD6C1 /* IWTest_Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWTest_Optional.swift; sourceTree = "<group>"; };
 		92D29DF4207DAEB50031EFAD /* PermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsViewController.swift; sourceTree = "<group>"; };
 		92D29DF5207DAEB50031EFAD /* PermissionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionsViewController.xib; sourceTree = "<group>"; };
 		92D77568207A60BE00AFA7FB /* IWExtensions_Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_Codable.swift; sourceTree = "<group>"; };
@@ -409,6 +413,7 @@
 				926CB8A21FFC047500CBD434 /* IWWebView */,
 				9204F20E209EA8AA00943503 /* IWDebuging */,
 				92980C73205A3A7000CF9F74 /* IWLocalAuth */,
+				927DD21520C6EDE200968079 /* IWGuideView */,
 				92CAA7CE20737A0C00C5AF81 /* IWPermissions */,
 				9293119720564CB300D9B42B /* IWFullscreenPopGesture */,
 				92DDA74120B69E420027D84A /* IWCommons */,
@@ -624,6 +629,14 @@
 			path = IWBundle;
 			sourceTree = "<group>";
 		};
+		927DD21520C6EDE200968079 /* IWGuideView */ = {
+			isa = PBXGroup;
+			children = (
+				927DD21620C6EE3100968079 /* IWGuideVC.swift */,
+			);
+			path = IWGuideView;
+			sourceTree = "<group>";
+		};
 		9289442220575EA600AD7C70 /* IWUUID */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,6 +704,7 @@
 				9298111C205E4A9A00040A0E /* IWTest_KeyChain.swift */,
 				9203BE922081C25D00390065 /* IWTest_Naver.swift */,
 				920F7BE72087178100581F3E /* IWTest_JSON.swift */,
+				92CF982F20DC064C009DD6C1 /* IWTest_Optional.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -1013,6 +1027,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92CF983020DC064C009DD6C1 /* IWTest_Optional.swift in Sources */,
 				9203BE932081C25D00390065 /* IWTest_Naver.swift in Sources */,
 				920F7BE82087178100581F3E /* IWTest_JSON.swift in Sources */,
 				92981112205E443D00040A0E /* IWExtensionDemoTests.swift in Sources */,
@@ -1065,6 +1080,7 @@
 				926CB8DC1FFC047500CBD434 /* Data+IW.swift in Sources */,
 				926CB8CB1FFC047500CBD434 /* IWExtensions_UIGestureRecognizer.swift in Sources */,
 				92A3C37220178DA700EDBB77 /* IWExtensions_UINib.swift in Sources */,
+				927DD21720C6EE3100968079 /* IWGuideVC.swift in Sources */,
 				9273983A205901AA00E09742 /* IWExtensions_UserDefaults.swift in Sources */,
 				923E710A201826D2004B9D1F /* IWWaveLoadingView.swift in Sources */,
 				9298112B205E785600040A0E /* IWLogDetailsVC.swift in Sources */,

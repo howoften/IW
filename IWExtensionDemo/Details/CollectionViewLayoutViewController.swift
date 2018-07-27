@@ -78,7 +78,6 @@ extension CollectionViewLayoutViewController: UICollectionViewDelegate, UICollec
             v.alpha = 0.5
             return v
         } else {
-            //  if kind = UICollectionElementKindSectionFooter
             let v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footer", for: indexPath)
             v.backgroundColor = UIColor.lightGray
             v.alpha = 0.5

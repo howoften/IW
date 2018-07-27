@@ -318,3 +318,11 @@ public func MakePoint(_ x: CGFloat, _ y: CGFloat) -> CGPoint {
     return CGPoint(x: x, y: y)
 }
 
+/// (If the condition is true, `todo()` is executed ...).
+public func ifc(_ condition: Bool, _ todo: @autoclosure () throws -> Void) rethrows -> Void {
+    if condition { try todo() }
+}
+/// (If the condition is true, `todo()` is executed ...).
+public func ifc(_ condition: Bool, _ todo: @autoclosure () throws -> Void, else: @autoclosure () throws -> Void) rethrows -> Void {
+    if condition { try todo() } else { try `else`() }
+}

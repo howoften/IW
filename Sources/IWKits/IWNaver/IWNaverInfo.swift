@@ -32,6 +32,11 @@ public class IWNaverInfo: NSObject {
     
     public var naverType: NaverType = .unknow
     
+    /// (Get the title from params 'title').
+    public var title: String? {
+        return params?.getParameterValue(fuzzyName: ["title", "tit"])
+    }
+    
     /// (上一个 VC 类名).
     public var previousVC: String?
     /// (上一个 VC 的实例).

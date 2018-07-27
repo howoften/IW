@@ -13,6 +13,7 @@ import AVFoundation
 public class IWScanQR: IWScan {
     
     public typealias ScanedQR = (_ : [AVMetadataMachineReadableCodeObject]?) -> Void
+    /// 扫描完成后的结果回调
     private var scanedBlock: ScanedQR?
     
     /// (Camera 显示图层).
@@ -26,7 +27,7 @@ public class IWScanQR: IWScan {
     ///   - videoFrame: Camera 图层大小
     ///   - interest: 扫描位置
     ///   - videoGravity: Camera 填充方式
-    ///   - returnAll: 是否返回扫描到的所有结果, false只返回第一个结果, true返回所有结果
+    ///   - returnAll: 是否返回扫描到的所有结果, false只返回第一个结果, true返回所有结果, 默认为 false
     convenience init(videoFrame: CGRect, interest: CGRect = CGRect(x: 0.2, y: 0.2, width: 0.8, height: 0.8), videoGravity: AVLayerVideoGravity = .resizeAspectFill, returnAll: Bool = false) {
         self.init(mediaType: .video, metadataObjectTypes: [AVMetadataObject.ObjectType.qr])
         
@@ -35,7 +36,7 @@ public class IWScanQR: IWScan {
         videoPreviewLayer.videoGravity = videoGravity
         videoPreviewLayer.frame = videoFrame
         
-        self.isReturnAll = returnAll
+        isReturnAll = returnAll
         
         // 扫描范围
         deviceOutput.rectOfInterest = interest
@@ -48,16 +49,16 @@ public class IWScanQR: IWScan {
     ///
     /// - Parameter block: 返回结果/结果处理
     public func scaned(_ block: ScanedQR?) {
-        self.scanedBlock = block
+        scanedBlock = block
     }
     
     /// (开始扫描).
     public func startScanning() -> Void {
-        self.captureSession.startRunning()
+        captureSession.startRunning()
     }
     /// (停止扫描).
     public func stopScanning() -> Void {
-        self.captureSession.stopRunning()
+        captureSession.stopRunning()
     }
     
     /// (处理结果).
@@ -66,12 +67,7 @@ public class IWScanQR: IWScan {
         guard let qrObjs = objs as? [AVMetadataMachineReadableCodeObject] else {
             fatalError("`AVMetadataObject` to `AVMetadataMachineReadableCodeObject` failed.")
         }
-        
-        if isReturnAll {
-            self.scanedBlock?(qrObjs)
-        } else {
-            self.scanedBlock?([qrObjs.first!])
-        }
+        if isReturnAll { scanedBlock?(qrObjs) } else { scanedBlock?([qrObjs.first!]) }
     }
     
 }

@@ -237,6 +237,28 @@ public extension String {
     }
 }
 
+public protocol GetPrametersValueWithFuzzyNames {
+    var str: String { get }
+    var strs: [String] { get }
+}
+extension String: GetPrametersValueWithFuzzyNames {
+    public var str: String {
+        return self
+    }
+    public var strs: [String] {
+        return [self]
+    }
+}
+
+extension Array: GetPrametersValueWithFuzzyNames where Element: StringProtocol {
+    public var strs: [String] {
+        return self as! [String]
+    }
+    public var str: String {
+        return self.first! as! String
+    }
+}
+
 
 // MARK:- Functions
 public extension String {
@@ -260,9 +282,28 @@ public extension String {
         return (self as NSString).boundingRect(with: maskSize, options: options, attributes: attributes, context: nil).size
     }
     
-    /// (提取对应的参数值, 例如: "index.php?id=1214".getParameterValue("id"), 结果为 1214 ).
-    public func getParameterValue(_ parameter: String?) -> String? {
-        return parameter.and(then: { IWRegex.expression($0 + "=[^&]+", content: self) }).and(then: { $0.components(separatedBy: "=").last })
+    /// (精确提取对应的参数值, 例如: "index.php?id=1214".getParameterValue("id"), 结果为 1214 ).
+    public func getParameterValue(exactName: String) -> String? {
+        return IWRegex.expression("\(exactName)=[^&]+", content: self).and(then: { $0.components(separatedBy: "=").last })
+    }
+    
+    /// (模糊提取对应参数的值，支持 String or [String] 仅返回第一个匹配到的结果).
+    /// eg: "index.php?id=1214".getParameterValue("id"), 结果为 1214
+    ///
+    /// - Parameter fuzzyName: 模糊参数名, eg: "id" or ["id", "ids"]
+    /// - Returns: 返回匹配到的第一个结果
+    public func getParameterValue(fuzzyName: GetPrametersValueWithFuzzyNames?) -> String? {
+        guard let names = fuzzyName else { return nil }
+
+        var filter: [String?] = []
+        names.strs.enumerateNested { (str, stop) in
+            let regex = IWRegex.expression("\(str)=[^&]+", content: self)
+            if regex.isSome {
+                filter.append(regex!.components(separatedBy: "=").last)
+                stop = true
+            }
+        }
+        return filter.count > 0 ? filter.first! : nil
     }
     
     /// (反向移除字符).

@@ -18,7 +18,7 @@ class NaverViewController: IWSubVC {
     
     override func configureUserInterface() {
         self.useLayoutGuide.enable()
-        self.title = naverInfo?.params?.getParameterValue("title")
+        self.title = naverInfo?.title
     }
     
     @IBAction func back(_ sender: Any) {
