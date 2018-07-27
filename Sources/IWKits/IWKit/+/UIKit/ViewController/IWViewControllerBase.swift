@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public final class IWViewController<ViewController> {
@@ -23,3 +24,4 @@ public extension IWViewControllerCompatible {
 }
 
 extension UIViewController: IWViewControllerCompatible { }
+#endif
