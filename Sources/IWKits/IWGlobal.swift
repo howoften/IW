@@ -338,7 +338,7 @@ public func MakeRect(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGF
 /// Make IndexPath.
 /// (返回一个 IndexPath).
 public func MakeIndex(_ item: Int, _ section: Int) -> IndexPath {
-    return IndexPath(item: row, section: section)
+    return IndexPath(item: item, section: section)
 }
 #else
 /// Make IndexPath.
