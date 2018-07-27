@@ -378,28 +378,38 @@ public extension String {
         return (integer >= 10).founded({ hex[integer - 10] }, elseReturn: { "\(integer)" })
     }
     
+    #if swift(>=4.1) // swift4.1 将 IndexDistance 更改为 Int
+    public func index(offsetBy: Int) -> String.Index {
+        return self.index(self.startIndex, offsetBy: offsetBy)
+    }
+    #else
     public func index(offsetBy: String.IndexDistance) -> String.Index {
         return self.index(self.startIndex, offsetBy: offsetBy)
     }
+    #endif
     
     /// (发送邮件).
+    /// Send email.
     public func sendEmail() {
         let mailAddress = self
         "mailto:\(mailAddress)".toURL.unwrapped({ openURL($0) })
     }
     
     /// (拨打电话).
+    /// Call.
     public func call() {
         let phoneNumber = self
         "tel:\(phoneNumber)".toURL.unwrapped({ openURL($0) })
     }
     
     /// (在 Safari 中打开).
+    /// Open in Safari.
     public func openURLInSafari() {
         self.toURL.unwrapped({openURL($0)})
     }
     
     /// (在 App Store 中打开, value 为 app 的 id)
+    /// Open in AppStore.
     public func openInAppStore() {
         "itms-apps://itunes.apple.com/cn/app/id\(self)".toURL.unwrapped({openURL($0)})
     }
@@ -412,6 +422,7 @@ public extension String {
         }
     }
     
+    /// (本地语言).
     public func localized(comment: String = "") -> String {
         return NSLocalizedString(self, comment: comment)
     }
@@ -426,6 +437,7 @@ public extension String {
     }
     
     /// (返回词组).
+    /// From SwifterSwift.
     ///     "Swift is so faster".words() -> ["Swift", "is", "so", "faster"]
     ///     "我 今天 吃了五碗饭".words() -> ["我", "今天", "吃了五碗饭"]
     ///     "我,今天,吃了五碗饭".words() -> ["我", "今天", "吃了五碗饭"]
@@ -433,7 +445,6 @@ public extension String {
     ///     "我,今天-吃了五碗饭".words() -> ["我", "今天", "吃了五碗饭"]
     ///     "我今天吃了五碗饭".words() -> ["我今天吃了五碗饭"]
     public func words() -> [String] {
-        // From SwifterSwift
         // https://stackoverflow.com/questions/42822838
         let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
         let comps = components(separatedBy: chararacterSet)
@@ -478,6 +489,7 @@ public extension String {
 }
 
 // MARK:- NSAttributedString
+/// From SwifterSwift
 public extension String {
     
     #if !os(tvOS) && !os(watchOS)

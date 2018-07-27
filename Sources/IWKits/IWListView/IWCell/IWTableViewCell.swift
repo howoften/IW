@@ -6,7 +6,7 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
-#if os(ios)
+#if os(iOS)
 import UIKit
 
 open class IWTableViewCell: UITableViewCell {
