@@ -63,6 +63,7 @@ public extension IWColor {
         return !isDark
     }
     
+    #if os(iOS)
     /// (返回当前颜色 红色 通道的值).
     public final var redChannel: CGFloat {
         var r: CGFloat = 0
@@ -108,6 +109,7 @@ public extension IWColor {
         return 0
     }
     
+    
     /// (返回当前颜色16进制代码, 通道排序为 RGBA).
     public final var hex: String {
         let a = self.alphaChannel, r = self.redChannel, g = self.greenChannel, b = self.blueChannel
@@ -117,11 +119,14 @@ public extension IWColor {
         let hexB = self.alignColor(hexString: String.hexString(withInteger: NSInteger(b)))
         return "#\(hexR)\(hexG)\(hexB)\(hexA)"
     }
+    #endif
+    
     /// (补齐单色值, 例如 "F" 会补齐为 "0F").
     private func alignColor(hexString: String) -> String {
         return hexString.count < 2 ? "0\(hexString)" : hexString
     }
     
+    #if os(iOS)
     /// (返回去除 透明 通道后的颜色).
     public final var colorWithoutAlpha: IWColor? {
         var r: CGFloat = 0
@@ -132,7 +137,7 @@ public extension IWColor {
         }
         return nil
     }
-    
+    #endif  
     
     /// (返回当前颜色 saturation 通道的值).
     public final var saturation: CGFloat {

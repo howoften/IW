@@ -4,14 +4,14 @@
 
 #if os(macOS)
     import Cocoa
+    public typealias NSVC = NSViewController
 #else
     import UIKit
+    public typealias UIAlert = UIAlertController
+    public typealias UITap = UITapGestureRecognizer
+    public typealias UIVC = UIViewController
 #endif
 import StoreKit // 应用内打开 app store 详情页
-
-public typealias UIAlert = UIAlertController
-public typealias UITap = UITapGestureRecognizer
-public typealias UIVC = UIViewController
 
 /// (IW 全局公共方法/属性)
 public struct iw {
@@ -20,6 +20,7 @@ public struct iw {
         public static let infoDictionary: [String: Any]? = Bundle.main.infoDictionary
     }
     
+    #if os(iOS)
     struct naver {
         static func url(_ url: String, completed: IWNaver.CompletedHandler? = nil) {
             if completed.isSome {
@@ -29,6 +30,7 @@ public struct iw {
             }
         }
     }
+    #endif
     
     /// (线程).
     public struct queue {
@@ -284,6 +286,7 @@ public struct iw {
     #endif
 }
 
+#if os(iOS)
 fileprivate extension iw {
     static func find(tabbarIn array: [UIView]?) -> Bool {
         if array.isSome {
@@ -297,6 +300,7 @@ fileprivate extension iw {
         return false
     }
 }
+#endif
 
 // MARK:- 正则操作符
 
@@ -308,12 +312,22 @@ public func =~ (content: String, matchs: String) -> Bool {
 }
 
 
+#if os(macOS)
+// MARK:- Edge & Rect
+/// Make UIEdgeInsets.
+/// (返回一个 CGFloat > UIEdgeInsets).
+public func MakeEdge(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> NSEdgeInsets {
+    return NSEdgeInsets(top, left, bottom, right)
+}
+#else
 // MARK:- Edge & Rect
 /// Make UIEdgeInsets.
 /// (返回一个 CGFloat > UIEdgeInsets).
 public func MakeEdge(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> UIEdgeInsets {
     return UIEdgeInsetsMake(top, left, bottom, right)
 }
+#endif
+
 /// Make CGRect.
 /// (返回一个 CGFloat > CGRect).
 public func MakeRect(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> IWRect {

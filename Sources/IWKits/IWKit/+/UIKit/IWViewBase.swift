@@ -2,8 +2,11 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
-#if os(iOS)
-import UIKit
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
 
 public final class IWView<View> {
     public let view: View
@@ -23,8 +26,11 @@ public extension IWViewCompatible {
     }
 }
 
+#if os(macOS)
+extension NSView: IWViewCompatible { }
+#else
 extension UIView: IWViewCompatible { }
-
+#endif
 
 extension IWView where View: UIView {
     
@@ -64,5 +70,3 @@ public class IWObserver: NSObject {
     }
     
 }
-
-#endif

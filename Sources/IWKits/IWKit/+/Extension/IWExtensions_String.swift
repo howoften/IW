@@ -390,6 +390,7 @@ public extension String {
     }
     #endif
     
+    #if os(iOS)
     /// (发送邮件).
     /// Send email.
     public func sendEmail() {
@@ -410,7 +411,6 @@ public extension String {
         self.toURL.unwrapped({openURL($0)})
     }
     
-    #if os(iOS)
     /// (在 App Store 中打开, value 为 app 的 id)
     /// Open in AppStore.
     public func openInAppStore() {

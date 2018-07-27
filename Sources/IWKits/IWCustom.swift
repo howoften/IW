@@ -240,6 +240,7 @@ public class IWCookies: NSObject {
 /// (WebView缓存相关).
 public class IWCaches: NSObject {
     
+    #if os(iOS)
     public static var webSiteDiskAndMemoryCaches: [String]? {
         if #available(iOS 9.0, *) {
             return [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache]
@@ -258,7 +259,6 @@ public class IWCaches: NSObject {
         }
     }
     
-    #if os(iOS)
     public final class func clearCaches(_ ios9CacheType: [String]? = nil) {
         let libraryDir = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
         let bundleID = Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
