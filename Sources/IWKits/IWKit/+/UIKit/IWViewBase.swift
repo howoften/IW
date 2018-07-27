@@ -32,6 +32,7 @@ extension NSView: IWViewCompatible { }
 extension UIView: IWViewCompatible { }
 #endif
 
+#if os(iOS)
 extension IWView where View: UIView {
     
     @discardableResult public func isHidden(_ hidden: Bool) -> IWObserver {
@@ -70,3 +71,4 @@ public class IWObserver: NSObject {
     }
     
 }
+#endif

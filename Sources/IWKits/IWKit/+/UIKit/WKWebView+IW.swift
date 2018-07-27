@@ -24,16 +24,18 @@ public extension IWView where View: WKWebView {
             return
         }
         
+        #if os(iOS)
         if #available(iOS 9.0, *) {
             let fileURL = path!.toFileURL
             view.loadFileURL(fileURL, allowingReadAccessTo: fileURL)
-        } else {
-            // Fallback on earlier versions
-            let fileURL = fileURLForBugglyWKWebView(URL.init(fileURLWithPath: path!))
-            if let fileURLed = fileURL {
-                let request = URLRequest.init(url: fileURLed)
-                view.load(request)
-            }
+            return;
+        }
+        #endif
+        // Fallback on earlier versions
+        let fileURL = fileURLForBugglyWKWebView(URL.init(fileURLWithPath: path!))
+        if let fileURLed = fileURL {
+            let request = URLRequest.init(url: fileURLed)
+            view.load(request)
         }
     }
     

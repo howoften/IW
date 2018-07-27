@@ -317,7 +317,7 @@ public func =~ (content: String, matchs: String) -> Bool {
 /// Make UIEdgeInsets.
 /// (返回一个 CGFloat > UIEdgeInsets).
 public func MakeEdge(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> NSEdgeInsets {
-    return NSEdgeInsets(top, left, bottom, right)
+    return NSEdgeInsetsMake(top, left, bottom, right)
 }
 #else
 // MARK:- Edge & Rect
@@ -333,11 +333,22 @@ public func MakeEdge(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right
 public func MakeRect(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> IWRect {
     return IWRect(x: x, y: y, width: width, height: height)
 }
+
+#if os(macOS)
+/// Make IndexPath.
+/// (返回一个 IndexPath).
+public func MakeIndex(_ item: Int, _ section: Int) -> IndexPath {
+    return IndexPath(item: row, section: section)
+}
+#else
 /// Make IndexPath.
 /// (返回一个 IndexPath).
 public func MakeIndex(_ row: Int, _ section: Int) -> IndexPath {
     return IndexPath(row: row, section: section)
 }
+#endif
+
+
 /// Make CGSize
 /// (返回一个 CGFloat > CGSize).
 public func MakeSize(_ width: CGFloat, _ height: CGFloat) -> IWSize {

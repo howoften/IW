@@ -137,7 +137,7 @@ public extension IWColor {
         }
         return nil
     }
-    #endif  
+    
     
     /// (返回当前颜色 saturation 通道的值).
     public final var saturation: CGFloat {
@@ -156,6 +156,7 @@ public extension IWColor {
         }
         return 0
     }
+    #endif
     
     #if os(iOS)
     /// (返回一张 4x4 的纯色图片).
