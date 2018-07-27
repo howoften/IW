@@ -2,6 +2,7 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 open class IWTabBarController: UITabBarController {
@@ -50,3 +51,4 @@ public extension IWTabBarController {
     
 }
 
+#endif

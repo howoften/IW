@@ -2,7 +2,11 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
-import UIKit
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
 
 /// (App 相关信息).
 public class IWApp: NSObject {
@@ -50,8 +54,10 @@ public class IWApp: NSObject {
         return infoDictionary?[Key.displayNameKey] as? String
     }
     
+    #if os(iOS)
     /// (支持旋转, 设置后会响应 CGFloat.screenWidth, .screenHeight 动态取值).
     public static var supportRotation = false
+    #endif
     
     /// (project name / bundle name).
     public static var bundleName: String? {

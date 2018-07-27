@@ -7,7 +7,12 @@
  note: 输出日志配置
  Created by iwe. */
 
-import UIKit
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
+
 
 public final class IWLogConfiguration: NSObject {
 	

@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public extension IWView where View: UIScrollView {
@@ -201,3 +202,4 @@ fileprivate extension IWView where View: UIScrollView {
     }
 }
 
+#endif

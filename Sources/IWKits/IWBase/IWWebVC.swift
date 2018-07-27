@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import WebKit
 import JavaScriptCore
@@ -353,3 +354,4 @@ extension IWWebVC {
     }
 }
 
+#endif

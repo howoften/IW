@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public class IWVerificationCodeVC: IWSubVC {
@@ -19,3 +20,5 @@ public class IWVerificationCodeVC: IWSubVC {
     }
 
 }
+
+#endif

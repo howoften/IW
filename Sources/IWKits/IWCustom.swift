@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import Foundation
 import WebKit
@@ -295,3 +296,4 @@ public class IWCaches: NSObject {
         
     }
 }
+#endif

@@ -2,11 +2,10 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
-extension UICollectionReusableView: IWNibReusable {
-    
-}
+extension UICollectionReusableView: IWNibReusable { }
 
 public extension UICollectionView {
     
@@ -57,3 +56,4 @@ public extension UICollectionView {
     }
 }
 
+#endif

@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public protocol IWNibLoadable: class {
@@ -28,3 +29,4 @@ public extension IWNibLoadable where Self: UIView {
     }
 }
 
+#endif

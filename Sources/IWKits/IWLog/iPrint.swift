@@ -6,8 +6,12 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
-import UIKit
-import Foundation
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
+
 
 private let config = IWLogConfiguration.shared
 

@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public final class IWView<View> {
@@ -63,3 +64,5 @@ public class IWObserver: NSObject {
     }
     
 }
+
+#endif

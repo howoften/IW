@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public extension IWView where View: UIWindow {
@@ -18,3 +19,4 @@ public extension IWView where View: UIWindow {
 		}
 	}
 }
+#endif

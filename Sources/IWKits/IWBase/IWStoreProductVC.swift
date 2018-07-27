@@ -6,6 +6,7 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import StoreKit
 
@@ -46,3 +47,5 @@ extension IWStoreProductVC: SKStoreProductViewControllerDelegate {
         viewController.dismiss(animated: true, completion: nil)
     }
 }
+
+#endif

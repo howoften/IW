@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 /// (设备信息相关).
@@ -151,4 +152,4 @@ extension IWDevice {
     private static let examineBreakToolPathes: [String] = ["/Applications/Cydia.app",  "/Library/MobileSubstrate/MobileSubstrate.dylib", "/bin/bash", "/usr/sbin/sshd", "/etc/apt"]
     
 }
-
+#endif

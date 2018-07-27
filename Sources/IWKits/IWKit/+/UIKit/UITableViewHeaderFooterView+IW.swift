@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension IWView where View: UITableViewHeaderFooterView {
@@ -14,3 +15,4 @@ extension IWView where View: UITableViewHeaderFooterView {
     }
     
 }
+#endif

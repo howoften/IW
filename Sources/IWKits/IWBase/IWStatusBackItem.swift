@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 class IWStatusBackItem: UIWindow {
@@ -70,3 +71,4 @@ class IWStatusBackItem: UIWindow {
 	}
 	
 }
+#endif

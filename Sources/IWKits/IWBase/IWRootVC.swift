@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 open class IWRootVC: UIViewController {
@@ -188,3 +189,5 @@ extension IWRootVC: IWTableViewInitProtocol {
     }
     
 }
+
+#endif

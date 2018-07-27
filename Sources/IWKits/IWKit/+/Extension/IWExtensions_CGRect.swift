@@ -2,12 +2,18 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
-import UIKit
+#if os(macOS)
+    import Cocoa
+    public typealias IWRect = NSRect
+#else
+    import UIKit
+    public typealias IWRect = CGRect
+#endif
 
-public extension CGRect {
+public extension IWRect {
     
     /// (屏幕大小, scrren bounds).
-    public static let screenBounds: CGRect = { return iw.screen.bounds }()
+    public static let screenBounds: IWRect = { return iw.screen.bounds }()
     
     /// (.origin.x).
     public var x: CGFloat {

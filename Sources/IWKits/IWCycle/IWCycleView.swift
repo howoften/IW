@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 /// (轮播图类).
@@ -282,3 +283,4 @@ extension IWCycleView {
     
 }
 
+#endif

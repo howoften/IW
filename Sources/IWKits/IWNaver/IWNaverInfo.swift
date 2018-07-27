@@ -6,6 +6,7 @@
 //  Copyright © 2018年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public class IWNaverInfo: NSObject {
@@ -42,3 +43,5 @@ public class IWNaverInfo: NSObject {
     /// (上一个 VC 的实例).
     public weak var previousVCInstance: UIViewController?
 }
+
+#endif

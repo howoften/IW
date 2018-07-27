@@ -6,6 +6,7 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public class IWListViewDataSource: NSObject {
@@ -76,4 +77,4 @@ public class IWListViewMoreSectionDataSource: IWListViewDataSourceBridge {
     
 }
 
-
+#endif

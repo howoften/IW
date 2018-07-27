@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension UITableViewCell: IWNibReusable { }
@@ -91,3 +92,4 @@ public extension UITableView {
     }
 }
 
+#endif

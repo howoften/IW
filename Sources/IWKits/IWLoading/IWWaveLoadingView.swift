@@ -5,7 +5,7 @@
 //  Created by iWw on 24/01/2018.
 //  Copyright © 2018 iWe. All rights reserved.
 //
-
+#if os(iOS)
 import UIKit
 
 public class IWWaveLoadingView: UIView {
@@ -206,3 +206,4 @@ public class IWWaveLoadingView: UIView {
         }
     }
 }
+#endif

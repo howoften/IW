@@ -2,9 +2,13 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
-import UIKit
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
 
-/// (NSTimer 子类, 拥有更多便捷的使用方法, 例如倒计时).
+/// (Timer 子类, 拥有更多便捷的使用方法, 例如倒计时).
 public class IWTimer: Timer {
     
     /// (单例).

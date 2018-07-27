@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 /// (IWLoginVC 中的常量(函数)内容).
@@ -54,3 +55,4 @@ public class IWLoginConst: NSObject {
     }
 }
 
+#endif

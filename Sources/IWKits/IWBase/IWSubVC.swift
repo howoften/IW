@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 open class IWSubVC: IWRootVC {
@@ -22,3 +23,4 @@ open class IWSubVC: IWRootVC {
     
 }
 
+#endif

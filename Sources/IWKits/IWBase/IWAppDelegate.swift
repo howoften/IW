@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import UserNotifications
 
@@ -155,3 +156,4 @@ extension IWAppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
+#endif

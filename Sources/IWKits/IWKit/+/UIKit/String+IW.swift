@@ -2,7 +2,11 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
-import UIKit
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
 import CCommonCrypto
 
 public final class IWString<iString> {

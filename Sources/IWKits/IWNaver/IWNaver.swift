@@ -25,6 +25,7 @@
  ./t0/xx/xx1/xx2  当前目录切换到第0个标签并push到xx2
  */
 
+#if os(iOS)
 import UIKit
 
 /// (IWNaver 返回根视图).
@@ -314,3 +315,5 @@ extension IWNaver {
     }
     
 }
+
+#endif

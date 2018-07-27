@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 /// (拦截返回按钮).
@@ -53,3 +54,5 @@ extension UINavigationController: UINavigationBarDelegate {
     }
     
 }
+
+#endif

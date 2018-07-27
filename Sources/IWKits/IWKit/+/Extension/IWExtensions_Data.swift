@@ -2,7 +2,12 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
-import UIKit
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
+
 
 public extension Data {
     

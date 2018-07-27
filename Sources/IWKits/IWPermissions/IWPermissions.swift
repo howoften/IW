@@ -31,6 +31,8 @@
  
  */
 
+#if os(iOS)
+
 import UIKit
 // 相机，麦克风
 import AVFoundation
@@ -574,3 +576,5 @@ extension IWPermissionManager where T: IWPHealth {
         }
     }
 }
+
+#endif

@@ -2,9 +2,8 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
-
-
 
 class IWGuideVC: IWRootVC {
     
@@ -57,3 +56,4 @@ class IWGuideVC: IWRootVC {
     }
     
 }
+#endif

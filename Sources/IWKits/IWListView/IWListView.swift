@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 protocol IWTableViewInitProtocol {
@@ -200,4 +201,6 @@ extension IWListView {
         self.endEditing(true)
     }
 }
+
+#endif
 

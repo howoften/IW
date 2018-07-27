@@ -6,6 +6,7 @@
 //  Copyright © 2018年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import AVFoundation
 
@@ -88,3 +89,4 @@ extension IWScanQR: AVCaptureMetadataOutputObjectsDelegate {
     }
     
 }
+#endif

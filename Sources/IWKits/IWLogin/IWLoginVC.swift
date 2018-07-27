@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public class IWLoginVC: IWRootVC {
@@ -225,3 +226,5 @@ extension IWLoginVC: UITextFieldDelegate {
         }
     }
 }
+
+#endif

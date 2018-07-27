@@ -1,8 +1,11 @@
 //  Created by iWe on 2017/6/15.
 //  Copyright © 2017年 iWe. All rights reserved.
 //
-
-import UIKit
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
 
 /// Network Request.
 /// (网络请求类).

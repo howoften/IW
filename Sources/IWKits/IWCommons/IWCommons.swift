@@ -6,6 +6,7 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public protocol _IWGetCurrentViewControllerProtocol: class { }
@@ -55,3 +56,4 @@ extension _IWGetCurrentViewControllerProtocol where Self: UIViewController {
 public var GetCurrentViewController: UIViewController? {
     return UIViewController.current
 }
+#endif

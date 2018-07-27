@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import AssetsLibrary
 import AddressBook
@@ -166,4 +167,4 @@ extension IWAuthorization: UIImagePickerControllerDelegate, UINavigationControll
         }
     }
 }
-
+#endif

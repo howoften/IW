@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import StoreKit // 应用内打开 app store 详情页
 
@@ -326,3 +327,5 @@ public func ifc(_ condition: Bool, _ todo: @autoclosure () throws -> Void) rethr
 public func ifc(_ condition: Bool, _ todo: @autoclosure () throws -> Void, else: @autoclosure () throws -> Void) rethrows -> Void {
     if condition { try todo() } else { try `else`() }
 }
+
+#endif

@@ -2,8 +2,9 @@
 //  Copyright © 2018年 iWe. All rights reserved.
 //
 
-
-#if os(iOS)
+#if os(macOS)
+    import Cocoa
+#else
     import UIKit
 #endif
 

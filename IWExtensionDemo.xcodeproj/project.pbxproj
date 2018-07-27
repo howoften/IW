@@ -65,7 +65,6 @@
 		926CB8DB1FFC047500CBD434 /* IWViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB89A1FFC047500CBD434 /* IWViewControllerBase.swift */; };
 		926CB8DC1FFC047500CBD434 /* Data+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB89B1FFC047500CBD434 /* Data+IW.swift */; };
 		926CB8DD1FFC047500CBD434 /* String+IW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB89C1FFC047500CBD434 /* String+IW.swift */; };
-		926CB8DF1FFC047500CBD434 /* IWAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB89E1FFC047500CBD434 /* IWAudio.swift */; };
 		926CB8E01FFC047500CBD434 /* IWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB89F1FFC047500CBD434 /* IWApp.swift */; };
 		926CB8E11FFC047500CBD434 /* IWDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8A01FFC047500CBD434 /* IWDevice.swift */; };
 		926CB8E21FFC047500CBD434 /* IWCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926CB8A11FFC047500CBD434 /* IWCustom.swift */; };
@@ -130,7 +129,6 @@
 		92A3C37020178D8800EDBB77 /* IWExtensions_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C36F20178D8800EDBB77 /* IWExtensions_Data.swift */; };
 		92A3C37220178DA700EDBB77 /* IWExtensions_UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C37120178DA700EDBB77 /* IWExtensions_UINib.swift */; };
 		92A3C37420178DD700EDBB77 /* IWExtensions_UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C37320178DD700EDBB77 /* IWExtensions_UIAlertController.swift */; };
-		92A5C30B20B672BB00043743 /* IWExtensions_NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C30A20B672BB00043743 /* IWExtensions_NSObject.swift */; };
 		92AD7AB820B86EE900888B6C /* IWListViewMoreSectionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AD7AB720B86EE900888B6C /* IWListViewMoreSectionsDataSource.swift */; };
 		92AD7ABA20B8721600888B6C /* IWBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AD7AB920B8721600888B6C /* IWBaseViewModel.swift */; };
 		92B2C64020B650190018E3B5 /* ViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C63F20B650190018E3B5 /* ViewControllerDataSource.swift */; };
@@ -143,7 +141,6 @@
 		92CF983020DC064C009DD6C1 /* IWTest_Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF982F20DC064C009DD6C1 /* IWTest_Optional.swift */; };
 		92D29DF6207DAEB50031EFAD /* PermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D29DF4207DAEB50031EFAD /* PermissionsViewController.swift */; };
 		92D29DF7207DAEB50031EFAD /* PermissionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D29DF5207DAEB50031EFAD /* PermissionsViewController.xib */; };
-		92D77569207A60BE00AFA7FB /* IWExtensions_Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D77568207A60BE00AFA7FB /* IWExtensions_Codable.swift */; };
 		92DDA74320B69E430027D84A /* IWCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DDA74220B69E420027D84A /* IWCommons.swift */; };
 		92ED7AAA2094732E003936F5 /* NaverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED7AA82094732E003936F5 /* NaverViewController.swift */; };
 		92ED7AAB2094732E003936F5 /* NaverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92ED7AA92094732E003936F5 /* NaverViewController.xib */; };
@@ -224,7 +221,6 @@
 		926CB89A1FFC047500CBD434 /* IWViewControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWViewControllerBase.swift; sourceTree = "<group>"; };
 		926CB89B1FFC047500CBD434 /* Data+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+IW.swift"; sourceTree = "<group>"; };
 		926CB89C1FFC047500CBD434 /* String+IW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+IW.swift"; sourceTree = "<group>"; };
-		926CB89E1FFC047500CBD434 /* IWAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAudio.swift; sourceTree = "<group>"; };
 		926CB89F1FFC047500CBD434 /* IWApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWApp.swift; sourceTree = "<group>"; };
 		926CB8A01FFC047500CBD434 /* IWDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWDevice.swift; sourceTree = "<group>"; };
 		926CB8A11FFC047500CBD434 /* IWCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCustom.swift; sourceTree = "<group>"; };
@@ -294,7 +290,6 @@
 		92A3C36F20178D8800EDBB77 /* IWExtensions_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_Data.swift; sourceTree = "<group>"; };
 		92A3C37120178DA700EDBB77 /* IWExtensions_UINib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_UINib.swift; sourceTree = "<group>"; };
 		92A3C37320178DD700EDBB77 /* IWExtensions_UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_UIAlertController.swift; sourceTree = "<group>"; };
-		92A5C30A20B672BB00043743 /* IWExtensions_NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_NSObject.swift; sourceTree = "<group>"; };
 		92AD7AB720B86EE900888B6C /* IWListViewMoreSectionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWListViewMoreSectionsDataSource.swift; sourceTree = "<group>"; };
 		92AD7AB920B8721600888B6C /* IWBaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWBaseViewModel.swift; sourceTree = "<group>"; };
 		92B2C63F20B650190018E3B5 /* ViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDataSource.swift; sourceTree = "<group>"; };
@@ -307,7 +302,6 @@
 		92CF982F20DC064C009DD6C1 /* IWTest_Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWTest_Optional.swift; sourceTree = "<group>"; };
 		92D29DF4207DAEB50031EFAD /* PermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsViewController.swift; sourceTree = "<group>"; };
 		92D29DF5207DAEB50031EFAD /* PermissionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionsViewController.xib; sourceTree = "<group>"; };
-		92D77568207A60BE00AFA7FB /* IWExtensions_Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWExtensions_Codable.swift; sourceTree = "<group>"; };
 		92DDA74220B69E420027D84A /* IWCommons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCommons.swift; sourceTree = "<group>"; };
 		92ED7AA82094732E003936F5 /* NaverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverViewController.swift; sourceTree = "<group>"; };
 		92ED7AA92094732E003936F5 /* NaverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NaverViewController.xib; sourceTree = "<group>"; };
@@ -361,13 +355,6 @@
 			path = IWNaver;
 			sourceTree = "<group>";
 		};
-		9204F20E209EA8AA00943503 /* IWDebuging */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = IWDebuging;
-			sourceTree = "<group>";
-		};
 		921D070E2079C2840019C690 /* IWJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,7 +398,6 @@
 				926CB8711FFC047500CBD434 /* IWListView */,
 				926CB8AC1FFC047500CBD434 /* IWRequest */,
 				926CB8A21FFC047500CBD434 /* IWWebView */,
-				9204F20E209EA8AA00943503 /* IWDebuging */,
 				92980C73205A3A7000CF9F74 /* IWLocalAuth */,
 				927DD21520C6EDE200968079 /* IWGuideView */,
 				92CAA7CE20737A0C00C5AF81 /* IWPermissions */,
@@ -487,7 +473,6 @@
 			isa = PBXGroup;
 			children = (
 				926CB8831FFC047500CBD434 /* + */,
-				926CB89E1FFC047500CBD434 /* IWAudio.swift */,
 				926CB89F1FFC047500CBD434 /* IWApp.swift */,
 				926CB8A01FFC047500CBD434 /* IWDevice.swift */,
 			);
@@ -506,7 +491,6 @@
 		926CB8871FFC047500CBD434 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				92A5C30A20B672BB00043743 /* IWExtensions_NSObject.swift */,
 				92A3C37120178DA700EDBB77 /* IWExtensions_UINib.swift */,
 				9296C2712043AE12002A6303 /* IWExtensions_UIFont.swift */,
 				92A3C3632017855400EDBB77 /* IWExtensions_UIView.swift */,
@@ -547,7 +531,6 @@
 				927398312058D02700E09742 /* IWExtensions_FloatingPoint.swift */,
 				9273982F2058CF6C00E09742 /* IWExtensions_SignedInteger.swift */,
 				9293119A20564D1500D9B42B /* IWExtensions_DispatchQueue.swift */,
-				92D77568207A60BE00AFA7FB /* IWExtensions_Codable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1054,7 +1037,6 @@
 				92B2C64420B650CB0018E3B5 /* ViewControllerModel.swift in Sources */,
 				926CB8CD1FFC047500CBD434 /* WKWebView+IW.swift in Sources */,
 				92980C75205A3A7100CF9F74 /* IWLocalAuthentication.swift in Sources */,
-				92A5C30B20B672BB00043743 /* IWExtensions_NSObject.swift in Sources */,
 				92A3C3602017583C00EDBB77 /* IWExtensions_Optional.swift in Sources */,
 				9261336D2058CA4800ED0A87 /* IWExtensions_Dictionary.swift in Sources */,
 				926CB8E81FFC047500CBD434 /* IWLoginConst.swift in Sources */,
@@ -1075,8 +1057,6 @@
 				926CB8D71FFC047500CBD434 /* UITableViewHeaderFooterView+IW.swift in Sources */,
 				926CB8BE1FFC047500CBD434 /* UIStoryboard+IWReusable.swift in Sources */,
 				926CB8ED1FFC047500CBD434 /* IWRequestManage.swift in Sources */,
-				926CB8DF1FFC047500CBD434 /* IWAudio.swift in Sources */,
-				92D77569207A60BE00AFA7FB /* IWExtensions_Codable.swift in Sources */,
 				926CB8DC1FFC047500CBD434 /* Data+IW.swift in Sources */,
 				926CB8CB1FFC047500CBD434 /* IWExtensions_UIGestureRecognizer.swift in Sources */,
 				92A3C37220178DA700EDBB77 /* IWExtensions_UINib.swift in Sources */,

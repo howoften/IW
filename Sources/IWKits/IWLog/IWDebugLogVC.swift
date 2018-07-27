@@ -6,6 +6,7 @@
 //  Copyright © 2018年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public class IWDebugLogVC: IWSubVC {
@@ -98,3 +99,5 @@ extension IWDebugLogVC: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+#endif

@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 private struct IWViewKey {
@@ -219,3 +220,4 @@ public extension IWView where View: UIView {
     
 }
 
+#endif

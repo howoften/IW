@@ -12,6 +12,7 @@
  *
  *********************************************/
 
+#if os(iOS)
 import UIKit
 
 public protocol IWReusable: class {
@@ -25,3 +26,4 @@ public extension IWReusable {
 }
 
 public typealias IWNibReusable = IWReusable & IWNibLoadable
+#endif

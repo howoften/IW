@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public protocol IWStoryboardSceneBased: class {
@@ -42,3 +43,4 @@ public extension IWStoryboardSceneBased where Self: UIViewController {
     }
 }
 
+#endif

@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 /// (UINavigationController 的子类, 相比较拥有更多快捷功能).
@@ -157,4 +158,4 @@ extension IWNavController: UIGestureRecognizerDelegate {
     }
 }
 
-
+#endif

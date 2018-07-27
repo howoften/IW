@@ -2,6 +2,7 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import LocalAuthentication
 
@@ -161,3 +162,4 @@ public class IWLocalAuthentication: NSObject {
     }
 }
 
+#endif
