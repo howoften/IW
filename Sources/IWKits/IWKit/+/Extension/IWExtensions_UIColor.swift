@@ -45,7 +45,7 @@ public extension IWColor {
     /// (返回当前颜色的反色).
     public final var inverseColor: IWColor? {
         guard let componentColors = self.cgColor.components else { return nil }
-        let newColor = UIColor.init(red: 1.0 - componentColors[0], green: 1.0 - componentColors[1], blue: 1.0 - componentColors[3], alpha: componentColors[3])
+        let newColor = IWColor.init(red: 1.0 - componentColors[0], green: 1.0 - componentColors[1], blue: 1.0 - componentColors[3], alpha: componentColors[3])
         return newColor
     }
     
@@ -128,7 +128,7 @@ public extension IWColor {
         var g: CGFloat = 0
         var b: CGFloat = 0
         if self.getRed(&r, green: &g, blue: &b, alpha: nil) {
-            return UIColor.init(red: r, green: g, blue: b, alpha: 1.0)
+            return IWColor.init(red: r, green: g, blue: b, alpha: 1.0)
         }
         return nil
     }
@@ -152,29 +152,30 @@ public extension IWColor {
         return 0
     }
     
+    #if os(iOS)
     /// (返回一张 4x4 的纯色图片).
     public final var image: UIImage? {
         return self.image(withColor: self, cornerRadius: 0)
     }
-    
+    #endif
     
 }
 
-public extension UIColor {
+public extension IWColor {
     
-    public static var iwe_tinyBlack: UIColor {
+    public static var iwe_tinyBlack: IWColor {
         return "#3f4458".toColor
     }
     
-    public static var iwe_orangeRed: UIColor {
+    public static var iwe_orangeRed: IWColor {
         return "#ff4500".toColor
     }
     
-    public static var iwe_adadad: UIColor {
+    public static var iwe_adadad: IWColor {
         return "#adadad".toColor
     }
     
-    public static var iwe_gainsboro: UIColor {
+    public static var iwe_gainsboro: IWColor {
         return "#dcdcdc".toColor
     }
     
@@ -210,13 +211,14 @@ public extension UIColor {
         Scanner(string: gStr).scanHexInt32(&g)
         Scanner(string: bStr).scanHexInt32(&b)
         
-        color = UIColor(red: CGFloat(r) / 255.0,
+        color = IWColor(red: CGFloat(r) / 255.0,
                         green: CGFloat(g) / 255.0,
                         blue: CGFloat(b) / 255.0,
                         alpha: CGFloat(alpha))
         return color
     }
     
+    #if os(iOS)
     /// (返回一张自定义的纯色图片).
     ///
     /// - Parameters:
@@ -224,7 +226,7 @@ public extension UIColor {
     ///   - size: 图片大小, 默认为 4x4
     ///   - cornerRadius: 图片圆角
     /// - Returns: 图片, 可能为nil
-    public final func image(withColor color: UIColor?, size: CGSize = MakeSize(4, 4), cornerRadius: CGFloat) -> UIImage? {
+    public final func image(withColor color: IWColor?, size: CGSize = MakeSize(4, 4), cornerRadius: CGFloat) -> UIImage? {
         func removeFloatMin(_ floatValue: CGFloat) -> CGFloat {
             return floatValue == CGFloat.min ? 0 : floatValue
         }
@@ -241,7 +243,7 @@ public extension UIColor {
         if sz.width < 0 || sz.height < 0 { assertionFailure("CGPostError, 非法的 size") }
         
         var resultImage: UIImage? = nil
-        let co = (color != nil ? color! : UIColor.clear)
+        let co = (color != nil ? color! : IWColor.clear)
         
         let opaque = (cornerRadius == 0.0 && co.alphaChannel == 1.0)
         UIGraphicsBeginImageContextWithOptions(sz, opaque, 0)
@@ -263,6 +265,7 @@ public extension UIColor {
         UIGraphicsEndImageContext()
         return resultImage
     }
+    #endif
     
     /// (.withAlphaComponent()).
     public func alpha(_ value: CGFloat) -> IWColor {

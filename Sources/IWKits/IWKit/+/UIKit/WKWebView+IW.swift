@@ -93,6 +93,7 @@ public extension IWView where View: WKWebView {
         }
     }
     
+    #if os(iOS)
     var wkContentView: UIView? {
         for subView in view.subviews {
             subView.backgroundColor = .clear
@@ -117,6 +118,7 @@ public extension IWView where View: WKWebView {
         }
         return nil
     }
+    #endif
     
     func post(path: String, JSONParameters: String) {
         let postJavascript = "function iwe_post(path, parameters) { var method = \"POST\"; var form = document.createElement(\"form\"); form.setAttribute(\"method\", method); form.setAttribute(\"action\", path); for (var key in parameters) { var hiddenFild = document.createElement(\"input\"); hiddenFild.setAttribute(\"type\", \"hidden\"); hiddenFild.setAttribute(\"name\", key); hiddenFild.setAttribute(\"value\", parameters[key]); form.appendChild(hiddenFild); } document.body.appendChild(form); form.submit(); }; iwe_post('\(path)', '\(JSONParameters.remove(["\\", " "]))');"
@@ -178,4 +180,3 @@ fileprivate extension IWView where View: WKWebView {
     }
     
 }
-

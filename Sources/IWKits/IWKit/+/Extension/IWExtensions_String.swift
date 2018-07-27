@@ -272,6 +272,7 @@ public extension String {
         return URL(fileURLWithPath: self, isDirectory: isDirectory)
     }
     
+    #if os(iOS)
     /// (计算文本 size).
     ///
     /// - Parameters:
@@ -281,6 +282,7 @@ public extension String {
     public func toSize(with maskSize: CGSize, options: NSStringDrawingOptions, attributes: [NSAttributedStringKey: Any]?) -> CGSize {
         return (self as NSString).boundingRect(with: maskSize, options: options, attributes: attributes, context: nil).size
     }
+    #endif
     
     /// (精确提取对应的参数值, 例如: "index.php?id=1214".getParameterValue("id"), 结果为 1214 ).
     public func getParameterValue(exactName: String) -> String? {
@@ -408,6 +410,7 @@ public extension String {
         self.toURL.unwrapped({openURL($0)})
     }
     
+    #if os(iOS)
     /// (在 App Store 中打开, value 为 app 的 id)
     /// Open in AppStore.
     public func openInAppStore() {
@@ -421,6 +424,7 @@ public extension String {
             UIApplication.shared.openURL(url)
         }
     }
+    #endif
     
     /// (本地语言).
     public func localized(comment: String = "") -> String {
@@ -515,20 +519,9 @@ public extension String {
     }
     #endif
     
-    #if os(macOS)
-    /// (添加颜色).
-    public func colored(with color: NSColor) -> NSAttributedString {
-    return NSMutableAttributedString(string: self, attributes: [.foregroundColor: color])
-    }
-    #else
-    /// (添加颜色).
-    public func colored(with color: UIColor) -> NSAttributedString {
+    public func colored(with color: IWColor) -> NSAttributedString {
         return NSMutableAttributedString(string: self, attributes: [.foregroundColor: color])
     }
-    #endif
-    
-    
-    
 }
 
 // MARK:- Subscript

@@ -15,6 +15,8 @@ public extension CGFloat {
     
     /// (-1).
     public static let estimated: CGFloat = -1
+    
+    #if os(iOS)
     /// (UITableViewAutomaticDimension, 适用于 UITableView).
     public static let automaticDimension: CGFloat = UITableViewAutomaticDimension
     
@@ -33,6 +35,7 @@ public extension CGFloat {
         }
         return tabBar.height
     }
+    
     public static var navBarHeight: CGFloat {
         guard let vc = UIViewController.current else { return 0 }
         guard let navBar = vc.navigationController?.navigationBar else { return 0 }
@@ -41,7 +44,6 @@ public extension CGFloat {
         }
         return navBar.height + statusBarHeight
     }
-    
     /// (不考虑是否隐藏的情况下， tabbar 的高度).
     public static var tabbarHeightNormal: CGFloat {
         return IWDevice.isiPhoneX.founded({ 83 }, elseReturn: { 49 })
@@ -87,12 +89,14 @@ public extension CGFloat {
     
     /// (iPhone X 返回 34, 其他设备返回 0 ).
     public static let bottomSpacing: CGFloat = (IWDevice.isiPhoneX ? 34 : 0)
+    #endif
     
     /// (最小值).
     public static let min: CGFloat = CGFloat.leastNormalMagnitude
     /// (最大值).
     public static let max: CGFloat = CGFloat.greatestFiniteMagnitude
     
+    #if os(iOS)
     /// (屏幕高度, 会根据设备方向的不同返回不同值, 需要先设置 IWApp.supportRotation 才会触发自动识别高度).
     public static var screenHeight: CGFloat {
         return (IWApp.supportRotation && (IWDevice.orientation == .unknown || IWDevice.orientation.isPortrait)) ? iw.screen.width : iw.screen.height
@@ -111,5 +115,6 @@ public extension CGFloat {
         safeAh -= tabbarHeight
         return safeAh
     }
+    #endif
 }
 

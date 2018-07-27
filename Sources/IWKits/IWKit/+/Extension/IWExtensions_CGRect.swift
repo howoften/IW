@@ -12,8 +12,10 @@
 
 public extension IWRect {
     
+    #if os(iOS)
     /// (屏幕大小, scrren bounds).
     public static let screenBounds: IWRect = { return iw.screen.bounds }()
+    #endif
     
     /// (.origin.x).
     public var x: CGFloat {

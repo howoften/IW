@@ -2,8 +2,11 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
-#if os(iOS)
-import UIKit
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
 import StoreKit // 应用内打开 app store 详情页
 
 public typealias UIAlert = UIAlertController
@@ -53,10 +56,12 @@ public struct iw {
         }
     }
     
+    #if os(iOS)
     /// (批量设置圆角).
     public static func round(_ corner: CGFloat, toViews views: [UIView]) {
         views.forEach({ $0.iwe.round(corner) })
     }
+    #endif
     
     /// (断言).
     public struct assert {
@@ -66,6 +71,7 @@ public struct iw {
         }
     }
     
+    #if os(iOS)
     /// (App 全局设置).
     public struct app {
         /// (隐藏状态栏).
@@ -77,6 +83,7 @@ public struct iw {
             UIApplication.shared.setStatusBarHidden(false, with: animation)
         }
     }
+    #endif
     
     /// (是否为 Debug 模式).
     public static let isDebugMode: Bool = {
@@ -87,10 +94,13 @@ public struct iw {
         #endif
     }()
     
+    #if os(iOS)
     ///  Previous viewController, set in `IWRootVC.viewWillDisappear`.
     /// (上一个控制器, 在 IWRootVC.viewWillDisappear 进行赋值).
     public weak static var previousViewController: UIViewController?
+    #endif
     
+    #if os(iOS)
     /// Tabbar is exists.
     /// (UITabbar 是否存在(显示)).
     public static var isTabbarExists: Bool {
@@ -109,6 +119,7 @@ public struct iw {
         }
         return false
     }
+    #endif
     
     /// 延迟执行, execution, cancel
     public struct delay {
@@ -140,17 +151,7 @@ public struct iw {
         }
     }
     
-    /// (是否为 iPhone).
-//    public static let isiPhone = IWDevice.isiPhone
-    /// (屏幕 Bounds).
-//    public static let screenBounds = UIScreen.main.bounds
-//    /// (屏幕 Size).
-//    public static let screenSize = iw.screenBounds.size
-//    /// (屏幕 Width).
-//    public static let screenWidth = iw.screenSize.width
-//    /// (屏幕 高度).
-//    public static let screenHeight = iw.screenSize.height
-    
+    #if os(iOS)
     public struct screen {
         public static let bounds = UIScreen.main.bounds
         public static let size = screen.bounds.size
@@ -159,13 +160,17 @@ public struct iw {
         
         public static let scale = UIScreen.main.scale
     }
+    #endif
     
+    #if os(iOS)
     /// (设备系统).
     public struct system {
         /// (系统版本号, 字符型).
         public static let version = UIDevice.current.systemVersion
     }
+    #endif
     
+    #if os(iOS)
     /// (设备类型/平台).
     public struct platform {
         
@@ -182,6 +187,7 @@ public struct iw {
         public static let isiPhone: Bool = IWDevice.isiPhone
         public static let isiPhoneX: Bool = IWDevice.isiPhoneX
     }
+    #endif
     
     /// (try 事件).
     public struct `throw` {
@@ -195,6 +201,7 @@ public struct iw {
         }
     }
     
+    #if os(iOS)
     /// (在 App 内打开 app store 详情页).
     public struct appstore {
         /// (通过 AppID 显示对应的应用详情页).
@@ -203,7 +210,10 @@ public struct iw {
             productViewController.show(with: appID)
         }
     }
+    #endif
     
+    
+    #if os(iOS)
     /// (等待).
     public struct loading {
         public static func stopWaveLoading() -> Void {
@@ -213,7 +223,9 @@ public struct iw {
             IWWaveLoadingView.shared.startWave(UIViewController.current, useMask: maskType == .none ? false : true, maskType: maskType)
         }
     }
+    #endif
     
+    #if os(iOS)
     /// (输出设备信息, 机型 标识 OS版本).
     public static func outputDeviceInfos() -> Void {
         var infos = "-- iw.outputDeviceInfos"
@@ -238,7 +250,10 @@ public struct iw {
         infos += "\n--------------------------------------------------"
         iPrint(infos)
     }
+    #endif
     
+    
+    #if os(iOS)
     /// (是否安装).
     public struct installed {
         /// (是否安装 QQ).
@@ -266,6 +281,7 @@ public struct iw {
             return UIApplication.shared.canOpenURL("weibo://".toURLValue)
         }
     }
+    #endif
 }
 
 fileprivate extension iw {
@@ -300,8 +316,8 @@ public func MakeEdge(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right
 }
 /// Make CGRect.
 /// (返回一个 CGFloat > CGRect).
-public func MakeRect(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
-    return CGRect(x: x, y: y, width: width, height: height)
+public func MakeRect(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> IWRect {
+    return IWRect(x: x, y: y, width: width, height: height)
 }
 /// Make IndexPath.
 /// (返回一个 IndexPath).
@@ -310,7 +326,7 @@ public func MakeIndex(_ row: Int, _ section: Int) -> IndexPath {
 }
 /// Make CGSize
 /// (返回一个 CGFloat > CGSize).
-public func MakeSize(_ width: CGFloat, _ height: CGFloat) -> CGSize {
+public func MakeSize(_ width: CGFloat, _ height: CGFloat) -> IWSize {
     return CGSize(width: width, height: height)
 }
 /// Make CGPoint
@@ -327,5 +343,3 @@ public func ifc(_ condition: Bool, _ todo: @autoclosure () throws -> Void) rethr
 public func ifc(_ condition: Bool, _ todo: @autoclosure () throws -> Void, else: @autoclosure () throws -> Void) rethrows -> Void {
     if condition { try todo() } else { try `else`() }
 }
-
-#endif

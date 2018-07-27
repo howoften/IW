@@ -2,9 +2,11 @@
 //  Copyright © 2017年 iWe. All rights reserved.
 //
 
-#if os(iOS)
-import UIKit
-import Foundation
+#if os(macOS)
+    import Cocoa
+#else
+    import UIKit
+#endif
 import WebKit
 
 /// Timestamp correlation.
@@ -39,6 +41,7 @@ public class IWTime: NSObject {
     }
 }
 
+#if os(iOS)
 /// UIStatusBar correlation.
 /// (状态栏相关).
 public class IWStatus: NSObject {
@@ -64,8 +67,8 @@ public class IWStatus: NSObject {
         get { return UIApplication.shared.statusBarStyle }
         set { newValue == .default ? toBlackStyle() : toWhiteStyle() }
     }
-    
 }
+#endif
 
 /// Regex correlation.
 /// (正则表达式相关).
@@ -187,7 +190,7 @@ public class IWFileManage: FileManager {
     
 }
 
-
+#if os(iOS)
 /// .actionSheet style alert.
 /// (提示框相关).
 public class IWSheetAlert: NSObject {
@@ -212,6 +215,7 @@ public class IWSheetAlert: NSObject {
         UIViewController.current?.modal(sheet)
     }
 }
+#endif
 
 /// (Cookie相关).
 public class IWCookies: NSObject {
@@ -254,6 +258,7 @@ public class IWCaches: NSObject {
         }
     }
     
+    #if os(iOS)
     public final class func clearCaches(_ ios9CacheType: [String]? = nil) {
         let libraryDir = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
         let bundleID = Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
@@ -293,7 +298,6 @@ public class IWCaches: NSObject {
                 }
             }
         }
-        
     }
+    #endif
 }
-#endif
