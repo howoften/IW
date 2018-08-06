@@ -5,7 +5,7 @@
 #if os(iOS)
 import UIKit
 
-extension IWView where View: UITableViewHeaderFooterView {
+extension IWProtocolView where View: UITableViewHeaderFooterView {
     
     /// Use in init(func `awakeFromNib` or `init`).
     /// (修复背景颜色 Xcode 警告, 用在 awakeFromNib 或者 init 中).

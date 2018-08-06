@@ -84,7 +84,7 @@ open class IWWebVC: IWSubVC {
     open override func configureUserInterface() {
         
         if iw.system.version.toDouble < 11.0 {
-            web.scrollView.iwe.bothInsets = MakeEdge(.navBarHeight, 0, 0, 0)
+            web.scrollView.bothInsets = MakeEdge(.navBarHeight, 0, 0, 0)
         }
         
         requestURLString?.toURLRequest.unwrapped({ web.load($0) })
@@ -188,7 +188,7 @@ extension IWWebVC {
     
     private func hideBackgroundColor() -> Void {
         web.backgroundColor = .clear
-        web.iwe.wkContentView?.backgroundColor = .clear
+        web.wkContentView?.backgroundColor = .clear
         iw.delay.execution(delay: 0.5) {
             self.hostInfoLabel.isHidden = false
         }
@@ -196,7 +196,7 @@ extension IWWebVC {
     private func showBackgroundColor() -> Void {
         hostInfoLabel.isHidden = true
         web.backgroundColor = .white
-        web.iwe.wkContentView?.backgroundColor = .white
+        web.wkContentView?.backgroundColor = .white
     }
     
 }

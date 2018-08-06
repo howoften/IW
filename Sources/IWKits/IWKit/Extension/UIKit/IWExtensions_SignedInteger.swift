@@ -37,4 +37,10 @@ public extension SignedInteger {
         }
         return "\(hours)h \(mins)m"
     }
+    
+    public var toSize: IWSize {
+        let wh = CGFloat(Int(self))
+        return MakeSize(wh, wh)
+    }
+    
 }

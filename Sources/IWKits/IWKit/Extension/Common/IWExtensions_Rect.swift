@@ -10,12 +10,8 @@
     public typealias IWRect = CGRect
 #endif
 
+
 public extension IWRect {
-    
-    #if os(iOS)
-    /// (屏幕大小, scrren bounds).
-    public static let screenBounds: IWRect = { return iw.screen.bounds }()
-    #endif
     
     /// (.origin.x).
     public var x: CGFloat {
@@ -37,4 +33,26 @@ public extension IWRect {
         get { return self.size.height }
         set { self.size.height = newValue }
     }
+    
 }
+
+#if os(macOS)
+
+public extension IWRect {
+    
+    /// (屏幕大小, screen frame size).
+    public static let screenSize: IWSize = { return NSScreen.main?.frame.size }()
+    
+}
+
+#else
+
+public extension IWRect {
+    
+    /// (屏幕大小, sceren bounds).
+    public static let screenBounds: IWRect = { return iw.screen.bounds }()
+    
+}
+
+#endif
+

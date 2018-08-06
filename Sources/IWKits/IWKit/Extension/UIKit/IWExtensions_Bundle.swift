@@ -32,9 +32,3 @@ public extension Bundle {
     }
     
 }
-
-class aaaa: Bundle {
-    
-    
-    
-}

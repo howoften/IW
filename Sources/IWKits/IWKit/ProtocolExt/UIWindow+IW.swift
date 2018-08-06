@@ -5,18 +5,18 @@
 #if os(iOS)
 import UIKit
 
-public extension IWView where View: UIWindow {
-	
-	func show() -> Void {
-		view.isHidden = false
-		
-		if #available(iOS 11, *) {
-			for wd in UIApplication.shared.windows {
-				if wd.isKind(of: NSClassFromString("_UIInteractiveHighlightEffectWindow")!) {
-					wd.isHidden = true
-				}
-			}
-		}
-	}
+public extension UIWindow {
+    
+    public func show() -> Void {
+        self.isHidden = false
+        
+        if #available(iOS 11, *) {
+            for wd in UIApplication.shared.windows {
+                if wd.isKind(of: NSClassFromString("_UIInteractiveHighlightEffectWindow")!) {
+                    wd.isHidden = true
+                }
+            }
+        }
+    }
 }
 #endif

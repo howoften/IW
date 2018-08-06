@@ -8,33 +8,34 @@
     import UIKit
 #endif
 
-public final class IWView<View> {
+public final class IWProtocolView<View> {
     public let view: View
     public init(_ view: View) {
         self.view =  view
     }
 }
 
-public protocol IWViewCompatible {
+public protocol IWProtocolViewCompatible {
     associatedtype IWE
     var iwe: IWE { get }
 }
 
-public extension IWViewCompatible {
-    public var iwe: IWView<Self> {
-        get { return IWView(self) }
+public extension IWProtocolViewCompatible {
+    public var iwe: IWProtocolView<Self> {
+        get { return IWProtocolView(self) }
     }
 }
 
 #if os(macOS)
-extension NSView: IWViewCompatible { }
+extension NSView: IWProtocolViewCompatible { }
 #else
-extension UIView: IWViewCompatible { }
+extension UIView: IWProtocolViewCompatible { }
 #endif
 
+
 #if os(iOS)
-extension IWView where View: UIView {
-    
+extension IWProtocolView where View: UIView {
+
     @discardableResult public func isHidden(_ hidden: Bool) -> IWObserver {
         let ob = IWObserver.init(self.view)
         ob.do(self.view.isHidden = hidden)
@@ -42,33 +43,33 @@ extension IWView where View: UIView {
     }
 }
 
-extension IWView where View: UIButton {
-    
+extension IWProtocolView where View: UIButton {
+
     @discardableResult public func isEnable(_ enable: Bool) -> IWObserver {
         let ob = IWObserver.init(self.view)
         ob.do(self.view.isEnabled = enable)
         return ob
     }
-    
+
 }
 
 public class IWObserver: NSObject {
-    
+
     public var view: UIView!
     public var doSomething: (() -> Void)?
-    
+
     public convenience init(_ view: UIView) {
         self.init()
         self.view = view
     }
-    
+
     public func `do`(_ something: @autoclosure @escaping () -> Void) -> Void {
         self.doSomething = something
     }
-    
+
     public func `where`(_ condition: @autoclosure () -> Bool) -> Void {
         if condition() { self.doSomething?() }
     }
-    
+
 }
 #endif

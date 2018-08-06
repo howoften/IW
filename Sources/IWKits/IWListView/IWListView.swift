@@ -35,7 +35,8 @@ extension IWTableViewInitProtocol {
             lv.fillToSuperview()
         } else {
             // Fallback on earlier versions
-            lv.fillToSuperviewWithiOS6()
+            //lv.fillToSuperviewWithiOS6()
+            lv.fillConstraints()
         }
     }
     

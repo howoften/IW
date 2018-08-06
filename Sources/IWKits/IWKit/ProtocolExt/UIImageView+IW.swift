@@ -8,7 +8,7 @@ import UIKit
 private var kImageNameKey: Void?
 private let kImageCacheFolderPath = "IWImageCache"
 
-public extension IWView where View: UIImageView {
+public extension IWProtocolView where View: UIImageView {
     
     /// (设置图片 source为图片链接String或者图片URL).
     ///
@@ -49,7 +49,7 @@ public extension IWView where View: UIImageView {
     }
 }
 
-private extension IWView where View: UIImageView {
+private extension IWProtocolView where View: UIImageView {
     
     final var imageName: String? {
         get { return objc_getAssociatedObject(self, &kImageNameKey) as? String }

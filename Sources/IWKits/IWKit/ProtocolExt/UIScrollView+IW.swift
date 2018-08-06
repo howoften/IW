@@ -5,7 +5,7 @@
 #if os(iOS)
 import UIKit
 
-public extension IWView where View: UIScrollView {
+public extension UIScrollView {
     
     /// (自动设置 Edge).
     final func autoSetEdge(_ optionSuperView: UIView?) -> Void {
@@ -16,7 +16,7 @@ public extension IWView where View: UIScrollView {
         
         // iWARNING: Open in Xcode9
         if #available(iOS 11, *) {
-            view.contentInsetAdjustmentBehavior = .never
+            self.contentInsetAdjustmentBehavior = .never
         }
         
         (viewController as? IWRootVC)?.listViewThread.async {
@@ -32,16 +32,16 @@ public extension IWView where View: UIScrollView {
     
     /// (设置 contentInset 与 scrollIndicatorInsets).
     final var bothInsets: UIEdgeInsets {
-        get { return view.contentInset }
+        get { return self.contentInset }
         set {
             (viewController as? IWRootVC)?.listViewThread.async {
                 iw.queue.main {
                     var nv = newValue
-                    if self.view.frame == .screenBounds && nv.bottom == 0 {
+                    if self.frame == .screenBounds && nv.bottom == 0 {
                         nv.bottom = .bottomSpacing
                     }
-                    self.view.contentInset = nv
-                    self.view.scrollIndicatorInsets = nv
+                    self.contentInset = nv
+                    self.scrollIndicatorInsets = nv
                     self.scrollToTop()
                 }
             }
@@ -51,15 +51,15 @@ public extension IWView where View: UIScrollView {
     
     /// (立即停止滚动 (手指离开屏幕但列表还在滚动)).
     final func stopDeceleratingIfNeeded() -> Void {
-        if self.view.isDecelerating {
-            self.view.setContentOffset(self.view.contentOffset, animated: false)
+        if self.isDecelerating {
+            self.setContentOffset(self.contentOffset, animated: false)
         }
     }
     
     
     /// (是否已在底部, 无法滚动返回 true).
     final var isBottom: Bool {
-        if !self.canScroll || (self.view.contentOffset.y == self.view.contentSize.height + self.contentInsets.bottom - self.view.height) {
+        if !self.canScroll || (self.contentOffset.y == self.contentSize.height + self.contentInsets.bottom - self.height) {
             return true
         }
         return false
@@ -67,7 +67,7 @@ public extension IWView where View: UIScrollView {
     
     /// (是否已在顶部, 无法滚动返回 true).
     final var isTop: Bool {
-        if !self.canScroll || (self.view.contentOffset.y == -self.contentInsets.top) {
+        if !self.canScroll || (self.contentOffset.y == -self.contentInsets.top) {
             return true
         }
         return false
@@ -75,25 +75,25 @@ public extension IWView where View: UIScrollView {
     
     final var contentInsets: UIEdgeInsets {
         if #available(iOS 11, *) {
-            return self.view.adjustedContentInset
+            return self.adjustedContentInset
         }
-        return self.view.contentInset
+        return self.contentInset
     }
     
     /// (是否能滚动).
     final var canScroll: Bool {
-        if CGSize.isEmpty(self.view.bounds.size) {
+        if CGSize.isEmpty(self.bounds.size) {
             return false
         }
-        let canVerticalScroll = self.view.contentSize.height + self.contentInsets.top + self.contentInsets.bottom + self.view.height
-        let canHorizontalScroll = self.view.contentSize.width + self.contentInsets.left + self.contentInsets.right + self.view.width
+        let canVerticalScroll = self.contentSize.height + self.contentInsets.top + self.contentInsets.bottom + self.height
+        let canHorizontalScroll = self.contentSize.width + self.contentInsets.left + self.contentInsets.right + self.width
         return canVerticalScroll > 0 || canHorizontalScroll > 0
     }
     
     /// (滚动到顶部).
     final func scrollToTop(force: Bool, animated: Bool) -> Void {
         if force || (!force && self.canScroll) {
-            self.view.setContentOffset(MakePoint(-self.contentInsets.left, -self.contentInsets.top), animated: animated)
+            self.setContentOffset(MakePoint(-self.contentInsets.left, -self.contentInsets.top), animated: animated)
         }
     }
     
@@ -105,18 +105,19 @@ public extension IWView where View: UIScrollView {
     /// (滚动到底部).
     final func scrollToBottom(animated: Bool = false) -> Void {
         if self.canScroll {
-            self.view.setContentOffset(MakePoint(self.view.contentOffset.x, self.view.contentSize.height + self.contentInsets.bottom - self.view.height), animated: animated)
+            self.setContentOffset(MakePoint(self.contentOffset.x, self.contentSize.height + self.contentInsets.bottom - self.height), animated: animated)
         }
     }
+    
 }
 
-fileprivate extension IWView where View: UIScrollView {
+fileprivate extension UIScrollView {
     
     final func asyncAutoSetEdge(_ superView: UIView) -> Void {
         
         iw.queue.main {
             if superView.bounds == .screenBounds {
-                let vc = superView.iwe.viewController
+                let vc = superView.viewController
                 if vc != nil {
                     var edge = UIEdgeInsets.zero
                     
@@ -130,12 +131,12 @@ fileprivate extension IWView where View: UIScrollView {
                     edge.left = self.findCompatibleValue(type: .left)
                     edge.right = self.findCompatibleValue(type: .right)
                     
-                    self.view.contentInset = edge
-                    self.view.scrollIndicatorInsets = edge
-
+                    self.contentInset = edge
+                    self.scrollIndicatorInsets = edge
+                    
                     // 滚动到顶部
-                    if self.view.contentOffset.y != -edge.top {
-                        self.view.contentOffset = CGPoint.init(x: 0, y: -edge.top)
+                    if self.contentOffset.y != -edge.top {
+                        self.contentOffset = CGPoint.init(x: 0, y: -edge.top)
                     }
                 }
             }
@@ -178,8 +179,8 @@ fileprivate extension IWView where View: UIScrollView {
     
     private func findCompatibleValue(type: CompatibleEdgeType) -> CGFloat {
         
-        let c = self.view.contentInset
-        let s = self.view.scrollIndicatorInsets
+        let c = self.contentInset
+        let s = self.scrollIndicatorInsets
         
         switch type {
         case .top:
@@ -200,6 +201,8 @@ fileprivate extension IWView where View: UIScrollView {
             return (c.right == 0 && s.right == 0) ? 0 : max(c.right, s.right)
         }
     }
+    
 }
+
 
 #endif

@@ -11,16 +11,17 @@
 // MARK:- Var
 public extension Array {
     
-    /// (, 拼接. 例如: value1,value2,value3).
+    /// (, 拼接. 例如：value1,value2,value3).
     public var toString: String {
         return toOtherString(byType: .string, nil)
     }
     
-    /// (& 拼接. 例如: value1&value2&value3).
+    /// (& 拼接. 例如：value1&value2&value3).
     public var toParameters: String {
         return toOtherString(byType: .parameters, nil)
     }
     
+    /// (拼接. 例如：value1value2key:value).
     public var toURLString: String {
         var tempString = ""
         for obj: Any in self {
@@ -215,9 +216,13 @@ public extension Array where Element: Equatable {
 
 public extension Array where Element: StringProtocol {
     
-    public func merge() -> String {
+    /// (拼接字符串).
+    ///
+    /// - Parameter bridge: 桥接值
+    /// - Returns: 返回拼接后的字符串
+    public func merge(_ bridge: String?) -> String {
         var mg = ""
-        self.forEach({ mg = mg + String($0) })
+        self.forEach({ mg = mg + String($0) + bridge.orEmpty })
         return mg
     }
     
@@ -229,7 +234,7 @@ public extension Array where Element: Numeric {
     /// (求和).
     public func sum() -> Element {
         var total: Element = 0
-        for i in 0 ..< count { total += self[i] }
+        self.forEach({ total += $0 })
         return total
     }
     

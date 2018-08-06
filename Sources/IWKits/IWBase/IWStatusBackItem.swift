@@ -66,9 +66,5 @@ class IWStatusBackItem: UIWindow {
 		tapHandler?()
 	}
 	
-	func show() -> Void {
-		iwe.show()
-	}
-	
 }
 #endif

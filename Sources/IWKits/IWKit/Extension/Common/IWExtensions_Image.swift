@@ -1,30 +1,19 @@
-//  Created by iWw on 2018/2/26.
-//  Copyright © 2018年 iWe. All rights reserved.
+//  Created by iWw on 2018/8/3.
+//  Copyright © 2018 iWe. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS) || os(watchOS)
-import UIKit
+#if os(macOS)
+    import Cocoa
+    public typealias IWImage = NSImage
+#else
+    import UIKit
+    public typealias IWImage = UIImage
+#endif
 
-// MARK:- Var
-public extension UIImage {
-    
-    public var bytesSize: Int {
-        return UIImageJPEGRepresentation(self, 1)?.count ?? 0
-    }
-    
-    public var kilobytesSize: Int {
-        return bytesSize / 1024
-    }
-    
-    public var original: UIImage {
-        return withRenderingMode(.alwaysOriginal)
-    }
-    public var template: UIImage {
-        return withRenderingMode(.alwaysTemplate)
-    }
+public extension IWImage {
     
     /// (获取图片均色, 原理：将图片压缩至 1x1, 然后取色值, 如果获取的颜色比较淡, 可使用 iwe.colorWithoutAlpha 转换).
-    public var averageColor: UIColor? {
+    public var averageColor: IWColor? {
         #if swift(>=4.1)
         let data = UnsafeMutableRawPointer.allocate(byteCount: 4, alignment: 1) // unsigned char = 4 bytes
         #else
@@ -35,21 +24,104 @@ public extension UIImage {
             assertionFailure("非法 context.")
             return nil
         }
-        context.draw(self.cgImage!, in: MakeRect(0, 0, 1, 1))
+        #if os(macOS)
+            let cgimg = self.cgImage(forProposedRect: MakeRect(0, 0, 1, 1), context: context, hints: nil)
+        #else
+            let cgimg = self.cgImage
+        #endif
+        context.draw(cgimg!, in: MakeRect(0, 0, 1, 1))
         let rgba = Array(UnsafeBufferPointer(start: data.assumingMemoryBound(to: UInt8.self), count: 4))
         if rgba[3] > 0 {
             let r = CGFloat(rgba[0]) / CGFloat(rgba[3])
             let g = CGFloat(rgba[1]) / CGFloat(rgba[3])
             let b = CGFloat(rgba[2]) / CGFloat(rgba[3])
             let a = CGFloat(rgba[3]) / 255
-            return UIColor.init(red: r, green: g, blue: b, alpha: a)
+            return IWColor.init(red: r, green: g, blue: b, alpha: a)
         }
         let r = CGFloat(rgba[0]) / 255
         let g = CGFloat(rgba[1]) / 255
         let b = CGFloat(rgba[2]) / 255
         let a = CGFloat(rgba[3]) / 255
-        return UIColor.init(red: r, green: g, blue: b, alpha: a)
+        return IWColor.init(red: r, green: g, blue: b, alpha: a)
     }
+    
+}
+
+
+#if os(macOS)
+// MARK:- macOS Function
+public extension IWImage {
+    
+    /// (加载 icns 图片组).
+    ///
+    /// - Parameter filePath: icns文件路径
+    /// - Returns: 返回 icns 中的图片组
+    public static func load(icns filePath: String?) -> [NSImageRep]? {
+        guard let fp = filePath else { return nil }
+        guard let loads = IWImage.init(contentsOfFile: fp) else { return nil }
+        return loads.representations
+    }
+    
+}
+
+public extension Array where Element: NSImageRep {
+    
+    
+    /// (自动获取图片).
+    ///
+    /// - Parameters:
+    ///   - size: 图片size的最大值
+    ///   - pixels: 最大pixels
+    /// - Returns: 找到了返回图片，没找到返回nil
+    public func autoGetImage(maxSize size: CGSize, pixels: Int) -> Image? {
+        var sizeWidth = size.width
+        var sizeHeight = size.height
+        var _pixels = pixels
+        var imgReps = self.filter({ $0.size.equalTo(MakeSize(sizeWidth, sizeHeight)) && $0.pixelsHigh == _pixels && $0.pixelsWide == _pixels })
+        while imgReps.count == 0 {
+            _pixels = _pixels / 2
+            imgReps = self.filter({ $0.size.equalTo(MakeSize(sizeWidth, sizeHeight)) && $0.pixelsHigh == _pixels && $0.pixelsWide == _pixels })
+            if imgReps.count == 0 {
+                sizeWidth = sizeWidth / 2
+                sizeHeight = sizeHeight / 2
+                imgReps = self.filter({ $0.size.equalTo(MakeSize(sizeWidth, sizeHeight)) && $0.pixelsHigh == _pixels && $0.pixelsWide == _pixels })
+            }
+            
+            if sizeWidth < 8 && sizeHeight < 8 { break }
+        }
+        // 确实没有找到指定参数的图片
+        if imgReps.count == 0 { return nil }
+        
+        let newImage = Image.init(size: MakeSize(sizeWidth, sizeHeight))
+        newImage.addRepresentation(imgReps[0])
+        return newImage
+    }
+    
+}
+
+
+#else
+
+// MARK:- unmacOS Variable
+public extension IWImage {
+    
+    /// (图片大小, Bytes).
+    public var bytesSize: Int {
+        return UIImageJPEGRepresentation(self, 1)?.count ?? 0
+    }
+    
+    /// (图片大小, KBytes).
+    public var kilobytesSize: Int {
+        return bytesSize / 1024
+    }
+    
+    public var original: IWImage {
+        return withRenderingMode(.alwaysOriginal)
+    }
+    public var template: IWImage {
+        return withRenderingMode(.alwaysTemplate)
+    }
+    
     
     /// (将图片置灰色).
     public var grayImage: UIImage? {
@@ -97,12 +169,11 @@ public extension UIImage {
         let opq = (alphaInfo == CGImageAlphaInfo.noneSkipLast) || (alphaInfo == CGImageAlphaInfo.noneSkipFirst) || (alphaInfo == CGImageAlphaInfo.none)
         return opq
     }
-    
-    
 }
 
-// MARK:- Function
-public extension UIImage {
+
+// MARK:- unmacOS Function
+public extension IWImage {
     
     /// (设置图片的透明度).
     ///
@@ -161,6 +232,7 @@ public extension UIImage {
         return resultImage
     }
     
+    // Start -----------
     /// (二维码大小).
     public enum QRCodeLogoImageSizeType {
         case big
@@ -234,6 +306,7 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return newPic
     }
+    // Ended -----------
     
     
     /// (缩放图像至 size 大小).
@@ -249,6 +322,5 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return scaledImage
     }
-    
 }
 #endif

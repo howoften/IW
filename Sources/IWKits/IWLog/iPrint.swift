@@ -12,14 +12,12 @@
     import UIKit
 #endif
 
-
 private let config = IWLogConfiguration.shared
 
 // Print in Debug mode.
 public func iPrint(_ item: Any..., file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
     
-    var output = handlerPrint(fileName: file.lastPath, functionName: function, line: line)
-    output += ":\n\(item.last!)"
+    let output = getFinalOutput(item, fileName: file.lastPath, functionNamee: function, line: line)
     if iw.isDebugMode {
         print(output)
     }
@@ -28,6 +26,7 @@ public func iPrint(_ item: Any..., file: String = #file, _ function: String = #f
 
 // Print Error in Debug mode.
 public func iPrint(_ desc: String? = "", error: Error?, file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
+    
     var output = handlerPrint(fileName: file.lastPath, functionName: function, line: line)
     
     var info = ""
@@ -46,6 +45,23 @@ public func iPrint(_ desc: String? = "", error: Error?, file: String = #file, _ 
     if info != ": " {
         saveToLocal(output)
     }
+}
+
+// Print in Debug mode.
+public func _Warning(_ item: Any..., file: String = #file, _ function: String = #function, _ line: Int = #line) -> Void {
+    
+    var output = getFinalOutput(item, fileName: file.lastPath, functionNamee: function, line: line)
+    output = "[Warning] \(output)"
+    if iw.isDebugMode {
+        print(output)
+    }
+    saveToLocal(output)
+}
+
+private func getFinalOutput(_ item: Any..., fileName: String, functionNamee: String, line: Int) -> String {
+    var output = handlerPrint(fileName: fileName, functionName: functionNamee, line: line)
+    output += ":\n\(item.last!)"
+    return output
 }
 
 private func handlerPrint(fileName: String, functionName: String, line: Int) -> String {

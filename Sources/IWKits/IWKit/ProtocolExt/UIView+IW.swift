@@ -9,7 +9,7 @@ private struct IWViewKey {
     static var showDebugColorKey: Void?
 }
 
-public extension IWView where View: UIView {
+public extension IWProtocolView where View: UIView {
     
     /// Set round to view.
     /// (以宽度/2为圆角值设置圆角).

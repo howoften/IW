@@ -9,14 +9,14 @@
 #endif
 import WebKit
 
-public extension IWView where View: WKWebView {
+public extension WKWebView {
     
     /// Load local HTMl file.
     ///
     /// - Parameters:
     ///   - fileName: HTML file name.
     ///   - type: default is html.
-    func load(local fileName: String, _ type: String = "html") -> Void {
+    public func load(local fileName: String, _ type: String = "html") -> Void {
         let path = Bundle.main.path(forResource: fileName, ofType: type)
         
         guard path != nil else {
@@ -27,7 +27,7 @@ public extension IWView where View: WKWebView {
         #if os(iOS)
         if #available(iOS 9.0, *) {
             let fileURL = path!.toFileURL
-            view.loadFileURL(fileURL, allowingReadAccessTo: fileURL)
+            self.loadFileURL(fileURL, allowingReadAccessTo: fileURL)
             return;
         }
         #endif
@@ -35,7 +35,7 @@ public extension IWView where View: WKWebView {
         let fileURL = fileURLForBugglyWKWebView(URL.init(fileURLWithPath: path!))
         if let fileURLed = fileURL {
             let request = URLRequest.init(url: fileURLed)
-            view.load(request)
+            self.load(request)
         }
     }
     
@@ -43,9 +43,9 @@ public extension IWView where View: WKWebView {
     ///
     /// - Parameters:
     ///   - identity: Label identifier
-    func removeChild(byIdentity: String, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
+    public func removeChild(byIdentity: String, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
         let script = "var removeObj = document.getElementById('\(byIdentity)'); removeObj.parentNode.removeChild(removeObj);"
-        view.evaluateJavaScript(script, completionHandler: completionHandler)
+        self.evaluateJavaScript(script, completionHandler: completionHandler)
     }
     
     /// Remove child with className. index为-1则移除全部classname为byClass的内容
@@ -53,24 +53,24 @@ public extension IWView where View: WKWebView {
     /// - Parameters:
     ///   - byClass: class name
     ///   - index: Index
-    func removeChild(bySelector selectorName: String, index: Int = -1, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
+    public func removeChild(bySelector selectorName: String, index: Int = -1, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
         var script = ""
         if index == -1 {
             script = "var waitRemoveObjs = document.querySelectorAll('\(selectorName)'); for (i = waitRemoveObjs.length - 1; i >= 0; i --) { var waitRemoveObj = waitRemoveObjs[i]; waitRemoveObj.parentNode.removeChild(waitRemoveObj);}"
         } else {
             script = "var waitRemoveObj = document.querySelector('\(selectorName)'); waitRemoveObj.parentNode.removeChild(waitRemoveObj);"
         }
-        view.evaluateJavaScript(script, completionHandler: completionHandler)
+        self.evaluateJavaScript(script, completionHandler: completionHandler)
     }
     
     /// Auto scale page. Use in loaded.
-    func autoScale() {
+    public func autoScale() {
         let script = "var viewPortTag=document.createElement('meta'); viewPortTag.id='viewport'; viewPortTag.name = 'viewport'; viewPortTag.content = 'width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;'; document.getElementsByTagName('head')[0].appendChild(viewPortTag);"
-        view.evaluateJavaScript(script, completionHandler: nil)
+        self.evaluateJavaScript(script, completionHandler: nil)
     }
     
-    func innerHTMLContent(handler: ((_ HTMLContent: String) -> Void)?) -> Void {
-        view.evaluateJavaScript("document.body.innerHTML") { (content, error) in
+    public func innerHTMLContent(handler: ((_ HTMLContent: String) -> Void)?) -> Void {
+        self.evaluateJavaScript("document.body.innerHTML") { (content, error) in
             if let ct = content {
                 handler?(ct as! String)
             } else {
@@ -79,8 +79,8 @@ public extension IWView where View: WKWebView {
         }
     }
     
-    func outerHTMLContent(handler: ((_ HTMLContent: String) -> Void)? ) -> Void {
-        view.evaluateJavaScript("document.body.outerHTML") { (content, error) in
+    public func outerHTMLContent(handler: ((_ HTMLContent: String) -> Void)? ) -> Void {
+        self.evaluateJavaScript("document.body.outerHTML") { (content, error) in
             if let ct = content {
                 handler?(ct as! String)
             } else {
@@ -89,15 +89,15 @@ public extension IWView where View: WKWebView {
         }
     }
     
-    func setAttrToLabel(byTagName tagName: String, attrName: String, attrValue: String) -> Void {
-        view.evaluateJavaScript("var tags = document.getElementsByTagName('\(tagName)'); for (var i = 0; i < tags.length; i++) { tags[i].setAttribute('\(attrName)','\(attrValue)'); }") { (any, error) in
+    public func setAttrToLabel(byTagName tagName: String, attrName: String, attrValue: String) -> Void {
+        self.evaluateJavaScript("var tags = document.getElementsByTagName('\(tagName)'); for (var i = 0; i < tags.length; i++) { tags[i].setAttribute('\(attrName)','\(attrValue)'); }") { (any, error) in
             iPrint(error: error)
         }
     }
     
     #if os(iOS)
-    var wkContentView: UIView? {
-        for subView in view.subviews {
+    public var wkContentView: UIView? {
+        for subView in self.subviews {
             subView.backgroundColor = .clear
             if subView.isKind(of: NSClassFromString("WKScrollView")!) {
                 for ssubView in subView.subviews {
@@ -112,7 +112,7 @@ public extension IWView where View: WKWebView {
     }
     
     
-    var backgroundView: UIView? {
+    public var backgroundView: UIView? {
         if let contentView = wkContentView {
             for subv in contentView.subviews {
                 return subv
@@ -122,28 +122,28 @@ public extension IWView where View: WKWebView {
     }
     #endif
     
-    func post(path: String, JSONParameters: String) {
+    public func post(path: String, JSONParameters: String) {
         let postJavascript = "function iwe_post(path, parameters) { var method = \"POST\"; var form = document.createElement(\"form\"); form.setAttribute(\"method\", method); form.setAttribute(\"action\", path); for (var key in parameters) { var hiddenFild = document.createElement(\"input\"); hiddenFild.setAttribute(\"type\", \"hidden\"); hiddenFild.setAttribute(\"name\", key); hiddenFild.setAttribute(\"value\", parameters[key]); form.appendChild(hiddenFild); } document.body.appendChild(form); form.submit(); }; iwe_post('\(path)', '\(JSONParameters.remove(["\\", " "]))');"
-        view.evaluateJavaScript(postJavascript) { (result, error) in
+        self.evaluateJavaScript(postJavascript) { (result, error) in
             iPrint(error: error)
         }
     }
     
-    func setStyle(byClassName className: String, index: Int = -1, value: String?) {
+    public func setStyle(byClassName className: String, index: Int = -1, value: String?) {
         var postJavascript = ""
         if index == -1 {
             postJavascript = "var waitChangingObjs = document.getElementsByClassName('\(className)'); for (var i = 0; i < waitChangingObjs.length; i++) { var waitChangingObj = waitChangingObjs[i]; waitChangingObj.setAttribute('style', '\(value ?? "");'); }"
         } else {
             postJavascript = "document.getElementsByClassName('\(className)')[\(index)].setAttribute('style', '\(value ?? "");');"
         }
-        view.evaluateJavaScript(postJavascript) { (result, error) in
+        self.evaluateJavaScript(postJavascript) { (result, error) in
             iPrint(error: error)
         }
     }
     
-    func setStyle(byId id: String, value: String?) {
+    public func setStyle(byId id: String, value: String?) {
         let postJavascript = "var waitChangingObj = document.getElementById('\(id)'); waitChangingObj.setAttribute('style', '\(value ?? "")');"
-        view.evaluateJavaScript(postJavascript) { (result, error) in
+        self.evaluateJavaScript(postJavascript) { (result, error) in
             print(result as Any)
             iPrint(error: error)
         }
@@ -151,10 +151,9 @@ public extension IWView where View: WKWebView {
     
 }
 
-
-fileprivate extension IWView where View: WKWebView {
+fileprivate extension WKWebView {
     
-    func fileURLForBugglyWKWebView(_ fileURL: URL?) -> URL? {
+    fileprivate func fileURLForBugglyWKWebView(_ fileURL: URL?) -> URL? {
         
         guard let _ = try? fileURL?.checkResourceIsReachable() else {
             return nil

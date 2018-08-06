@@ -1,13 +1,47 @@
-//  Created by iWe on 2017/9/20.
-//  Copyright © 2017年 iWe. All rights reserved.
+//  Created by iWw on 2018/7/28.
+//  Copyright © 2018 iWe. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(macOS)
+    import Cocoa
+    public typealias IWButton = NSButton
+#else
     import UIKit
+    public typealias IWButton = UIButton
+#endif
 
 
-// MARK: 属性
-public extension UIButton {
+public extension IWButton {
+    
+    /// (配置).
+    public func config(_ configurationHandler: (_ sender: IWButton) -> Void) -> Void {
+        configurationHandler(self)
+    }
+    
+}
+
+
+#if os(macOS)
+
+// MARK:- macOS Function
+public extension IWButton {
+    
+    /// (设置标题颜色).
+    public func setTitleColor(_ color: NSColor) -> Void {
+        let attrTitle = NSMutableAttributedString.init(attributedString: self.attributedTitle)
+        let len = attrTitle.length
+        let range = NSMakeRange(0, len)
+        attrTitle.addAttributes([NSAttributedStringKey.foregroundColor : color], range: range)
+        attrTitle.fixAttributes(in: range)
+        self.attributedTitle = attrTitle
+        // self.setNeedsDisplay()
+    }
+    
+}
+#else
+
+// MARK:- unmacOS Variable
+public extension IWButton {
     
     /// Set fontSize with systemFont.
     /// (字体大小).
@@ -38,20 +72,15 @@ public extension UIButton {
     }
 }
 
-// MARK: 方法
-public extension UIButton {
-    
-    /// (配置).
-    public func config(_ configurationHandler: (_ sender: UIButton) -> Void) -> Void {
-        configurationHandler(self)
-    }
+// MARK:- unmacOS Function
+public extension IWButton {
     
     /// (设置对应状态的字体颜色).
     ///
     /// - Parameters:
     ///   - color: 颜色
     ///   - state: 状态
-    public func titleColor(_ color: UIColor?, _ state: UIControlState = .normal) -> Void {
+    public func titleColor(_ color: IWColor?, _ state: UIControlState = .normal) -> Void {
         setTitleColor(color, for: state)
     }
     
@@ -64,4 +93,5 @@ public extension UIButton {
     }
     
 }
+
 #endif

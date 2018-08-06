@@ -5,7 +5,7 @@
 #if os(iOS)
 import UIKit
 
-public extension IWView where View: UILabel {
+public extension IWProtocolView where View: UILabel {
     
     /// (将目标UILabel的样式属性设置到当前UILabel上).
     /// (将会复制的样式属性包括：font、textColor、backgroundColor、lineBreakMode、textAlignment).

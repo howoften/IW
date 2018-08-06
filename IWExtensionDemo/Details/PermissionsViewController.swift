@@ -80,6 +80,7 @@ class PermissionsViewController: IWSubVC {
         reminderStatus.text = "备忘录授权状态：" + reminderAuthStatus.description
         healthStatus.text = "健康授权状态：" + healthAuthStatus.description
         
+        
         photoLibraryBtn.iwe.isEnable(false).where(photoLibraryAuthStatus.is(.authorized))
         cameraBtn.iwe.isEnable(false).where(cameraAuthStatus.is(.authorized))
         locationBtn.iwe.isEnable(false).where(locationAuthStatus.is(.authorized))
@@ -93,6 +94,7 @@ class PermissionsViewController: IWSubVC {
             let musicAuthStatus = musicManager.authorizationStatus
             musicStatus.text = "Apple Music 授权状态：" + musicAuthStatus.description
             musicBtn.iwe.isEnable(false).where(musicAuthStatus.is(.authorized))
+            
         } else {
             musicStatus.text = "Apple Music 授权状态：系统版本在 9.3 及以上才可使用"
             musicBtn.isEnabled = false
