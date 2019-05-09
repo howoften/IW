@@ -13,7 +13,7 @@
 
 public extension IWView {
     
-    public enum InsertType {
+    enum InsertType {
         /// (在 ... 上面).
         case above
         /// (在 ... 下面).
@@ -29,45 +29,45 @@ private struct IWViewKey {
 // MARK:- General Variable
 public extension IWView {
     
-    public var x: CGFloat {
+    var x: CGFloat {
         get { return self.frame.origin.x }
         set { self.frame.origin.x = newValue }
     }
-    public var y: CGFloat {
+    var y: CGFloat {
         get { return self.frame.origin.y }
         set { self.frame.origin.y = newValue }
     }
     
-    public var width: CGFloat {
+    var width: CGFloat {
         get { return self.frame.width }
         set { self.frame.size.width = newValue }
     }
-    public var height: CGFloat {
+    var height: CGFloat {
         get { return self.frame.height }
         set { self.frame.size.height = newValue }
     }
     
-    public var size: CGSize {
+    var size: CGSize {
         get { return self.frame.size }
         set { self.frame.size = newValue }
     }
     
-    public var origin: CGPoint {
+    var origin: CGPoint {
         get { return self.frame.origin }
         set { self.frame.origin = newValue }
     }
     
-    public var left: CGFloat {
+    var left: CGFloat {
         get { return self.frame.origin.x }
         set { self.frame.origin.x = newValue }
     }
-    public var right: CGFloat {
+    var right: CGFloat {
         get { return self.frame.origin.x + self.frame.size.width }
         set { self.frame.origin.x = newValue - self.frame.size.width }
     }
     
     /// (视图右边距离 superView 右边的距离).
-    public var absRight: CGFloat {
+    var absRight: CGFloat {
         get {
             guard let sv = self.superview else { return self.right }
             return sv.width - self.right
@@ -77,11 +77,11 @@ public extension IWView {
             self.right = sv.width - newValue }
     }
     
-    public var top: CGFloat {
+    var top: CGFloat {
         get { return self.frame.origin.y }
         set { self.frame.origin.y = newValue }
     }
-    public var bottom: CGFloat {
+    var bottom: CGFloat {
         get { return self.frame.origin.y + self.frame.size.height }
         set { self.frame.origin.y = newValue - self.frame.size.height }
     }
@@ -161,7 +161,7 @@ public extension IWView {
     
     /// iOS: (约束&填充到 superview, iOS6 及以后支持，iOS 9及以后使用 fillToSuperview).
     /// macOS: (填充约束至父视图).
-    public func fillConstraints() -> Void {
+    func fillConstraints() -> Void {
         guard let spv = superview else {
             return
         }
@@ -176,7 +176,7 @@ public extension IWView {
     }
     
     /// (渐变色).
-    public func gradient(colors: [UIColor], startPoint: CGPoint, endPoint: CGPoint) -> Void {
+    func gradient(colors: [UIColor], startPoint: CGPoint, endPoint: CGPoint) -> Void {
         #if os(macOS)
         guard let layer = layer else {
             _Warning("The view's layer is nil, Use `initializeLayer` fix this warning.")
@@ -221,7 +221,7 @@ public extension IWView {
     
     /// Set random color.
     /// (是否显示 Debug 模式下的颜色).
-    public var showDebugColor: Bool {
+    var showDebugColor: Bool {
         get { return (objc_getAssociatedObject(self, &IWViewKey.showDebugColorKey) as? Bool) ?? false }
         set {
             objc_setAssociatedObject(self, &IWViewKey.showDebugColorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -233,7 +233,7 @@ public extension IWView {
         }
     }
     /// (随机设置一个颜色, 透明度为0.8).
-    public var debugColor: IWColor {
+    var debugColor: IWColor {
         return IWColor.random.alpha(0.8)
     }
     
@@ -257,12 +257,12 @@ public extension IWView {
 public extension IWView {
     
     /// (wantsLayer = true).
-    public static func initliazeLayer() -> Void {
+    static func initliazeLayer() -> Void {
         wantsLayer = true
     }
     
     /// (从 xib 初始化视图).
-    public class func fromNib<T: NSView>() -> T? {
+    class func fromNib<T: NSView>() -> T? {
         var viewArray: NSArray? = NSArray()
         let nibName = String(describing: self)
         guard Bundle.main.loadNibNamed(NSNib.Name(rawValue: nibName), owner: nil, topLevelObjects: &viewArray) else { return nil }
@@ -270,7 +270,7 @@ public extension IWView {
     }
     
     /// (设置背景颜色).
-    public var bgColor: CGColor? {
+    var bgColor: CGColor? {
         get { return self.layer?.backgroundColor }
         set { if (!self.wantsLayer) { self.wantsLayer = true }; self.layer?.backgroundColor = newValue }
     }
@@ -285,7 +285,7 @@ public extension IWView {
 // MARK-: unmacOS IWView Function
 public extension IWView {
     
-    public static var xib: UIView? {
+    static var xib: UIView? {
         let path = _xibPath()
         if path != nil {
             let className = String(describing: self)
@@ -304,7 +304,7 @@ public extension IWView {
     }
     
     /// (将 View 转换为 UIImage).
-    public var screenshot: IWImage? {
+    var screenshot: IWImage? {
         UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, 0)
         defer {
             UIGraphicsEndImageContext()
@@ -314,7 +314,7 @@ public extension IWView {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
     /// (将 View 转换为 UIImage).
-    public var toUIImage: IWImage? {
+    var toUIImage: IWImage? {
         return screenshot
     }
     
@@ -334,13 +334,13 @@ public extension IWView {
     private struct SaveToAlbumKey {
         static var SavedCallBackKey: Void?
     }
-    public typealias SavedCallBack = ((_ image: UIImage, _ success: Bool, _ error: Error?) -> Void)
+    typealias SavedCallBack = ((_ image: UIImage, _ success: Bool, _ error: Error?) -> Void)
     private var saveToAlbumSavedCallBack: SavedCallBack? {
         get { return objc_getAssociatedObject(self, &SaveToAlbumKey.SavedCallBackKey) as? SavedCallBack }
         set { objc_setAssociatedObject(self, &SaveToAlbumKey.SavedCallBackKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     // (保存视图到相册, size 为 nil 时则为 view 的大小, 需要设置 Private - ).
-    public func saveToAlbum(withSize size: CGSize?, saved: SavedCallBack?) -> Void {
+    func saveToAlbum(withSize size: CGSize?, saved: SavedCallBack?) -> Void {
         UIGraphicsBeginImageContextWithOptions(size.or(self.frame.size), false, 0.0)
         guard let context = UIGraphicsGetCurrentContext() else { return }
         self.layer.render(in: context)
@@ -363,7 +363,7 @@ public extension IWView {
     
     
     /// [#测试功能].
-    public func insert(to view: UIView, type: InsertType = .above, autoConfigEdge: Bool = false) {
+    func insert(to view: UIView, type: InsertType = .above, autoConfigEdge: Bool = false) {
         if type == .above {
             view.superview?.insertSubview(self, aboveSubview: view)
         } else {
@@ -396,7 +396,7 @@ public extension IWView {
     }
     
     /// (约束&填充到 superview, iOS9 及以后支持).
-    @available(iOS 9.0, *) public func fillToSuperview() -> Void {
+    @available(iOS 9.0, *) func fillToSuperview() -> Void {
         translatesAutoresizingMaskIntoConstraints = false
         superview.unwrapped ({ (spv) in
             leftAnchor.constraint(equalTo: spv.leftAnchor).isActive = true
@@ -409,7 +409,7 @@ public extension IWView {
     // Start ----------
     /// Touch/Tap Action with Block.
     /// (Block 点击事件).
-    public func whenTouches(numberOfTouches touches: Int, numberOfTapped taps: Int, handler: (() -> Void)?) -> Void {
+    func whenTouches(numberOfTouches touches: Int, numberOfTapped taps: Int, handler: (() -> Void)?) -> Void {
         guard let hd = handler else { return }
         let gesture = UITapGestureRecognizer.iwe_recognizer(withHandler: { (sender, view, state, location) in
             if state == .possible { hd() }
@@ -433,25 +433,25 @@ public extension IWView {
     }
     /// One Tap.
     /// (单击事件).
-    public func whenTapped(_ handler: @escaping () -> Void) -> Void {
+    func whenTapped(_ handler: @escaping () -> Void) -> Void {
         whenTouches(numberOfTouches: 1, numberOfTapped: 1, handler: handler)
     }
     /// Double Tap.
     /// (双击事件).
-    public func whenDoubleTapped(_ handler: @escaping () -> Void) -> Void {
+    func whenDoubleTapped(_ handler: @escaping () -> Void) -> Void {
         whenTouches(numberOfTouches: 1, numberOfTapped: 2, handler: handler)
     }
     // Ended ----------
     
     /// in viewController / Top viewController?
     /// (当前显示的 viewController).
-    public var viewController: UIViewController? {
+    var viewController: UIViewController? {
         return UIViewController.current
     }
     
     /// Set BackgorundColor.
     /// (设置背景颜色).
-    public func bgColor(_ color: UIColor) {
+    func bgColor(_ color: UIColor) {
         backgroundColor = color
     }
     
@@ -473,7 +473,7 @@ public extension IWView {
     }
     
     
-    public class func animation(_ time: TimeInterval, _ animate: @escaping () -> Void, _ finished: ((Bool) -> Void)?)  -> Void {
+    class func animation(_ time: TimeInterval, _ animate: @escaping () -> Void, _ finished: ((Bool) -> Void)?)  -> Void {
         UIView.animate(withDuration: time, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.8, options: [.curveEaseOut, .allowUserInteraction], animations: animate, completion: finished)
     }
     

@@ -200,7 +200,7 @@ extension IWNaver {
         }
         if hasOnePoint(in: points) {
             // naver://./UIViewController
-            iPrint("Push to: \(naver.lastPath)")
+            iPrint("Push to: \(naver.lastPath!)")
             handlerPathComponents(with: naver)
         } else {
             // naver://../UIViewController     naver://..      naver://../
@@ -228,10 +228,10 @@ extension IWNaver {
     private func fixClass(with classStr: String!) -> AnyObject {
         guard classStr != nil else { fatalError("Path 为空") }
         if classStr.contains(bundleName) {
-            guard let pathClass = NSClassFromString(classStr!) else { fatalError("Path:\(classStr) 转换 class 失败") }
+            guard let pathClass = NSClassFromString(classStr!) else { fatalError("Path:\(classStr!) 转换 class 失败") }
             return pathClass
         }
-        guard let pathClass = NSClassFromString("\(bundleName).\(classStr!)") else { fatalError("Path:\(classStr) 转换 class 失败") }
+        guard let pathClass = NSClassFromString("\(bundleName).\(classStr!)") else { fatalError("Path:\(classStr!) 转换 class 失败") }
         return pathClass
     }
     /// 初始化 class

@@ -14,22 +14,22 @@
 public extension IWRect {
     
     /// (.origin.x).
-    public var x: CGFloat {
+    var x: CGFloat {
         get { return self.origin.x }
         set { self.origin.x = newValue }
     }
     /// (.origin.y).
-    public var y: CGFloat {
+    var y: CGFloat {
         get { return self.origin.y }
         set { self.origin.y = newValue }
     }
     /// (.size.width).
-    public var width: CGFloat {
+    var width: CGFloat {
         get { return self.size.width }
         set { self.size.width = newValue }
     }
     /// (size.height).
-    public var height: CGFloat {
+    var height: CGFloat {
         get { return self.size.height }
         set { self.size.height = newValue }
     }
@@ -41,7 +41,7 @@ public extension IWRect {
 public extension IWRect {
     
     /// (屏幕大小, screen frame size).
-    public static let screenSize: IWSize = { return NSScreen.main?.frame.size }()
+    static let screenSize: IWSize = { return NSScreen.main?.frame.size }()
     
 }
 
@@ -50,7 +50,7 @@ public extension IWRect {
 public extension IWRect {
     
     /// (屏幕大小, sceren bounds).
-    public static let screenBounds: IWRect = { return iw.screen.bounds }()
+    static let screenBounds: IWRect = { return iw.screen.bounds }()
     
 }
 

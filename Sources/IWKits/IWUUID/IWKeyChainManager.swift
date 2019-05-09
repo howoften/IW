@@ -2,11 +2,13 @@
 //  Copyright © 2018年 iWe. All rights reserved.
 //
 
-#if os(macOS)
-    import Cocoa
-#else
-    import UIKit
-#endif
+//#if os(macOS)
+//    import Cocoa
+//#else
+//    import UIKit
+//#endif
+#if os(iOS)
+import UIKit
 import Security
 
 public class IWKeyChainManager: NSObject {
@@ -81,3 +83,4 @@ public class IWKeyChainManager: NSObject {
                 kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock]
     }
 }
+#endif

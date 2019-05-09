@@ -13,7 +13,7 @@
 public extension IWImage {
     
     /// (获取图片均色, 原理：将图片压缩至 1x1, 然后取色值, 如果获取的颜色比较淡, 可使用 iwe.colorWithoutAlpha 转换).
-    public var averageColor: IWColor? {
+    var averageColor: IWColor? {
         #if swift(>=4.1)
         let data = UnsafeMutableRawPointer.allocate(byteCount: 4, alignment: 1) // unsigned char = 4 bytes
         #else
@@ -56,7 +56,7 @@ public extension IWImage {
     ///
     /// - Parameter filePath: icns文件路径
     /// - Returns: 返回 icns 中的图片组
-    public static func load(icns filePath: String?) -> [NSImageRep]? {
+    static func load(icns filePath: String?) -> [NSImageRep]? {
         guard let fp = filePath else { return nil }
         guard let loads = IWImage.init(contentsOfFile: fp) else { return nil }
         return loads.representations
@@ -73,7 +73,7 @@ public extension Array where Element: NSImageRep {
     ///   - size: 图片size的最大值
     ///   - pixels: 最大pixels
     /// - Returns: 找到了返回图片，没找到返回nil
-    public func autoGetImage(maxSize size: CGSize, pixels: Int) -> Image? {
+    func autoGetImage(maxSize size: CGSize, pixels: Int) -> Image? {
         var sizeWidth = size.width
         var sizeHeight = size.height
         var _pixels = pixels
@@ -106,25 +106,25 @@ public extension Array where Element: NSImageRep {
 public extension IWImage {
     
     /// (图片大小, Bytes).
-    public var bytesSize: Int {
+    var bytesSize: Int {
         return UIImageJPEGRepresentation(self, 1)?.count ?? 0
     }
     
     /// (图片大小, KBytes).
-    public var kilobytesSize: Int {
+    var kilobytesSize: Int {
         return bytesSize / 1024
     }
     
-    public var original: IWImage {
+    var original: IWImage {
         return withRenderingMode(.alwaysOriginal)
     }
-    public var template: IWImage {
+    var template: IWImage {
         return withRenderingMode(.alwaysTemplate)
     }
     
     
     /// (将图片置灰色).
-    public var grayImage: UIImage? {
+    var grayImage: UIImage? {
         let width = self.size.width * self.scale
         let height = self.size.height * self.scale
         let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceGray()
@@ -164,7 +164,7 @@ public extension IWImage {
     }
     
     /// (是否包含透明通道).
-    public var opaque: Bool {
+    var opaque: Bool {
         guard let alphaInfo = self.cgImage?.alphaInfo else { return false }
         let opq = (alphaInfo == CGImageAlphaInfo.noneSkipLast) || (alphaInfo == CGImageAlphaInfo.noneSkipFirst) || (alphaInfo == CGImageAlphaInfo.none)
         return opq
@@ -179,7 +179,7 @@ public extension IWImage {
     ///
     /// - Parameter alpha: 透明度
     /// - Returns: 返回一张设置了透明度的图片
-    public func alpha(_ alpha: CGFloat) -> UIImage? {
+    func alpha(_ alpha: CGFloat) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         guard UIGraphicsGetCurrentContext() != nil else {
             assertionFailure("非法 context.")
@@ -196,7 +196,7 @@ public extension IWImage {
     ///
     /// - Parameter tintColor: 用于渲染的颜色
     /// - Returns: 与当前图片形状一致但颜色与参数 tintColor 相同的新图片
-    public func tintColor(_ tintColor: UIColor) -> UIImage? {
+    func tintColor(_ tintColor: UIColor) -> UIImage? {
         let imgIn = self
         let rect = MakeRect(0, 0, imgIn.size.width, imgIn.size.height)
         UIGraphicsBeginImageContextWithOptions(imgIn.size, self.opaque, imgIn.scale)
@@ -220,7 +220,7 @@ public extension IWImage {
     ///
     /// - Parameter blendColor: 用于渲染的颜色
     /// - Returns: 返回一张与当前图片形状纹理一致的经过 blendColor 颜色渲染的图片
-    public func blendColor(_ blendColor: UIColor) -> UIImage? {
+    func blendColor(_ blendColor: UIColor) -> UIImage? {
         guard let coloredImage = self.tintColor(blendColor) else { return nil }
         guard let filter = CIFilter.init(name: "CIColorBlendMode") else { return nil }
         filter.setValue(CIImage.init(cgImage: self.cgImage!), forKey: kCIInputBackgroundImageKey)
@@ -241,7 +241,7 @@ public extension IWImage {
     }
     /// Generate QRCode with txt.
     /// (生成二维码).
-    public static func generateQRCode(withContent content: String, withSize size: CGFloat, logoImage: UIImage?, logoSizeType sizeType: QRCodeLogoImageSizeType) -> UIImage? {
+    static func generateQRCode(withContent content: String, withSize size: CGFloat, logoImage: UIImage?, logoSizeType sizeType: QRCodeLogoImageSizeType) -> UIImage? {
         guard let filter = CIFilter.init(name: "CIQRCodeGenerator") else {
             return nil
         }
@@ -255,7 +255,7 @@ public extension IWImage {
         return self.createNoneInterpolatedUIImage(from: outputImage, withSize: size, logoImage: logoImage, withLogoSizeType: sizeType)
     }
     /// (创建非插值UII图).
-    public static func createNoneInterpolatedUIImage(from ciimage: CIImage, withSize size: CGFloat, logoImage: UIImage?, withLogoSizeType sizeType: QRCodeLogoImageSizeType) -> UIImage? {
+    static func createNoneInterpolatedUIImage(from ciimage: CIImage, withSize size: CGFloat, logoImage: UIImage?, withLogoSizeType sizeType: QRCodeLogoImageSizeType) -> UIImage? {
         let extent = ciimage.extent
         let scale = min(size / extent.width, size / extent.height)
         
@@ -315,7 +315,7 @@ public extension IWImage {
     ///   - size: 缩放至 ... 大小
     ///   - opaque: 是否透明, 默认为不透明
     /// - Returns: 返回缩放后的图像, 可能为nil
-    public func scale(to size: CGSize, opaque: Bool = false) -> UIImage? {
+    func scale(to size: CGSize, opaque: Bool = false) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         self.draw(in: size.toRect)
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()

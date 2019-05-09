@@ -75,7 +75,7 @@ public class IWTimer: Timer {
     }
     
     /// Block Timer
-    public class func timer(_ interval: TimeInterval, loadingHandler:(_ userInfo: Any?) -> Void?, userInfo: Any?, repeats: Bool) -> Timer {
+    public class func timer(_ interval: TimeInterval, loadingHandler:@escaping (_ userInfo: Any?) -> Void?, userInfo: Any?, repeats: Bool) -> Timer {
         let m = NSMutableArray(object: loadingHandler)
         if let u = userInfo {
             m.add(u)
