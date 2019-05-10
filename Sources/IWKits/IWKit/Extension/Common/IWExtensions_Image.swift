@@ -12,6 +12,7 @@
 
 public extension IWImage {
     
+    #if os(iOS)
     /// (获取图片均色, 原理：将图片压缩至 1x1, 然后取色值, 如果获取的颜色比较淡, 可使用 iwe.colorWithoutAlpha 转换).
     var averageColor: IWColor? {
         #if swift(>=4.1)
@@ -24,12 +25,13 @@ public extension IWImage {
             assertionFailure("非法 context.")
             return nil
         }
-        #if os(macOS)
-            let rect = NSRect.init(x: 0, y: 0, width: 1, height: 1)
-            let cgimg = self.cgImage(forProposedRect: rect, context: context, hints: nil)
-        #else
-            let cgimg = self.cgImage
-        #endif
+//        #if os(macOS)
+//            let rect = NSRect.init(x: 0, y: 0, width: 1, height: 1)
+//            let cgimg = self.cgImage(forProposedRect: rect, context: context, hints: nil)
+//        #else
+//
+//        #endif
+        let cgimg = self.cgImage
         context.draw(cgimg!, in: MakeRect(0, 0, 1, 1))
         let rgba = Array(UnsafeBufferPointer(start: data.assumingMemoryBound(to: UInt8.self), count: 4))
         if rgba[3] > 0 {
@@ -45,6 +47,7 @@ public extension IWImage {
         let a = CGFloat(rgba[3]) / 255
         return IWColor.init(red: r, green: g, blue: b, alpha: a)
     }
+    #endif
     
 }
 
