@@ -12,8 +12,7 @@
  */
 
 #if os(iOS)
-    import UIKit
-#endif
+import UIKit
 
 public class IWUUID: NSObject {
     
@@ -35,3 +34,4 @@ public class IWUUID: NSObject {
     }
     
 }
+#endif

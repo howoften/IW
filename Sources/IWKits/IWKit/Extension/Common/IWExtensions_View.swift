@@ -2,14 +2,9 @@
 //  Copyright © 2018 iWe. All rights reserved.
 //
 
-#if os(macOS)
-    import Cocoa
-    public typealias IWView = NSView
-#else
-    import UIKit
-    public typealias IWView = UIView
-#endif
-
+#if os(iOS)
+import UIKit
+public typealias IWView = UIView
 
 public extension IWView {
     
@@ -250,8 +245,12 @@ public extension IWView {
     }
 }
 
+#endif
+
 #if os(macOS)
 // MARK-: macOS IWView Variable
+import Cocoa
+public typealias IWView = NSView
 
 // MARK-: macOS IWView Function
 public extension IWView {
