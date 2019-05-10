@@ -261,7 +261,7 @@ public extension IWView {
     }
     
     /// (从 xib 初始化视图).
-    class func fromNib<T: NSView>() -> T? {
+    class func fromNib<T: IWView>() -> T? {
         var viewArray: NSArray? = NSArray()
         let nibName = String(describing: self)
         guard Bundle.main.loadNibNamed(NSNib.Name(rawValue: nibName), owner: nil, topLevelObjects: &viewArray) else { return nil }

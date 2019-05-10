@@ -11,6 +11,7 @@
     public typealias UITap = UITapGestureRecognizer
     public typealias UIVC = UIViewController
 #endif
+
 import StoreKit // 应用内打开 app store 详情页
 
 /// (IW 全局公共方法/属性)

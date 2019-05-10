@@ -73,7 +73,7 @@ public extension Array where Element: NSImageRep {
     ///   - size: 图片size的最大值
     ///   - pixels: 最大pixels
     /// - Returns: 找到了返回图片，没找到返回nil
-    func autoGetImage(maxSize size: CGSize, pixels: Int) -> Image? {
+    func autoGetImage(maxSize size: CGSize, pixels: Int) -> IWImage? {
         var sizeWidth = size.width
         var sizeHeight = size.height
         var _pixels = pixels
@@ -92,7 +92,7 @@ public extension Array where Element: NSImageRep {
         // 确实没有找到指定参数的图片
         if imgReps.count == 0 { return nil }
         
-        let newImage = Image.init(size: MakeSize(sizeWidth, sizeHeight))
+        let newImage = IWImage.init(size: MakeSize(sizeWidth, sizeHeight))
         newImage.addRepresentation(imgReps[0])
         return newImage
     }
@@ -234,7 +234,7 @@ public extension IWImage {
     
     // Start -----------
     /// (二维码大小).
-    public enum QRCodeLogoImageSizeType {
+    enum QRCodeLogoImageSizeType {
         case big
         case small
         case none
