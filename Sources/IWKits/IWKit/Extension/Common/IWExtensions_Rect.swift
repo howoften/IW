@@ -41,7 +41,7 @@ public extension IWRect {
 public extension IWRect {
     
     /// (屏幕大小, screen frame size).
-    static let screenSize: IWSize = { return NSScreen.main?.frame.size }()
+    static let screenSize: IWSize = { return NSScreen.main?.frame.size.expect("The size? is null.") }()
     
 }
 

@@ -256,9 +256,9 @@ public typealias IWView = NSView
 public extension IWView {
     
     /// (wantsLayer = true).
-    static func initliazeLayer() -> Void {
-        wantsLayer = true
-    }
+//    static func initliazeLayer() -> Void {
+//        wantsLayer = true
+//    }
     
     /// (从 xib 初始化视图).
     class func fromNib<T: IWView>() -> T? {

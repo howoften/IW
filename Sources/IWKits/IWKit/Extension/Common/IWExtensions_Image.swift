@@ -25,7 +25,8 @@ public extension IWImage {
             return nil
         }
         #if os(macOS)
-            let cgimg = self.cgImage(forProposedRect: MakeRect(0, 0, 1, 1), context: context, hints: nil)
+            let rect = NSRect.init(x: 0, y: 0, width: 1, height: 1)
+            let cgimg = self.cgImage(forProposedRect: rect, context: context, hints: nil)
         #else
             let cgimg = self.cgImage
         #endif
