@@ -16,7 +16,7 @@ public extension WKWebView {
     /// - Parameters:
     ///   - fileName: HTML file name.
     ///   - type: default is html.
-    public func load(local fileName: String, _ type: String = "html") -> Void {
+    func load(local fileName: String, _ type: String = "html") -> Void {
         let path = Bundle.main.path(forResource: fileName, ofType: type)
         
         guard path != nil else {
@@ -43,7 +43,7 @@ public extension WKWebView {
     ///
     /// - Parameters:
     ///   - identity: Label identifier
-    public func removeChild(byIdentity: String, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
+    func removeChild(byIdentity: String, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
         let script = "var removeObj = document.getElementById('\(byIdentity)'); removeObj.parentNode.removeChild(removeObj);"
         self.evaluateJavaScript(script, completionHandler: completionHandler)
     }
@@ -53,7 +53,7 @@ public extension WKWebView {
     /// - Parameters:
     ///   - byClass: class name
     ///   - index: Index
-    public func removeChild(bySelector selectorName: String, index: Int = -1, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
+    func removeChild(bySelector selectorName: String, index: Int = -1, completionHandler: ((Any?, Error?) -> Void)? = nil) -> Void {
         var script = ""
         if index == -1 {
             script = "var waitRemoveObjs = document.querySelectorAll('\(selectorName)'); for (i = waitRemoveObjs.length - 1; i >= 0; i --) { var waitRemoveObj = waitRemoveObjs[i]; waitRemoveObj.parentNode.removeChild(waitRemoveObj);}"
@@ -64,12 +64,12 @@ public extension WKWebView {
     }
     
     /// Auto scale page. Use in loaded.
-    public func autoScale() {
+    func autoScale() {
         let script = "var viewPortTag=document.createElement('meta'); viewPortTag.id='viewport'; viewPortTag.name = 'viewport'; viewPortTag.content = 'width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;'; document.getElementsByTagName('head')[0].appendChild(viewPortTag);"
         self.evaluateJavaScript(script, completionHandler: nil)
     }
     
-    public func innerHTMLContent(handler: ((_ HTMLContent: String) -> Void)?) -> Void {
+    func innerHTMLContent(handler: ((_ HTMLContent: String) -> Void)?) -> Void {
         self.evaluateJavaScript("document.body.innerHTML") { (content, error) in
             if let ct = content {
                 handler?(ct as! String)
@@ -79,7 +79,7 @@ public extension WKWebView {
         }
     }
     
-    public func outerHTMLContent(handler: ((_ HTMLContent: String) -> Void)? ) -> Void {
+    func outerHTMLContent(handler: ((_ HTMLContent: String) -> Void)? ) -> Void {
         self.evaluateJavaScript("document.body.outerHTML") { (content, error) in
             if let ct = content {
                 handler?(ct as! String)
@@ -89,7 +89,7 @@ public extension WKWebView {
         }
     }
     
-    public func setAttrToLabel(byTagName tagName: String, attrName: String, attrValue: String) -> Void {
+    func setAttrToLabel(byTagName tagName: String, attrName: String, attrValue: String) -> Void {
         self.evaluateJavaScript("var tags = document.getElementsByTagName('\(tagName)'); for (var i = 0; i < tags.length; i++) { tags[i].setAttribute('\(attrName)','\(attrValue)'); }") { (any, error) in
             iPrint(error: error)
         }
@@ -122,14 +122,14 @@ public extension WKWebView {
     }
     #endif
     
-    public func post(path: String, JSONParameters: String) {
+    func post(path: String, JSONParameters: String) {
         let postJavascript = "function iwe_post(path, parameters) { var method = \"POST\"; var form = document.createElement(\"form\"); form.setAttribute(\"method\", method); form.setAttribute(\"action\", path); for (var key in parameters) { var hiddenFild = document.createElement(\"input\"); hiddenFild.setAttribute(\"type\", \"hidden\"); hiddenFild.setAttribute(\"name\", key); hiddenFild.setAttribute(\"value\", parameters[key]); form.appendChild(hiddenFild); } document.body.appendChild(form); form.submit(); }; iwe_post('\(path)', '\(JSONParameters.remove(["\\", " "]))');"
         self.evaluateJavaScript(postJavascript) { (result, error) in
             iPrint(error: error)
         }
     }
     
-    public func setStyle(byClassName className: String, index: Int = -1, value: String?) {
+    func setStyle(byClassName className: String, index: Int = -1, value: String?) {
         var postJavascript = ""
         if index == -1 {
             postJavascript = "var waitChangingObjs = document.getElementsByClassName('\(className)'); for (var i = 0; i < waitChangingObjs.length; i++) { var waitChangingObj = waitChangingObjs[i]; waitChangingObj.setAttribute('style', '\(value ?? "");'); }"
@@ -141,7 +141,7 @@ public extension WKWebView {
         }
     }
     
-    public func setStyle(byId id: String, value: String?) {
+    func setStyle(byId id: String, value: String?) {
         let postJavascript = "var waitChangingObj = document.getElementById('\(id)'); waitChangingObj.setAttribute('style', '\(value ?? "")');"
         self.evaluateJavaScript(postJavascript) { (result, error) in
             print(result as Any)
